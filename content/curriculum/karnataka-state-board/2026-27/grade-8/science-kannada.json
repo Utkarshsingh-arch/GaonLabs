@@ -1,0 +1,156 @@
+{
+  "manifest": {
+    "boardId": "KARNATAKA_STATE_BOARD",
+    "boardName": "Karnataka School Examination and Assessment Board",
+    "frameworkId": "KCF_2024",
+    "frameworkName": "Karnataka State Curriculum Framework 2024",
+    "authorityId": "DSERT_KARNATAKA",
+    "authorityName": "Department of State Educational Research and Training Karnataka",
+    "publisherId": "KTBS",
+    "publisherName": "Karnataka Textbook Society",
+    "academicYear": "2026-2027",
+    "grade": 8,
+    "levelId": "GRADE_8",
+    "subjectId": "SCIENCE",
+    "subjectName": "Science",
+    "stemPillar": "SCIENCE",
+    "medium": "kn",
+    "canonicalTitle": "Science Class 8 - KTBS",
+    "titleInLanguage": "ವಿಜ್ಞಾನ - 8ನೇ ತರಗತಿ ಪಠ್ಯಪುಸ್ತಕ",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://textbooks.karnataka.gov.in/",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "Karnataka Textbook Society (KTBS) & DSERT Karnataka. Metadata catalogued for state curriculum referencing. Official textbooks downloadable via textbooks.karnataka.gov.in."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "ಬೆಳೆಗಳ ಉತ್ಪಾದನೆ ಮತ್ತು ನಿರ್ವಹಣೆ",
+      "officialCode": "KTBS-G8-SCI-KN-C01",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "ಸೂಕ್ಷ್ಮಜೀವಿಗಳು: ಮಿತ್ರ ಮತ್ತು ಶತ್ರು",
+      "officialCode": "KTBS-G8-SCI-KN-C02",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "ಸಂಶ್ಲೇಷಿತ ಎಳೆಗಳು ಮತ್ತು ಪ್ಲಾಸ್ಟಿಕ್‌ಗಳು",
+      "officialCode": "KTBS-G8-SCI-KN-C03",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "ವಸ್ತುಗಳು: ಲೋಹಗಳು ಮತ್ತು ಅಲೋಹಗಳು",
+      "officialCode": "KTBS-G8-SCI-KN-C04",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "ಕಲ್ಲಿದ್ದಲು ಮತ್ತು ಪೆಟ್ರೋಲಿಯಂ",
+      "officialCode": "KTBS-G8-SCI-KN-C05",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "ದಹನ ಮತ್ತು ಜ್ವಾಲೆ",
+      "officialCode": "KTBS-G8-SCI-KN-C06",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "ಸಸ್ಯಗಳು ಮತ್ತು ಪ್ರಾಣಿಗಳ ಸಂರಕ್ಷಣೆ",
+      "officialCode": "KTBS-G8-SCI-KN-C07",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "ಕೋಶ - ರಚನೆ ಮತ್ತು ಕಾರ್ಯಗಳು",
+      "officialCode": "KTBS-G8-SCI-KN-C08",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "ಪ್ರಾಣಿಗಳಲ್ಲಿ ಪ್ರಜನನ",
+      "officialCode": "KTBS-G8-SCI-KN-C09",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "ಹದಿಹರೆಯದ ತಲುಪುವಿಕೆ",
+      "officialCode": "KTBS-G8-SCI-KN-C10",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "ಬಲ ಮತ್ತು ಒತ್ತಡ",
+      "officialCode": "KTBS-G8-SCI-KN-C11",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "ಘರ್ಷಣೆ",
+      "officialCode": "KTBS-G8-SCI-KN-C12",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "ಶಬ್ದ",
+      "officialCode": "KTBS-G8-SCI-KN-C13",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "ವಿದ್ಯುತ್ ಪ್ರವಾಹದ ರಾಸಾಯನಿಕ ಪರಿಣಾಮಗಳು",
+      "officialCode": "KTBS-G8-SCI-KN-C14",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 15,
+      "title": "ಕೆಲವು ಪ್ರಾಕೃತಿಕ ವಿಕೋಪಗಳು",
+      "officialCode": "KTBS-G8-SCI-KN-C15",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 16,
+      "title": "ಬೆಳಕು",
+      "officialCode": "KTBS-G8-SCI-KN-C16",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 17,
+      "title": "ನಕ್ಷತ್ರಗಳು ಮತ್ತು ಸೌರವ್ಯೂಹ",
+      "officialCode": "KTBS-G8-SCI-KN-C17",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 18,
+      "title": "ಗಾಳಿ ಮತ್ತು ನೀರಿನ ಮಾಲಿನ್ಯ",
+      "officialCode": "KTBS-G8-SCI-KN-C18",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    }
+  ]
+}

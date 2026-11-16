@@ -1,0 +1,156 @@
+{
+  "manifest": {
+    "boardId": "KARNATAKA_STATE_BOARD",
+    "boardName": "Karnataka School Examination and Assessment Board",
+    "frameworkId": "KCF_2024",
+    "frameworkName": "Karnataka State Curriculum Framework 2024",
+    "authorityId": "DSERT_KARNATAKA",
+    "authorityName": "Department of State Educational Research and Training Karnataka",
+    "publisherId": "KTBS",
+    "publisherName": "Karnataka Textbook Society",
+    "academicYear": "2026-2027",
+    "grade": 7,
+    "levelId": "GRADE_7",
+    "subjectId": "SCIENCE",
+    "subjectName": "Science",
+    "stemPillar": "SCIENCE",
+    "medium": "kn",
+    "canonicalTitle": "Science Class 7 - KTBS",
+    "titleInLanguage": "ವಿಜ್ಞಾನ - 7ನೇ ತರಗತಿ ಪಠ್ಯಪುಸ್ತಕ",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://textbooks.karnataka.gov.in/",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "Karnataka Textbook Society (KTBS) & DSERT Karnataka. Metadata catalogued for state curriculum referencing. Official textbooks downloadable via textbooks.karnataka.gov.in."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "ಸಸ್ಯಗಳಲ್ಲಿ ಪೋಷಣೆ",
+      "officialCode": "KTBS-G7-SCI-KN-C01",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "ಪ್ರಾಣಿಗಳಲ್ಲಿ ಪೋಷಣೆ",
+      "officialCode": "KTBS-G7-SCI-KN-C02",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "ಎಳೆಯಿಂದ ಬಟ್ಟೆ",
+      "officialCode": "KTBS-G7-SCI-KN-C03",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "ಉಷ್ಣ",
+      "officialCode": "KTBS-G7-SCI-KN-C04",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "ಆಮ್ಲಗಳು, ಪ್ರತ್ಯಾಮ್ಲಗಳು ಮತ್ತು ಲವಣಗಳು",
+      "officialCode": "KTBS-G7-SCI-KN-C05",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "ಭೌತ ಮತ್ತು ರಾಸಾಯನಿಕ ಬದಲಾವಣೆಗಳು",
+      "officialCode": "KTBS-G7-SCI-KN-C06",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "ಹವಾಮಾನ, ವಾಯುಗುಣ ಮತ್ತು ಪ್ರಾಣಿಗಳ ಹೊಂದಾಣಿಕೆ",
+      "officialCode": "KTBS-G7-SCI-KN-C07",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "ಗಾಳಿ, ಬಿರುಗಾಳಿ ಮತ್ತು ಚಂಡಮಾರುತಗಳು",
+      "officialCode": "KTBS-G7-SCI-KN-C08",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "ಮಣ್ಣು",
+      "officialCode": "KTBS-G7-SCI-KN-C09",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "ಜೀವಿಗಳಲ್ಲಿ ಉಸಿರಾಟ",
+      "officialCode": "KTBS-G7-SCI-KN-C10",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "ಪ್ರಾಣಿಗಳು ಮತ್ತು ಸಸ್ಯಗಳಲ್ಲಿ ಸಾಗಾಣಿಕೆ",
+      "officialCode": "KTBS-G7-SCI-KN-C11",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "ಸಸ್ಯಗಳಲ್ಲಿ ಸಂತಾನೋತ್ಪತ್ತಿ",
+      "officialCode": "KTBS-G7-SCI-KN-C12",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "ಚಲನೆ ಮತ್ತು ಕಾಲ",
+      "officialCode": "KTBS-G7-SCI-KN-C13",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "ವಿದ್ಯುತ್ ಪ್ರವಾಹ ಮತ್ತು ಅದರ ಪರಿಣಾಮಗಳು",
+      "officialCode": "KTBS-G7-SCI-KN-C14",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 15,
+      "title": "ಬೆಳಕು",
+      "officialCode": "KTBS-G7-SCI-KN-C15",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 16,
+      "title": "ನೀರು: ಒಂದು ಅಮೂಲ್ಯ ಸಂಪನ್ಮೂಲ",
+      "officialCode": "KTBS-G7-SCI-KN-C16",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 17,
+      "title": "ಅರಣ್ಯಗಳು: ನಮ್ಮ ಜೀವಸೆಲೆ",
+      "officialCode": "KTBS-G7-SCI-KN-C17",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 18,
+      "title": "ತ್ಯಾಜ್ಯ ನೀರು ನಿರ್ವಹಣೆ",
+      "officialCode": "KTBS-G7-SCI-KN-C18",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    }
+  ]
+}

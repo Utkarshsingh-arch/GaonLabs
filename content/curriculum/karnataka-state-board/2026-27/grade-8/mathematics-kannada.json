@@ -1,0 +1,128 @@
+{
+  "manifest": {
+    "boardId": "KARNATAKA_STATE_BOARD",
+    "boardName": "Karnataka School Examination and Assessment Board",
+    "frameworkId": "KCF_2024",
+    "frameworkName": "Karnataka State Curriculum Framework 2024",
+    "authorityId": "DSERT_KARNATAKA",
+    "authorityName": "Department of State Educational Research and Training Karnataka",
+    "publisherId": "KTBS",
+    "publisherName": "Karnataka Textbook Society",
+    "academicYear": "2026-2027",
+    "grade": 8,
+    "levelId": "GRADE_8",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "kn",
+    "canonicalTitle": "Mathematics Class 8 - KTBS",
+    "titleInLanguage": "ಗಣಿತ - 8ನೇ ತರಗತಿ ಪಠ್ಯಪುಸ್ತಕ",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://textbooks.karnataka.gov.in/",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "Karnataka Textbook Society (KTBS) & DSERT Karnataka. Metadata catalogued for state curriculum referencing. Official textbooks downloadable via textbooks.karnataka.gov.in."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "ಸಂಖ್ಯೆಗಳೊಂದಿಗೆ ಆಟ",
+      "officialCode": "KTBS-G8-MATH-KN-C01",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "ಬೀಜೋಕ್ತಿಗಳು",
+      "officialCode": "KTBS-G8-MATH-KN-C02",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "ಸ್ವಯಂಸಿದ್ಧಗಳು, ಸಿದ್ಧಾಂತಗಳು ಮತ್ತು ಪ್ರಮೇಯಗಳು",
+      "officialCode": "KTBS-G8-MATH-KN-C03",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "ಅಪವರ್ತಿಸುವಿಕೆ",
+      "officialCode": "KTBS-G8-MATH-KN-C04",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "ವರ್ಗಗಳು, ವರ್ಗಮೂಲಗಳು, ಘನಗಳು ಮತ್ತು ಘನಮೂಲಗಳು",
+      "officialCode": "KTBS-G8-MATH-KN-C05",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "ತ್ರಿಭುಜಗಳ ಮೇಲಿನ ಪ್ರಮೇಯಗಳು",
+      "officialCode": "KTBS-G8-MATH-KN-C06",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "ಭಾಗಲಬ್ಧ ಸಂಖ್ಯೆಗಳು",
+      "officialCode": "KTBS-G8-MATH-KN-C07",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "ಒಂದು ಚರಾಕ್ಷರವುಳ್ಳ ರೇಖಾತ್ಮಕ ಸಮೀಕರಣಗಳು",
+      "officialCode": "KTBS-G8-MATH-KN-C08",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "ವ್ಯವಹಾರ ಗಣಿತ",
+      "officialCode": "KTBS-G8-MATH-KN-C09",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "ಘಾತಗಳು",
+      "officialCode": "KTBS-G8-MATH-KN-C10",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "ತ್ರಿಭುಜಗಳ ಸರ್ವಸಮತೆ",
+      "officialCode": "KTBS-G8-MATH-KN-C11",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "ತ್ರಿಭುಜಗಳ ರಚನೆ",
+      "officialCode": "KTBS-G8-MATH-KN-C12",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "ಸಂಖ್ಯಾಶಾಸ್ತ್ರ",
+      "officialCode": "KTBS-G8-MATH-KN-C13",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "ನಕ್ಷೆಗಳ ಪರಿಚಯ",
+      "officialCode": "KTBS-G8-MATH-KN-C14",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    }
+  ]
+}

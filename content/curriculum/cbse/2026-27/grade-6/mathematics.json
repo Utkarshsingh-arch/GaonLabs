@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "boardId": "CBSE",
+    "boardName": "Central Board of Secondary Education",
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 6,
+    "levelId": "GRADE_6",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "en",
+    "canonicalTitle": "Ganita Prakash - Mathematics Grade 6",
+    "titleInLanguage": "Ganita Prakash - Textbook of Mathematics for Grade 6",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?fegp1=0-10",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Patterns in Mathematics",
+      "officialCode": "NCERT-G6-MATH-C01",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fegp1=1-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Lines and Angles",
+      "officialCode": "NCERT-G6-MATH-C02",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fegp1=2-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Number Play",
+      "officialCode": "NCERT-G6-MATH-C03",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fegp1=3-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Data Handling and Presentation",
+      "officialCode": "NCERT-G6-MATH-C04",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fegp1=4-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Prime Time",
+      "officialCode": "NCERT-G6-MATH-C05",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fegp1=5-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Perimeter and Area",
+      "officialCode": "NCERT-G6-MATH-C06",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fegp1=6-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Fractions",
+      "officialCode": "NCERT-G6-MATH-C07",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fegp1=7-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Playing with Constructions",
+      "officialCode": "NCERT-G6-MATH-C08",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fegp1=8-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Symmetry",
+      "officialCode": "NCERT-G6-MATH-C09",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fegp1=9-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "The Other Side of Zero",
+      "officialCode": "NCERT-G6-MATH-C10",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fegp1=10-10",
+      "status": "VERIFIED"
+    }
+  ]
+}

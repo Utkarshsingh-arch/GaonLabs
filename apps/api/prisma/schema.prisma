@@ -1,0 +1,773 @@
+// ==============================================================================
+// GaonLab Core Relational Schema
+// Academic Year: 2026-27 | Foundation Stage 1
+// ==============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==============================================================================
+// 1. IDENTITY DOMAIN ENUMS & MODELS
+// ==============================================================================
+
+enum AccountStatus {
+  REGISTERED_PENDING_CONSENT
+  ACTIVATED
+  SUSPENDED
+  DEACTIVATED
+}
+
+enum AccountType {
+  LEARNER
+  GUARDIAN
+  TEACHER
+  SCHOOL_ADMIN
+  PLATFORM_ADMIN
+}
+
+enum LearnerCategory {
+  PRIMARY
+  MIDDLE
+  SECONDARY
+  POST_SCHOOL
+}
+
+enum ExternalIdentifierType {
+  APAAR
+  STATE_STUDENT_ID
+  PEN
+  UDISE_STUDENT_CODE
+  // ARCHITECTURAL MANDATE: AADHAAR IS PROHIBITED
+}
+
+enum IdentifierVerificationStatus {
+  UNVERIFIED
+  VERIFIED
+  REJECTED
+}
+
+model Account {
+  id              String        @id @default(uuid())
+  loginIdentifier String        @unique
+  email           String?       @unique
+  phone           String?
+  passwordHash    String?
+  status          AccountStatus @default(REGISTERED_PENDING_CONSENT)
+  accountType     AccountType   @default(LEARNER)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  person      Person?
+  auditEvents AuditEvent[]
+
+  @@index([status])
+  @@index([accountType])
+}
+
+model Person {
+  id                String   @id @default(uuid())
+  accountId         String   @unique
+  displayName       String
+  preferredLanguage String   @default("en")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  account                 Account              @relation(fields: [accountId], references: [id], onDelete: Restrict)
+  learnerProfile          LearnerProfile?
+  guardianLinksAsMinor    GuardianLink[]       @relation("MinorGuardianLink")
+  guardianLinksAsGuardian GuardianLink[]       @relation("GuardianLink")
+  externalIdentifiers     ExternalIdentifier[]
+  memberships             Membership[]
+  enrollments             AcademicEnrollment[]
+  syncDevices             SyncDevice[]
+  syncEvents              SyncEventRecord[]
+
+  @@index([displayName])
+}
+
+model LearnerProfile {
+  id                         String          @id @default(uuid())
+  personId                   String          @unique
+  learnerCategory            LearnerCategory @default(MIDDLE)
+  dateOfBirth                DateTime?
+  approximateAge             Int?
+  preferredInterfaceLanguage String          @default("en")
+  mediumOfInstruction        String          @default("en")
+  learningPreferences        Json?
+  accessibilityPreferences   Json?
+  createdAt                  DateTime        @default(now())
+  updatedAt                  DateTime        @updatedAt
+
+  person Person @relation(fields: [personId], references: [id], onDelete: Cascade)
+
+  @@index([learnerCategory])
+  @@index([preferredInterfaceLanguage])
+  @@index([mediumOfInstruction])
+}
+
+enum GuardianRelationType {
+  MOTHER
+  FATHER
+  LEGAL_GUARDIAN
+  INSTITUTIONAL_WARDEN
+  TEACHER_IN_LOCO_PARENTIS
+}
+
+model GuardianLink {
+  id               String               @id @default(uuid())
+  minorPersonId    String
+  guardianPersonId String
+  relationshipType GuardianRelationType
+  isPrimary        Boolean              @default(true)
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+
+  minorPerson    Person @relation("MinorGuardianLink", fields: [minorPersonId], references: [id], onDelete: Restrict)
+  guardianPerson Person @relation("GuardianLink", fields: [guardianPersonId], references: [id], onDelete: Restrict)
+
+  @@unique([minorPersonId, guardianPersonId])
+  @@index([minorPersonId])
+  @@index([guardianPersonId])
+}
+
+model ExternalIdentifier {
+  id                 String                       @id @default(uuid())
+  personId           String
+  type               ExternalIdentifierType
+  identifierValue    String
+  verificationStatus IdentifierVerificationStatus @default(UNVERIFIED)
+  metadata           Json?
+  createdAt          DateTime                     @default(now())
+  updatedAt          DateTime                     @updatedAt
+
+  person Person @relation(fields: [personId], references: [id], onDelete: Cascade)
+
+  @@unique([type, identifierValue])
+  @@index([personId])
+}
+
+// ==============================================================================
+// 2. CONSENT & GUARDIANSHIP DOMAIN
+// ==============================================================================
+
+enum ConsentStatus {
+  REQUESTED
+  GRANTED
+  REVOKED
+  EXPIRED
+}
+
+enum VerificationMethod {
+  MOCK_MANUAL_DEV
+  MULTI_FACTOR_TOKEN_DECLARATION
+  AUDIO_IVR_CONFIRMATION
+  TEACHER_ATTESTED_PHYSICAL
+  DIGITAL_LOCKER_DELEGATION
+}
+
+enum GuardianVerificationStatus {
+  PENDING
+  VERIFIED
+  FAILED
+  REVOKED
+}
+
+model ConsentPolicy {
+  id            String    @id @default(uuid())
+  version       String    @unique
+  title         String
+  content       String
+  effectiveFrom DateTime  @default(now())
+  effectiveTo   DateTime?
+  isCurrent     Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  consentRecords ConsentRecord[]
+}
+
+model ConsentRecord {
+  id                 String        @id @default(uuid())
+  minorPersonId      String
+  guardianPersonId   String
+  policyId           String
+  purposes           Json // Array of purpose strings e.g. ["BASIC_LEARNING", "OFFLINE_SYNC"]
+  status             ConsentStatus @default(REQUESTED)
+  grantedAt          DateTime?
+  revokedAt          DateTime?
+  expiresAt          DateTime?
+  verificationCaseId String?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+
+  policy           ConsentPolicy             @relation(fields: [policyId], references: [id], onDelete: Restrict)
+  verificationCase GuardianVerificationCase? @relation(fields: [verificationCaseId], references: [id], onDelete: SetNull)
+
+  @@index([minorPersonId])
+  @@index([guardianPersonId])
+  @@index([status])
+}
+
+model GuardianVerificationCase {
+  id                     String                     @id @default(uuid())
+  guardianPersonId       String
+  minorPersonId          String
+  verificationMethod     VerificationMethod         @default(MULTI_FACTOR_TOKEN_DECLARATION)
+  verificationStatus     GuardianVerificationStatus @default(PENDING)
+  isPhoneVerified        Boolean                    @default(false)
+  isAdultVerified        Boolean                    @default(false)
+  isRelationshipVerified Boolean                    @default(false)
+  isMockVerification     Boolean                    @default(false)
+  providerReference      String?
+  evidenceMetadata       Json?
+  verifiedAt             DateTime?
+  verifiedByActorId      String?
+  createdAt              DateTime                   @default(now())
+  updatedAt              DateTime                   @updatedAt
+
+  consentRecords ConsentRecord[]
+
+  @@index([guardianPersonId])
+  @@index([minorPersonId])
+  @@index([verificationStatus])
+}
+
+// ==============================================================================
+// 3. ORGANISATION & SCHOOL DOMAIN
+// ==============================================================================
+
+enum OrganisationType {
+  SCHOOL
+  CLUSTER_RESOURCE_CENTRE
+  BLOCK_EDUCATION_OFFICE
+  COMMUNITY_LEARNING_CENTRE
+  PLATFORM_OPERATOR
+}
+
+enum SchoolVerificationStatus {
+  SELF_DECLARED
+  UDISE_VERIFIED
+  DEPARTMENT_AFFILIATED
+  REJECTED
+}
+
+enum MembershipRole {
+  STUDENT
+  TEACHER
+  HEADMASTER
+  SCHOOL_ADMIN
+  EXTERNAL_MENTOR
+}
+
+model Organisation {
+  id        String           @id @default(uuid())
+  name      String
+  type      OrganisationType @default(SCHOOL)
+  district  String?
+  state     String?
+  pincode   String?
+  isActive  Boolean          @default(true)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  schoolProfile SchoolProfile?
+  memberships   Membership[]
+  enrollments   AcademicEnrollment[]
+
+  @@index([name])
+  @@index([state, district])
+}
+
+model SchoolProfile {
+  id                 String                   @id @default(uuid())
+  organisationId     String                   @unique
+  udiseCode          String?                  @unique
+  verificationStatus SchoolVerificationStatus @default(SELF_DECLARED)
+  managementCategory String?
+  mediumsOffered     Json // Array of mediums ["en", "kn"]
+  gradesOffered      Json // Array of integers [6, 7, 8]
+  verifiedAt         DateTime?
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+
+  organisation Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  classGroups  ClassGroup[]
+
+  @@index([udiseCode])
+  @@index([verificationStatus])
+}
+
+model ClassGroup {
+  id              String   @id @default(uuid())
+  schoolProfileId String
+  grade           Int
+  section         String   @default("A")
+  academicYear    String   @default("2026-2027")
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  schoolProfile SchoolProfile        @relation(fields: [schoolProfileId], references: [id], onDelete: Cascade)
+  memberships   Membership[]
+  enrollments   AcademicEnrollment[]
+
+  @@unique([schoolProfileId, grade, section, academicYear])
+  @@index([grade, academicYear])
+}
+
+model Membership {
+  id             String         @id @default(uuid())
+  organisationId String
+  personId       String
+  role           MembershipRole @default(STUDENT)
+  classGroupId   String?
+  isActive       Boolean        @default(true)
+  joinedAt       DateTime       @default(now())
+  leftAt         DateTime?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  organisation Organisation @relation(fields: [organisationId], references: [id], onDelete: Restrict)
+  person       Person       @relation(fields: [personId], references: [id], onDelete: Cascade)
+  classGroup   ClassGroup?  @relation(fields: [classGroupId], references: [id], onDelete: SetNull)
+
+  @@unique([organisationId, personId, role])
+  @@index([personId])
+  @@index([organisationId])
+}
+
+// ==============================================================================
+// 4. CURRICULUM DOMAIN
+// ==============================================================================
+
+enum CurriculumStatus {
+  DRAFT
+  PENDING_VERIFICATION
+  VERIFIED
+  PUBLISHED
+  ARCHIVED
+}
+
+model EducationBoard {
+  id           String   @id // e.g. "CBSE", "KARNATAKA_STATE_BOARD"
+  code         String   @unique
+  name         String
+  jurisdiction String   @default("STATE") // "CENTRAL" or "STATE"
+  websiteUrl   String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  curriculumVersions CurriculumVersion[]
+  enrollments        AcademicEnrollment[]
+}
+
+model CurriculumFramework {
+  id                String   @id // e.g. "NCF_SE_2023", "KCF_2024"
+  code              String   @unique
+  name              String
+  adoptingAuthority String
+  yearIntroduced    Int
+  description       String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  curriculumVersions CurriculumVersion[]
+}
+
+model CurriculumAuthority {
+  id          String   @id // e.g. "NCERT", "DSERT_KARNATAKA", "KSEAB"
+  code        String   @unique
+  name        String
+  type        String // "NATIONAL_CURRICULAR_BODY", "STATE_CURRICULAR_BODY", "EXAMINATION_BOARD"
+  officialUrl String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TextbookPublisher {
+  id                 String   @id // e.g. "NCERT_PUB", "KTBS"
+  code               String   @unique
+  name               String
+  jurisdiction       String
+  officialCatalogUrl String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  textbooks Textbook[]
+}
+
+model Programme {
+  id          String  @id // e.g. "K12_GENERAL", "VOCATIONAL"
+  code        String  @unique
+  name        String
+  description String?
+  levels      Level[]
+}
+
+model Level {
+  id           String @id // e.g. "GRADE_6", "GRADE_7", "GRADE_8"
+  programmeId  String
+  numericGrade Int
+  stage        String // "PRIMARY", "MIDDLE", "SECONDARY"
+  name         String
+
+  programme          Programme           @relation(fields: [programmeId], references: [id], onDelete: Restrict)
+  curriculumVersions CurriculumVersion[]
+  textbooks          Textbook[]
+
+  @@unique([programmeId, numericGrade])
+  @@index([numericGrade])
+}
+
+model Subject {
+  id          String  @id // e.g. "MATHEMATICS", "SCIENCE"
+  code        String  @unique
+  name        String
+  stemPillar  String // "SCIENCE", "TECHNOLOGY", "ENGINEERING", "MATHEMATICS"
+  description String?
+
+  curriculumVersions CurriculumVersion[]
+  textbooks          Textbook[]
+  enrollmentSubjects EnrollmentSubject[]
+}
+
+model CurriculumVersion {
+  id                 String           @id @default(uuid())
+  boardId            String
+  frameworkId        String
+  levelId            String
+  subjectId          String
+  academicYear       String           @default("2026-2027")
+  medium             String           @default("en")
+  status             CurriculumStatus @default(PENDING_VERIFICATION)
+  versionLabel       String // e.g. "2026-27.v1"
+  sourceReferenceUrl String?
+  verifiedAt         DateTime?
+  verifiedByActorId  String?
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  board               EducationBoard       @relation(fields: [boardId], references: [id], onDelete: Restrict)
+  framework           CurriculumFramework  @relation(fields: [frameworkId], references: [id], onDelete: Restrict)
+  level               Level                @relation(fields: [levelId], references: [id], onDelete: Restrict)
+  subject             Subject              @relation(fields: [subjectId], references: [id], onDelete: Restrict)
+  curriculumTextbooks CurriculumTextbook[]
+  enrollmentSubjects  EnrollmentSubject[]
+
+  @@unique([boardId, frameworkId, levelId, subjectId, academicYear, medium])
+  @@index([status])
+  @@index([academicYear])
+}
+
+model Textbook {
+  id             String   @id @default(uuid())
+  publisherId    String
+  subjectId      String
+  levelId        String
+  canonicalTitle String
+  isbn           String?
+  description    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  publisher TextbookPublisher @relation(fields: [publisherId], references: [id], onDelete: Restrict)
+  subject   Subject           @relation(fields: [subjectId], references: [id], onDelete: Restrict)
+  level     Level             @relation(fields: [levelId], references: [id], onDelete: Restrict)
+  editions  TextbookEdition[]
+
+  @@unique([publisherId, subjectId, levelId, canonicalTitle])
+  @@index([canonicalTitle])
+}
+
+model TextbookEdition {
+  id              String           @id @default(uuid())
+  textbookId      String
+  editionNumber   Int              @default(1)
+  publicationYear Int              @default(2026)
+  medium          String           @default("en")
+  titleInLanguage String
+  sourceUrl       String?
+  licenceInfo     String?
+  status          CurriculumStatus @default(PENDING_VERIFICATION)
+  isComplete      Boolean          @default(false)
+  totalChapters   Int              @default(0)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  textbook            Textbook             @relation(fields: [textbookId], references: [id], onDelete: Cascade)
+  chapters            Chapter[]
+  curriculumTextbooks CurriculumTextbook[]
+  enrollmentSubjects  EnrollmentSubject[]
+
+  @@unique([textbookId, editionNumber, medium])
+  @@index([status])
+}
+
+model CurriculumTextbook {
+  id                  String   @id @default(uuid())
+  curriculumVersionId String
+  textbookEditionId   String
+  isPrescribed        Boolean  @default(true)
+  createdAt           DateTime @default(now())
+
+  curriculumVersion CurriculumVersion @relation(fields: [curriculumVersionId], references: [id], onDelete: Cascade)
+  textbookEdition   TextbookEdition   @relation(fields: [textbookEditionId], references: [id], onDelete: Restrict)
+
+  @@unique([curriculumVersionId, textbookEditionId])
+}
+
+model Chapter {
+  id                String           @id @default(uuid())
+  textbookEditionId String
+  chapterNumber     Int
+  title             String
+  officialCode      String?
+  pageStart         Int?
+  pageEnd           Int?
+  sourceUrl         String?
+  status            CurriculumStatus @default(PENDING_VERIFICATION)
+  summaryNotes      String?
+  dikshaQrCode      String?
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  textbookEdition  TextbookEdition   @relation(fields: [textbookEditionId], references: [id], onDelete: Cascade)
+  learningOutcomes LearningOutcome[]
+
+  @@unique([textbookEditionId, chapterNumber])
+  @@index([dikshaQrCode])
+}
+
+model LearningOutcome {
+  id                String   @id @default(uuid())
+  chapterId         String
+  code              String
+  description       String
+  competencyPillar  String
+  parakhStandardRef String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  @@index([chapterId])
+  @@index([code])
+}
+
+// ==============================================================================
+// 5. ACADEMIC ENROLLMENT DOMAIN
+// ==============================================================================
+
+enum EnrollmentStatus {
+  ACTIVE
+  COMPLETED
+  WITHDRAWN
+  TRANSFERRED
+}
+
+model AcademicEnrollment {
+  id              String           @id @default(uuid())
+  learnerPersonId String
+  organisationId  String? // Optional for independent learners
+  classGroupId    String? // Optional for independent learners
+  boardId         String
+  academicYear    String           @default("2026-2027")
+  officialGrade   Int
+  primaryMedium   String           @default("en")
+  status          EnrollmentStatus @default(ACTIVE)
+  startDate       DateTime         @default(now())
+  endDate         DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  learnerPerson Person              @relation(fields: [learnerPersonId], references: [id], onDelete: Cascade)
+  organisation  Organisation?       @relation(fields: [organisationId], references: [id], onDelete: SetNull)
+  classGroup    ClassGroup?         @relation(fields: [classGroupId], references: [id], onDelete: SetNull)
+  board         EducationBoard      @relation(fields: [boardId], references: [id], onDelete: Restrict)
+  subjects      EnrollmentSubject[]
+
+  @@index([learnerPersonId])
+  @@index([academicYear, officialGrade])
+  @@index([status])
+}
+
+model EnrollmentSubject {
+  id                  String   @id @default(uuid())
+  enrollmentId        String
+  subjectId           String
+  curriculumVersionId String
+  prescribedEditionId String?
+  effectiveLevelGrade Int
+  isRemedialTrack     Boolean  @default(false)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  enrollment        AcademicEnrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  subject           Subject            @relation(fields: [subjectId], references: [id], onDelete: Restrict)
+  curriculumVersion CurriculumVersion  @relation(fields: [curriculumVersionId], references: [id], onDelete: Restrict)
+  prescribedEdition TextbookEdition?   @relation(fields: [prescribedEditionId], references: [id], onDelete: SetNull)
+
+  @@unique([enrollmentId, subjectId])
+  @@index([enrollmentId])
+}
+
+// ==============================================================================
+// 6. GOVERNMENT INTEGRATION DOMAIN
+// ==============================================================================
+
+enum GovAdapterMode {
+  LIVE
+  CACHED
+  MOCK
+  OFF
+}
+
+enum GovernmentProviderCode {
+  NDEAR
+  DIKSHA
+  APAAR
+  BHASHINI
+  PARAKH
+  UDISE_PLUS
+  KTBS
+  DSERT
+  KSEAB
+  KARNATAKA_SATS
+  VIDYA_SAMIKSHA_KENDRA
+}
+
+model IntegrationProvider {
+  id                String                 @id // e.g. "PROV_BHASHINI"
+  code              GovernmentProviderCode @unique
+  name              String
+  officialPortalUrl String
+  operationalMode   GovAdapterMode         @default(MOCK)
+  isEnabled         Boolean                @default(false)
+  description       String
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+
+  capabilities ProviderCapability[]
+}
+
+model ProviderCapability {
+  id               String   @id @default(uuid())
+  providerId       String
+  capabilityKey    String // e.g. "TTS", "NMT_TRANSLATION", "TEXTBOOK_HIERARCHY"
+  isSupported      Boolean  @default(true)
+  requiresAuth     Boolean  @default(false)
+  fallbackStrategy String   @default("LOCAL_CACHE")
+  metadataConfig   Json?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  provider IntegrationProvider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, capabilityKey])
+}
+
+// ==============================================================================
+// 7. AUDIT & EVENT INFRASTRUCTURE
+// ==============================================================================
+
+enum AuditActionCategory {
+  ACCOUNT
+  CONSENT
+  GUARDIAN_VERIFICATION
+  SCHOOL_VERIFICATION
+  ENROLLMENT
+  CURRICULUM_MUTATION
+  INTEGRATION_STATUS_CHANGE
+  SECURITY_EVENT
+}
+
+model AuditEvent {
+  id                 String              @id @default(uuid())
+  actorAccountId     String?
+  category           AuditActionCategory
+  action             String
+  targetResourceType String
+  targetResourceId   String
+  details            Json?
+  ipAddress          String?
+  userAgent          String?
+  createdAt          DateTime            @default(now())
+
+  actorAccount Account? @relation(fields: [actorAccountId], references: [id], onDelete: SetNull)
+
+  @@index([category])
+  @@index([action])
+  @@index([targetResourceType, targetResourceId])
+  @@index([createdAt])
+}
+
+// ==============================================================================
+// 8. OFFLINE SYNC DOMAIN
+// ==============================================================================
+
+enum SyncRecordStatus {
+  RECEIVED
+  PROCESSED
+  REJECTED
+  DUPLICATE
+}
+
+model SyncDevice {
+  id              String   @id @default(uuid())
+  deviceId        String   @unique
+  accountPersonId String
+  deviceModel     String?
+  osVersion       String?
+  appVersion      String?
+  lastSyncAt      DateTime @default(now())
+  createdAt       DateTime @default(now())
+
+  accountPerson Person            @relation(fields: [accountPersonId], references: [id], onDelete: Cascade)
+  events        SyncEventRecord[]
+
+  @@index([accountPersonId])
+}
+
+model SyncEventRecord {
+  id              String           @id @default(uuid())
+  eventId         String           @unique // Client UUID for idempotent deduplication
+  deviceId        String
+  learnerPersonId String
+  eventType       String
+  payloadJson     Json
+  status          SyncRecordStatus @default(RECEIVED)
+  receivedAt      DateTime         @default(now())
+  processedAt     DateTime?
+
+  device        SyncDevice @relation(fields: [deviceId], references: [deviceId], onDelete: Restrict)
+  learnerPerson Person     @relation(fields: [learnerPersonId], references: [id], onDelete: Cascade)
+
+  @@index([learnerPersonId])
+  @@index([status])
+  @@index([receivedAt])
+}
+
+// ==============================================================================
+// 9. FEATURE FLAGS & POLICY DOMAIN
+// ==============================================================================
+
+model FeatureFlag {
+  id                   String   @id @default(uuid())
+  key                  String   @unique
+  description          String
+  isEnabledGlobally    Boolean  @default(false)
+  enabledEnvironments  Json // Array of strings e.g. ["development", "staging"]
+  allowedCategories    Json // Array of LearnerCategory strings
+  allowedOrganisations Json // Array of organisation UUIDs
+  metadata             Json?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([key])
+}

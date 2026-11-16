@@ -1,0 +1,121 @@
+{
+  "manifest": {
+    "boardId": "CBSE",
+    "boardName": "Central Board of Secondary Education",
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 8,
+    "levelId": "GRADE_8",
+    "subjectId": "SCIENCE",
+    "subjectName": "Science",
+    "stemPillar": "SCIENCE",
+    "medium": "en",
+    "canonicalTitle": "Curiosity - Science Grade 8",
+    "titleInLanguage": "Curiosity - Textbook of Science for Grade 8",
+    "editionNumber": 1,
+    "publicationYear": 2025,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=0-13",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Exploring the Investigative World of Science",
+      "officialCode": "NCERT-G8-SCI-C01",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=1-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "The Invisible Living World: Beyond Our Naked Eye",
+      "officialCode": "NCERT-G8-SCI-C02",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=2-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Health: The Ultimate Treasure",
+      "officialCode": "NCERT-G8-SCI-C03",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=3-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Electricity: Magnetic and Heating Effects",
+      "officialCode": "NCERT-G8-SCI-C04",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=4-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Exploring Forces",
+      "officialCode": "NCERT-G8-SCI-C05",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=5-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Pressure, Winds, Storms, and Cyclones",
+      "officialCode": "NCERT-G8-SCI-C06",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=6-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Particulate Nature of Matter",
+      "officialCode": "NCERT-G8-SCI-C07",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=7-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Nature of Matter: Elements, Compounds, and Mixtures",
+      "officialCode": "NCERT-G8-SCI-C08",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=8-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "The Amazing World of Solutes, Solvents, and Solutions",
+      "officialCode": "NCERT-G8-SCI-C09",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=9-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Light: Mirrors and Lenses",
+      "officialCode": "NCERT-G8-SCI-C10",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=10-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Keeping Time with the Skies",
+      "officialCode": "NCERT-G8-SCI-C11",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=11-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "How Nature Works in Harmony",
+      "officialCode": "NCERT-G8-SCI-C12",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=12-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "Our Home: Earth, a Unique Life-Sustaining Planet",
+      "officialCode": "NCERT-G8-SCI-C13",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hecu1=13-13",
+      "status": "VERIFIED"
+    }
+  ]
+}

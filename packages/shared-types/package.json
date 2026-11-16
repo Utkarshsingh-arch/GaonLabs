@@ -1,0 +1,15 @@
+{
+  "name": "@gaonlab/shared-types",
+  "version": "0.1.0",
+  "description": "Shared TypeScript contracts and domain models for GaonLab",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist",
+    "test": "echo \"No tests in shared-types\""
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
