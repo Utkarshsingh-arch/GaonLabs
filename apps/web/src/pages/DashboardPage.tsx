@@ -13,7 +13,8 @@ import {
   Clock,
   Sparkles,
   CheckCircle2,
-  Compass
+  Compass,
+  FlaskConical
 } from 'lucide-react';
 import {
   getDemoSession,
@@ -366,7 +367,7 @@ export const DashboardPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {/* 1. STEM Lens Card (Robin) */}
             <div className="group relative bg-gradient-to-br from-indigo-900 via-indigo-950 to-slate-950 rounded-3xl p-6 text-white shadow-lg shadow-indigo-950/15 overflow-hidden flex flex-col justify-between border border-indigo-800/40 hover:border-indigo-500/50 transition-all hover:-translate-y-0.5">
               {/* Subtle background glow */}
@@ -405,9 +406,6 @@ export const DashboardPage: React.FC = () => {
                   </span>
                   <span className="px-2 py-0.5 rounded-lg bg-indigo-900/60 border border-indigo-700/40">
                     🌾 Rural Mechanics
-                  </span>
-                  <span className="px-2 py-0.5 rounded-lg bg-indigo-900/60 border border-indigo-700/40">
-                    📐 Concept Discovery
                   </span>
                 </div>
               </div>
@@ -460,13 +458,10 @@ export const DashboardPage: React.FC = () => {
 
                 <div className="mt-4 flex flex-wrap gap-1.5 text-[10px] font-medium text-emerald-200/80">
                   <span className="px-2 py-0.5 rounded-lg bg-teal-900/60 border border-teal-700/40">
-                    🌱 Agricultural Physics
+                    🌱 Agri-Physics
                   </span>
                   <span className="px-2 py-0.5 rounded-lg bg-teal-900/60 border border-teal-700/40">
-                    ⚡ Solar & Water Grids
-                  </span>
-                  <span className="px-2 py-0.5 rounded-lg bg-teal-900/60 border border-teal-700/40">
-                    🏘️ Village Simulation
+                    ⚡ Solar & Water
                   </span>
                 </div>
               </div>
@@ -480,6 +475,61 @@ export const DashboardPage: React.FC = () => {
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-md shadow-emerald-500/20 transition-all group-hover:scale-[1.02]"
                 >
                   <span>Open Village Builder</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* 3. GaonLab Experiment Studio Card (New Core Feature) */}
+            <div className="group relative bg-gradient-to-br from-violet-950 via-purple-950 to-slate-950 rounded-3xl p-6 text-white shadow-lg shadow-purple-950/20 overflow-hidden flex flex-col justify-between border border-purple-800/50 hover:border-purple-400/60 transition-all hover:-translate-y-0.5">
+              {/* Background glow */}
+              <div className="absolute top-0 right-0 w-56 h-56 bg-purple-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-purple-500/25 transition-all" />
+
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-10 h-10 rounded-2xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-purple-300">
+                      <FlaskConical className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-extrabold text-base text-white tracking-tight">
+                        Experiment Studio
+                      </h3>
+                      <span className="text-[10px] text-purple-300 font-medium font-mono">
+                        Virtual STEM Lab
+                      </span>
+                    </div>
+                  </div>
+
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30">
+                    <CheckCircle2 className="w-3 h-3" />
+                    LIVE BENCH
+                  </span>
+                </div>
+
+                <p className="text-xs text-purple-100/90 leading-relaxed font-normal">
+                  Conduct interactive laboratory simulations across Chemistry (Acids, Bases, Indicators) and Physics (Friction, Kinematics, Forces) through a 7-phase inquiry cycle.
+                </p>
+
+                <div className="mt-4 flex flex-wrap gap-1.5 text-[10px] font-medium text-purple-200/80">
+                  <span className="px-2 py-0.5 rounded-lg bg-purple-900/60 border border-purple-700/40">
+                    🧪 Chemistry Reactions
+                  </span>
+                  <span className="px-2 py-0.5 rounded-lg bg-purple-900/60 border border-purple-700/40">
+                    ⚙️ Force Vectors
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-purple-800/40 flex items-center justify-between gap-3">
+                <span className="text-[11px] text-purple-300/80 italic font-mono">
+                  Offline Ready
+                </span>
+                <Link
+                  to="/app/experiments"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-bold text-xs shadow-md shadow-purple-500/20 transition-all group-hover:scale-[1.02]"
+                >
+                  <span>Launch Lab Studio</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>

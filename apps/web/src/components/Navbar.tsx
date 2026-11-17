@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Sparkles, LogOut, BookOpen, Compass } from 'lucide-react';
+import { Sparkles, LogOut, BookOpen, Compass, FlaskConical } from 'lucide-react';
 import { getDemoSession, clearDemoSession } from '../services/demoAuth';
 
 export const Navbar: React.FC = () => {
@@ -37,6 +37,14 @@ export const Navbar: React.FC = () => {
               >
                 <Compass className="w-3.5 h-3.5 text-brand-700" />
                 <span>Explore STEM</span>
+              </Link>
+
+              <Link
+                to="/app/experiments"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-800 text-xs font-bold transition"
+              >
+                <FlaskConical className="w-3.5 h-3.5 text-emerald-700" />
+                <span>Experiment Studio</span>
               </Link>
 
               <Link
