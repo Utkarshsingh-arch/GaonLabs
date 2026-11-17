@@ -30,6 +30,7 @@ const fallbackClient = new PrismaClient({
 
 let currentMode: DatabaseMode = 'PRIMARY_SUPABASE';
 let primaryHealthy = true;
+let lastPrimaryProbe = 0;
 
 export function getDatabaseMode(): DatabaseMode {
   return currentMode;
@@ -54,7 +55,24 @@ export function switchToPrimary(): void {
   }
 }
 
+// Background auto-recovery helper to switch back to Supabase
+function schedulePrimaryProbe(): void {
+  const now = Date.now();
+  if (currentMode === 'FALLBACK_LOCAL' && now - lastPrimaryProbe > 15000) {
+    lastPrimaryProbe = now;
+    primaryClient
+      .$queryRaw`SELECT 1`
+      .then(() => {
+        switchToPrimary();
+      })
+      .catch(() => {
+        // Still down
+      });
+  }
+}
+
 function getActiveClient(): PrismaClient {
+  schedulePrimaryProbe();
   return currentMode === 'PRIMARY_SUPABASE' ? primaryClient : fallbackClient;
 }
 
@@ -148,7 +166,7 @@ export async function checkDatabaseConnection(): Promise<DatabaseHealthStatus> {
   if (currentMode === 'PRIMARY_SUPABASE') {
     try {
       const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Primary connection health check timeout (5s)')), 5000)
+        setTimeout(() => reject(new Error('Primary connection health check timeout (12s)')), 12000)
       );
       await Promise.race([primaryClient.$queryRaw`SELECT 1`, timeoutPromise]);
       const latencyMs = Date.now() - start;

@@ -32,6 +32,8 @@ const envSchema = z.object({
   GATEWAY_UDISE_MODE: z.enum(['LIVE', 'CACHED', 'MOCK', 'OFF']).default('MOCK'),
   GATEWAY_APAAR_MODE: z.enum(['LIVE', 'CACHED', 'MOCK', 'OFF']).default('OFF'),
   GATEWAY_SATS_MODE: z.enum(['LIVE', 'CACHED', 'MOCK', 'OFF']).default('OFF'),
+  XAI_API_KEY: z.string().optional().default(process.env.XAI_API_KEY || process.env.GROQ_API_KEY || ''),
+  XAI_API_URL: z.string().optional().default(process.env.XAI_API_URL || 'https://api.x.ai/v1'),
 });
 
 const parsed = envSchema.safeParse(process.env);
