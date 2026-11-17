@@ -25,6 +25,9 @@ export function createGameConfig(
       },
     },
     scene: scenes,
-    backgroundColor: '#1E293B',
+    backgroundColor: '#1a2e1a',
+    pixelArt: true,
+    roundPixels: true,
+    antialias: false,
   };
 }

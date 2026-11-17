@@ -5,10 +5,14 @@ import { BootScene } from './game/scenes/BootScene';
 import { VillageScene } from './game/scenes/VillageScene';
 import { VirtualJoystick } from './ui/hud/VirtualJoystick';
 import { ZonePrompt } from './ui/hud/ZonePrompt';
+import { HoverCard } from './ui/hud/HoverCard';
+import { FactBubble } from './ui/hud/FactBubble';
 import { LabPanel } from './ui/lab/LabPanel';
+import { LearningHouseModal } from './ui/lab/LearningHouseModal';
 import { StartScreen } from './ui/screens/StartScreen';
 import { ProgressScreen } from './ui/screens/ProgressScreen';
 import { MitraHelper } from './ui/mitra/MitraHelper';
+import { VILLAGE_BUILDINGS, BuildingPlacement } from './game/data/villageEntities';
 import { ZoneId, Lang, Question, Evaluation } from './learning/types';
 import { eventBus } from './game/eventBus';
 import { progressStore } from './storage/progressStore';
@@ -24,6 +28,7 @@ export default function App(): React.JSX.Element {
   const [showProgressScreen, setShowProgressScreen] = useState<boolean>(false);
   const [showMitraHelper, setShowMitraHelper] = useState<boolean>(false);
   const [activeLabZoneId, setActiveLabZoneId] = useState<ZoneId | null>(null);
+  const [activeLearningHouse, setActiveLearningHouse] = useState<BuildingPlacement | null>(null);
   const [completedLabs, setCompletedLabs] = useState<Set<string>>(new Set());
   const [totalXp, setTotalXp] = useState<number>(0);
   const [isMuted, setIsMuted] = useState<boolean>(() => {
@@ -50,13 +55,14 @@ export default function App(): React.JSX.Element {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (activeLabZoneId) handleCloseLab();
+        else if (activeLearningHouse) handleCloseLearningHouse();
         else if (showMitraHelper) setShowMitraHelper(false);
         else if (showProgressScreen) setShowProgressScreen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeLabZoneId, showMitraHelper, showProgressScreen]);
+  }, [activeLabZoneId, activeLearningHouse, showMitraHelper, showProgressScreen]);
 
   // Initialize and Hydrate from Dexie IndexedDB
   useEffect(() => {
@@ -95,8 +101,18 @@ export default function App(): React.JSX.Element {
 
     // Zone & Lab Event Listeners
     const handleZoneEnter = (data: { id: string }) => {
+      setActiveLearningHouse(null);
       setActiveLabZoneId(data.id as ZoneId);
       eventBus.emit('lab:open', data.id);
+    };
+
+    const handleHouseEnter = (data: { id: string }) => {
+      const found = VILLAGE_BUILDINGS.find((b) => b.id === data.id && b.category === 'learning_house');
+      if (found) {
+        setActiveLabZoneId(null);
+        setActiveLearningHouse(found);
+        eventBus.emit('lab:open', found.id);
+      }
     };
 
     const handleLabCompleted = async (zoneId: string) => {
@@ -107,10 +123,12 @@ export default function App(): React.JSX.Element {
     };
 
     eventBus.on('zone:enter', handleZoneEnter);
+    eventBus.on('house:enter', handleHouseEnter);
     eventBus.on('lab:completed', handleLabCompleted);
 
     return () => {
       eventBus.off('zone:enter', handleZoneEnter);
+      eventBus.off('house:enter', handleHouseEnter);
       eventBus.off('lab:completed', handleLabCompleted);
 
       if (gameRef.current) {
@@ -136,6 +154,16 @@ export default function App(): React.JSX.Element {
   const handleCloseLab = () => {
     setActiveLabZoneId(null);
     eventBus.emit('lab:close');
+  };
+
+  const handleCloseLearningHouse = () => {
+    setActiveLearningHouse(null);
+    eventBus.emit('lab:close');
+  };
+
+  const handleOpenRelatedLab = (zoneId: ZoneId) => {
+    setActiveLearningHouse(null);
+    setActiveLabZoneId(zoneId);
   };
 
   const handleQuestionAnswered = (question: Question, evalResult: Evaluation) => {
@@ -234,6 +262,10 @@ export default function App(): React.JSX.Element {
       {/* Floating Zone Interaction Prompt */}
       <ZonePrompt lang={currentLang} />
 
+      {/* Unified Hover Educational Card & Random Discovery Fact Bubble */}
+      <HoverCard />
+      <FactBubble />
+
       {/* Mobile Virtual Joystick */}
       <VirtualJoystick />
 
@@ -244,6 +276,15 @@ export default function App(): React.JSX.Element {
           lang={currentLang}
           onClose={handleCloseLab}
           onQuestionAnswered={handleQuestionAnswered}
+        />
+      )}
+
+      {/* New Interactive Learning House Preview Modal */}
+      {activeLearningHouse && (
+        <LearningHouseModal
+          building={activeLearningHouse}
+          onClose={handleCloseLearningHouse}
+          onOpenRelatedLab={handleOpenRelatedLab}
         />
       )}
 

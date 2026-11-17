@@ -18,7 +18,10 @@ export class ZoneSystem {
   private zones: ZoneData[] = [];
   private activeZone: ZoneData | null = null;
   private completedZones: Set<string> = new Set();
-  private zoneVisuals: Map<string, { label: Phaser.GameObjects.Text; star?: Phaser.GameObjects.Text; zoneBox: Phaser.GameObjects.Rectangle }> = new Map();
+  private zoneVisuals: Map<
+    string,
+    { label: Phaser.GameObjects.Text; star?: Phaser.GameObjects.Text; glowRing: Phaser.GameObjects.Ellipse }
+  > = new Map();
 
   constructor(scene: Phaser.Scene, avatar: Avatar, map: Phaser.Tilemaps.Tilemap) {
     this.scene = scene;
@@ -41,8 +44,8 @@ export class ZoneSystem {
     }
 
     zoneObjects.forEach((obj) => {
-      const zoneIdProp = obj.properties?.find((p: any) => p.name === 'zoneId')?.value || obj.name;
-      const titleProp = obj.properties?.find((p: any) => p.name === 'title')?.value || obj.name;
+      const zoneIdProp = obj.properties?.find((p: { name: string; value: string }) => p.name === 'zoneId')?.value || obj.name;
+      const titleProp = obj.properties?.find((p: { name: string; value: string }) => p.name === 'title')?.value || obj.name;
 
       this.zones.push({
         id: zoneIdProp,
@@ -57,35 +60,36 @@ export class ZoneSystem {
 
   private createZoneVisuals(): void {
     this.zones.forEach((zone) => {
-      // Golden dashed/soft glowing area marker
-      const zoneBox = this.scene.add.rectangle(
+      // Subtle warm golden doorstep beacon ellipse (replaces flat yellow box!)
+      const glowRing = this.scene.add.ellipse(
         zone.x + zone.width / 2,
-        zone.y + zone.height / 2,
-        zone.width,
-        zone.height,
+        zone.y + zone.height - 16,
+        56,
+        20,
         0xfbbf24,
-        0.14
+        0.16
       );
-      zoneBox.setStrokeStyle(2, 0xf59e0b, 0.65);
-      zoneBox.setDepth(1);
+      glowRing.setStrokeStyle(1.5, 0xf59e0b, 0.55);
+      glowRing.setDepth(2);
 
-      // Floating label above structure
+      // Compact, crisp floating badge above structure (always above tall roofs)
       const label = this.scene.add.text(
         zone.x + zone.width / 2,
-        zone.y - 10,
-        zone.name,
+        zone.y - 6,
+        `🔬 ${zone.name}`,
         {
-          fontSize: '11px',
-          fontFamily: 'sans-serif',
-          color: '#ffffff',
-          backgroundColor: '#0f172acc',
+          fontSize: '10px',
+          fontFamily: 'system-ui, sans-serif',
+          fontStyle: 'bold',
+          color: '#fef3c7',
+          backgroundColor: '#0f172ad9',
           padding: { x: 6, y: 3 },
         }
       );
       label.setOrigin(0.5, 1);
-      label.setDepth(20);
+      label.setDepth(2000);
 
-      this.zoneVisuals.set(zone.id, { label, zoneBox });
+      this.zoneVisuals.set(zone.id, { label, glowRing });
     });
   }
 
@@ -102,13 +106,22 @@ export class ZoneSystem {
     }
 
     if (currentOverlap && currentOverlap !== this.activeZone) {
+      if (this.activeZone) {
+        const prevVis = this.zoneVisuals.get(this.activeZone.id);
+        prevVis?.glowRing.setFillStyle(0xfbbf24, 0.16);
+      }
       this.activeZone = currentOverlap;
+      const vis = this.zoneVisuals.get(currentOverlap.id);
+      vis?.glowRing.setFillStyle(0xfbbf24, 0.36);
+
       eventBus.emit('zone:hover', {
         id: currentOverlap.id,
         name: currentOverlap.name,
         isCompleted: this.completedZones.has(currentOverlap.id),
       });
     } else if (!currentOverlap && this.activeZone) {
+      const prevVis = this.zoneVisuals.get(this.activeZone.id);
+      prevVis?.glowRing.setFillStyle(0xfbbf24, 0.16);
       eventBus.emit('zone:leave', { id: this.activeZone.id });
       this.activeZone = null;
     }
@@ -136,16 +149,16 @@ export class ZoneSystem {
         visuals.label.y - 18,
         '★ COMPLETED',
         {
-          fontSize: '10px',
-          fontFamily: 'sans-serif',
+          fontSize: '9px',
+          fontFamily: 'system-ui, sans-serif',
           color: '#fbbf24',
           fontStyle: 'bold',
-          backgroundColor: '#064e3bcc',
-          padding: { x: 4, y: 2 },
+          backgroundColor: '#064e3be6',
+          padding: { x: 5, y: 2 },
         }
       );
       star.setOrigin(0.5, 1);
-      star.setDepth(22);
+      star.setDepth(2002);
       visuals.star = star;
     }
   }

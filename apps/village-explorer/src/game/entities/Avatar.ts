@@ -12,11 +12,11 @@ export class Avatar extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
 
-    // Collision box centered at the feet
-    this.setSize(18, 14);
-    this.setOffset(7, 18);
+    // Collision box centered cleanly at the feet of the upgraded 48x48 pixel-art sprite
+    this.setSize(20, 14);
+    this.setOffset(14, 30);
     this.setCollideWorldBounds(true);
-    this.setDepth(10);
+    this.setDepth(this.y + 20);
   }
 
   public updateMovement(dx: number, dy: number): void {
@@ -26,6 +26,7 @@ export class Avatar extends Phaser.Physics.Arcade.Sprite {
         this.isMoving = false;
         this.anims.play(`avatar_idle_${this.currentDirection}`, true);
       }
+      this.setDepth(this.y + 20);
       return;
     }
 
@@ -42,8 +43,8 @@ export class Avatar extends Phaser.Physics.Arcade.Sprite {
     this.currentDirection = newDir;
     this.anims.play(`avatar_walk_${newDir}`, true);
 
-    // Dynamic depth sorting: deeper objects rendered in front
-    this.setDepth(this.y + 16);
+    // Dynamic 2.5D depth sorting based on ground contact line (feet y)
+    this.setDepth(this.y + 20);
   }
 
   private calculateDirection(dx: number, dy: number): Direction {
