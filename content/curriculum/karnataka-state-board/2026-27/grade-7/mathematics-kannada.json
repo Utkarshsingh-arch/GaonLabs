@@ -1,0 +1,135 @@
+{
+  "manifest": {
+    "boardId": "KARNATAKA_STATE_BOARD",
+    "boardName": "Karnataka School Examination and Assessment Board",
+    "frameworkId": "KCF_2024",
+    "frameworkName": "Karnataka State Curriculum Framework 2024",
+    "authorityId": "DSERT_KARNATAKA",
+    "authorityName": "Department of State Educational Research and Training Karnataka",
+    "publisherId": "KTBS",
+    "publisherName": "Karnataka Textbook Society",
+    "academicYear": "2026-2027",
+    "grade": 7,
+    "levelId": "GRADE_7",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "kn",
+    "canonicalTitle": "Mathematics Class 7 - KTBS",
+    "titleInLanguage": "ಗಣಿತ - 7ನೇ ತರಗತಿ ಪಠ್ಯಪುಸ್ತಕ",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://textbooks.karnataka.gov.in/",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "Karnataka Textbook Society (KTBS) & DSERT Karnataka. Metadata catalogued for state curriculum referencing. Official textbooks downloadable via textbooks.karnataka.gov.in."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "ಪೂರ್ಣಾಂಕಗಳು",
+      "officialCode": "KTBS-G7-MATH-KN-C01",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "ಭಿನ್ನರಾಶಿಗಳು ಮತ್ತು ದಶಮಾಂಶಗಳು",
+      "officialCode": "KTBS-G7-MATH-KN-C02",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "ದತ್ತಾಂಶಗಳ ನಿರ್ವಹಣೆ",
+      "officialCode": "KTBS-G7-MATH-KN-C03",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "ಸರಳ ಸಮೀಕರಣಗಳು",
+      "officialCode": "KTBS-G7-MATH-KN-C04",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "ರೇಖೆಗಳು ಮತ್ತು ಕೋನಗಳು",
+      "officialCode": "KTBS-G7-MATH-KN-C05",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "ತ್ರಿಭುಜ ಮತ್ತು ಅದರ ಗುಣಗಳು",
+      "officialCode": "KTBS-G7-MATH-KN-C06",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "ತ್ರಿಭುಜಗಳ ಸರ್ವಸಮತೆ",
+      "officialCode": "KTBS-G7-MATH-KN-C07",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "ಪರಿಮಾಣಗಳ ಹೋಲಿಕೆ",
+      "officialCode": "KTBS-G7-MATH-KN-C08",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "ಭಾಗಲಬ್ಧ ಸಂಖ್ಯೆಗಳು",
+      "officialCode": "KTBS-G7-MATH-KN-C09",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "ಪ್ರಾಯೋಗಿಕ ಜ್ಯಾಮಿತಿ",
+      "officialCode": "KTBS-G7-MATH-KN-C10",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "ಸುತ್ತಳತೆ ಮತ್ತು ವಿಸ್ತೀರ್ಣ",
+      "officialCode": "KTBS-G7-MATH-KN-C11",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "ಬೀಜೋಕ್ತಿಗಳು",
+      "officialCode": "KTBS-G7-MATH-KN-C12",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "ಘಾತಗಳು ಮತ್ತು ಘಾತಾಂಕಗಳು",
+      "officialCode": "KTBS-G7-MATH-KN-C13",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "ಸಮಮಿತಿ",
+      "officialCode": "KTBS-G7-MATH-KN-C14",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 15,
+      "title": "ಘನಾಕೃತಿಗಳ ದೃಶ್ಯೀಕರಣ",
+      "officialCode": "KTBS-G7-MATH-KN-C15",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    }
+  ]
+}

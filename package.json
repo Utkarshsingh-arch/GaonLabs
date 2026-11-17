@@ -1,0 +1,33 @@
+{
+  "name": "gaonlab-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GaonLab - Personalised, Offline-First STEM Education Ecosystem",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run --workspaces --if-present build",
+    "test": "npm run --workspaces --if-present test",
+    "lint": "npm run --workspaces --if-present lint",
+    "dev": "npm run --workspace=@gaonlab/api dev",
+    "start": "npm run --workspace=@gaonlab/api start",
+    "db:up": "docker compose -f infrastructure/docker-compose.yml up -d",
+    "db:down": "docker compose -f infrastructure/docker-compose.yml down",
+    "db:migrate": "npm run --workspace=@gaonlab/api db:migrate",
+    "db:generate": "npm run --workspace=@gaonlab/api db:generate",
+    "db:seed:curriculum": "npm run --workspace=@gaonlab/api db:seed:curriculum --",
+    "db:local:start": "node apps/api/scripts/local-postgres.js start",
+    "db:local:stop": "node apps/api/scripts/local-postgres.js stop"
+  },
+  "keywords": [
+    "gaonlab",
+    "stem",
+    "offline-first",
+    "education",
+    "rural-education"
+  ],
+  "author": "GaonLab Engineering",
+  "license": "UNLICENSED"
+}

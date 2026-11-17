@@ -1,0 +1,114 @@
+{
+  "manifest": {
+    "boardId": "CBSE",
+    "boardName": "Central Board of Secondary Education",
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 7,
+    "levelId": "GRADE_7",
+    "subjectId": "SCIENCE",
+    "subjectName": "Science",
+    "stemPillar": "SCIENCE",
+    "medium": "en",
+    "canonicalTitle": "Curiosity - Science Grade 7",
+    "titleInLanguage": "Curiosity - Textbook for Science Grade 7",
+    "editionNumber": 1,
+    "publicationYear": 2025,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=0-12",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "The Ever-Evolving World of Science",
+      "officialCode": "NCERT-G7-SCI-C01",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=1-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Exploring Substances: Acidic, Basic, and Neutral",
+      "officialCode": "NCERT-G7-SCI-C02",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=2-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Electricity: Circuits and their Components",
+      "officialCode": "NCERT-G7-SCI-C03",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=3-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "The World of Metals and Non-metals",
+      "officialCode": "NCERT-G7-SCI-C04",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=4-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Changes Around Us: Physical and Chemical",
+      "officialCode": "NCERT-G7-SCI-C05",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=5-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Adolescence: A Stage of Growth and Change",
+      "officialCode": "NCERT-G7-SCI-C06",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=6-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Heat Transfer in Nature",
+      "officialCode": "NCERT-G7-SCI-C07",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=7-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Measurement of Time and Motion",
+      "officialCode": "NCERT-G7-SCI-C08",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=8-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Life Processes in Animals",
+      "officialCode": "NCERT-G7-SCI-C09",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=9-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Life Processes in Plants",
+      "officialCode": "NCERT-G7-SCI-C10",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=10-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Light: Shadows and Reflections",
+      "officialCode": "NCERT-G7-SCI-C11",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=11-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Earth, Moon, and the Sun",
+      "officialCode": "NCERT-G7-SCI-C12",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gecu1=12-12",
+      "status": "VERIFIED"
+    }
+  ]
+}

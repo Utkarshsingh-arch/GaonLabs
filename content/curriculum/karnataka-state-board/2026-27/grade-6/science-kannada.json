@@ -1,0 +1,142 @@
+{
+  "manifest": {
+    "boardId": "KARNATAKA_STATE_BOARD",
+    "boardName": "Karnataka School Examination and Assessment Board",
+    "frameworkId": "KCF_2024",
+    "frameworkName": "Karnataka State Curriculum Framework 2024",
+    "authorityId": "DSERT_KARNATAKA",
+    "authorityName": "Department of State Educational Research and Training Karnataka",
+    "publisherId": "KTBS",
+    "publisherName": "Karnataka Textbook Society",
+    "academicYear": "2026-2027",
+    "grade": 6,
+    "levelId": "GRADE_6",
+    "subjectId": "SCIENCE",
+    "subjectName": "Science",
+    "stemPillar": "SCIENCE",
+    "medium": "kn",
+    "canonicalTitle": "Science Class 6 - KTBS",
+    "titleInLanguage": "ವಿಜ್ಞಾನ - 6ನೇ ತರಗತಿ ಪಠ್ಯಪುಸ್ತಕ",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://textbooks.karnataka.gov.in/",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "Karnataka Textbook Society (KTBS) & DSERT Karnataka. Metadata catalogued for state curriculum referencing. Official textbooks downloadable via textbooks.karnataka.gov.in."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "ಆಹಾರ – ಇದು ಎಲ್ಲಿಂದ ದೊರಕುತ್ತದೆ?",
+      "officialCode": "KTBS-G6-SCI-KN-C01",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "ಆಹಾರದ ಘಟಕಗಳು",
+      "officialCode": "KTBS-G6-SCI-KN-C02",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "ಎಳೆಯಿಂದ ಬಟ್ಟೆ",
+      "officialCode": "KTBS-G6-SCI-KN-C03",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "ಪದಾರ್ಥಗಳನ್ನು ಗುಂಪುಗಳಾಗಿ ವರ್ಗೀಕರಿಸುವುದು",
+      "officialCode": "KTBS-G6-SCI-KN-C04",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "ಪದಾರ್ಥಗಳನ್ನು ಬೇರ್ಪಡಿಸುವಿಕೆ",
+      "officialCode": "KTBS-G6-SCI-KN-C05",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "ನಮ್ಮ ಸುತ್ತಲಿನ ಬದಲಾವಣೆಗಳು",
+      "officialCode": "KTBS-G6-SCI-KN-C06",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "ಸಸ್ಯಗಳನ್ನು ತಿಳಿಯುವುದು",
+      "officialCode": "KTBS-G6-SCI-KN-C07",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "ದೇಹದ ಚಲನೆಗಳು",
+      "officialCode": "KTBS-G6-SCI-KN-C08",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "ಜೀವಿಗಳು – ಅವುಗಳ ಲಕ್ಷಣಗಳು ಮತ್ತು ಆವಾಸಸ್ಥಾನ",
+      "officialCode": "KTBS-G6-SCI-KN-C09",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "ಚಲನೆ ಮತ್ತು ದೂರದ ಅಳತೆ",
+      "officialCode": "KTBS-G6-SCI-KN-C10",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "ಬೆಳಕು – ಛಾಯೆಗಳು ಮತ್ತು ಪ್ರತಿಫಲನಗಳು",
+      "officialCode": "KTBS-G6-SCI-KN-C11",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "ವಿದ್ಯುಚ್ಛಕ್ತಿ ಮತ್ತು ಮಂಡಲಗಳು",
+      "officialCode": "KTBS-G6-SCI-KN-C12",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "ಕಾಂತಗಳೊಂದಿಗೆ ತಮಾಷೆ",
+      "officialCode": "KTBS-G6-SCI-KN-C13",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "ನೀರು",
+      "officialCode": "KTBS-G6-SCI-KN-C14",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 15,
+      "title": "ನಮ್ಮ ಸುತ್ತಲಿನ ಗಾಳಿ",
+      "officialCode": "KTBS-G6-SCI-KN-C15",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 16,
+      "title": "ಕಸ – ಒಳಗೆ ಮತ್ತು ಹೊರಗೆ",
+      "officialCode": "KTBS-G6-SCI-KN-C16",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    }
+  ]
+}

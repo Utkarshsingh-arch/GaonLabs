@@ -1,0 +1,135 @@
+{
+  "manifest": {
+    "boardId": "CBSE",
+    "boardName": "Central Board of Secondary Education",
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 7,
+    "levelId": "GRADE_7",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "en",
+    "canonicalTitle": "Ganita Prakash - Mathematics Grade 7",
+    "titleInLanguage": "Ganita Prakash - Textbook of Mathematics for Grade 7",
+    "editionNumber": 1,
+    "publicationYear": 2025,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?gegp1=0-8",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Large Numbers Around Us",
+      "officialCode": "NCERT-G7-MATH-C01",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp1=1-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Arithmetic Expressions",
+      "officialCode": "NCERT-G7-MATH-C02",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp1=2-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "A Peek Beyond the Point (Decimals)",
+      "officialCode": "NCERT-G7-MATH-C03",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp1=3-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Expressions Using Letter-Numbers",
+      "officialCode": "NCERT-G7-MATH-C04",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp1=4-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Parallel and Intersecting Lines",
+      "officialCode": "NCERT-G7-MATH-C05",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp1=5-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Number Play",
+      "officialCode": "NCERT-G7-MATH-C06",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp1=6-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "A Tale of Three Intersecting Lines",
+      "officialCode": "NCERT-G7-MATH-C07",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp1=7-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Working with Fractions",
+      "officialCode": "NCERT-G7-MATH-C08",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp1=8-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Integers and Operations",
+      "officialCode": "NCERT-G7-MATH-C09",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp2=1-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Comparing Quantities",
+      "officialCode": "NCERT-G7-MATH-C10",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp2=2-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Rational Numbers",
+      "officialCode": "NCERT-G7-MATH-C11",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp2=3-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Perimeter and Area",
+      "officialCode": "NCERT-G7-MATH-C12",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp2=4-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "Exponents and Powers",
+      "officialCode": "NCERT-G7-MATH-C13",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp2=5-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "Symmetry",
+      "officialCode": "NCERT-G7-MATH-C14",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp2=6-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 15,
+      "title": "Visualising Solid Shapes",
+      "officialCode": "NCERT-G7-MATH-C15",
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gegp2=7-7",
+      "status": "VERIFIED"
+    }
+  ]
+}

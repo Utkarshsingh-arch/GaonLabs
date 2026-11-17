@@ -1,0 +1,156 @@
+{
+  "manifest": {
+    "boardId": "KARNATAKA_STATE_BOARD",
+    "boardName": "Karnataka School Examination and Assessment Board",
+    "frameworkId": "KCF_2024",
+    "frameworkName": "Karnataka State Curriculum Framework 2024",
+    "authorityId": "DSERT_KARNATAKA",
+    "authorityName": "Department of State Educational Research and Training Karnataka",
+    "publisherId": "KTBS",
+    "publisherName": "Karnataka Textbook Society",
+    "academicYear": "2026-2027",
+    "grade": 8,
+    "levelId": "GRADE_8",
+    "subjectId": "SCIENCE",
+    "subjectName": "Science",
+    "stemPillar": "SCIENCE",
+    "medium": "en",
+    "canonicalTitle": "Science Class 8 - KTBS",
+    "titleInLanguage": "Science - Textbook for Class 8",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://textbooks.karnataka.gov.in/",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "Karnataka Textbook Society (KTBS) & DSERT Karnataka. Metadata catalogued for state curriculum referencing. Official textbooks downloadable via textbooks.karnataka.gov.in."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Crop Production and Management",
+      "officialCode": "KTBS-G8-SCI-EN-C01",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Microorganisms: Friend and Foe",
+      "officialCode": "KTBS-G8-SCI-EN-C02",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Synthetic Fibres and Plastics",
+      "officialCode": "KTBS-G8-SCI-EN-C03",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Materials: Metals and Non-Metals",
+      "officialCode": "KTBS-G8-SCI-EN-C04",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Coal and Petroleum",
+      "officialCode": "KTBS-G8-SCI-EN-C05",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Combustion and Flame",
+      "officialCode": "KTBS-G8-SCI-EN-C06",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Conservation of Plants and Animals",
+      "officialCode": "KTBS-G8-SCI-EN-C07",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Cell — Structure and Functions",
+      "officialCode": "KTBS-G8-SCI-EN-C08",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Reproduction in Animals",
+      "officialCode": "KTBS-G8-SCI-EN-C09",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Reaching the Age of Adolescence",
+      "officialCode": "KTBS-G8-SCI-EN-C10",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Force and Pressure",
+      "officialCode": "KTBS-G8-SCI-EN-C11",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Friction",
+      "officialCode": "KTBS-G8-SCI-EN-C12",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "Sound",
+      "officialCode": "KTBS-G8-SCI-EN-C13",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "Chemical Effects of Electric Current",
+      "officialCode": "KTBS-G8-SCI-EN-C14",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 15,
+      "title": "Some Natural Phenomena",
+      "officialCode": "KTBS-G8-SCI-EN-C15",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 16,
+      "title": "Light",
+      "officialCode": "KTBS-G8-SCI-EN-C16",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 17,
+      "title": "Stars and the Solar System",
+      "officialCode": "KTBS-G8-SCI-EN-C17",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 18,
+      "title": "Pollution of Air and Water",
+      "officialCode": "KTBS-G8-SCI-EN-C18",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    }
+  ]
+}

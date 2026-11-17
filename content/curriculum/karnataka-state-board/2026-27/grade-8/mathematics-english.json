@@ -1,0 +1,128 @@
+{
+  "manifest": {
+    "boardId": "KARNATAKA_STATE_BOARD",
+    "boardName": "Karnataka School Examination and Assessment Board",
+    "frameworkId": "KCF_2024",
+    "frameworkName": "Karnataka State Curriculum Framework 2024",
+    "authorityId": "DSERT_KARNATAKA",
+    "authorityName": "Department of State Educational Research and Training Karnataka",
+    "publisherId": "KTBS",
+    "publisherName": "Karnataka Textbook Society",
+    "academicYear": "2026-2027",
+    "grade": 8,
+    "levelId": "GRADE_8",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "en",
+    "canonicalTitle": "Mathematics Class 8 - KTBS",
+    "titleInLanguage": "Mathematics - Textbook for Class 8",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://textbooks.karnataka.gov.in/",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "Karnataka Textbook Society (KTBS) & DSERT Karnataka. Metadata catalogued for state curriculum referencing. Official textbooks downloadable via textbooks.karnataka.gov.in."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Playing with Numbers",
+      "officialCode": "KTBS-G8-MATH-EN-C01",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Algebraic Expressions",
+      "officialCode": "KTBS-G8-MATH-EN-C02",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Axioms, Postulates and Theorems",
+      "officialCode": "KTBS-G8-MATH-EN-C03",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Factorisation",
+      "officialCode": "KTBS-G8-MATH-EN-C04",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Squares, Square Roots, Cubes and Cube Roots",
+      "officialCode": "KTBS-G8-MATH-EN-C05",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Theorems on Triangles",
+      "officialCode": "KTBS-G8-MATH-EN-C06",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Rational Numbers",
+      "officialCode": "KTBS-G8-MATH-EN-C07",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Linear Equations in One Variable",
+      "officialCode": "KTBS-G8-MATH-EN-C08",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Commercial Arithmetic",
+      "officialCode": "KTBS-G8-MATH-EN-C09",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Exponents",
+      "officialCode": "KTBS-G8-MATH-EN-C10",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Congruency of Triangles",
+      "officialCode": "KTBS-G8-MATH-EN-C11",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Construction of Triangles",
+      "officialCode": "KTBS-G8-MATH-EN-C12",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "Statistics",
+      "officialCode": "KTBS-G8-MATH-EN-C13",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "Introduction to Graphs",
+      "officialCode": "KTBS-G8-MATH-EN-C14",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    }
+  ]
+}

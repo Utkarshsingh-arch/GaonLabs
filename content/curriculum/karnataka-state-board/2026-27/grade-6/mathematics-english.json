@@ -1,0 +1,114 @@
+{
+  "manifest": {
+    "boardId": "KARNATAKA_STATE_BOARD",
+    "boardName": "Karnataka School Examination and Assessment Board",
+    "frameworkId": "KCF_2024",
+    "frameworkName": "Karnataka State Curriculum Framework 2024",
+    "authorityId": "DSERT_KARNATAKA",
+    "authorityName": "Department of State Educational Research and Training Karnataka",
+    "publisherId": "KTBS",
+    "publisherName": "Karnataka Textbook Society",
+    "academicYear": "2026-2027",
+    "grade": 6,
+    "levelId": "GRADE_6",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "en",
+    "canonicalTitle": "Mathematics Class 6 - KTBS",
+    "titleInLanguage": "Mathematics - Textbook for Class 6",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://textbooks.karnataka.gov.in/",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "Karnataka Textbook Society (KTBS) & DSERT Karnataka. Metadata catalogued for state curriculum referencing. Official textbooks downloadable via textbooks.karnataka.gov.in."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Knowing Our Numbers",
+      "officialCode": "KTBS-G6-MATH-EN-C01",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Whole Numbers",
+      "officialCode": "KTBS-G6-MATH-EN-C02",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Playing With Numbers",
+      "officialCode": "KTBS-G6-MATH-EN-C03",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Basic Geometrical Ideas",
+      "officialCode": "KTBS-G6-MATH-EN-C04",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Understanding Elementary Shapes",
+      "officialCode": "KTBS-G6-MATH-EN-C05",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Integers",
+      "officialCode": "KTBS-G6-MATH-EN-C06",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Fractions",
+      "officialCode": "KTBS-G6-MATH-EN-C07",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Decimals",
+      "officialCode": "KTBS-G6-MATH-EN-C08",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Data Handling",
+      "officialCode": "KTBS-G6-MATH-EN-C09",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Mensuration",
+      "officialCode": "KTBS-G6-MATH-EN-C10",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Algebra",
+      "officialCode": "KTBS-G6-MATH-EN-C11",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Ratio and Proportion",
+      "officialCode": "KTBS-G6-MATH-EN-C12",
+      "sourceUrl": "https://textbooks.karnataka.gov.in/",
+      "status": "VERIFIED"
+    }
+  ]
+}
