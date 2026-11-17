@@ -1,7 +1,7 @@
 import { createApp } from './app';
 import { env } from './config/env';
 import { SYSTEM_CONSTANTS } from './config/constants';
-import { disconnectDatabase } from './shared/database/prisma';
+import { checkDatabaseConnection, disconnectDatabase } from './shared/database/prisma';
 import { logger } from './shared/utils/logger';
 
 const app = createApp();
@@ -15,6 +15,13 @@ const server = app.listen(env.PORT, env.HOST, () => {
   });
   logger.info(`Health check: http://${env.HOST}:${env.PORT}/health`);
   logger.info(`Readiness check: http://${env.HOST}:${env.PORT}/ready`);
+
+  // Verify database connectivity on startup
+  checkDatabaseConnection().then((status) => {
+    logger.info(`Database connectivity initialized: [${status.activeSource}] (healthy: ${status.isHealthy}, latency: ${status.latencyMs}ms)`);
+  }).catch((err) => {
+    logger.warn('Initial database connectivity check error', { error: err?.message });
+  });
 });
 
 // Graceful shutdown

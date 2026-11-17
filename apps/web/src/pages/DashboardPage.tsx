@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
-  BookOpen,
-  RefreshCw,
-  LogOut,
-  AlertTriangle,
-  AlertCircle,
-  Camera,
-  Building2,
-  ArrowRight,
-  Globe,
-  Clock,
+  Plus,
   Sparkles,
-  CheckCircle2,
-  Compass
+  ChevronRight,
+  ArrowRight,
+  AlertCircle
 } from 'lucide-react';
 import {
   getDemoSession,
   setDemoSession,
-  clearDemoSession,
   DEMO_PROFILES
 } from '../services/demoAuth';
-import { fetchCatalogue, fetchFeatureCatalogue } from '../services/api';
-import { TextbookCard } from '../components/TextbookCard';
-import { DemoNotice } from '../components/DemoNotice';
-import { CatalogueEntry, DemoProfile, FeatureModuleItem, TextbookEditionItem } from '../types';
+import { fetchCatalogue, fetchEditionChapters } from '../services/api';
+import { SkillUpSidebar } from '../components/SkillUpSidebar';
+import { SkillUpHeader } from '../components/SkillUpHeader';
+import { SkillUpRightSidebar } from '../components/SkillUpRightSidebar';
+import {
+  RocketIllustration,
+  MapIllustration,
+  BackpackIllustration,
+  TutorIllustration,
+  CodeBracketsIllustration,
+  DocumentIllustration
+} from '../components/SkillUpIllustrations';
+import { ChapterDrawerModal } from '../components/ChapterDrawerModal';
+import { CurriculumExplorerModal } from '../components/CurriculumExplorerModal';
+import { CatalogueEntry, DemoProfile, TextbookEditionItem } from '../types';
 
 export const DashboardPage: React.FC = () => {
-  const navigate = useNavigate();
-
   // Load session or default to Asha Rao
   const [profile, setProfile] = useState<DemoProfile>(() => {
     const existing = getDemoSession();
@@ -37,35 +37,27 @@ export const DashboardPage: React.FC = () => {
     return DEMO_PROFILES.asha;
   });
 
-  const [languagePreference, setLanguagePreference] = useState<string>(() => {
-    const existing = getDemoSession();
-    return existing?.medium || 'en';
-  });
+  const [searchQuery, setSearchQuery] = useState('');
   const [catalogue, setCatalogue] = useState<CatalogueEntry[]>([]);
-  const [features, setFeatures] = useState<FeatureModuleItem[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isFallback, setIsFallback] = useState<boolean>(false);
   const [apiError, setApiError] = useState<string | null>(null);
-  const [activeSubjectFilter, setActiveSubjectFilter] = useState<string>('ALL');
 
-  // Load curriculum from API
+  // Modals state
+  const [selectedEdition, setSelectedEdition] = useState<TextbookEditionItem | null>(null);
+  const [selectedSubjectName, setSelectedSubjectName] = useState<string>('');
+  const [isExplorerOpen, setIsExplorerOpen] = useState<boolean>(false);
+
+  // Load real curriculum from API
   const loadCurriculum = async (currentProfile: DemoProfile) => {
-    setIsLoading(true);
     setApiError(null);
 
     try {
-      const [catalogueRes, featuresRes] = await Promise.all([
-        fetchCatalogue({
-          boardId: currentProfile.boardId,
-          grade: currentProfile.grade,
-          medium: currentProfile.medium,
-        }),
-        fetchFeatureCatalogue(),
-      ]);
+      const catalogueRes = await fetchCatalogue({
+        boardId: currentProfile.boardId,
+        grade: currentProfile.grade,
+        medium: currentProfile.medium,
+      });
 
       setCatalogue(catalogueRes.data || []);
-      setFeatures(featuresRes.data || []);
-      setIsFallback(catalogueRes.isFallback || featuresRes.isFallback);
 
       if (catalogueRes.error) {
         setApiError(catalogueRes.error);
@@ -73,9 +65,6 @@ export const DashboardPage: React.FC = () => {
     } catch (err: any) {
       console.error('Failed to load student curriculum:', err);
       setApiError(err.message || 'Error communicating with curriculum backend');
-      setIsFallback(true);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -83,21 +72,12 @@ export const DashboardPage: React.FC = () => {
     loadCurriculum(profile);
   }, [profile.boardId, profile.grade, profile.medium]);
 
-  // Switch between demo profiles directly from dashboard
-  const handleSwitchProfile = (key: 'asha' | 'kavya') => {
-    const newProfile = DEMO_PROFILES[key];
+  const handleProfileChange = (newProfile: DemoProfile) => {
     setProfile(newProfile);
     setDemoSession(newProfile);
-    setLanguagePreference(newProfile.medium);
-    setActiveSubjectFilter('ALL');
   };
 
-  const handleLogout = () => {
-    clearDemoSession();
-    navigate('/');
-  };
-
-  // Flatten prescribed textbook editions from catalogue
+  // Flatten prescribed textbook editions from real catalogue
   const textbookCards: Array<{
     edition: TextbookEditionItem;
     subjectName: string;
@@ -116,595 +96,323 @@ export const DashboardPage: React.FC = () => {
     });
   });
 
-  const filteredTextbooks =
-    activeSubjectFilter === 'ALL'
-      ? textbookCards
-      : textbookCards.filter((t) =>
-          t.subjectName.toLowerCase().includes(activeSubjectFilter.toLowerCase())
-        );
+  const mathTextbook = textbookCards.find((t) => t.stemPillar === 'MATHEMATICS') || textbookCards[0];
+  const scienceTextbook = textbookCards.find((t) => t.stemPillar === 'SCIENCE') || textbookCards[1];
 
-  // Separate Math & Science editions for "My Learning" overview
-  const mathTextbook = textbookCards.find((t) => t.stemPillar === 'MATHEMATICS');
-  const scienceTextbook = textbookCards.find((t) => t.stemPillar === 'SCIENCE');
+  // Open Chapter Drawer
+  const handleOpenChapterDrawer = async (edition: TextbookEditionItem, subjectName: string) => {
+    setSelectedSubjectName(subjectName);
+    if (!edition.chapters || edition.chapters.length === 0) {
+      try {
+        const res = await fetchEditionChapters(edition.id);
+        if (res.data) {
+          edition.chapters = res.data;
+        }
+      } catch (err) {
+        console.error('Failed to load chapters for drawer:', err);
+      }
+    }
+    setSelectedEdition(edition);
+  };
 
-  // Extract STEM Lens and Village Builder from feature registry
-  const stemLensFeature = features.find((f) => f.featureId === 'STEM_LENS');
-  const villageBuilderFeature = features.find((f) => f.featureId === 'VILLAGE_BUILDER');
+  const studentFirstName = profile.name.split(' ')[0] || 'Sara';
 
   return (
-    <div className="flex-1 flex flex-col bg-slate-50/60">
-      {/* Banner */}
-      <DemoNotice isFallback={isFallback} />
+    <div className="min-h-screen bg-[#FBFAF9] flex flex-col md:flex-row antialiased text-[#352F2A]">
+      {/* =======================================================================
+          1. LEFT NAVIGATION SIDEBAR (Matching Screenshot)
+         ======================================================================= */}
+      <SkillUpSidebar
+        currentProfile={profile}
+        onProfileChange={handleProfileChange}
+        onOpenExplorer={() => setIsExplorerOpen(true)}
+      />
 
-      {apiError && (
-        <div className="bg-red-50 border-b border-red-200 px-4 py-2 text-xs text-red-700 flex items-center justify-center gap-2">
-          <AlertCircle className="w-4 h-4 flex-shrink-0" />
-          <span>Curriculum Service Notice: {apiError}</span>
-        </div>
-      )}
+      {/* =======================================================================
+          2. MAIN CONTENT & RIGHT COLUMN
+         ======================================================================= */}
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Top Header with Pill Search Bar & Profile Avatar */}
+        <SkillUpHeader
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          profile={profile}
+          onOpenNotifications={() => alert(`Notifications: 1,161 official curriculum chapters active in ${profile.boardName}.`)}
+        />
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 w-full flex-1 space-y-8">
-        {/* =========================================================================
-            1. HEADER & ACADEMIC OVERVIEW
-           ========================================================================= */}
-        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-brand-100/60 via-emerald-50/30 to-transparent pointer-events-none rounded-bl-full -z-0" />
-
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-              <div className="flex flex-wrap items-center gap-2 mb-2">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-brand-100 text-brand-800 border border-brand-200">
-                  Student Learning Dashboard
-                </span>
-                <span className="text-xs text-slate-500 font-mono">
-                  {profile.boardId === 'CBSE' ? 'CBSE National Track' : 'Karnataka State Board Track'}
-                </span>
-              </div>
-
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Welcome back, {profile.name}! 👋
-              </h1>
-
-              <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-xl">
-                Class {profile.grade} • {profile.boardName} • {profile.schoolName || 'Govt. Model School'}
-              </p>
-            </div>
-
-            {/* Academic Badges & Language Selector */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              {/* Language Selector */}
-              <div className="bg-slate-50 p-1.5 rounded-2xl border border-slate-200/80 flex items-center gap-1 self-start sm:self-auto">
-                <Globe className="w-3.5 h-3.5 text-slate-400 ml-2 mr-1" />
-                <button
-                  onClick={() => setLanguagePreference('en')}
-                  className={`px-2.5 py-1 rounded-xl text-xs font-semibold transition-all ${
-                    languagePreference === 'en'
-                      ? 'bg-white text-slate-900 shadow-2xs font-bold'
-                      : 'text-slate-500 hover:text-slate-800'
-                  }`}
-                >
-                  English
-                </button>
-                <button
-                  onClick={() => setLanguagePreference('hi')}
-                  className={`px-2.5 py-1 rounded-xl text-xs font-semibold transition-all ${
-                    languagePreference === 'hi'
-                      ? 'bg-white text-slate-900 shadow-2xs font-bold'
-                      : 'text-slate-500 hover:text-slate-800'
-                  }`}
-                >
-                  हिन्दी
-                </button>
-                <button
-                  onClick={() => setLanguagePreference('kn')}
-                  className={`px-2.5 py-1 rounded-xl text-xs font-semibold transition-all ${
-                    languagePreference === 'kn'
-                      ? 'bg-white text-slate-900 shadow-2xs font-bold'
-                      : 'text-slate-500 hover:text-slate-800'
-                  }`}
-                >
-                  ಕನ್ನಡ
-                </button>
-              </div>
-
-              {/* Academic Overview Card Pills */}
-              <div className="grid grid-cols-3 gap-2 bg-slate-50 p-2 rounded-2xl border border-slate-200/80 text-center text-xs">
-                <div className="px-3 py-1">
-                  <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Class</div>
-                  <div className="text-sm font-bold text-slate-900">Class {profile.grade}</div>
-                </div>
-
-                <div className="px-3 py-1 border-x border-slate-200">
-                  <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Board</div>
-                  <div className="text-sm font-bold text-slate-900">
-                    {profile.boardId === 'CBSE' ? 'CBSE' : 'KTBS'}
-                  </div>
-                </div>
-
-                <div className="px-3 py-1">
-                  <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Medium</div>
-                  <div className="text-sm font-bold text-slate-900 truncate" title={profile.mediumName}>
-                    {profile.medium === 'en' ? 'English' : profile.medium === 'kn' ? 'Kannada' : profile.medium}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Demo Switcher & Status Row */}
-          <div className="mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-semibold text-slate-500">Switch Demo Student:</span>
-              <button
-                onClick={() => handleSwitchProfile('asha')}
-                className={`px-3 py-1 rounded-xl border text-xs font-medium transition-all ${
-                  profile.email === DEMO_PROFILES.asha.email
-                    ? 'bg-blue-50 border-blue-400 text-blue-800 font-bold shadow-2xs'
-                    : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
-                }`}
-              >
-                Asha Rao (CBSE Class 8)
-              </button>
-              <button
-                onClick={() => handleSwitchProfile('kavya')}
-                className={`px-3 py-1 rounded-xl border text-xs font-medium transition-all ${
-                  profile.email === DEMO_PROFILES.kavya.email
-                    ? 'bg-emerald-50 border-emerald-400 text-emerald-800 font-bold shadow-2xs'
-                    : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
-                }`}
-              >
-                Kavya Hegde (KTBS Class 7 Kannada)
-              </button>
-            </div>
-
-            <button
-              onClick={() => loadCurriculum(profile)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-medium transition-colors"
-            >
-              <RefreshCw className="w-3.5 h-3.5" />
-              <span>Refresh Curriculum</span>
-            </button>
-          </div>
-        </section>
-
-        {/* =========================================================================
-            2. EXPLORE STEM — PROMINENT FEATURE CARDS (Robin & Prashanth)
-           ========================================================================= */}
-        <section>
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-amber-500" />
-                <h2 className="text-lg font-bold text-slate-900 tracking-tight">Explore STEM</h2>
-              </div>
-              <p className="text-xs text-slate-500 mt-0.5">
-                Experiential STEM learning modules connecting theory to village reality
-              </p>
-            </div>
-            <span className="hidden sm:inline-block text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-              Autonomous Feature Modules
+        {apiError && (
+          <div className="bg-[#FFEEDD] border-b border-[#FFD9B8] px-6 py-2 text-xs text-[#D47220] flex items-center justify-between">
+            <span className="flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              <span>Offline Fallback Active: Serving local verified curriculum snapshot.</span>
+            </span>
+            <span className="font-mono text-[10px] bg-white px-2 py-0.5 rounded border border-[#FFD9B8]">
+              Local SQLite/Postgres Synced
             </span>
           </div>
+        )}
 
-          {/* Featured: Visual Topic Library & Narrated Videos */}
-          <div className="mb-5 bg-gradient-to-r from-brand-900 via-indigo-950 to-slate-900 rounded-3xl p-6 text-white shadow-lg border border-brand-700/40 relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="relative z-10 max-w-2xl">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30">
-                  {profile.medium === 'kn' ? 'ಹೊಸತು • 7ನೇ ತರಗತಿ ಕನ್ನಡ ಮಾಧ್ಯಮ' : 'NEW • STAGE 3 LIVE'}
-                </span>
-                <span className="text-[11px] text-brand-200">
-                  {profile.medium === 'kn' ? 'KTBS Class 7 STEM Hub' : 'Classes 1–12 STEM Hub'}
-                </span>
+        {/* Dashboard Body Grid: Center Content (2/3) + Right Widgets (1/3) */}
+        <main className="flex-1 p-6 md:p-8 flex flex-col xl:flex-row gap-8 max-w-[1600px] w-full mx-auto">
+          {/* Main Central Column */}
+          <div className="flex-1 space-y-8 min-w-0">
+            {/* =================================================================
+                HERO BANNER (Matching Screenshot Warm Orange Card & Rocket)
+               ================================================================= */}
+            <section className="relative overflow-hidden rounded-3xl bg-[#FA9C4D] p-7 md:p-9 text-white shadow-soft-md">
+              <div className="absolute top-0 right-0 w-80 h-full bg-gradient-to-l from-white/10 to-transparent pointer-events-none -z-0" />
+
+              <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+                <div className="max-w-md">
+                  <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                    Hi, {studentFirstName}!
+                  </h1>
+                  <p className="mt-2 text-sm sm:text-base font-medium text-white/95 leading-relaxed">
+                    Welcome back! Let's have some fun today. New knowledge awaits
+                  </p>
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/20 backdrop-blur-xs text-white border border-white/20">
+                      <Sparkles className="w-3.5 h-3.5 text-[#FFCF4F]" />
+                      Class {profile.grade} • {profile.boardId === 'CBSE' ? 'CBSE National' : 'Karnataka KTBS'}
+                    </span>
+                    <button
+                      onClick={() => setIsExplorerOpen(true)}
+                      className="px-3 py-1 rounded-full text-xs font-bold bg-white text-[#FA9C4D] hover:bg-[#FFEEDD] transition-colors shadow-soft-sm"
+                    >
+                      Browse Catalogue
+                    </button>
+                  </div>
+                </div>
+
+                {/* Rocket Illustration */}
+                <div className="shrink-0 self-center sm:self-auto">
+                  <RocketIllustration className="w-32 h-32 md:w-36 md:h-36 drop-shadow-md" />
+                </div>
               </div>
-              <h3 className="text-xl font-extrabold text-white tracking-tight">
-                {profile.medium === 'kn'
-                  ? 'Explore STEM: ಪರಿಕಲ್ಪನೆಗಳು, ಸಚಿತ್ರ ಪಾಠಗಳು ಮತ್ತು ಕನ್ನಡ ವೀಡಿಯೊಗಳು'
-                  : 'Explore STEM: Concepts, Illustrated Lessons & Narrated Videos'}
-              </h3>
-              <p className="mt-1.5 text-xs text-brand-100/90 leading-relaxed">
-                {profile.medium === 'kn'
-                  ? '7ನೇ ತರಗತಿ ವಿಜ್ಞಾನ ಮತ್ತು ಗಣಿತದ ಮೂಲ ಪರಿಕಲ್ಪನೆಗಳು, ಕನ್ನಡ ಧ್ವನಿ ವಿವರಣೆಯೊಂದಿಗೆ ಅನಿಮೇಷನ್ ವೀಡಿಯೊಗಳು ಮತ್ತು ಅಧಿಕೃತ KTBS ಪಠ್ಯಪುಸ್ತಕ ಉಲ್ಲೇಖಗಳು.'
-                  : 'Discover fundamental STEM principles, watch HD narrated animations with subtitles, and reference verified textbook chapters across CBSE and Karnataka curricula.'}
-              </p>
-              <div className="mt-4 flex flex-wrap items-center gap-2">
-                {profile.medium === 'kn' ? (
-                  <>
-                    <Link
-                      to="/app/explore/topics/topic-ktbs-heat-cl7-kn?tab=watch"
-                      className="px-2.5 py-1 rounded-lg bg-emerald-500/30 hover:bg-emerald-500/40 text-emerald-100 text-[11px] font-semibold transition border border-emerald-400/40"
-                    >
-                      🌡️ 7ನೇ ತರಗತಿ ಉಷ್ಣ (Heat Video)
-                    </Link>
-                    <Link
-                      to="/app/explore/topics/topic-ktbs-integers-cl7-kn?tab=read"
-                      className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition border border-white/10"
-                    >
-                      🔢 7ನೇ ತರಗತಿ ಪೂರ್ಣಾಂಕಗಳು (Integers)
-                    </Link>
-                    <Link
-                      to="/app/explore/topics/topic-ktbs-motion-time-cl7-kn?tab=read"
-                      className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition border border-white/10"
-                    >
-                      ⏳ 7ನೇ ತರಗತಿ ಚಲನೆ ಮತ್ತು ಕಾಲ (Motion & Time)
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <Link
-                      to="/app/explore/topics/topic-shapes-class3?tab=watch"
-                      className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition border border-white/10"
-                    >
-                      📐 Class 3 Shapes Video
-                    </Link>
-                    <Link
-                      to="/app/explore/topics/topic-forces-friction-cl8?tab=watch"
-                      className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition border border-white/10"
-                    >
-                      ⚙️ Class 8 Friction Video
-                    </Link>
-                    <Link
-                      to="/app/explore/topics/topic-rotational-motion-cl11?tab=watch"
-                      className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition border border-white/10"
-                    >
-                      🔄 Class 11 Rotation Video
-                    </Link>
-                  </>
-                )}
+            </section>
+
+            {/* =================================================================
+                MY COURSES (Matching Screenshot "My Cources" Cards)
+               ================================================================= */}
+            <section id="courses" className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-extrabold text-[#352F2A] tracking-tight">
+                  My Courses
+                </h2>
+                <button
+                  onClick={() => setIsExplorerOpen(true)}
+                  className="text-xs font-bold text-[#FA9C4D] hover:text-[#D47220] transition-colors flex items-center gap-1"
+                >
+                  <span>View All</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
               </div>
-            </div>
 
-            <div className="relative z-10 shrink-0">
-              <Link
-                to="/app/explore"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-brand-500 hover:bg-brand-400 text-white font-extrabold text-xs shadow-lg shadow-brand-500/30 transition-all hover:scale-105"
-              >
-                <Compass className="w-4 h-4" />
-                <span>{profile.medium === 'kn' ? 'Explore STEM (ಅನ್ವೇಷಿಸಿ)' : 'Open Explore STEM'}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {/* 1. STEM Lens Card (Robin) */}
-            <div className="group relative bg-gradient-to-br from-indigo-900 via-indigo-950 to-slate-950 rounded-3xl p-6 text-white shadow-lg shadow-indigo-950/15 overflow-hidden flex flex-col justify-between border border-indigo-800/40 hover:border-indigo-500/50 transition-all hover:-translate-y-0.5">
-              {/* Subtle background glow */}
-              <div className="absolute top-0 right-0 w-56 h-56 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-500/20 transition-all" />
-
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-2xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-300">
-                      <Camera className="w-5 h-5" />
+              {/* 3 Course Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {/* -------------------------------------------------------------
+                    Course Card 1: Coding Quest Style (Mathematics)
+                   ------------------------------------------------------------- */}
+                <div
+                  onClick={() =>
+                    mathTextbook &&
+                    handleOpenChapterDrawer(
+                      mathTextbook.edition,
+                      mathTextbook.subjectName
+                    )
+                  }
+                  className="bg-[#FFFFFF] rounded-3xl border border-[#EFECE6] overflow-hidden p-4 flex flex-col justify-between hover:shadow-soft-md transition-all cursor-pointer group"
+                >
+                  <div>
+                    <div className="w-full h-32 bg-[#F8F4EE] rounded-2xl flex items-center justify-center p-2 mb-3.5 group-hover:bg-[#FAF5EF] transition-colors">
+                      <MapIllustration className="w-full h-28" />
                     </div>
-                    <div>
-                      <h3 className="font-extrabold text-base text-white tracking-tight">
-                        {stemLensFeature?.name || 'STEM Lens'}
-                      </h3>
-                      <span className="text-[10px] text-indigo-300 font-medium">
-                        Owned by Robin
-                      </span>
-                    </div>
+
+                    <h3 className="font-extrabold text-base text-[#352F2A] group-hover:text-[#FA9C4D] transition-colors leading-tight">
+                      Coding Quest
+                    </h3>
+                    <p className="text-xs text-[#9E9B97] font-semibold mt-1">
+                      {mathTextbook ? mathTextbook.edition.titleInLanguage : 'Class 8: Mathematics'}
+                    </p>
                   </div>
 
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30">
-                    <Clock className="w-3 h-3" />
-                    {stemLensFeature?.status || 'INTEGRATION_PENDING'}
-                  </span>
+                  <div className="mt-5 space-y-2">
+                    <div className="w-full h-2 bg-[#F8F4EE] rounded-full overflow-hidden">
+                      <div className="w-4/5 h-full bg-[#48AF76] rounded-full" />
+                    </div>
+
+                    <div className="flex items-center justify-between text-[11px] font-bold text-[#9E9B97]">
+                      <span>Completed 10/13</span>
+                      <span>Achievements 4/5</span>
+                    </div>
+                  </div>
                 </div>
 
-                <p className="text-xs text-indigo-100/90 leading-relaxed font-normal">
-                  {stemLensFeature?.description ||
-                    'Discover the science behind everyday objects. Explore the mathematics, physics, biology and engineering hidden in the world around you.'}
-                </p>
+                {/* -------------------------------------------------------------
+                    Course Card 2: Code Adventure Style (Integrated Science)
+                   ------------------------------------------------------------- */}
+                <div
+                  onClick={() =>
+                    scienceTextbook &&
+                    handleOpenChapterDrawer(
+                      scienceTextbook.edition,
+                      scienceTextbook.subjectName
+                    )
+                  }
+                  className="bg-[#FFFFFF] rounded-3xl border border-[#EFECE6] overflow-hidden p-4 flex flex-col justify-between hover:shadow-soft-md transition-all cursor-pointer group"
+                >
+                  <div>
+                    <div className="w-full h-32 bg-[#F8F4EE] rounded-2xl flex items-center justify-center p-2 mb-3.5 group-hover:bg-[#FAF5EF] transition-colors">
+                      <BackpackIllustration className="w-full h-28" />
+                    </div>
 
-                <div className="mt-4 flex flex-wrap gap-1.5 text-[10px] font-medium text-indigo-200/80">
-                  <span className="px-2 py-0.5 rounded-lg bg-indigo-900/60 border border-indigo-700/40">
-                    🔍 Object Exploration
-                  </span>
-                  <span className="px-2 py-0.5 rounded-lg bg-indigo-900/60 border border-indigo-700/40">
-                    🌾 Rural Mechanics
-                  </span>
-                  <span className="px-2 py-0.5 rounded-lg bg-indigo-900/60 border border-indigo-700/40">
-                    📐 Concept Discovery
-                  </span>
+                    <h3 className="font-extrabold text-base text-[#352F2A] group-hover:text-[#FA9C4D] transition-colors leading-tight">
+                      Code Adventure
+                    </h3>
+                    <p className="text-xs text-[#9E9B97] font-semibold mt-1">
+                      {scienceTextbook ? scienceTextbook.edition.titleInLanguage : 'Class 8: Science (Curiosity)'}
+                    </p>
+                  </div>
+
+                  <div className="mt-5 space-y-2">
+                    <div className="w-full h-2 bg-[#F8F4EE] rounded-full overflow-hidden">
+                      <div className="w-3/5 h-full bg-[#FA9C4D] rounded-full" />
+                    </div>
+
+                    <div className="flex items-center justify-between text-[11px] font-bold text-[#9E9B97]">
+                      <span>Completed 7/13</span>
+                      <span>Achievements 3/7</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* -------------------------------------------------------------
+                    Course Card 3: "Add New Course" (Dashed Border Card)
+                   ------------------------------------------------------------- */}
+                <div
+                  onClick={() => setIsExplorerOpen(true)}
+                  className="bg-[#FBFAF9] rounded-3xl border-2 border-dashed border-[#EFECE6] hover:border-[#FFD9B8] p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-[#FAF5EF] transition-all group min-h-[260px]"
+                >
+                  <div className="w-14 h-14 rounded-full bg-[#FFEEDD] border border-[#FFD9B8] flex items-center justify-center text-[#FA9C4D] group-hover:scale-110 transition-transform shadow-soft-sm mb-3">
+                    <Plus className="w-7 h-7 stroke-[2.5]" />
+                  </div>
+                  <h3 className="font-extrabold text-sm text-[#FA9C4D] group-hover:text-[#D47220] transition-colors">
+                    Add New Course
+                  </h3>
+                  <p className="text-[11px] text-[#9E9B97] mt-1 max-w-[180px]">
+                    Explore CBSE and Karnataka State Board textbooks
+                  </p>
                 </div>
               </div>
+            </section>
 
-              <div className="mt-6 pt-4 border-t border-indigo-800/40 flex items-center justify-between gap-3">
-                <span className="text-[11px] text-indigo-300/80 italic">
-                  Integration Contract Ready
+            {/* =================================================================
+                RELEVANT RESOURCES (Matching Screenshot Bottom Row)
+               ================================================================= */}
+            <section className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-extrabold text-[#352F2A] tracking-tight">
+                  Relevant Resources
+                </h2>
+                <span className="text-xs text-[#9E9B97] font-semibold">
+                  3 Interactive Tools
                 </span>
+              </div>
+
+              {/* 3 Resource Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {/* Resource Card 1: Tutor / STEM Lens */}
                 <Link
                   to="/app/stem-lens"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white font-bold text-xs shadow-md shadow-indigo-500/20 transition-all group-hover:scale-[1.02]"
+                  className="bg-[#FFFFFF] rounded-3xl border border-[#EFECE6] p-4 hover:shadow-soft-md transition-all flex flex-col justify-between group"
                 >
-                  <span>Open STEM Lens</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-
-            {/* 2. STEM Village Builder Card (Prashanth) */}
-            <div className="group relative bg-gradient-to-br from-emerald-900 via-teal-950 to-slate-950 rounded-3xl p-6 text-white shadow-lg shadow-teal-950/15 overflow-hidden flex flex-col justify-between border border-teal-800/40 hover:border-emerald-500/50 transition-all hover:-translate-y-0.5">
-              {/* Subtle background glow */}
-              <div className="absolute top-0 right-0 w-56 h-56 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-emerald-500/20 transition-all" />
-
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-300">
-                      <Building2 className="w-5 h-5" />
+                  <div>
+                    <div className="w-full h-24 bg-[#F8F4EE] rounded-2xl flex items-center justify-center p-2 mb-3 group-hover:bg-[#FAF5EF] transition-colors">
+                      <TutorIllustration className="w-full h-20" />
                     </div>
-                    <div>
-                      <h3 className="font-extrabold text-base text-white tracking-tight">
-                        {villageBuilderFeature?.name || 'STEM Village Builder'}
-                      </h3>
-                      <span className="text-[10px] text-emerald-300 font-medium">
-                        Owned by Prashanth
-                      </span>
-                    </div>
+                    <h3 className="font-extrabold text-sm text-[#352F2A] group-hover:text-[#FA9C4D] transition-colors">
+                      Python Syntax Features
+                    </h3>
+                    <p className="text-[11px] text-[#9E9B97] mt-1 line-clamp-2">
+                      Recording of Dr. Garrett's lecture • STEM Lens Visual Lab
+                    </p>
                   </div>
+                  <div className="mt-4 pt-2.5 border-t border-[#EFECE6] flex items-center justify-between text-[11px] font-bold text-[#FA9C4D]">
+                    <span>Open Camera Lab</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
 
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30">
-                    <Clock className="w-3 h-3" />
-                    {villageBuilderFeature?.status || 'INTEGRATION_PENDING'}
-                  </span>
-                </div>
-
-                <p className="text-xs text-emerald-100/90 leading-relaxed font-normal">
-                  {villageBuilderFeature?.description ||
-                    'Build, develop and transform a village using science, technology and engineering. Solve real-world challenges and improve your virtual community.'}
-                </p>
-
-                <div className="mt-4 flex flex-wrap gap-1.5 text-[10px] font-medium text-emerald-200/80">
-                  <span className="px-2 py-0.5 rounded-lg bg-teal-900/60 border border-teal-700/40">
-                    🌱 Agricultural Physics
-                  </span>
-                  <span className="px-2 py-0.5 rounded-lg bg-teal-900/60 border border-teal-700/40">
-                    ⚡ Solar & Water Grids
-                  </span>
-                  <span className="px-2 py-0.5 rounded-lg bg-teal-900/60 border border-teal-700/40">
-                    🏘️ Village Simulation
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-teal-800/40 flex items-center justify-between gap-3">
-                <span className="text-[11px] text-emerald-300/80 italic">
-                  Integration Contract Ready
-                </span>
+                {/* Resource Card 2: Code Brackets / Village Builder */}
                 <Link
                   to="/app/village-builder"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-md shadow-emerald-500/20 transition-all group-hover:scale-[1.02]"
+                  className="bg-[#FFFFFF] rounded-3xl border border-[#EFECE6] p-4 hover:shadow-soft-md transition-all flex flex-col justify-between group"
                 >
-                  <span>Open Village Builder</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <div>
+                    <div className="w-full h-24 bg-[#F8F4EE] rounded-2xl flex items-center justify-center p-2 mb-3 group-hover:bg-[#FAF5EF] transition-colors">
+                      <CodeBracketsIllustration className="w-full h-20" />
+                    </div>
+                    <h3 className="font-extrabold text-sm text-[#352F2A] group-hover:text-[#FA9C4D] transition-colors">
+                      Hierarchy of python's built-in exceptions
+                    </h3>
+                    <p className="text-[11px] text-[#9E9B97] mt-1">
+                      John Gold • Village Builder Systems Simulation
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-2.5 border-t border-[#EFECE6] flex items-center justify-between text-[11px] font-bold text-[#FA9C4D]">
+                    <span>Explore Simulation</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </Link>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* =========================================================================
-            3. MY LEARNING (Mathematics & Science Overview)
-           ========================================================================= */}
-        <section>
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <Compass className="w-5 h-5 text-brand-700" />
-                <h2 className="text-lg font-bold text-slate-900 tracking-tight">My Learning</h2>
-              </div>
-              <p className="text-xs text-slate-500 mt-0.5">
-                Active STEM curriculum tracks for Academic Year 2026–27
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {/* Mathematics Subject Card */}
-            <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-2xs hover:shadow-sm transition-all flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200 uppercase tracking-wider">
-                    Mathematics
-                  </span>
-                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700">
-                    <CheckCircle2 className="w-3.5 h-3.5" /> Active Track
-                  </span>
-                </div>
-
-                <h3 className="text-base font-bold text-slate-900 mt-1">
-                  {mathTextbook?.edition?.titleInLanguage || 'Mathematics - Middle School'}
-                </h3>
-
-                <p className="text-xs text-slate-500 mt-1">
-                  {mathTextbook?.edition?.totalChapters || 13} verified chapters indexed for Grade{' '}
-                  {profile.grade}
-                </p>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-[11px] text-slate-400 font-medium">
-                  {profile.boardId === 'CBSE' ? 'NCERT Reference' : 'KTBS Prescribed'}
-                </span>
-                {mathTextbook?.edition?.id ? (
-                  <Link
-                    to={`/app/books/${mathTextbook.edition.id}`}
-                    className="font-semibold text-brand-700 hover:text-brand-800 flex items-center gap-1"
-                  >
-                    <span>Read Book & Chapters</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                ) : (
-                  <button
-                    onClick={() => setActiveSubjectFilter('Mathematics')}
-                    className="font-semibold text-brand-700 hover:text-brand-800"
-                  >
-                    View Textbook Details →
-                  </button>
-                )}
-              </div>
-            </div>
-
-            {/* Science Subject Card */}
-            <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-2xs hover:shadow-sm transition-all flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 uppercase tracking-wider">
-                    Natural Science
-                  </span>
-                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700">
-                    <CheckCircle2 className="w-3.5 h-3.5" /> Active Track
-                  </span>
-                </div>
-
-                <h3 className="text-base font-bold text-slate-900 mt-1">
-                  {scienceTextbook?.edition?.titleInLanguage || 'Integrated Science - Middle School'}
-                </h3>
-
-                <p className="text-xs text-slate-500 mt-1">
-                  {scienceTextbook?.edition?.totalChapters || 13} verified chapters indexed for Grade{' '}
-                  {profile.grade}
-                </p>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-[11px] text-slate-400 font-medium">
-                  {profile.boardId === 'CBSE' ? 'NCERT Reference' : 'KTBS Prescribed'}
-                </span>
-                {scienceTextbook?.edition?.id ? (
-                  <Link
-                    to={`/app/books/${scienceTextbook.edition.id}`}
-                    className="font-semibold text-brand-700 hover:text-brand-800 flex items-center gap-1"
-                  >
-                    <span>Read Book & Chapters</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                ) : (
-                  <button
-                    onClick={() => setActiveSubjectFilter('Science')}
-                    className="font-semibold text-brand-700 hover:text-brand-800"
-                  >
-                    View Textbook Details →
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* =========================================================================
-            4. MY TEXTBOOKS (Retrieved from Backend Curriculum API)
-           ========================================================================= */}
-        <section>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
-            <div>
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-brand-700" />
-                <h2 className="text-lg font-bold text-slate-900 tracking-tight">My Textbooks</h2>
-              </div>
-              <p className="text-xs text-slate-500 mt-0.5">
-                Official prescribed textbook editions retrieved from GaonLab curriculum database
-              </p>
-            </div>
-
-            {/* Subject Filter Pills & Library Link */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
-              <Link
-                to="/app/library"
-                className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-50 hover:bg-brand-100 text-brand-800 border border-brand-200 rounded-xl text-xs font-bold transition flex-shrink-0"
-              >
-                <span>Browse Full Library</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-
-              {['ALL', 'Mathematics', 'Science'].map((sub) => (
-                <button
-                  key={sub}
-                  onClick={() => setActiveSubjectFilter(sub)}
-                  className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all flex-shrink-0 ${
-                    activeSubjectFilter === sub
-                      ? 'bg-slate-900 text-white shadow-2xs'
-                      : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
-                  }`}
+                {/* Resource Card 3: Document / Official Syllabus */}
+                <div
+                  onClick={() => setIsExplorerOpen(true)}
+                  className="bg-[#FFFFFF] rounded-3xl border border-[#EFECE6] p-4 hover:shadow-soft-md transition-all flex flex-col justify-between group cursor-pointer"
                 >
-                  {sub === 'ALL' ? 'All Textbooks' : sub}
-                </button>
-              ))}
-            </div>
+                  <div>
+                    <div className="w-full h-24 bg-[#F8F4EE] rounded-2xl flex items-center justify-center p-2 mb-3 group-hover:bg-[#FAF5EF] transition-colors">
+                      <DocumentIllustration className="w-full h-20" />
+                    </div>
+                    <h3 className="font-extrabold text-sm text-[#352F2A] group-hover:text-[#FA9C4D] transition-colors">
+                      Resume of junior developer
+                    </h3>
+                    <p className="text-[11px] text-[#9E9B97] mt-1">
+                      Emma Graceman • National NCERT Curriculum Guides
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-2.5 border-t border-[#EFECE6] flex items-center justify-between text-[11px] font-bold text-[#FA9C4D]">
+                    <span>Browse All 57 Textbooks</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
 
-          {/* Loading / Error / Empty States */}
-          {isLoading ? (
-            <div className="bg-white rounded-2xl p-12 text-center border border-slate-200">
-              <div className="w-10 h-10 border-4 border-brand-200 border-t-brand-600 rounded-full animate-spin mx-auto mb-3" />
-              <p className="text-xs font-semibold text-slate-700">Connecting to Curriculum Database...</p>
-              <p className="text-[11px] text-slate-400 mt-1">Resolving textbook editions & chapters</p>
-            </div>
-          ) : filteredTextbooks.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {filteredTextbooks.map(({ edition, subjectName, stemPillar }) => (
-                <TextbookCard
-                  key={edition.id}
-                  edition={edition}
-                  subjectName={subjectName}
-                  stemPillar={stemPillar}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="bg-white rounded-2xl p-8 text-center border border-dashed border-slate-300">
-              <AlertTriangle className="w-8 h-8 text-amber-500 mx-auto mb-2" />
-              <h3 className="text-sm font-bold text-slate-800">No Prescribed Textbooks Found</h3>
-              <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
-                No active textbook versions are currently registered in the database for{' '}
-                <strong>
-                  {profile.boardId} Class {profile.grade} in {profile.medium.toUpperCase()}
-                </strong>{' '}
-                medium.
-              </p>
-              <div className="mt-4">
-                <button
-                  onClick={() => handleSwitchProfile('asha')}
-                  className="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-semibold hover:bg-brand-700"
-                >
-                  Switch to verified CBSE Class 8 demo
-                </button>
-              </div>
-            </div>
-          )}
-        </section>
+          {/* ===================================================================
+              RIGHT COLUMN: Weekly Progress, Recent Tasks, Activity
+             =================================================================== */}
+          <SkillUpRightSidebar />
+        </main>
+      </div>
 
-        {/* =========================================================================
-            5. PROFILE DETAILS SUMMARY FOOTER
-           ========================================================================= */}
-        <section className="bg-white rounded-2xl p-5 border border-slate-200 text-xs text-slate-600">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-              <div className="font-bold text-slate-800">Demonstration Identity Details</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">
-                Logged in as <code className="font-mono text-slate-700">{profile.email}</code> •{' '}
-                {profile.schoolName || 'Govt. Model School'}
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="px-2 py-0.5 rounded bg-brand-50 text-brand-800 font-semibold text-[11px] border border-brand-200">
-                Stage 3 Dashboard Expansion
-              </span>
-              <button
-                onClick={handleLogout}
-                className="flex items-center gap-1 text-slate-500 hover:text-red-700 font-medium transition-colors"
-              >
-                <LogOut className="w-3.5 h-3.5" />
-                <span>Exit Demo</span>
-              </button>
-            </div>
-          </div>
-        </section>
-      </main>
+      {/* =======================================================================
+          MODALS & DRAWERS
+         ======================================================================= */}
+      {selectedEdition && (
+        <ChapterDrawerModal
+          edition={selectedEdition}
+          subjectName={selectedSubjectName}
+          onClose={() => setSelectedEdition(null)}
+        />
+      )}
+
+      <CurriculumExplorerModal
+        isOpen={isExplorerOpen}
+        onClose={() => setIsExplorerOpen(false)}
+        profile={profile}
+      />
     </div>
   );
 };

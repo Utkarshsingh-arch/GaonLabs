@@ -82,6 +82,8 @@ export function createApp(): Express {
       version: SYSTEM_CONSTANTS.VERSION,
       database: {
         isHealthy: true,
+        activeSource: dbStatus.activeSource,
+        primaryHealthy: dbStatus.primaryHealthy,
         latencyMs: dbStatus.latencyMs,
       },
       timestamp: new Date().toISOString(),
