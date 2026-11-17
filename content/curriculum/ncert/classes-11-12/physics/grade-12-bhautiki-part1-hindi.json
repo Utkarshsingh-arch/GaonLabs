@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 12,
+    "levelId": "GRADE_12",
+    "subjectId": "PHYSICS",
+    "subjectName": "Physics",
+    "stemPillar": "SCIENCE",
+    "medium": "hi",
+    "canonicalTitle": "Physics Part I - Class 12",
+    "titleInLanguage": "भौतिकी भाग I - कक्षा 12 के लिए पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?lhph1=0-8",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "वैद्युत आवेश तथा क्षेत्र",
+      "officialCode": "NCERT-G12-PHYS-C01-HI",
+      "pageStart": 1,
+      "pageEnd": 46,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph1=1-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "स्थिरवैद्युत विभव तथा धारिता",
+      "officialCode": "NCERT-G12-PHYS-C02-HI",
+      "pageStart": 47,
+      "pageEnd": 88,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph1=2-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "विद्युत धारा",
+      "officialCode": "NCERT-G12-PHYS-C03-HI",
+      "pageStart": 89,
+      "pageEnd": 126,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph1=3-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "गतिमान आवेश और चुंबकत्व",
+      "officialCode": "NCERT-G12-PHYS-C04-HI",
+      "pageStart": 127,
+      "pageEnd": 168,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph1=4-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "चुंबकत्व एवं द्रव्य",
+      "officialCode": "NCERT-G12-PHYS-C05-HI",
+      "pageStart": 169,
+      "pageEnd": 196,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph1=5-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "वैद्युतचुंबकीय प्रेरण",
+      "officialCode": "NCERT-G12-PHYS-C06-HI",
+      "pageStart": 197,
+      "pageEnd": 226,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph1=6-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "प्रत्यावर्ती धारा",
+      "officialCode": "NCERT-G12-PHYS-C07-HI",
+      "pageStart": 227,
+      "pageEnd": 256,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph1=7-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "वैद्युतचुंबकीय तरंगें",
+      "officialCode": "NCERT-G12-PHYS-C08-HI",
+      "pageStart": 257,
+      "pageEnd": 276,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph1=8-8",
+      "status": "VERIFIED"
+    }
+  ]
+}

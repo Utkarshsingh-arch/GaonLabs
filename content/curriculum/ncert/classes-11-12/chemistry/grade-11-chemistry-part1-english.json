@@ -1,0 +1,82 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 11,
+    "levelId": "GRADE_11",
+    "subjectId": "CHEMISTRY",
+    "subjectName": "Chemistry",
+    "stemPillar": "SCIENCE",
+    "medium": "en",
+    "canonicalTitle": "Chemistry Part I - Class 11",
+    "titleInLanguage": "Chemistry Part I - Textbook for Class XI",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?kech1=0-6",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Some Basic Concepts of Chemistry",
+      "officialCode": "NCERT-G11-CHEM-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 30,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kech1=1-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Structure of Atom",
+      "officialCode": "NCERT-G11-CHEM-C02-EN",
+      "pageStart": 31,
+      "pageEnd": 68,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kech1=2-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Classification of Elements and Periodicity in Properties",
+      "officialCode": "NCERT-G11-CHEM-C03-EN",
+      "pageStart": 69,
+      "pageEnd": 98,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kech1=3-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Chemical Bonding and Molecular Structure",
+      "officialCode": "NCERT-G11-CHEM-C04-EN",
+      "pageStart": 99,
+      "pageEnd": 140,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kech1=4-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Thermodynamics",
+      "officialCode": "NCERT-G11-CHEM-C05-EN",
+      "pageStart": 141,
+      "pageEnd": 180,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kech1=5-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Equilibrium",
+      "officialCode": "NCERT-G11-CHEM-C06-EN",
+      "pageStart": 181,
+      "pageEnd": 226,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kech1=6-6",
+      "status": "VERIFIED"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 11,
+    "levelId": "GRADE_11",
+    "subjectId": "INFORMATICS_PRACTICES",
+    "subjectName": "Informatics Practices",
+    "stemPillar": "TECHNOLOGY",
+    "medium": "en",
+    "canonicalTitle": "Informatics Practices - Class 11",
+    "titleInLanguage": "Informatics Practices - Textbook for Class XI",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?keip1=0-8",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Computer System",
+      "officialCode": "NCERT-G11-INFO-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 16,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keip1=1-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Emerging Trends",
+      "officialCode": "NCERT-G11-INFO-C02-EN",
+      "pageStart": 17,
+      "pageEnd": 32,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keip1=2-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Brief Overview of Python",
+      "officialCode": "NCERT-G11-INFO-C03-EN",
+      "pageStart": 33,
+      "pageEnd": 62,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keip1=3-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Working with Lists and Dictionaries",
+      "officialCode": "NCERT-G11-INFO-C04-EN",
+      "pageStart": 63,
+      "pageEnd": 86,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keip1=4-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Understanding Data",
+      "officialCode": "NCERT-G11-INFO-C05-EN",
+      "pageStart": 87,
+      "pageEnd": 106,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keip1=5-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Introduction to NumPy",
+      "officialCode": "NCERT-G11-INFO-C06-EN",
+      "pageStart": 107,
+      "pageEnd": 134,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keip1=6-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Database Concepts",
+      "officialCode": "NCERT-G11-INFO-C07-EN",
+      "pageStart": 135,
+      "pageEnd": 158,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keip1=7-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Introduction to Structured Query Language (SQL)",
+      "officialCode": "NCERT-G11-INFO-C08-EN",
+      "pageStart": 159,
+      "pageEnd": 190,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keip1=8-8",
+      "status": "VERIFIED"
+    }
+  ]
+}

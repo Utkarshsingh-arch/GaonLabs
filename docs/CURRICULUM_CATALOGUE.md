@@ -39,16 +39,22 @@ flowchart TD
 
 ## 2. Ingested Catalogue Inventory (Academic Year 2026–27)
 
-A total of **18 curriculum manifests** across **12 unique canonical textbooks** and **261 chapters** have been verified and ingested into GaonLab:
+Following the completion of Stage 2 and the Stage 2.1 Complete NCERT STEM Ingestion expansion, GaonLab houses both board-specific curriculum mappings (CBSE and Karnataka State Board) and the canonical **NCERT National Reference STEM Catalogue (Classes 1–12)**.
+
+> **For complete Class 1–12 NCERT STEM coverage, chapter directories, and volume details, see [NCERT_STEM_CATALOGUE.md](NCERT_STEM_CATALOGUE.md).**
 
 ```
-Total Ingested Manifests:     18
+Total Ingested Manifests:     101 (83 NCERT National Ref + 6 CBSE + 12 Karnataka State Board)
 Education Boards:             2 (CBSE, Karnataka State Board)
-Curriculum Frameworks:        2 (NCF-SE 2023, KCF 2024)
+Curriculum Frameworks:        3 (NCF-SE 2023, KTBS_CURRICULUM_2024, NCF_2005)
 Textbook Publishers:          2 (NCERT Publication Division, Karnataka Textbook Society)
-Canonical Textbooks:          12
-Textbook Editions:            18
-Total Chapter Records:        261 (100% VERIFIED)
+Canonical Textbooks:          57
+Textbook Editions:            98
+Total Chapter Records:        1,161
+  - Verified Chapters:        1,042
+  - Pending Verification:     45
+  - Archived Chapters:        74
+Board Curriculum Versions:    18 (6 CBSE + 12 Karnataka State Board)
 ```
 
 ### 2.1 Track A: CBSE / NCERT Catalogue

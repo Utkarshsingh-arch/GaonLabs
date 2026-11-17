@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 12,
+    "levelId": "GRADE_12",
+    "subjectId": "PHYSICS",
+    "subjectName": "Physics",
+    "stemPillar": "SCIENCE",
+    "medium": "en",
+    "canonicalTitle": "Physics Part I - Class 12",
+    "titleInLanguage": "Physics Part I - Textbook for Class XII",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?leph1=0-8",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Electric Charges and Fields",
+      "officialCode": "NCERT-G12-PHYS-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 46,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph1=1-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Electrostatic Potential and Capacitance",
+      "officialCode": "NCERT-G12-PHYS-C02-EN",
+      "pageStart": 47,
+      "pageEnd": 88,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph1=2-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Current Electricity",
+      "officialCode": "NCERT-G12-PHYS-C03-EN",
+      "pageStart": 89,
+      "pageEnd": 126,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph1=3-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Moving Charges and Magnetism",
+      "officialCode": "NCERT-G12-PHYS-C04-EN",
+      "pageStart": 127,
+      "pageEnd": 168,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph1=4-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Magnetism and Matter",
+      "officialCode": "NCERT-G12-PHYS-C05-EN",
+      "pageStart": 169,
+      "pageEnd": 196,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph1=5-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Electromagnetic Induction",
+      "officialCode": "NCERT-G12-PHYS-C06-EN",
+      "pageStart": 197,
+      "pageEnd": 226,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph1=6-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Alternating Current",
+      "officialCode": "NCERT-G12-PHYS-C07-EN",
+      "pageStart": 227,
+      "pageEnd": 256,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph1=7-8",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Electromagnetic Waves",
+      "officialCode": "NCERT-G12-PHYS-C08-EN",
+      "pageStart": 257,
+      "pageEnd": 276,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph1=8-8",
+      "status": "VERIFIED"
+    }
+  ]
+}

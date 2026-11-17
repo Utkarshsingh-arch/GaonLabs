@@ -92,6 +92,103 @@ curriculumRouter.get('/catalogue', async (req: Request, res: Response, next: Nex
 });
 
 /**
+ * GET /api/v1/curriculum/publishers
+ * List all registered textbook publishers (e.g. NCERT_PUB, KTBS).
+ */
+curriculumRouter.get('/publishers', async (_req: Request, res: Response, next: NextFunction) => {
+  try {
+    const publishers = await curriculumService.getPublishers();
+    res.status(200).json({
+      success: true,
+      data: publishers,
+      count: publishers.length,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
+ * GET /api/v1/curriculum/publishers/:publisherId/textbooks
+ * List textbooks published by a specific publisher (e.g. NCERT_PUB, KTBS).
+ */
+curriculumRouter.get('/publishers/:publisherId/textbooks', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { publisherId } = req.params;
+    const filter = {
+      publisherId,
+      grade: req.query.grade ? parseInt(req.query.grade as string, 10) : undefined,
+      levelId: req.query.levelId as string | undefined,
+      subjectId: req.query.subjectId as string | undefined,
+      medium: req.query.medium as string | undefined,
+      status: req.query.status as CurriculumStatus | undefined,
+    };
+    const textbooks = await curriculumService.getTextbooks(filter);
+    res.status(200).json({
+      success: true,
+      publisherId,
+      filter,
+      data: textbooks,
+      count: textbooks.length,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
+ * GET /api/v1/curriculum/national-catalogue
+ * Query the NCERT National Reference Catalogue directly (independent of board adoption).
+ */
+curriculumRouter.get('/national-catalogue', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const filter = {
+      grade: req.query.grade ? parseInt(req.query.grade as string, 10) : undefined,
+      levelId: req.query.levelId as string | undefined,
+      subjectId: req.query.subjectId as string | undefined,
+      medium: req.query.medium as string | undefined,
+      status: req.query.status as CurriculumStatus | undefined,
+    };
+    const catalogue = await curriculumService.getNationalCatalogue(filter);
+    res.status(200).json({
+      success: true,
+      authority: 'NCERT',
+      filter,
+      data: catalogue,
+      count: catalogue.length,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
+ * GET /api/v1/curriculum/textbooks
+ * List all textbooks across publishers with optional filtering.
+ */
+curriculumRouter.get('/textbooks', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const filter = {
+      publisherId: req.query.publisherId as string | undefined,
+      grade: req.query.grade ? parseInt(req.query.grade as string, 10) : undefined,
+      levelId: req.query.levelId as string | undefined,
+      subjectId: req.query.subjectId as string | undefined,
+      medium: req.query.medium as string | undefined,
+      status: req.query.status as CurriculumStatus | undefined,
+    };
+    const textbooks = await curriculumService.getTextbooks(filter);
+    res.status(200).json({
+      success: true,
+      filter,
+      data: textbooks,
+      count: textbooks.length,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
  * GET /api/v1/curriculum/textbooks/:textbookId
  * Retrieve detailed textbook information including publisher and available editions.
  */

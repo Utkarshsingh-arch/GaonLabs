@@ -1,0 +1,118 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 6,
+    "levelId": "GRADE_6",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "hi",
+    "canonicalTitle": "Ganita Prakash - Mathematics Grade 6",
+    "titleInLanguage": "गणित प्रकाश - कक्षा 6 के लिए गणित की पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?fhgp1=0-10",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "गणित में पैटर्न",
+      "officialCode": "NCERT-G6-MATH-C01-HI",
+      "pageStart": 1,
+      "pageEnd": 20,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhgp1=1-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "रेखाएँ और कोण",
+      "officialCode": "NCERT-G6-MATH-C02-HI",
+      "pageStart": 21,
+      "pageEnd": 40,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhgp1=2-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "संख्याओं का खेल",
+      "officialCode": "NCERT-G6-MATH-C03-HI",
+      "pageStart": 41,
+      "pageEnd": 60,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhgp1=3-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "आंकड़ों का प्रबंधन और प्रस्तुति",
+      "officialCode": "NCERT-G6-MATH-C04-HI",
+      "pageStart": 61,
+      "pageEnd": 80,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhgp1=4-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "अभाज्य समय (प्राइम टाइम)",
+      "officialCode": "NCERT-G6-MATH-C05-HI",
+      "pageStart": 81,
+      "pageEnd": 100,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhgp1=5-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "परिमाप और क्षेत्रफल",
+      "officialCode": "NCERT-G6-MATH-C06-HI",
+      "pageStart": 101,
+      "pageEnd": 120,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhgp1=6-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "भिन्न",
+      "officialCode": "NCERT-G6-MATH-C07-HI",
+      "pageStart": 121,
+      "pageEnd": 140,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhgp1=7-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "रचनाओं के साथ खेल",
+      "officialCode": "NCERT-G6-MATH-C08-HI",
+      "pageStart": 141,
+      "pageEnd": 160,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhgp1=8-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "सममिति",
+      "officialCode": "NCERT-G6-MATH-C09-HI",
+      "pageStart": 161,
+      "pageEnd": 180,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhgp1=9-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "शून्य के दूसरी ओर",
+      "officialCode": "NCERT-G6-MATH-C10-HI",
+      "pageStart": 181,
+      "pageEnd": 200,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhgp1=10-10",
+      "status": "VERIFIED"
+    }
+  ]
+}
