@@ -1,6 +1,7 @@
 import { IFeatureCatalogueService } from './feature-catalogue.contracts';
 import { stemLensService } from '../stem-lens';
 import { villageBuilderService } from '../village-builder';
+import { experimentCatalogueService } from '../experiment-studio';
 import { featureFlagsService } from '../feature-flags';
 import { FeatureCatalogueResponse, FeatureModuleManifest, LearnerContext } from '@gaonlab/shared-types';
 
@@ -8,6 +9,7 @@ export class FeatureCatalogueService implements IFeatureCatalogueService {
   private registeredManifests: FeatureModuleManifest[] = [
     stemLensService.getManifest(),
     villageBuilderService.getManifest(),
+    experimentCatalogueService.getManifest(),
   ];
 
   getFeatureById(featureId: string): FeatureModuleManifest | null {

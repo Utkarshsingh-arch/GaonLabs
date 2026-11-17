@@ -9,7 +9,9 @@ import {
   Settings,
   LogOut,
   Camera,
-  Building2
+  Building2,
+  FlaskConical,
+  BookOpen
 } from 'lucide-react';
 import { getDemoSession, clearDemoSession, setDemoSession, DEMO_PROFILES } from '../services/demoAuth';
 import { DemoProfile } from '../types';
@@ -52,16 +54,28 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
       exact: true,
     },
     {
+      label: 'Explore STEM',
+      path: '/app/explore',
+      icon: Compass,
+      tag: 'Topics',
+    },
+    {
+      label: 'Experiment Studio',
+      path: '/app/experiments',
+      icon: FlaskConical,
+      tag: 'Lab',
+    },
+    {
       label: 'All Courses',
       path: '/app/dashboard#courses',
-      icon: Compass,
+      icon: BookOpen,
       onClick: onOpenExplorer,
     },
     {
       label: 'STEM Lens',
       path: '/app/stem-lens',
       icon: Camera,
-      tag: 'Lab',
+      tag: 'Lens',
     },
     {
       label: 'Village Builder',

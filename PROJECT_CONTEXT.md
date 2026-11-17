@@ -376,6 +376,12 @@ npm start
 - `POST http://localhost:4000/api/v1/topics/match`: Smart Reader selection matcher connecting textbook text to topics and videos.
 - `GET http://localhost:4000/api/v1/videos/stream/:videoId`: HTTP 206 partial content MP4 video streaming.
 - `GET http://localhost:4000/api/v1/videos/captions/:filename`: WebVTT closed caption serving.
+- `GET http://localhost:4000/api/v1/experiments`: Filterable Experiment Studio catalogue (simulation type, board, grade).
+- `GET http://localhost:4000/api/v1/experiments/:id/manifest`: Full validated declarative JSON experiment manifest.
+- `POST http://localhost:4000/api/v1/experiments/:id/sessions`: Start or resume interactive experiment session.
+- `GET http://localhost:4000/api/v1/experiments/sessions/:id`: Retrieve session state, observations, and manifest.
+- `POST http://localhost:4000/api/v1/experiments/sessions/:id/events`: Ingest lifecycle events with idempotent clientEventId deduplication.
+- `POST http://localhost:4000/api/v1/experiments/sessions/:id/complete`: Finalize experiment session with score and reflection notes.
 
 ### 10.3 Student Frontend Applications (`apps/web`)
 - **Framework**: React 18, Vite 5, TypeScript 5, Tailwind CSS 3, Lucide React icons.
@@ -393,6 +399,9 @@ npm start
   10. Topic Detail Page (`/app/explore/topics/:topicId`): Three-tier exploration (Read In-App Lesson, Watch Narrated Animated Video, and Official Curriculum Resources).
   11. STEM Lens Placeholder (`/app/stem-lens`): Integration contract placeholder owned by Robin.
   12. STEM Village Builder Placeholder (`/app/village-builder`): Integration contract placeholder owned by Prashanth.
+  13. Experiment Studio Catalogue (`/app/experiments`): Filterable experiential STEM lab directory supporting CBSE, KTBS, Chemistry, and Physics.
+  14. Experiment Specification (`/app/experiments/:id`): Overview, safety validation, learning objectives, apparatus breakdown.
+  15. Interactive Virtual Lab Bench (`/app/experiments/:id/lab`): Live laboratory simulation hosting Chemistry (pH equilibria, indicators, color transitions) and Physics (Coulomb friction, force vectors, live velocity-time graph) across a 7-phase inquiry lifecycle.
 - **Automated Video Generation Engine (`tools/video-generator/`)**:
   - Python 3.12, Pillow, gTTS, offline synthetic fallback, imageio-ffmpeg.
   - Multi-script font support: Noto Sans (Latin) and Noto Sans Kannada for high-fidelity regional language typography.
