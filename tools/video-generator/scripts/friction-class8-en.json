@@ -1,0 +1,81 @@
+{
+  "topicId": "topic-forces-friction-cl8",
+  "language": "en",
+  "grade": 8,
+  "title": "Exploring Forces and Friction",
+  "scenes": [
+    {
+      "sceneId": "scene-1-moving-object",
+      "title": "A Moving Object on a Surface",
+      "narration": "Imagine kicking a football or pushing a heavy wooden crate across a surface. An applied force sets the object into forward motion with velocity v.",
+      "onScreenText": "1. Motion and Applied Force\nObject moving across surface with Velocity (v →)",
+      "visualSpec": {
+        "type": "MOVING_CRATE",
+        "crateX": [150, 480],
+        "appliedForce": true,
+        "showVelocity": true
+      },
+      "subtitles": "An applied force sets an object into forward motion across a surface with velocity v."
+    },
+    {
+      "sceneId": "scene-2-surface-nature",
+      "title": "The Surfaces in Contact",
+      "narration": "Even surfaces that feel smooth to our touch are covered with countless microscopic hills, valleys, and irregularities when viewed closely.",
+      "onScreenText": "2. Microscopic Contact Nature\nSolid surfaces have microscopic hills & valleys",
+      "visualSpec": {
+        "type": "MICROSCOPIC_ZOOM",
+        "showRidges": true,
+        "zoomFactor": 5.0
+      },
+      "subtitles": "Even smooth surfaces have countless microscopic hills and valleys when viewed under magnification."
+    },
+    {
+      "sceneId": "scene-3-opposing-force",
+      "title": "Friction Force Appears",
+      "narration": "As the surfaces slide against each other, these microscopic irregularities interlock. This creates a resistive contact force called friction, which acts in the exact opposite direction to motion.",
+      "onScreenText": "3. Frictional Resistance Vector\nFriction Force (← f) opposes Velocity (v →)",
+      "visualSpec": {
+        "type": "OPPOSING_VECTOR",
+        "crateX": 480,
+        "showFrictionVector": true,
+        "vectorDirection": "left"
+      },
+      "subtitles": "Microscopic irregularities interlock, creating an opposing friction force pointing opposite to motion."
+    },
+    {
+      "sceneId": "scene-4-gradual-slowing",
+      "title": "Deceleration and Stopping",
+      "narration": "Because the friction force opposes motion, it continuously reduces the object's speed. The crate gradually slows down until its velocity reaches zero, bringing it to a complete halt.",
+      "onScreenText": "4. Deceleration to Rest\nContinuous resistance reduces speed: v → 0",
+      "visualSpec": {
+        "type": "DECELERATING_CRATE",
+        "crateX": [480, 780],
+        "velocityDecay": true,
+        "stopsAtEnd": true
+      },
+      "subtitles": "The opposing friction continuously reduces speed until the object gradually comes to a complete halt."
+    },
+    {
+      "sceneId": "scene-5-lubrication-wheels",
+      "title": "Lubrication & Rolling",
+      "narration": "Applying oil or grease introduces a fluid layer that keeps solid ridges from touching, while wheels replace sliding with much smaller rolling friction. This is why farmers grease bullock cart axles!",
+      "onScreenText": "5. Reducing Friction\n• Lubricants (Oil / Grease) separate ridges\n• Rolling friction << Sliding friction",
+      "visualSpec": {
+        "type": "LUBRICATED_WHEEL",
+        "showFluidLayer": true,
+        "showWheelRoll": true
+      },
+      "subtitles": "Lubricants separate ridges with a fluid layer, and wheels turn heavy sliding into smooth rolling."
+    },
+    {
+      "sceneId": "scene-6-conclusion",
+      "title": "Conclusion",
+      "narration": "Friction is a necessary contact force. It lets us walk and brake safely, while smart engineering helps us minimize unwanted wear and energy loss.",
+      "onScreenText": "Forces & Friction\nOpposing Motion • Surface Interlocking • Village Engineering",
+      "visualSpec": {
+        "type": "CONCLUSION_CARD"
+      },
+      "subtitles": "Friction is a necessary contact force that opposes motion and allows us to grip, walk, and brake safely."
+    }
+  ]
+}

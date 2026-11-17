@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Sparkles, LogOut, BookOpen } from 'lucide-react';
+import { Sparkles, LogOut, BookOpen, Compass } from 'lucide-react';
 import { getDemoSession, clearDemoSession } from '../services/demoAuth';
 
 export const Navbar: React.FC = () => {
@@ -30,7 +30,23 @@ export const Navbar: React.FC = () => {
 
         <div className="flex items-center gap-3">
           {session ? (
-            <div className="flex items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Link
+                to="/app/explore"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-50 border border-brand-200 hover:bg-brand-100 text-brand-800 text-xs font-bold transition"
+              >
+                <Compass className="w-3.5 h-3.5 text-brand-700" />
+                <span>Explore STEM</span>
+              </Link>
+
+              <Link
+                to="/app/library"
+                className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 hover:border-brand-500 hover:text-brand-700 text-slate-700 text-xs font-semibold transition"
+              >
+                <BookOpen className="w-3.5 h-3.5 text-brand-600" />
+                <span>Book Library</span>
+              </Link>
+
               <Link
                 to="/app/dashboard"
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200/80 transition-colors text-xs font-medium text-slate-800"

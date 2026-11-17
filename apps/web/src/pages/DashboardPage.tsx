@@ -37,7 +37,10 @@ export const DashboardPage: React.FC = () => {
     return DEMO_PROFILES.asha;
   });
 
-  const [languagePreference, setLanguagePreference] = useState<string>('en');
+  const [languagePreference, setLanguagePreference] = useState<string>(() => {
+    const existing = getDemoSession();
+    return existing?.medium || 'en';
+  });
   const [catalogue, setCatalogue] = useState<CatalogueEntry[]>([]);
   const [features, setFeatures] = useState<FeatureModuleItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -283,6 +286,86 @@ export const DashboardPage: React.FC = () => {
             </span>
           </div>
 
+          {/* Featured: Visual Topic Library & Narrated Videos */}
+          <div className="mb-5 bg-gradient-to-r from-brand-900 via-indigo-950 to-slate-900 rounded-3xl p-6 text-white shadow-lg border border-brand-700/40 relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="relative z-10 max-w-2xl">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30">
+                  {profile.medium === 'kn' ? 'ಹೊಸತು • 7ನೇ ತರಗತಿ ಕನ್ನಡ ಮಾಧ್ಯಮ' : 'NEW • STAGE 3 LIVE'}
+                </span>
+                <span className="text-[11px] text-brand-200">
+                  {profile.medium === 'kn' ? 'KTBS Class 7 STEM Hub' : 'Classes 1–12 STEM Hub'}
+                </span>
+              </div>
+              <h3 className="text-xl font-extrabold text-white tracking-tight">
+                {profile.medium === 'kn'
+                  ? 'Explore STEM: ಪರಿಕಲ್ಪನೆಗಳು, ಸಚಿತ್ರ ಪಾಠಗಳು ಮತ್ತು ಕನ್ನಡ ವೀಡಿಯೊಗಳು'
+                  : 'Explore STEM: Concepts, Illustrated Lessons & Narrated Videos'}
+              </h3>
+              <p className="mt-1.5 text-xs text-brand-100/90 leading-relaxed">
+                {profile.medium === 'kn'
+                  ? '7ನೇ ತರಗತಿ ವಿಜ್ಞಾನ ಮತ್ತು ಗಣಿತದ ಮೂಲ ಪರಿಕಲ್ಪನೆಗಳು, ಕನ್ನಡ ಧ್ವನಿ ವಿವರಣೆಯೊಂದಿಗೆ ಅನಿಮೇಷನ್ ವೀಡಿಯೊಗಳು ಮತ್ತು ಅಧಿಕೃತ KTBS ಪಠ್ಯಪುಸ್ತಕ ಉಲ್ಲೇಖಗಳು.'
+                  : 'Discover fundamental STEM principles, watch HD narrated animations with subtitles, and reference verified textbook chapters across CBSE and Karnataka curricula.'}
+              </p>
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                {profile.medium === 'kn' ? (
+                  <>
+                    <Link
+                      to="/app/explore/topics/topic-ktbs-heat-cl7-kn?tab=watch"
+                      className="px-2.5 py-1 rounded-lg bg-emerald-500/30 hover:bg-emerald-500/40 text-emerald-100 text-[11px] font-semibold transition border border-emerald-400/40"
+                    >
+                      🌡️ 7ನೇ ತರಗತಿ ಉಷ್ಣ (Heat Video)
+                    </Link>
+                    <Link
+                      to="/app/explore/topics/topic-ktbs-integers-cl7-kn?tab=read"
+                      className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition border border-white/10"
+                    >
+                      🔢 7ನೇ ತರಗತಿ ಪೂರ್ಣಾಂಕಗಳು (Integers)
+                    </Link>
+                    <Link
+                      to="/app/explore/topics/topic-ktbs-motion-time-cl7-kn?tab=read"
+                      className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition border border-white/10"
+                    >
+                      ⏳ 7ನೇ ತರಗತಿ ಚಲನೆ ಮತ್ತು ಕಾಲ (Motion & Time)
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/app/explore/topics/topic-shapes-class3?tab=watch"
+                      className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition border border-white/10"
+                    >
+                      📐 Class 3 Shapes Video
+                    </Link>
+                    <Link
+                      to="/app/explore/topics/topic-forces-friction-cl8?tab=watch"
+                      className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition border border-white/10"
+                    >
+                      ⚙️ Class 8 Friction Video
+                    </Link>
+                    <Link
+                      to="/app/explore/topics/topic-rotational-motion-cl11?tab=watch"
+                      className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition border border-white/10"
+                    >
+                      🔄 Class 11 Rotation Video
+                    </Link>
+                  </>
+                )}
+              </div>
+            </div>
+
+            <div className="relative z-10 shrink-0">
+              <Link
+                to="/app/explore"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-brand-500 hover:bg-brand-400 text-white font-extrabold text-xs shadow-lg shadow-brand-500/30 transition-all hover:scale-105"
+              >
+                <Compass className="w-4 h-4" />
+                <span>{profile.medium === 'kn' ? 'Explore STEM (ಅನ್ವೇಷಿಸಿ)' : 'Open Explore STEM'}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* 1. STEM Lens Card (Robin) */}
             <div className="group relative bg-gradient-to-br from-indigo-900 via-indigo-950 to-slate-950 rounded-3xl p-6 text-white shadow-lg shadow-indigo-950/15 overflow-hidden flex flex-col justify-between border border-indigo-800/40 hover:border-indigo-500/50 transition-all hover:-translate-y-0.5">
@@ -447,12 +530,22 @@ export const DashboardPage: React.FC = () => {
                 <span className="text-[11px] text-slate-400 font-medium">
                   {profile.boardId === 'CBSE' ? 'NCERT Reference' : 'KTBS Prescribed'}
                 </span>
-                <button
-                  onClick={() => setActiveSubjectFilter('Mathematics')}
-                  className="font-semibold text-brand-700 hover:text-brand-800"
-                >
-                  View Textbook Details →
-                </button>
+                {mathTextbook?.edition?.id ? (
+                  <Link
+                    to={`/app/books/${mathTextbook.edition.id}`}
+                    className="font-semibold text-brand-700 hover:text-brand-800 flex items-center gap-1"
+                  >
+                    <span>Read Book & Chapters</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => setActiveSubjectFilter('Mathematics')}
+                    className="font-semibold text-brand-700 hover:text-brand-800"
+                  >
+                    View Textbook Details →
+                  </button>
+                )}
               </div>
             </div>
 
@@ -482,12 +575,22 @@ export const DashboardPage: React.FC = () => {
                 <span className="text-[11px] text-slate-400 font-medium">
                   {profile.boardId === 'CBSE' ? 'NCERT Reference' : 'KTBS Prescribed'}
                 </span>
-                <button
-                  onClick={() => setActiveSubjectFilter('Science')}
-                  className="font-semibold text-brand-700 hover:text-brand-800"
-                >
-                  View Textbook Details →
-                </button>
+                {scienceTextbook?.edition?.id ? (
+                  <Link
+                    to={`/app/books/${scienceTextbook.edition.id}`}
+                    className="font-semibold text-brand-700 hover:text-brand-800 flex items-center gap-1"
+                  >
+                    <span>Read Book & Chapters</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => setActiveSubjectFilter('Science')}
+                    className="font-semibold text-brand-700 hover:text-brand-800"
+                  >
+                    View Textbook Details →
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -508,8 +611,16 @@ export const DashboardPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Subject Filter Pills */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
+            {/* Subject Filter Pills & Library Link */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+              <Link
+                to="/app/library"
+                className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-50 hover:bg-brand-100 text-brand-800 border border-brand-200 rounded-xl text-xs font-bold transition flex-shrink-0"
+              >
+                <span>Browse Full Library</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+
               {['ALL', 'Mathematics', 'Science'].map((sub) => (
                 <button
                   key={sub}

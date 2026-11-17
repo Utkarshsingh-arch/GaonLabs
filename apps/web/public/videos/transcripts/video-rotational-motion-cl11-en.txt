@@ -1,0 +1,14 @@
+[00:00:00.000] Fixed-Axis Rotation
+In rotational motion, every particle of a rigid body moves in a circular path centered along a fixed axis of rotation, sharing the same angular velocity omega.
+
+[00:00:13.100] Torque: The Turning Force
+Torque is the rotational analogue of force. It equals the vector cross product of position vector r and applied force F: tau equals r cross F, or r F sine theta.
+
+[00:00:27.280] Moment of Inertia
+Just as mass resists linear changes, moment of inertia I resists angular acceleration. Notice that mass placed farther from the rotation axis contributes far more to rotational inertia.
+
+[00:00:42.520] Everyday Rural Applications
+Observe the village hand pump and stone flour mill. The handles are positioned at the extreme outer edge. Why? By maximizing the radius r, maximum torque is generated with minimal human effort!
+
+[00:00:57.830] Conservation of Angular Momentum
+When no net external torque acts on a rotating system, its total angular momentum L, which equals I times omega, remains strictly conserved. This fundamental law governs flywheels, spinning tops, and planetary orbits.

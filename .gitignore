@@ -41,3 +41,13 @@ coverage/
 # Logs
 logs/
 *.log
+
+# Python & Tool Binaries
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+tools/bin/
+
