@@ -554,6 +554,261 @@ function getDemoCatalogueFallback(boardId?: string, grade?: number, medium?: str
   return [];
 }
 
+// -------------------------------------------------------------
+// Explore STEM & Topics API
+// -------------------------------------------------------------
+
+export interface TopicFilterParams {
+  boardId?: string;
+  grade?: number;
+  subjectId?: string;
+  medium?: string;
+  academicYear?: string;
+}
+
+export async function fetchExploreTopics(filters: TopicFilterParams = {}): Promise<ApiResult<TopicSummary[]>> {
+  const query = new URLSearchParams();
+  if (filters.boardId) query.set('boardId', filters.boardId);
+  if (filters.grade) query.set('grade', filters.grade.toString());
+  if (filters.subjectId) query.set('subjectId', filters.subjectId);
+  if (filters.medium) query.set('medium', filters.medium);
+  if (filters.academicYear) query.set('academicYear', filters.academicYear);
+
+  try {
+    const res = await fetch(`/api/v1/topics?${query.toString()}`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data || [], isFallback: false };
+  } catch (err: any) {
+    console.warn('API Error fetching topics, using fallback:', err.message);
+    return {
+      isFallback: true,
+      error: err.message,
+      data: getFallbackTopics(filters),
+    };
+  }
+}
+
+export async function fetchTopicDetail(topicId: string): Promise<ApiResult<TopicDetail | null>> {
+  try {
+    const res = await fetch(`/api/v1/topics/${topicId}`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn(`API Error fetching topic ${topicId}:`, err.message);
+    const fallback = getFallbackTopics().find((t) => t.topicId === topicId);
+    return {
+      isFallback: true,
+      error: err.message,
+      data: fallback ? (fallback as any) : null,
+    };
+  }
+}
+
+export async function fetchTopicLesson(topicId: string, lang?: string): Promise<ApiResult<TopicLesson | null>> {
+  try {
+    const q = lang ? `?lang=${encodeURIComponent(lang)}` : '';
+    const res = await fetch(`/api/v1/topics/${topicId}/lesson${q}`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn(`API Error fetching topic lesson ${topicId}:`, err.message);
+    return { isFallback: true, error: err.message, data: null };
+  }
+}
+
+export async function fetchTopicVideo(topicId: string, lang?: string): Promise<ApiResult<TopicVideoMeta | null>> {
+  try {
+    const q = lang ? `?lang=${encodeURIComponent(lang)}` : '';
+    const res = await fetch(`/api/v1/topics/${topicId}/video${q}`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn(`API Error fetching topic video ${topicId}:`, err.message);
+    return { isFallback: true, error: err.message, data: null };
+  }
+}
+
+export async function fetchTopicResources(topicId: string): Promise<ApiResult<TopicOfficialResource[]>> {
+  try {
+    const res = await fetch(`/api/v1/topics/${topicId}/resources`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data || [], isFallback: false };
+  } catch (err: any) {
+    console.warn(`API Error fetching topic resources ${topicId}:`, err.message);
+    return { isFallback: true, error: err.message, data: [] };
+  }
+}
+
+export async function matchTopicExplanation(payload: {
+  selectedText: string;
+  chapterId?: string;
+  documentId?: string;
+  grade?: number;
+  medium?: string;
+}): Promise<ApiResult<TopicMatchResult | null>> {
+  try {
+    const res = await fetch('/api/v1/topics/match', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn('API Error matching topic explanation:', err.message);
+    return { isFallback: true, error: err.message, data: null };
+  }
+}
+
+function getFallbackTopics(filters: TopicFilterParams = {}): TopicSummary[] {
+  const all: TopicSummary[] = [
+    {
+      topicId: 'topic-shapes-class3',
+      title: 'Fun with Shapes',
+      shortDescription: 'Explore 2D and 3D shapes, circles, triangles, and real-world village structures.',
+      boardId: 'CBSE',
+      frameworkId: 'NCF_SE_2023',
+      grade: 3,
+      subjectId: 'MATHEMATICS',
+      subjectName: 'Mathematics',
+      stemPillar: 'MATHEMATICS',
+      medium: 'en',
+      academicYear: '2026-2027',
+      accessMode: 'GAONLAB_FULL',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: true,
+      hasOfficialResources: true,
+    },
+    {
+      topicId: 'topic-forces-friction-cl8',
+      title: 'Exploring Forces and Friction',
+      shortDescription: 'Understand friction as an opposing contact force caused by microscopic surface irregularities.',
+      boardId: 'CBSE',
+      frameworkId: 'NCF_SE_2023',
+      grade: 8,
+      subjectId: 'SCI',
+      subjectName: 'Science',
+      stemPillar: 'SCIENCE',
+      medium: 'en',
+      academicYear: '2026-2027',
+      accessMode: 'GAONLAB_FULL',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: true,
+      hasOfficialResources: true,
+    },
+    {
+      topicId: 'topic-rotational-motion-cl11',
+      title: 'Rotational Motion and Moment of Inertia',
+      shortDescription: 'Rigid body dynamics, torque as cross product, moment of inertia, and angular momentum.',
+      boardId: 'CBSE',
+      frameworkId: 'NCF_SE_2023',
+      grade: 11,
+      subjectId: 'PHYSICS',
+      subjectName: 'Physics',
+      stemPillar: 'PHYSICS',
+      medium: 'en',
+      academicYear: '2026-2027',
+      accessMode: 'GAONLAB_FULL',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: true,
+      hasOfficialResources: true,
+    },
+    {
+      topicId: 'topic-ktbs-heat-cl7-kn',
+      title: 'ಉಷ್ಣ ಮತ್ತು ತಾಪಮಾನ ವರ್ಗಾವಣೆ (Heat Transfer)',
+      shortDescription: 'ಘನ, ದ್ರವ ಮತ್ತು ಅನಿಲಗಳಲ್ಲಿ ಉಷ್ಣ ವರ್ಗಾವಣೆಯ 3 ವಿಧಾನಗಳು: ವಹನ, ಸಂವಹನ ಮತ್ತು ವಿಕಿರಣ.',
+      boardId: 'KARNATAKA_STATE_BOARD',
+      frameworkId: 'KTBS_KSEAB_2024',
+      grade: 7,
+      subjectId: 'SCI',
+      subjectName: 'ವಿಜ್ಞಾನ (Science)',
+      stemPillar: 'SCIENCE',
+      medium: 'kn',
+      academicYear: '2026-2027',
+      accessMode: 'GAONLAB_FULL',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: true,
+      hasOfficialResources: true,
+    },
+    {
+      topicId: 'topic-ktbs-integers-cl7-kn',
+      title: 'ಪೂರ್ಣಾಂಕಗಳು ಮತ್ತು ಅವುಗಳ ಸಂಕಲನ (Integers and Operations)',
+      shortDescription: 'ಸಂಖ್ಯಾ ರೇಖೆ, ಧನ ಮತ್ತು ಋಣ ಪೂರ್ಣಾಂಕಗಳ ಸಂಕಲನ, ವ್ಯವಕಲನ ಮತ್ತು ದೈನಂದಿನ ಲೆಕ್ಕಾಚಾರ.',
+      boardId: 'KARNATAKA_STATE_BOARD',
+      frameworkId: 'KTBS_KSEAB_2024',
+      grade: 7,
+      subjectId: 'MATH',
+      subjectName: 'ಗಣಿತ (Mathematics)',
+      stemPillar: 'MATHEMATICS',
+      medium: 'kn',
+      academicYear: '2026-2027',
+      accessMode: 'HYBRID',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: false,
+      hasOfficialResources: true,
+    },
+    {
+      topicId: 'topic-ktbs-motion-time-cl7-kn',
+      title: 'ಚಲನೆ ಮತ್ತು ಕಾಲ (Motion and Time)',
+      shortDescription: 'ಸರಳ ರೇಖಾಗತ ಚಲನೆ, ಆವರ್ತಕ ಚಲನೆ, ಸರಳ ಲೋಲಕ ಮತ್ತು ವೇಗದ ಮಾಪನ.',
+      boardId: 'KARNATAKA_STATE_BOARD',
+      frameworkId: 'KTBS_KSEAB_2024',
+      grade: 7,
+      subjectId: 'SCI',
+      subjectName: 'ವಿಜ್ಞಾನ (Science)',
+      stemPillar: 'SCIENCE',
+      medium: 'kn',
+      academicYear: '2026-2027',
+      accessMode: 'HYBRID',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: false,
+      hasOfficialResources: true,
+    },
+    {
+      topicId: 'topic-ktbs-lines-angles-cl7-kn',
+      title: 'ರೇಖೆಗಳು ಮತ್ತು ಕೋನಗಳು (Lines and Angles)',
+      shortDescription: 'ಪೂರಕ ಕೋನಗಳು, ಪರಿಪೂರಕ ಕೋನಗಳು, ಶೃಂಗಾಭಿಮುಖ ಕೋನಗಳು ಮತ್ತು ತ್ರಿಭುಜಗಳ ಗುಣಲಕ್ಷಣಗಳು.',
+      boardId: 'KARNATAKA_STATE_BOARD',
+      frameworkId: 'KTBS_KSEAB_2024',
+      grade: 7,
+      subjectId: 'MATH',
+      subjectName: 'ಗಣಿತ (Mathematics)',
+      stemPillar: 'MATHEMATICS',
+      medium: 'kn',
+      academicYear: '2026-2027',
+      accessMode: 'HYBRID',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: false,
+      hasOfficialResources: true,
+    },
+  ];
+
+  return all.filter((t) => {
+    if (filters.grade && t.grade !== filters.grade) return false;
+    if (filters.subjectId && t.subjectId !== filters.subjectId) return false;
+    if (filters.boardId && t.boardId !== filters.boardId) return false;
+    if (filters.medium && t.medium !== filters.medium) return false;
+    return true;
+  });
+}
+
+// -------------------------------------------------------------
+// STEM Lens Service & Chat History API
+// -------------------------------------------------------------
+
 export interface StemLensChatMessage {
   id: string;
   sessionId?: string;

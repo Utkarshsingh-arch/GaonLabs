@@ -957,9 +957,7 @@ export const StemLensPage: React.FC = () => {
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#FA9C4D]" />
                 <span>
-                  Create Image Mode: <strong>ON</strong> — Grok Imagine will generate an image for
-                  this prompt
-                </span>
+                  Create Image Mode: <strong>ON</strong></span>
               </div>
               <button
                 type="button"
@@ -1010,17 +1008,15 @@ export const StemLensPage: React.FC = () => {
                   setIsImageMode(!isImageMode);
                   setMenuOpen(false);
                 }}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-left text-xs font-bold transition-all ${
-                  isImageMode
-                    ? 'bg-[#FFEEDD] border border-[#FA9C4D] text-[#D47220]'
-                    : 'hover:bg-[#FAF5EF] text-[#352F2A]'
-                }`}
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-left text-xs font-bold transition-all ${isImageMode
+                  ? 'bg-[#FFEEDD] border border-[#FA9C4D] text-[#D47220]'
+                  : 'hover:bg-[#FAF5EF] text-[#352F2A]'
+                  }`}
               >
                 <div className="flex items-center gap-3">
                   <div
-                    className={`w-7 h-7 rounded-xl flex items-center justify-center ${
-                      isImageMode ? 'bg-[#FA9C4D] text-white' : 'bg-[#CEECDA] text-[#48AF76]'
-                    }`}
+                    className={`w-7 h-7 rounded-xl flex items-center justify-center ${isImageMode ? 'bg-[#FA9C4D] text-white' : 'bg-[#CEECDA] text-[#48AF76]'
+                      }`}
                   >
                     <Sparkles className="w-4 h-4" />
                   </div>
@@ -1036,9 +1032,8 @@ export const StemLensPage: React.FC = () => {
                   </div>
                 </div>
                 <span
-                  className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${
-                    isImageMode ? 'bg-[#FA9C4D] text-white' : 'bg-[#F2EEE9] text-[#8A827A]'
-                  }`}
+                  className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${isImageMode ? 'bg-[#FA9C4D] text-white' : 'bg-[#F2EEE9] text-[#8A827A]'
+                    }`}
                 >
                   {isImageMode ? 'ON' : 'OFF'}
                 </span>

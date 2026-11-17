@@ -63,7 +63,7 @@ export class StemLensService implements IStemLensService {
         businessLogicImplemented: true,
       },
       supportedIdentifiers: STEM_LENS_MANIFEST.supportedIdentifiers,
-      note: 'STEM Lens multimodal intelligence powered by xAI Grok and persistent Supabase database.',
+      note: 'STEM Lens multimodal intelligence (Robin) powered by xAI Grok and persistent Supabase database.',
     };
   }
 
