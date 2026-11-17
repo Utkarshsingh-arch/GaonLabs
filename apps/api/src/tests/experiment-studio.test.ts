@@ -27,6 +27,10 @@ describe('GaonLab Experiment Studio — Architecture, Science & API Tests', () =
     });
 
     await experimentCatalogueService.initialize();
+
+    // Clean up any lingering test sessions for isolated testing
+    await prisma.experimentEvent.deleteMany({});
+    await prisma.experimentSession.deleteMany({});
   });
 
   afterAll(async () => {
