@@ -1,0 +1,14 @@
+[00:00:00.000] Welcome to Shapes
+Welcome to Fun with Shapes! Everywhere we look around us, in our school and in our village, shapes make our world wonderful and strong.
+
+[00:00:11.200] The Circle
+First, meet the circle. A circle is perfectly round. It has one curved edge and zero corners. Because it has no corners, it can roll smoothly. Think of a bicycle wheel or a round chapati!
+
+[00:00:27.280] The Triangle
+Next is the triangle. A triangle has three straight sides and three sharp corners called vertices. In our village, roof tops and temple flags are triangular because triangles are extra strong!
+
+[00:00:42.730] Squares and Rectangles
+Here are squares and rectangles. Both have four straight sides and four square corners. A square has four equal sides, while a rectangle has opposite sides equal. Notice how bricks and doors are rectangles so they stack neatly!
+
+[00:01:00.390] Takeaways
+Remember: 2D shapes are flat, while 3D shapes like spheres and cubes take up space. Keep exploring the shapes all around your village!

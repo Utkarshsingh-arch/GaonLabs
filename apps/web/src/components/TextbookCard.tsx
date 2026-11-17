@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
-  ExternalLink,
+  BookOpen,
   ChevronDown,
   ChevronUp,
   CheckCircle2,
   Clock,
   Archive,
   Layers,
-  Sparkles
+  ChevronRight
 } from 'lucide-react';
 import { TextbookEditionItem, ChapterItem } from '../types';
 import { fetchEditionChapters } from '../services/api';
@@ -148,28 +149,14 @@ export const TextbookCard: React.FC<TextbookCardProps> = ({
       {/* Action Bar */}
       <div className="bg-slate-50/70 p-4 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
         <div className="flex items-center gap-2">
-          {edition.sourceUrl ? (
-            <a
-              href={edition.sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-brand-500 hover:text-brand-700 font-medium text-slate-700 shadow-2xs transition-colors"
-            >
-              <ExternalLink className="w-3.5 h-3.5" />
-              <span>Official Portal</span>
-            </a>
-          ) : (
-            <span className="text-slate-400 text-[11px] italic">Official portal reference</span>
-          )}
-
-          {/* PDF Reader Coming Next Placeholder Badge */}
-          <div
-            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200/80 font-medium text-[11px]"
-            title="Integrated offline PDF Reader with annotations scheduled for Stage 4"
+          <Link
+            to={`/app/books/${edition.id}`}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-700 hover:bg-brand-800 font-bold text-white shadow-sm transition-colors"
           >
-            <Sparkles className="w-3 h-3 text-emerald-600" />
-            <span>Reader coming next</span>
-          </div>
+            <BookOpen className="w-3.5 h-3.5" />
+            <span>Open in Reader</span>
+            <ChevronRight className="w-3.5 h-3.5 opacity-80" />
+          </Link>
         </div>
 
         <button
@@ -177,7 +164,7 @@ export const TextbookCard: React.FC<TextbookCardProps> = ({
           className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-200/70 hover:bg-slate-200 text-slate-800 font-semibold transition-colors"
         >
           <Layers className="w-3.5 h-3.5 text-slate-600" />
-          <span>{isExpanded ? 'Hide Chapters' : 'View Chapters'}</span>
+          <span>{isExpanded ? 'Hide Chapters' : 'View Outline'}</span>
           {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
         </button>
       </div>
@@ -201,28 +188,23 @@ export const TextbookCard: React.FC<TextbookCardProps> = ({
               {chapters.map((ch) => (
                 <li
                   key={ch.id || ch.chapterNumber}
-                  className="pt-1.5 first:pt-0 flex items-start gap-2.5 text-xs text-slate-700 hover:text-slate-900 group"
+                  className="pt-1.5 first:pt-0"
                 >
-                  <span className="w-6 h-6 rounded-md bg-slate-100 text-slate-600 font-bold flex items-center justify-center text-[11px] flex-shrink-0 group-hover:bg-brand-50 group-hover:text-brand-700 transition-colors">
-                    {ch.chapterNumber}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <div className="font-medium truncate">{ch.title}</div>
-                    {ch.officialCode && (
-                      <div className="text-[10px] text-slate-400 font-mono">{ch.officialCode}</div>
-                    )}
-                  </div>
-                  {ch.sourceUrl && (
-                    <a
-                      href={ch.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-slate-400 hover:text-brand-600 text-[11px] flex items-center gap-0.5 flex-shrink-0"
-                      title="Open chapter reference on official portal"
-                    >
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  )}
+                  <Link
+                    to={`/app/books/${edition.id}`}
+                    className="flex items-start gap-2.5 text-xs text-slate-700 hover:text-brand-800 group"
+                  >
+                    <span className="w-6 h-6 rounded-md bg-slate-100 text-slate-600 font-bold flex items-center justify-center text-[11px] flex-shrink-0 group-hover:bg-brand-50 group-hover:text-brand-700 transition-colors">
+                      {ch.chapterNumber}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium truncate group-hover:underline">{ch.title}</div>
+                      {ch.officialCode && (
+                        <div className="text-[10px] text-slate-400 font-mono">{ch.officialCode}</div>
+                      )}
+                    </div>
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-700" />
+                  </Link>
                 </li>
               ))}
             </ol>

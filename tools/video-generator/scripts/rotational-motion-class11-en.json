@@ -1,0 +1,65 @@
+{
+  "topicId": "topic-rotational-motion-cl11",
+  "language": "en",
+  "grade": 11,
+  "title": "Rotational Motion and Moment of Inertia",
+  "scenes": [
+    {
+      "sceneId": "scene-1-rigid-body",
+      "title": "Fixed-Axis Rotation",
+      "narration": "In rotational motion, every particle of a rigid body moves in a circular path centered along a fixed axis of rotation, sharing the same angular velocity omega.",
+      "onScreenText": "Rotational Motion of Rigid Bodies\nFixed axis with uniform Angular Velocity (ω)",
+      "visualSpec": {
+        "type": "SPINNING_DISC",
+        "showAxis": true,
+        "showOmega": true
+      },
+      "subtitles": "In rotational motion, every particle travels in a circular path centered along a fixed axis with angular velocity omega."
+    },
+    {
+      "sceneId": "scene-2-torque",
+      "title": "Torque: The Turning Force",
+      "narration": "Torque is the rotational analogue of force. It equals the vector cross product of position vector r and applied force F: tau equals r cross F, or r F sine theta.",
+      "onScreenText": "Torque (Moment of Force)\nτ = r × F = r F sin(θ)",
+      "visualSpec": {
+        "type": "TORQUE_VECTOR",
+        "leverArm": 350,
+        "forceAngle": 90
+      },
+      "subtitles": "Torque is the rotational turning effect: tau equals r cross F, proportional to the lever arm distance r."
+    },
+    {
+      "sceneId": "scene-3-moment-of-inertia",
+      "title": "Moment of Inertia",
+      "narration": "Just as mass resists linear changes, moment of inertia I resists angular acceleration. Notice that mass placed farther from the rotation axis contributes far more to rotational inertia.",
+      "onScreenText": "Moment of Inertia (I)\nI = Σ mᵢ rᵢ² = ∫ r² dm\nMass farther from axis = Greater resistance to rotation",
+      "visualSpec": {
+        "type": "INERTIA_COMPARISON",
+        "massAtCenterVsRim": true
+      },
+      "subtitles": "Moment of inertia measures resistance to angular acceleration; mass farther from the axis creates much higher inertia."
+    },
+    {
+      "sceneId": "scene-4-village-applications",
+      "title": "Everyday Rural Applications",
+      "narration": "Observe the village hand pump and stone flour mill. The handles are positioned at the extreme outer edge. Why? By maximizing the radius r, maximum torque is generated with minimal human effort!",
+      "onScreenText": "Engineering with Torque\n• Long Hand Pump Handle: Maximizes radius r\n• Stone Chakki: Turning peg placed at outer rim",
+      "visualSpec": {
+        "type": "RURAL_LEVER_MODEL",
+        "showChakki": true,
+        "showHandPump": true
+      },
+      "subtitles": "Placing the turning peg at the outer rim of a grinding stone maximizes lever distance r to generate high torque easily."
+    },
+    {
+      "sceneId": "scene-5-angular-momentum",
+      "title": "Conservation of Angular Momentum",
+      "narration": "When no net external torque acts on a rotating system, its total angular momentum L, which equals I times omega, remains strictly conserved. This fundamental law governs flywheels, spinning tops, and planetary orbits.",
+      "onScreenText": "Conservation of Angular Momentum\nτ_ext = 0  ⇒  L = I ω = constant",
+      "visualSpec": {
+        "type": "ANGULAR_MOMENTUM_CONSERVATION"
+      },
+      "subtitles": "When external torque is zero, angular momentum L equals I times omega and remains strictly conserved."
+    }
+  ]
+}
