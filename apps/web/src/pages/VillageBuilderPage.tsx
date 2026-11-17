@@ -1,92 +1,138 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Clock, Hammer, Building2 } from 'lucide-react';
-import { fetchVillageBuilderStatus } from '../services/api';
-import { DemoNotice } from '../components/DemoNotice';
+import {
+  Building2,
+  ArrowLeft,
+  Sun,
+  Droplets,
+  Wind
+} from 'lucide-react';
+import { SkillUpSidebar } from '../components/SkillUpSidebar';
 
 export const VillageBuilderPage: React.FC = () => {
-  const [statusData, setStatusData] = useState<any>(null);
+  const [activeModel, setActiveModel] = useState<string>('solar');
 
-  useEffect(() => {
-    fetchVillageBuilderStatus().then((res) => {
-      if (res.data) setStatusData(res.data);
-    });
-  }, []);
+  const villageSimulations = [
+    {
+      id: 'solar',
+      title: 'Solar Photovoltaic Irrigation',
+      icon: Sun,
+      curriculum: 'Class 8 Science (NCERT Ch 12: Electricity & Heating Effects)',
+      efficiency: '88% Output',
+      notes: 'Calculate kilowatt-hours and pump depth to supply 5 acres of crops.',
+    },
+    {
+      id: 'water',
+      title: 'Rainwater Gravity Harvesting',
+      icon: Droplets,
+      curriculum: 'Class 8 Science (NCERT Ch 11: Pressure & Fluids)',
+      efficiency: '12,000 Litres Stored',
+      notes: 'Model hydro-static pressure in rooftop collection channels.',
+    },
+    {
+      id: 'wind',
+      title: 'Mini Wind Turbine Aerodynamics',
+      icon: Wind,
+      curriculum: 'Class 8 Physics (NCERT Ch 10: Exploring Forces)',
+      efficiency: '450 Watts Generated',
+      notes: 'Analyze torque, blade pitch, and kinetic energy conversion.',
+    },
+  ];
 
   return (
-    <div className="flex-1 flex flex-col bg-slate-50">
-      <DemoNotice />
+    <div className="min-h-screen bg-[#FBFAF9] flex flex-col md:flex-row antialiased text-[#352F2A]">
+      <SkillUpSidebar />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12 w-full flex-1 flex flex-col justify-center items-center text-center">
-        {/* Module Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-900 text-xs font-bold mb-6 border border-emerald-200 shadow-2xs">
-          <Building2 className="w-4 h-4 text-emerald-700" />
-          <span>Feature Module • Owned by Prashanth</span>
+      <main className="flex-1 p-6 md:p-10 flex flex-col items-center justify-center max-w-4xl mx-auto w-full">
+        {/* Module Header Badge */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFEEDD] text-[#D47220] text-xs font-bold mb-6 border border-[#FFD9B8] shadow-soft-sm">
+          <Building2 className="w-4 h-4 text-[#FA9C4D]" />
+          <span>Village Systems Simulation • Owned by Prashanth</span>
         </div>
 
-        {/* Hero Icon */}
-        <div className="relative mb-6">
-          <div className="w-24 h-24 rounded-3xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center shadow-xl shadow-emerald-500/25 ring-8 ring-emerald-50">
-            <Building2 className="w-12 h-12" />
-          </div>
-          <div className="absolute -bottom-2 -right-2 bg-amber-400 text-amber-950 p-1.5 rounded-xl border-2 border-white shadow-sm">
-            <Hammer className="w-4 h-4" />
-          </div>
-        </div>
-
-        {/* Title */}
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          STEM Village Builder
-        </h1>
-
-        <p className="mt-3 text-base sm:text-lg text-slate-600 max-w-xl font-medium leading-relaxed">
-          STEM Village Builder is being developed. Your virtual village awaits.
-        </p>
-
-        {/* Architectural Context Card */}
-        <div className="mt-8 bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm max-w-lg w-full text-left">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-              Module Architecture & Integration
-            </span>
-            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">
-              <Clock className="w-3 h-3 text-amber-600" />
-              {statusData?.status || 'INTEGRATION_PENDING'}
-            </span>
+        {/* Hero Card */}
+        <div className="bg-[#FFFFFF] p-8 rounded-3xl border border-[#EFECE6] shadow-soft-sm w-full text-center relative overflow-hidden">
+          <div className="w-20 h-20 rounded-3xl bg-[#FFEEDD] border border-[#FFD9B8] text-[#FA9C4D] flex items-center justify-center shadow-soft-sm mx-auto mb-5">
+            <Building2 className="w-10 h-10" />
           </div>
 
-          <p className="text-xs text-slate-600 leading-relaxed">
-            Build, develop and transform a village using science, technology and engineering. Solve real-world challenges and improve your virtual community.
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#352F2A] tracking-tight">
+            STEM Village Builder
+          </h1>
+
+          <p className="mt-2 text-sm text-[#636160] max-w-lg mx-auto font-medium leading-relaxed">
+            Build and transform a village ecosystem using science, physics, and ecology.
+            Apply principles of fluid dynamics, solar electricity, and mechanical levers.
           </p>
 
-          <div className="mt-4 pt-3 border-t border-slate-100 grid grid-cols-2 gap-2 text-[11px] text-slate-500">
-            <div>
-              <span className="font-semibold text-slate-700">Module Lead:</span> Prashanth
+          {/* Interactive Simulation Strip */}
+          <div className="mt-8 pt-6 border-t border-[#EFECE6] text-left">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-xs font-bold text-[#352F2A] uppercase tracking-wider">
+                Select a Village Infrastructure Model
+              </span>
+              <span className="text-[11px] font-bold text-[#48AF76] bg-[#CEECDA] px-2.5 py-0.5 rounded-full">
+                Interactive Model
+              </span>
             </div>
-            <div>
-              <span className="font-semibold text-slate-700">Route:</span>{' '}
-              <code className="font-mono text-slate-800">/app/village-builder</code>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {villageSimulations.map((sim) => {
+                const Icon = sim.icon;
+                return (
+                  <button
+                    key={sim.id}
+                    onClick={() => setActiveModel(sim.id)}
+                    className={`p-4 rounded-2xl border text-left transition-all ${
+                      activeModel === sim.id
+                        ? 'bg-[#FFEEDD] border-[#FA9C4D] shadow-soft-sm'
+                        : 'bg-[#FBFAF9] border-[#EFECE6] hover:bg-[#FAF5EF]'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="w-8 h-8 rounded-xl bg-[#FFFFFF] border border-[#EFECE6] flex items-center justify-center text-[#FA9C4D]">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <span className="text-[10px] font-bold text-[#48AF76]">
+                        {sim.efficiency}
+                      </span>
+                    </div>
+                    <h4 className="text-xs font-extrabold text-[#352F2A]">{sim.title}</h4>
+                    <p className="text-[10px] text-[#9E9B97] mt-1 line-clamp-2">{sim.curriculum}</p>
+                  </button>
+                );
+              })}
             </div>
-            <div>
-              <span className="font-semibold text-slate-700">Backend API:</span>{' '}
-              <code className="font-mono text-slate-800">/api/v1/village-builder/status</code>
-            </div>
-            <div>
-              <span className="font-semibold text-slate-700">Storage:</span> Offline State Cache
-            </div>
+
+            {activeModel && (
+              <div className="mt-4 p-4 rounded-2xl bg-[#FAF5EF] border border-[#EFECE6] flex items-center justify-between gap-4 animate-in fade-in">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#D47220]">
+                    Real-World Physics Link
+                  </span>
+                  <div className="text-xs font-bold text-[#352F2A] mt-0.5">
+                    {villageSimulations.find((s) => s.id === activeModel)?.notes}
+                  </div>
+                </div>
+                <Link
+                  to="/app/dashboard"
+                  className="px-3.5 py-1.5 rounded-xl bg-[#FA9C4D] text-white text-xs font-bold shadow-soft-sm hover:bg-[#EB8833] transition-colors shrink-0"
+                >
+                  Explore in Syllabus
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Back Button */}
-        <div className="mt-8">
-          <Link
-            to="/app/dashboard"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-sm transition-all"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Return to Dashboard</span>
-          </Link>
-        </div>
+        {/* Back Link */}
+        <Link
+          to="/app/dashboard"
+          className="mt-6 flex items-center gap-2 text-xs font-bold text-[#636160] hover:text-[#FA9C4D] transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Return to Dashboard</span>
+        </Link>
       </main>
     </div>
   );

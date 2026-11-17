@@ -3,7 +3,42 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    background-color: #FBFAF9;
+    color: #352F2A;
+  }
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #FBFAF9;
+    color: #352F2A;
   }
+}
+
+/* Custom rounded card styling matching screenshot */
+.skillup-card {
+  background-color: #FFFFFF;
+  border-radius: 1.5rem;
+  border: 1px solid #EFECE6;
+  box-shadow: 0 4px 20px -2px rgba(53, 47, 42, 0.04);
+}
+
+.skillup-card-inset {
+  background-color: #F8F4EE;
+  border-radius: 1.25rem;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FBFAF9;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9D6D0;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A5A3A2;
 }
