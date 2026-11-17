@@ -5,17 +5,34 @@ import { QuestionRenderer } from './QuestionRenderer';
 import { HintLadder } from './HintLadder';
 import { LabDemoRenderer } from './demos';
 import { eventBus } from '../../game/eventBus';
+import { SupportedGrade } from '../../learning/curriculum/ncertRegistry';
+import {
+  formatCompactNcertCitation,
+  resolveCurriculumForConcept,
+  resolveCurriculumForEntity,
+} from '../../learning/curriculum/curriculumMapper';
+import { NcertModalTarget } from '../curriculum/NcertConceptModal';
 
 interface LabPanelProps {
   zoneId: ZoneId;
   lang: Lang;
+  studentGrade?: SupportedGrade;
   onClose: () => void;
   onQuestionAnswered?: (question: Question, evalResult: Evaluation) => void;
+  onExploreNcert?: (target: NcertModalTarget) => void;
 }
 
-export const LabPanel: React.FC<LabPanelProps> = ({ zoneId, lang, onClose, onQuestionAnswered }) => {
+export const LabPanel: React.FC<LabPanelProps> = ({
+  zoneId,
+  lang,
+  studentGrade = 7,
+  onClose,
+  onQuestionAnswered,
+  onExploreNcert,
+}) => {
   const zoneDef = ZONE_DEFINITIONS[zoneId];
   const questions = QUESTION_BANK.filter((q) => q.zone === zoneId);
+  const labNcertEntry = resolveCurriculumForEntity(zoneId, studentGrade);
 
   const [activeTab, setActiveTab] = useState<'experiment' | 'questions'>('experiment');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -167,7 +184,31 @@ export const LabPanel: React.FC<LabPanelProps> = ({ zoneId, lang, onClose, onQue
             <div className="space-y-4">
               <div className="bg-slate-800/60 border border-slate-700/60 rounded-xl p-3.5 text-xs text-slate-300 leading-relaxed flex items-start gap-2.5">
                 <span className="text-base text-amber-400">📖</span>
-                <span>{zoneDef.intro[lang] || zoneDef.intro.en}</span>
+                <div className="space-y-1.5 flex-1">
+                  <span>{zoneDef.intro[lang] || zoneDef.intro.en}</span>
+                  {labNcertEntry && (
+                    <div className="flex items-center justify-between gap-2 pt-1 border-t border-slate-700/60">
+                      <span className="text-[11px] text-emerald-300 font-semibold">
+                        NCERT: {formatCompactNcertCitation(labNcertEntry)}
+                      </span>
+                      {onExploreNcert && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            onExploreNcert({
+                              entityKey: zoneId,
+                              objectName: zoneDef.name,
+                              objectIcon: zoneDef.icon,
+                            })
+                          }
+                          className="text-[10px] font-bold text-amber-300 hover:text-amber-200 underline shrink-0 cursor-pointer"
+                        >
+                          Explore NCERT Concept
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
 
               <LabDemoRenderer zoneId={zoneId} lang={lang} />
@@ -218,6 +259,34 @@ export const LabPanel: React.FC<LabPanelProps> = ({ zoneId, lang, onClose, onQue
               </div>
 
               {/* Question Body */}
+              {(() => {
+                const qNcert = activeQuestion ? resolveCurriculumForConcept(activeQuestion.concept) : null;
+                if (!qNcert) return null;
+                return (
+                  <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-[11px]">
+                    <span className="text-emerald-300 font-medium truncate">
+                      📖 NCERT: {formatCompactNcertCitation(qNcert)}
+                    </span>
+                    {onExploreNcert && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onExploreNcert({
+                            entityKey: zoneId,
+                            objectName: `${zoneDef.name} — ${qNcert.topic}`,
+                            objectIcon: zoneDef.icon,
+                            fixedEntry: qNcert,
+                          })
+                        }
+                        className="text-[10px] font-bold text-amber-300 hover:text-amber-200 underline shrink-0 cursor-pointer"
+                      >
+                        Details
+                      </button>
+                    )}
+                  </div>
+                );
+              })()}
+
               <QuestionRenderer
                 question={activeQuestion}
                 lang={lang}

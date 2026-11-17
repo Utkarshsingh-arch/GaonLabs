@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Lang, ZoneId } from '../../learning/types';
 import { ZONE_DEFINITIONS } from '../../learning/questionBank';
+import {
+  formatCompactNcertCitation,
+  resolveCurriculumForEntity,
+} from '../../learning/curriculum/curriculumMapper';
 
 interface MitraHelperProps {
   lang: Lang;
@@ -182,6 +186,16 @@ export const MitraHelper: React.FC<MitraHelperProps> = ({
                 <p className="text-xs text-slate-300 leading-relaxed">
                   {zoneDetails[selectedZone][lang]}
                 </p>
+                {(() => {
+                  const mapped = resolveCurriculumForEntity(selectedZone, grade);
+                  if (!mapped) return null;
+                  return (
+                    <div className="pt-2 border-t border-slate-700/80 text-[11px] text-emerald-300">
+                      <span className="font-bold">📖 NCERT ({mapped.textbook}): </span>
+                      <span>{formatCompactNcertCitation(mapped)}</span>
+                    </div>
+                  );
+                })()}
               </div>
             )}
           </div>

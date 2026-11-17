@@ -13,29 +13,29 @@ import { AVATAR_FRAME_W, AVATAR_FRAME_H } from '../game/graphics/AvatarGenerator
 import { eventBus } from '../game/eventBus';
 
 describe('2.5D Village Environment Visual & Interactive Enhancement Tests', () => {
-  it('validates expanded 56x42 map structure, orientation, spawn walkability, and all 6 core zones', () => {
-    expect(villageMapData.width).toBe(56);
-    expect(villageMapData.height).toBe(42);
+  it('validates expanded 64x52 map structure, orientation, spawn walkability, and all 6 core zones', () => {
+    expect(villageMapData.width).toBe(64);
+    expect(villageMapData.height).toBe(52);
     expect(villageMapData.orientation).toBe('orthogonal');
 
     const groundLayer = villageMapData.layers.find((l) => l.name === 'Ground');
     const obstacleLayer = villageMapData.layers.find((l) => l.name === 'Obstacles');
     const zonesLayer = villageMapData.layers.find((l) => l.name === 'zones');
 
-    expect(groundLayer?.data?.length).toBe(56 * 42);
-    expect(obstacleLayer?.data?.length).toBe(56 * 42);
+    expect(groundLayer?.data?.length).toBe(64 * 52);
+    expect(obstacleLayer?.data?.length).toBe(64 * 52);
 
     // Central spawn point (tile 27, 20) must be unobstructed (0 on Obstacles)
-    const spawnIdx = 20 * 56 + 27;
+    const spawnIdx = 20 * 64 + 27;
     expect(obstacleLayer?.data?.[spawnIdx]).toBe(0);
 
     // Wooden bridge across eastern stream (tile 47, 20) must be walkable
-    const bridgeIdx = 20 * 56 + 47;
+    const bridgeIdx = 20 * 64 + 47;
     expect(groundLayer?.data?.[bridgeIdx]).toBe(23);
     expect(obstacleLayer?.data?.[bridgeIdx]).toBe(0);
 
     // Deep pond tile (tile 48, 15) must block movement
-    const pondIdx = 15 * 56 + 48;
+    const pondIdx = 15 * 64 + 48;
     expect(obstacleLayer?.data?.[pondIdx]).toBeGreaterThan(0);
 
     // All 6 original core lab zoneIds must be preserved

@@ -6,6 +6,7 @@ import { InputSystem } from '../systems/InputSystem';
 import { ZoneSystem } from '../systems/ZoneSystem';
 import { InteractionSystem } from '../systems/InteractionSystem';
 import { VehicleSystem } from '../systems/VehicleSystem';
+import { NpcSystem } from '../systems/NpcSystem';
 import { ExplorationFactSystem } from '../systems/ExplorationFactSystem';
 import {
   VILLAGE_BUILDINGS,
@@ -13,6 +14,8 @@ import {
   VILLAGE_PROPS,
   TREE_INFO,
 } from '../data/villageEntities';
+import { generateAvatarAssets } from '../graphics/AvatarGenerator';
+import { decodeAvatarId } from '../graphics/avatarAppearance';
 import { eventBus } from '../eventBus';
 
 export class VillageScene extends Phaser.Scene {
@@ -23,6 +26,10 @@ export class VillageScene extends Phaser.Scene {
   private zoneSystem!: ZoneSystem;
   private interactionSystem!: InteractionSystem;
   private vehicleSystem!: VehicleSystem;
+  private npcSystem!: NpcSystem;
+  private trainSprite?: Phaser.GameObjects.Image;
+  private trainSpeed: number = 92;
+  private trainWaitMs: number = 0;
   private factSystem!: ExplorationFactSystem;
   private isPausedForLab: boolean = false;
 
@@ -92,8 +99,10 @@ export class VillageScene extends Phaser.Scene {
     this.renderBuildings();
     this.renderTrees();
 
-    // 9. Stage 4: Spawn Village Vehicles (Parked + Smoothly Cruising)
+    // 9. Stage 4 & Civic Expansion: Spawn Village Vehicles, Purposeful NPCs & Express Train
     this.vehicleSystem = new VehicleSystem(this, this.avatar, this.interactionSystem);
+    this.npcSystem = new NpcSystem(this, this.interactionSystem);
+    this.spawnVillageExpressTrain();
 
     // 10. Stage 5: Random Context-Aware Exploration Fact Controller
     this.factSystem = new ExplorationFactSystem({
@@ -115,6 +124,12 @@ export class VillageScene extends Phaser.Scene {
 
     eventBus.on('lab:close', () => {
       this.isPausedForLab = false;
+    });
+
+    // Live character appearance sync when student picks/customises Boy or Girl avatar
+    eventBus.on('avatar:update', (avatarId: string) => {
+      const appearance = decodeAvatarId(avatarId);
+      generateAvatarAssets(this, appearance);
     });
 
     // Notify UI that the village scene is live
@@ -176,13 +191,14 @@ export class VillageScene extends Phaser.Scene {
         onActivate = () => {
           eventBus.emit('zone:enter', { id: bldg.coreZoneId, name: bldg.name });
         };
-      } else if (bldg.category === 'learning_house') {
+      } else if (bldg.category === 'learning_house' || bldg.category === 'civic_center') {
+        const isCivic = bldg.category === 'civic_center';
         onActivate = () => {
-          eventBus.emit('house:enter', { id: bldg.id, name: bldg.name });
+          eventBus.emit(isCivic ? 'civic:enter' : 'house:enter', { id: bldg.id, name: bldg.name });
         };
         this.interactionSystem.registerLearningHouseProximity(bldg);
 
-        // Compact floating village house badge above roof
+        // Compact floating village house/civic badge above roof
         const label = this.add.text(
           wx,
           wy - sprite.height * 0.92 - 4,
@@ -191,8 +207,8 @@ export class VillageScene extends Phaser.Scene {
             fontSize: '10px',
             fontFamily: 'system-ui, sans-serif',
             fontStyle: 'bold',
-            color: '#e0f2fe',
-            backgroundColor: '#0f172ad4',
+            color: isCivic ? '#99f6e4' : '#e0f2fe',
+            backgroundColor: isCivic ? '#042f2ee0' : '#0f172ad4',
             padding: { x: 6, y: 2 },
           }
         );
@@ -253,6 +269,56 @@ export class VillageScene extends Phaser.Scene {
     });
   }
 
+  private spawnVillageExpressTrain(): void {
+    const trackY = 49.45 * TILE_SIZE;
+    const train = this.add.image(6 * TILE_SIZE, trackY, 'prop_train');
+    train.setOrigin(0.5, 0.78);
+    train.setDepth(trackY + 12);
+    this.trainSprite = train;
+
+    this.interactionSystem.registerInteractive(
+      train,
+      {
+        id: 'railway_station',
+        name: 'Gaon Express Train',
+        icon: '🚄',
+        category: 'vehicle',
+        subject: 'Physics & Motion • Speed = Distance ÷ Time',
+        description:
+          'Trains cover long distances at steady average speeds on low-friction steel rails. Click to open the Railway Station Speed-Distance-Time Lab!',
+        hint: 'Click to open Village Railway Station Lab',
+      },
+      () => {
+        eventBus.emit('civic:enter', { id: 'railway_station', name: 'Village Railway Station' });
+      }
+    );
+  }
+
+  private updateExpressTrain(deltaMs: number): void {
+    if (!this.trainSprite) return;
+    if (this.trainWaitMs > 0) {
+      this.trainWaitMs -= deltaMs;
+      return;
+    }
+
+    const dt = Math.min(deltaMs / 1000, 0.05);
+    const stationX = 50.5 * TILE_SIZE;
+    const prevX = this.trainSprite.x;
+    this.trainSprite.x += this.trainSpeed * dt;
+
+    // Brief realistic stop at Village Railway Station platform!
+    if (prevX < stationX && this.trainSprite.x >= stationX) {
+      this.trainSprite.x = stationX;
+      this.trainWaitMs = 3800;
+      return;
+    }
+
+    const mapW = this.map.widthInPixels || 2048;
+    if (this.trainSprite.x > mapW + 180) {
+      this.trainSprite.x = -180;
+    }
+  }
+
   private collectNearbyContextTags(): string[] {
     const tags: string[] = [];
     const ax = this.avatar.x;
@@ -292,9 +358,10 @@ export class VillageScene extends Phaser.Scene {
   }
 
   update(_time: number, delta: number): void {
-    // Keep ambient vehicles moving smoothly when not paused
-    if (!this.isPausedForLab && this.vehicleSystem) {
-      this.vehicleSystem.update(delta);
+    // Keep ambient vehicles & village express train moving smoothly when not paused
+    if (!this.isPausedForLab) {
+      this.vehicleSystem?.update(delta);
+      this.updateExpressTrain(delta);
     }
 
     if (this.isPausedForLab || !this.avatar || !this.inputSystem) {
@@ -352,5 +419,9 @@ export class VillageScene extends Phaser.Scene {
 
   public getMap(): Phaser.Tilemaps.Tilemap {
     return this.map;
+  }
+
+  public getNpcSystem(): NpcSystem {
+    return this.npcSystem;
   }
 }

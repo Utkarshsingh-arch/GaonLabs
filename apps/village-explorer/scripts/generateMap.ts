@@ -5,11 +5,12 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export const MAP_WIDTH = 56;
-export const MAP_HEIGHT = 42;
+export const MAP_WIDTH = 64;
+export const MAP_HEIGHT = 52;
 export const TILE_SIZE = 32;
 
 // Tile IDs (1-based for Tiled JSON):
+// 1..24 existing tiles, 25: Railway Tracks, 26: Railway Platform
 // 1: Grass Base, 2: Grass Tufts, 3: Grass Wildflowers, 4: Grass Sunlit
 // 5: Dirt Road Center, 6: Dirt Road Horiz, 7: Dirt Road Vert, 8: Dirt Road Junction
 // 9: Cobblestone Plaza, 10: Deep Water, 11: Water Lily Pads, 12: Water Bank
@@ -88,25 +89,46 @@ function paintVertRoad(y1: number, y2: number, xLeft: number) {
 
 // Main East-West Avenue (y = 20..21)
 paintHorizRoad(2, 53, 20);
-// Main North-South Avenue (x = 27..28)
-paintVertRoad(2, 39, 27);
+// Main North-South Avenue (x = 27..28) — extended south to Civic Avenue!
+paintVertRoad(2, 43, 27);
 // Northern Learning Loop (y = 9..10, x = 5..43)
 paintHorizRoad(5, 43, 9);
 // Southern Learning Loop (y = 31..32, x = 5..43)
 paintHorizRoad(5, 43, 31);
-// Western Connector Road (x = 11..12, y = 9..32)
+// Western Connector Road (x = 11..12, y = 9..32) + West Civic Connector (x = 7..8, y = 32..42)
 paintVertRoad(9, 32, 11);
-// Eastern Connector Road (x = 41..42, y = 9..32)
-paintVertRoad(9, 32, 41);
+paintVertRoad(32, 42, 7);
+// Eastern Connector Road (x = 41..42, y = 9..42)
+paintVertRoad(9, 42, 41);
+// NEW Southern Civic Avenue (y = 41..42, x = 4..58) connecting Hospital, Bank, Marketplace & Railway Station
+paintHorizRoad(4, 58, 41);
 
 // Road Intersections (smooth gravel junctions)
 const intersections = [
   [11, 9], [27, 9], [41, 9],
   [11, 20], [41, 20],
   [11, 31], [27, 31], [41, 31],
+  [7, 31], [7, 41], [27, 41], [41, 41],
 ];
 for (const [ix, iy] of intersections) {
   fillRect(groundData, ix, iy, ix + 1, iy + 1, 8);
+}
+
+// NEW Civic District Forecourts, Market Cobblestone, Railway Platform & Tracks
+// Hospital Stone Forecourt (x: 4..10, y: 43..48)
+fillRect(groundData, 4, 43, 10, 48, 18);
+// Cooperative Bank Cobblestone Plaza (x: 16..22, y: 43..48)
+fillRect(groundData, 16, 43, 22, 48, 9);
+// Village Marketplace Bazaar Cobblestone Square (x: 31..39, y: 43..48)
+fillRect(groundData, 31, 43, 39, 48, 9);
+// Railway Station Forecourt & Yellow-Striped Concrete Platform (x: 44..58, y: 43..48)
+fillRect(groundData, 44, 43, 58, 47, 18);
+fillRect(groundData, 42, 48, 60, 48, 26); // Concrete platform with yellow safety stripe
+// Continuous Horizontal Railway Tracks along Southern Edge (y = 49, x = 1..62)
+for (let x = 1; x < MAP_WIDTH - 1; x++) {
+  setTile(groundData, x, 49, 25);
+  setTile(obstacleData, x, 49, 21); // Prevent walking onto active train tracks
+  setTile(obstacleData, x, 50, 21);
 }
 
 // 4. Paved Village Cobblestone Plaza (Central Chowk) & Market Square
@@ -229,8 +251,8 @@ for (let y = 3; y <= 8; y++) {
   setTile(groundData, 50, y, 20);
   setTile(obstacleData, 50, y, 21);
 }
-// Fence along village south orchard edge
-for (let x = 4; x <= 9; x++) {
+// Fence along village south orchard edge (west of Civic Connector)
+for (let x = 3; x <= 6; x++) {
   setTile(groundData, x, 34, 19);
   setTile(obstacleData, x, 34, 21);
 }
@@ -267,6 +289,12 @@ placeBuildingFootprint(44, 34, 47, 36, 45);  // weather_station
 placeBuildingFootprint(11, 35, 14, 37, 12);  // cottage_a
 placeBuildingFootprint(15, 14, 18, 16, 16);  // cottage_b
 placeBuildingFootprint(45, 27, 48, 29, 46);  // cottage_c
+
+// 4 NEW Civic Campus Buildings footprints (Southern Civic Avenue):
+placeBuildingFootprint(4, 44, 10, 47, 7);    // village_hospital
+placeBuildingFootprint(16, 44, 22, 47, 19);  // cooperative_bank
+placeBuildingFootprint(31, 44, 39, 47, 35);  // village_marketplace
+placeBuildingFootprint(46, 44, 54, 47, 50);  // railway_station
 
 // 10. Core 6 Living Lab Zones (Tiled Object Layer - preserves exact zoneIds!)
 const zones = [
@@ -367,10 +395,10 @@ const mapOutput = {
       name: 'village_tiles',
       tileheight: TILE_SIZE,
       tilewidth: TILE_SIZE,
-      tilecount: 24,
-      columns: 24,
+      tilecount: 26,
+      columns: 26,
       image: 'assets/tiles/tileset.png',
-      imagewidth: 24 * TILE_SIZE,
+      imagewidth: 26 * TILE_SIZE,
       imageheight: TILE_SIZE,
     },
   ],

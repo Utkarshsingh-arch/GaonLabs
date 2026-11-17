@@ -8,7 +8,7 @@ export interface HoverEntityPayload {
   id: string;
   name: string;
   icon: string;
-  category: 'core_lab' | 'learning_house' | 'residential' | 'tree' | 'vehicle';
+  category: 'core_lab' | 'learning_house' | 'civic_center' | 'residential' | 'tree' | 'vehicle' | 'npc';
   subject: string;
   description: string;
   hint?: string;
@@ -119,6 +119,7 @@ export class InteractionSystem {
         id: matched.id,
         name: matched.name,
         icon: matched.icon,
+        isCivic: matched.category === 'civic_center',
       });
     } else if (!matched && this.activeHouse) {
       eventBus.emit('house:leave', { id: this.activeHouse.id });
@@ -128,10 +129,17 @@ export class InteractionSystem {
 
   public triggerActiveLearningHouse(): boolean {
     if (this.activeHouse) {
-      eventBus.emit('house:enter', {
-        id: this.activeHouse.id,
-        name: this.activeHouse.name,
-      });
+      if (this.activeHouse.category === 'civic_center') {
+        eventBus.emit('civic:enter', {
+          id: this.activeHouse.id,
+          name: this.activeHouse.name,
+        });
+      } else {
+        eventBus.emit('house:enter', {
+          id: this.activeHouse.id,
+          name: this.activeHouse.name,
+        });
+      }
       return true;
     }
     return false;

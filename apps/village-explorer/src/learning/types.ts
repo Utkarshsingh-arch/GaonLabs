@@ -1,6 +1,31 @@
+import { SupportedGrade } from './curriculum/ncertRegistry';
+
 export type Lang = 'en' | 'hi' | 'kn';
 export type QType = 'mcq' | 'fill_blank' | 'numeric' | 'scenario' | 'open';
 export type ZoneId = 'house' | 'well' | 'farm' | 'tank' | 'solar' | 'soil';
+
+export type CurriculumQuestionType =
+  | 'mcq'
+  | 'fill_blank'
+  | 'scenario'
+  | 'application'
+  | 'critical_thinking';
+
+export interface GeneratedCurriculumQuestion {
+  questionText: string;
+  questionType: CurriculumQuestionType;
+  options?: string[];
+  correctIndex?: number;
+  blankAnswer?: string;
+  explanation: string;
+  curriculumId: string;
+  grade: SupportedGrade;
+  subject: string;
+  textbook: string;
+  chapterNumber: number;
+  chapterTitle: string;
+  isEnrichment?: boolean;
+}
 
 export interface Question {
   id: string; // e.g. "house.g7.012"
@@ -9,6 +34,7 @@ export interface Question {
   difficulty: 1 | 2 | 3;
   type: QType;
   concept: string; // e.g. "rainwater_harvest_volume"
+  curriculumId?: string; // Verified NCERT curriculumId reference
   text: Record<Lang, string>;
   // Type-specific fields
   options?: Record<Lang, string[]>; // mcq / scenario

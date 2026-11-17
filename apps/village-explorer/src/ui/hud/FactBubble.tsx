@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { eventBus } from '../../game/eventBus';
 import { ExplorationFact } from '../../game/data/villageEntities';
+import { SupportedGrade } from '../../learning/curriculum/ncertRegistry';
+import {
+  formatCompactNcertCitation,
+  resolveCurriculumForEntity,
+} from '../../learning/curriculum/curriculumMapper';
+import { NcertModalTarget } from '../curriculum/NcertConceptModal';
+
+interface FactBubbleProps {
+  studentGrade: SupportedGrade;
+  onExploreNcert?: (target: NcertModalTarget) => void;
+}
 
 const CATEGORY_COLORS: Record<ExplorationFact['category'], string> = {
   Physics: 'bg-sky-500/20 text-sky-300 border-sky-500/40',
@@ -10,7 +21,7 @@ const CATEGORY_COLORS: Record<ExplorationFact['category'], string> = {
   Environment: 'bg-teal-500/20 text-teal-300 border-teal-500/40',
 };
 
-export const FactBubble: React.FC = () => {
+export const FactBubble: React.FC<FactBubbleProps> = ({ studentGrade, onExploreNcert }) => {
   const [fact, setFact] = useState<ExplorationFact | null>(null);
 
   useEffect(() => {
@@ -21,7 +32,7 @@ export const FactBubble: React.FC = () => {
       if (hideTimeout) clearTimeout(hideTimeout);
       hideTimeout = setTimeout(() => {
         setFact(null);
-      }, 7500);
+      }, 8000);
     };
 
     const onLabOpen = () => {
@@ -40,6 +51,8 @@ export const FactBubble: React.FC = () => {
   }, []);
 
   if (!fact) return null;
+
+  const ncertEntry = resolveCurriculumForEntity(fact.id, studentGrade);
 
   return (
     <div
@@ -61,6 +74,29 @@ export const FactBubble: React.FC = () => {
             </span>
           </div>
           <p className="text-xs text-slate-200 leading-snug">{fact.text}</p>
+          {ncertEntry && (
+            <div className="mt-1.5 flex items-center justify-between gap-2">
+              <span className="text-[10px] text-emerald-300/90 truncate">
+                📖 NCERT {formatCompactNcertCitation(ncertEntry)}
+              </span>
+              {onExploreNcert && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    onExploreNcert({
+                      entityKey: fact.id,
+                      objectName: ncertEntry.topic,
+                      objectIcon: fact.icon,
+                    });
+                    setFact(null);
+                  }}
+                  className="text-[10px] font-bold text-amber-300 hover:text-amber-200 underline shrink-0 cursor-pointer"
+                >
+                  Explore
+                </button>
+              )}
+            </div>
+          )}
         </div>
         <button
           type="button"

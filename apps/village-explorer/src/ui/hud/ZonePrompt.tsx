@@ -9,7 +9,7 @@ interface ZonePromptProps {
 interface ActivePromptTarget {
   id: string;
   name: string;
-  kind: 'core_lab' | 'learning_house';
+  kind: 'core_lab' | 'learning_house' | 'civic_center';
   icon?: string;
 }
 
@@ -25,12 +25,19 @@ export const ZonePrompt: React.FC<ZonePromptProps> = ({ lang = 'en' }) => {
       setTarget((curr) => (curr?.kind === 'core_lab' ? null : curr));
     };
 
-    const onHouseHover = (house: { id: string; name: string; icon?: string }) => {
-      setTarget({ id: house.id, name: house.name, kind: 'learning_house', icon: house.icon || '🏡' });
+    const onHouseHover = (house: { id: string; name: string; icon?: string; isCivic?: boolean }) => {
+      setTarget({
+        id: house.id,
+        name: house.name,
+        kind: house.isCivic ? 'civic_center' : 'learning_house',
+        icon: house.icon || '🏡',
+      });
     };
 
     const onHouseLeave = () => {
-      setTarget((curr) => (curr?.kind === 'learning_house' ? null : curr));
+      setTarget((curr) =>
+        curr?.kind === 'learning_house' || curr?.kind === 'civic_center' ? null : curr
+      );
     };
 
     const onClear = () => {
@@ -43,6 +50,7 @@ export const ZonePrompt: React.FC<ZonePromptProps> = ({ lang = 'en' }) => {
     eventBus.on('house:hover', onHouseHover);
     eventBus.on('house:leave', onHouseLeave);
     eventBus.on('house:enter', onClear);
+    eventBus.on('civic:enter', onClear);
 
     return () => {
       eventBus.off('zone:hover', onZoneHover);
@@ -51,6 +59,7 @@ export const ZonePrompt: React.FC<ZonePromptProps> = ({ lang = 'en' }) => {
       eventBus.off('house:hover', onHouseHover);
       eventBus.off('house:leave', onHouseLeave);
       eventBus.off('house:enter', onClear);
+      eventBus.off('civic:enter', onClear);
     };
   }, []);
 
@@ -63,7 +72,7 @@ export const ZonePrompt: React.FC<ZonePromptProps> = ({ lang = 'en' }) => {
       ? `${target.name} ಪ್ರವೇಶಿಸಿ`
       : `Enter ${target.name}`;
 
-  const isHouse = target.kind === 'learning_house';
+  const isHouse = target.kind === 'learning_house' || target.kind === 'civic_center';
 
   return (
     <div className="fixed bottom-24 md:bottom-8 left-1/2 -translate-x-1/2 z-30 animate-bounce">
@@ -71,7 +80,9 @@ export const ZonePrompt: React.FC<ZonePromptProps> = ({ lang = 'en' }) => {
         type="button"
         aria-label={promptText}
         onClick={() => {
-          if (isHouse) {
+          if (target.kind === 'civic_center') {
+            eventBus.emit('civic:enter', { id: target.id, name: target.name });
+          } else if (target.kind === 'learning_house') {
             eventBus.emit('house:enter', { id: target.id, name: target.name });
           } else {
             eventBus.emit('zone:enter', { id: target.id, name: target.name });

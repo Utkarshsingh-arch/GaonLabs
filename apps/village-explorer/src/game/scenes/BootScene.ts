@@ -3,9 +3,11 @@ import villageMapData from '../data/village.json';
 import { generateVillageTileset } from '../graphics/TilesetGenerator';
 import { generateEnvironmentProps } from '../graphics/PropsGenerator';
 import { generateBuildingSprites } from '../graphics/BuildingGenerator';
+import { generateCivicBuildingSprites } from '../graphics/CivicBuildingGenerator';
 import { generateTreeSprites } from '../graphics/TreeGenerator';
 import { generateAvatarAssets } from '../graphics/AvatarGenerator';
 import { generateVehicleSprites } from '../graphics/VehicleGenerator';
+import { generateNpcSprites } from '../graphics/NpcGenerator';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -25,15 +27,17 @@ export class BootScene extends Phaser.Scene {
     generateVillageTileset(this);
     generateEnvironmentProps(this);
 
-    // Stage 2: 2.5D Pixel-Art Houses & Trees
+    // Stage 2: 2.5D Pixel-Art Houses, Civic Buildings & Trees
     generateBuildingSprites(this);
+    generateCivicBuildingSprites(this);
     generateTreeSprites(this);
 
     // Stage 3: Upgraded 48x48 Explorer Avatar & Animations
     generateAvatarAssets(this);
 
-    // Stage 4: Village Vehicles (Car, Auto-Rickshaw, Motorcycle, Bicycle)
+    // Stage 4: Village Vehicles & Purposeful NPCs
     generateVehicleSprites(this);
+    generateNpcSprites(this);
 
     this.scene.start('VillageScene');
   }

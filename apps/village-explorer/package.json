@@ -11,7 +11,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "tsc --noEmit",
-    "validate:bank": "tsx scripts/validateQuestionBank.ts"
+    "validate:bank": "tsx scripts/validateQuestionBank.ts",
+    "validate:curriculum": "tsx scripts/validateCurriculumMapping.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",

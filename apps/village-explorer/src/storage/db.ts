@@ -1,12 +1,13 @@
 import Dexie, { Table } from 'dexie';
 import { Lang, ZoneId } from '../learning/types';
+import { SupportedGrade } from '../learning/curriculum/ncertRegistry';
 
 export interface UserProfileRecord {
   id: string; // 'current'
   nickname: string;
   avatarId: string;
   lang: Lang;
-  grade: 6 | 7 | 8;
+  grade: SupportedGrade;
   xp: number;
   aiFeaturesEnabled: boolean;
   createdAt: number;

@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-export const TILESET_TILE_COUNT = 24;
+export const TILESET_TILE_COUNT = 26;
 export const TILE_PX = 32;
 
 /**
@@ -387,7 +387,40 @@ export function generateVillageTileset(scene: Phaser.Scene): void {
     }
   }
 
-  // Register individual frames 1..24 for Phaser Tiled compatibility
+  // --- TILE 25 (idx 24): Railway Tracks on Gravel Ballast ---
+  {
+    const ox = 24 * 32;
+    const rng = makeRng(2500);
+    px(ox, 0, 32, 32, '#78716c'); // Crushed stone ballast
+    for (let i = 0; i < 24; i++) {
+      const gx = Math.floor(rng() * 30);
+      const gy = Math.floor(rng() * 30);
+      px(ox + gx, gy, 2, 2, rng() > 0.5 ? '#a8a29e' : '#57534e');
+    }
+    // Wooden railway sleepers (ties)
+    for (let sx = 2; sx < 32; sx += 8) {
+      px(ox + sx, 4, 4, 24, '#5c3a21');
+      px(ox + sx, 4, 4, 2, '#784826');
+    }
+    // Twin parallel steel rails with metallic sheen
+    px(ox, 8, 32, 3, '#334155');
+    px(ox, 8, 32, 1, '#cbd5e1');
+    px(ox, 21, 32, 3, '#334155');
+    px(ox, 21, 32, 1, '#cbd5e1');
+  }
+
+  // --- TILE 26 (idx 25): Railway Station Platform (Concrete + Yellow Safety Line) ---
+  {
+    const ox = 25 * 32;
+    px(ox, 0, 32, 32, '#cbd5e1');
+    px(ox, 0, 32, 2, '#e2e8f0');
+    px(ox + 15, 0, 2, 24, '#94a3b8'); // Slab seam
+    // Iconic yellow safety edge strip near track
+    px(ox, 25, 32, 4, '#facc15');
+    px(ox, 29, 32, 3, '#475569'); // Platform curb drop
+  }
+
+  // Register individual frames 1..26 for Phaser Tiled compatibility
   for (let i = 0; i < TILESET_TILE_COUNT; i++) {
     canvas.add(i + 1, 0, i * TILE_PX, 0, TILE_PX, TILE_PX);
   }
