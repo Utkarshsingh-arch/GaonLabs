@@ -355,9 +355,29 @@ npm start
 - `GET http://localhost:4000/api/v1/curriculum/boards/:boardId/grades`: Grades per education board.
 - `GET http://localhost:4000/api/v1/curriculum/grades/:gradeId/subjects`: Subjects per grade.
 - `GET http://localhost:4000/api/v1/curriculum/catalogue`: Filterable catalogue.
+- `GET http://localhost:4000/api/v1/curriculum/publishers`: Registered textbook publishers.
+- `GET http://localhost:4000/api/v1/curriculum/national-catalogue`: NCERT National Reference Catalogue query.
 - `GET http://localhost:4000/api/v1/curriculum/textbooks/:textbookId`: Canonical textbook details and editions.
 - `GET http://localhost:4000/api/v1/curriculum/editions/:editionId/chapters`: Chapters ordered for edition.
 - `GET http://localhost:4000/api/v1/curriculum/resolve/:learnerId`: Resolved curriculum for active student enrollment.
+- `GET http://localhost:4000/api/v1/features/catalogue`: Dynamic feature module catalogue with flag evaluation.
+- `GET http://localhost:4000/api/v1/stem-lens/status`: STEM Lens module status (Owned by Robin).
+- `GET http://localhost:4000/api/v1/village-builder/status`: STEM Village Builder module status (Owned by Prashanth).
+
+### 10.3 Student Frontend Applications (`apps/web`)
+- **Framework**: React 18, Vite 5, TypeScript 5, Tailwind CSS 3, Lucide React icons.
+- **Port**: `http://localhost:5173` (with `/api` proxied to port 4000).
+- **Core Pages Implemented**:
+  1. Welcome Landing Page (`/`): Product intro, quick 1-click demo launchers, feature pillars.
+  2. Student Registration (`/signup`): Board, grade, medium, subjects, live curriculum availability check.
+  3. Student Sign In (`/signin`): Demo credential selector, autofill, isolated session management.
+  4. Personalised Dashboard (`/app/dashboard`): Student academic pill card, language switcher, My Learning overview, prescribed textbooks, verified chapter outline, and prominent Explore STEM feature cards.
+  5. STEM Lens Placeholder (`/app/stem-lens`): Integration contract placeholder owned by Robin.
+  6. STEM Village Builder Placeholder (`/app/village-builder`): Integration contract placeholder owned by Prashanth.
+- **Demo Fixtures**:
+  - Asha Rao: CBSE Class 8, English Medium (*Ganita Prakash 8*, *Curiosity 8*).
+  - Kavya Hegde: Karnataka State Board Class 7, Kannada Medium (*KTBS Ganitha 7*, *KTBS Vijnana 7*).
+- **Integration Reference**: See [`docs/FEATURE_MODULE_INTEGRATION.md`](file:///home/utkarsh-singh-parihar/Projects/GaonLabs/docs/FEATURE_MODULE_INTEGRATION.md).
 
 ---
 

@@ -8,6 +8,9 @@ import { notFoundHandler } from './middleware/notFound';
 import { errorHandler } from './middleware/errorHandler';
 import { logger } from './shared/utils/logger';
 import { curriculumRouter } from './modules/curriculum';
+import { featureCatalogueRouter } from './modules/feature-catalogue';
+import { stemLensRouter } from './modules/stem-lens';
+import { villageBuilderRouter } from './modules/village-builder';
 
 export function createApp(): Express {
   const app = express();
@@ -93,6 +96,9 @@ export function createApp(): Express {
 
   // Domain API Routes
   app.use('/api/v1/curriculum', curriculumRouter);
+  app.use('/api/v1/features', featureCatalogueRouter);
+  app.use('/api/v1/stem-lens', stemLensRouter);
+  app.use('/api/v1/village-builder', villageBuilderRouter);
 
   // 404 & Global Error Handling
   app.use(notFoundHandler);
