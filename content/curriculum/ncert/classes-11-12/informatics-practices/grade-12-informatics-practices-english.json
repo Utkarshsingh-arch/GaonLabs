@@ -1,0 +1,91 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 12,
+    "levelId": "GRADE_12",
+    "subjectId": "INFORMATICS_PRACTICES",
+    "subjectName": "Informatics Practices",
+    "stemPillar": "TECHNOLOGY",
+    "medium": "en",
+    "canonicalTitle": "Informatics Practices - Class 12",
+    "titleInLanguage": "Informatics Practices - Textbook for Class XII",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?leip1=0-7",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Querying and SQL Functions",
+      "officialCode": "NCERT-G12-INFO-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 28,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leip1=1-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Data Handling Using Pandas - I",
+      "officialCode": "NCERT-G12-INFO-C02-EN",
+      "pageStart": 29,
+      "pageEnd": 64,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leip1=2-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Data Handling Using Pandas - II",
+      "officialCode": "NCERT-G12-INFO-C03-EN",
+      "pageStart": 65,
+      "pageEnd": 96,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leip1=3-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Plotting Data using Matplotlib",
+      "officialCode": "NCERT-G12-INFO-C04-EN",
+      "pageStart": 97,
+      "pageEnd": 122,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leip1=4-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Internet and Web",
+      "officialCode": "NCERT-G12-INFO-C05-EN",
+      "pageStart": 123,
+      "pageEnd": 146,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leip1=5-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Societal Impacts",
+      "officialCode": "NCERT-G12-INFO-C06-EN",
+      "pageStart": 147,
+      "pageEnd": 170,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leip1=6-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Project Based Learning",
+      "officialCode": "NCERT-G12-INFO-C07-EN",
+      "pageStart": 171,
+      "pageEnd": 186,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leip1=7-7",
+      "status": "VERIFIED"
+    }
+  ]
+}

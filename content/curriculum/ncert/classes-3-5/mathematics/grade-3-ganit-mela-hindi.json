@@ -1,0 +1,154 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 3,
+    "levelId": "GRADE_3",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "hi",
+    "canonicalTitle": "Maths Mela - Mathematics Grade 3",
+    "titleInLanguage": "गणित मेला - कक्षा 3 के लिए गणित पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=0-14",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "नाम में क्या रखा है?",
+      "officialCode": "NCERT-G3-MATH-C01-HI",
+      "pageStart": 1,
+      "pageEnd": 10,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=1-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "खिलौनों की मस्ती",
+      "officialCode": "NCERT-G3-MATH-C02-HI",
+      "pageStart": 11,
+      "pageEnd": 22,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=2-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "दोहरा शतक",
+      "officialCode": "NCERT-G3-MATH-C03-HI",
+      "pageStart": 23,
+      "pageEnd": 36,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=3-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "नानी माँ के साथ छुट्टियाँ",
+      "officialCode": "NCERT-G3-MATH-C04-HI",
+      "pageStart": 37,
+      "pageEnd": 50,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=4-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "आकृतियों के साथ आनंद",
+      "officialCode": "NCERT-G3-MATH-C05-HI",
+      "pageStart": 51,
+      "pageEnd": 64,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=5-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "सैकड़ों का घर – I",
+      "officialCode": "NCERT-G3-MATH-C06-HI",
+      "pageStart": 65,
+      "pageEnd": 78,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=6-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "रक्षा बंधन",
+      "officialCode": "NCERT-G3-MATH-C07-HI",
+      "pageStart": 79,
+      "pageEnd": 90,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=7-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "बराबर का हिस्सा",
+      "officialCode": "NCERT-G3-MATH-C08-HI",
+      "pageStart": 91,
+      "pageEnd": 102,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=8-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "सैकड़ों का घर – II",
+      "officialCode": "NCERT-G3-MATH-C09-HI",
+      "pageStart": 103,
+      "pageEnd": 116,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=9-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "कक्षा की दावत में मस्ती!",
+      "officialCode": "NCERT-G3-MATH-C10-HI",
+      "pageStart": 117,
+      "pageEnd": 128,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=10-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "भरना और उठाना",
+      "officialCode": "NCERT-G3-MATH-C11-HI",
+      "pageStart": 129,
+      "pageEnd": 140,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=11-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "लेना और देना",
+      "officialCode": "NCERT-G3-MATH-C12-HI",
+      "pageStart": 141,
+      "pageEnd": 154,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=12-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "समय बीतता गया",
+      "officialCode": "NCERT-G3-MATH-C13-HI",
+      "pageStart": 155,
+      "pageEnd": 166,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=13-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "सूरजकुंड मेला",
+      "officialCode": "NCERT-G3-MATH-C14-HI",
+      "pageStart": 167,
+      "pageEnd": 180,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?chmm1=14-14",
+      "status": "VERIFIED"
+    }
+  ]
+}

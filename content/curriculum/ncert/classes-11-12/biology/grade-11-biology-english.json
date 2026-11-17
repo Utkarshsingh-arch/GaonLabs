@@ -1,0 +1,199 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 11,
+    "levelId": "GRADE_11",
+    "subjectId": "BIOLOGY",
+    "subjectName": "Biology",
+    "stemPillar": "SCIENCE",
+    "medium": "en",
+    "canonicalTitle": "Biology - Class 11",
+    "titleInLanguage": "Biology - Textbook for Class XI",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=0-19",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "The Living World",
+      "officialCode": "NCERT-G11-BIOL-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 14,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=1-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Biological Classification",
+      "officialCode": "NCERT-G11-BIOL-C02-EN",
+      "pageStart": 15,
+      "pageEnd": 28,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=2-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Plant Kingdom",
+      "officialCode": "NCERT-G11-BIOL-C03-EN",
+      "pageStart": 29,
+      "pageEnd": 44,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=3-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Animal Kingdom",
+      "officialCode": "NCERT-G11-BIOL-C04-EN",
+      "pageStart": 45,
+      "pageEnd": 64,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=4-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Morphology of Flowering Plants",
+      "officialCode": "NCERT-G11-BIOL-C05-EN",
+      "pageStart": 65,
+      "pageEnd": 84,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=5-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Anatomy of Flowering Plants",
+      "officialCode": "NCERT-G11-BIOL-C06-EN",
+      "pageStart": 85,
+      "pageEnd": 100,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=6-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Structural Organisation in Animals",
+      "officialCode": "NCERT-G11-BIOL-C07-EN",
+      "pageStart": 101,
+      "pageEnd": 116,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=7-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Cell: The Unit of Life",
+      "officialCode": "NCERT-G11-BIOL-C08-EN",
+      "pageStart": 117,
+      "pageEnd": 142,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=8-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Biomolecules",
+      "officialCode": "NCERT-G11-BIOL-C09-EN",
+      "pageStart": 143,
+      "pageEnd": 162,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=9-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Cell Cycle and Cell Division",
+      "officialCode": "NCERT-G11-BIOL-C10-EN",
+      "pageStart": 163,
+      "pageEnd": 174,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=10-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Photosynthesis in Higher Plants",
+      "officialCode": "NCERT-G11-BIOL-C11-EN",
+      "pageStart": 175,
+      "pageEnd": 196,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=11-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Respiration in Plants",
+      "officialCode": "NCERT-G11-BIOL-C12-EN",
+      "pageStart": 197,
+      "pageEnd": 212,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=12-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "Plant Growth and Development",
+      "officialCode": "NCERT-G11-BIOL-C13-EN",
+      "pageStart": 213,
+      "pageEnd": 228,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=13-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "Breathing and Exchange of Gases",
+      "officialCode": "NCERT-G11-BIOL-C14-EN",
+      "pageStart": 229,
+      "pageEnd": 242,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=14-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 15,
+      "title": "Body Fluids and Circulation",
+      "officialCode": "NCERT-G11-BIOL-C15-EN",
+      "pageStart": 243,
+      "pageEnd": 260,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=15-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 16,
+      "title": "Excretory Products and their Elimination",
+      "officialCode": "NCERT-G11-BIOL-C16-EN",
+      "pageStart": 261,
+      "pageEnd": 276,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=16-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 17,
+      "title": "Locomotion and Movement",
+      "officialCode": "NCERT-G11-BIOL-C17-EN",
+      "pageStart": 277,
+      "pageEnd": 292,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=17-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 18,
+      "title": "Neural Control and Coordination",
+      "officialCode": "NCERT-G11-BIOL-C18-EN",
+      "pageStart": 293,
+      "pageEnd": 310,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=18-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 19,
+      "title": "Chemical Coordination and Integration",
+      "officialCode": "NCERT-G11-BIOL-C19-EN",
+      "pageStart": 311,
+      "pageEnd": 328,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?kebo1=19-19",
+      "status": "VERIFIED"
+    }
+  ]
+}

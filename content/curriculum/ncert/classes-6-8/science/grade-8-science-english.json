@@ -1,0 +1,145 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 8,
+    "levelId": "GRADE_8",
+    "subjectId": "SCIENCE",
+    "subjectName": "Science",
+    "stemPillar": "SCIENCE",
+    "medium": "en",
+    "canonicalTitle": "Science - Grade 8",
+    "titleInLanguage": "Science - Textbook for Class VIII",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=0-13",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Crop Production and Management",
+      "officialCode": "NCERT-G8-SCIE-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 18,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=1-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Microorganisms: Friend and Foe",
+      "officialCode": "NCERT-G8-SCIE-C02-EN",
+      "pageStart": 19,
+      "pageEnd": 36,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=2-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Coal and Petroleum",
+      "officialCode": "NCERT-G8-SCIE-C03-EN",
+      "pageStart": 37,
+      "pageEnd": 48,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=3-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Combustion and Flame",
+      "officialCode": "NCERT-G8-SCIE-C04-EN",
+      "pageStart": 49,
+      "pageEnd": 62,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=4-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Conservation of Plants and Animals",
+      "officialCode": "NCERT-G8-SCIE-C05-EN",
+      "pageStart": 63,
+      "pageEnd": 76,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=5-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Reproduction in Animals",
+      "officialCode": "NCERT-G8-SCIE-C06-EN",
+      "pageStart": 77,
+      "pageEnd": 90,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=6-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Reaching the Age of Adolescence",
+      "officialCode": "NCERT-G8-SCIE-C07-EN",
+      "pageStart": 91,
+      "pageEnd": 104,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=7-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Force and Pressure",
+      "officialCode": "NCERT-G8-SCIE-C08-EN",
+      "pageStart": 105,
+      "pageEnd": 122,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=8-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Friction",
+      "officialCode": "NCERT-G8-SCIE-C09-EN",
+      "pageStart": 123,
+      "pageEnd": 136,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=9-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Sound",
+      "officialCode": "NCERT-G8-SCIE-C10-EN",
+      "pageStart": 137,
+      "pageEnd": 152,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=10-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Chemical Effects of Electric Current",
+      "officialCode": "NCERT-G8-SCIE-C11-EN",
+      "pageStart": 153,
+      "pageEnd": 164,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=11-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Some Natural Phenomena",
+      "officialCode": "NCERT-G8-SCIE-C12-EN",
+      "pageStart": 165,
+      "pageEnd": 180,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=12-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "Light",
+      "officialCode": "NCERT-G8-SCIE-C13-EN",
+      "pageStart": 181,
+      "pageEnd": 202,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?hesc1=13-13",
+      "status": "VERIFIED"
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 4,
+    "levelId": "GRADE_4",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "hi",
+    "canonicalTitle": "Maths Mela - Mathematics Grade 4",
+    "titleInLanguage": "गणित मेला - कक्षा 4 के लिए गणित पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=0-14",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "हमारे आस-पास की आकृतियाँ",
+      "officialCode": "NCERT-G4-MATH-C01-HI",
+      "pageStart": 1,
+      "pageEnd": 12,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=1-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "लुका-छिपी",
+      "officialCode": "NCERT-G4-MATH-C02-HI",
+      "pageStart": 13,
+      "pageEnd": 24,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=2-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "हमारे चारों ओर पैटर्न",
+      "officialCode": "NCERT-G4-MATH-C03-HI",
+      "pageStart": 25,
+      "pageEnd": 38,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=3-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "हमारे आस-पास हज़ार",
+      "officialCode": "NCERT-G4-MATH-C04-HI",
+      "pageStart": 39,
+      "pageEnd": 52,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=4-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "बाँटना और मापना",
+      "officialCode": "NCERT-G4-MATH-C05-HI",
+      "pageStart": 53,
+      "pageEnd": 66,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=5-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "लंबाई मापन",
+      "officialCode": "NCERT-G4-MATH-C06-HI",
+      "pageStart": 67,
+      "pageEnd": 78,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=6-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "स्वच्छतम गाँव",
+      "officialCode": "NCERT-G4-MATH-C07-HI",
+      "pageStart": 79,
+      "pageEnd": 90,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=7-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "तौलना और उड़ेलना",
+      "officialCode": "NCERT-G4-MATH-C08-HI",
+      "pageStart": 91,
+      "pageEnd": 104,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=8-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "समान समूह",
+      "officialCode": "NCERT-G4-MATH-C09-HI",
+      "pageStart": 105,
+      "pageEnd": 116,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=9-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "हाथी, बाघ और तेंदुए",
+      "officialCode": "NCERT-G4-MATH-C10-HI",
+      "pageStart": 117,
+      "pageEnd": 128,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=10-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "सममिति के साथ आनंद",
+      "officialCode": "NCERT-G4-MATH-C11-HI",
+      "pageStart": 129,
+      "pageEnd": 140,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=11-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "टिक-टिक करती घड़ियाँ और बदलते कैलेंडर",
+      "officialCode": "NCERT-G4-MATH-C12-HI",
+      "pageStart": 141,
+      "pageEnd": 154,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=12-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "परिवहन संग्रहालय",
+      "officialCode": "NCERT-G4-MATH-C13-HI",
+      "pageStart": 155,
+      "pageEnd": 166,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=13-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "आंकड़ों का प्रबंधन",
+      "officialCode": "NCERT-G4-MATH-C14-HI",
+      "pageStart": 167,
+      "pageEnd": 180,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?dhmm1=14-14",
+      "status": "VERIFIED"
+    }
+  ]
+}

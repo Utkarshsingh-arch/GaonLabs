@@ -1,0 +1,46 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 12,
+    "levelId": "GRADE_12",
+    "subjectId": "BIOTECHNOLOGY",
+    "subjectName": "Biotechnology",
+    "stemPillar": "SCIENCE",
+    "medium": "en",
+    "canonicalTitle": "Biotechnology - Class 12",
+    "titleInLanguage": "Biotechnology - Textbook for Class XII (Elective)",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?lebt1=0-2",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Recombinant DNA Technology",
+      "officialCode": "NCERT-G12-BIOT-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 32,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lebt1=1-2",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Two Key Components of Recombinant DNA Technology",
+      "officialCode": "NCERT-G12-BIOT-C02-EN",
+      "pageStart": 33,
+      "pageEnd": 64,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lebt1=2-2",
+      "status": "VERIFIED"
+    }
+  ]
+}

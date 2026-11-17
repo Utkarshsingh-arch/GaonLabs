@@ -1,0 +1,136 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 9,
+    "levelId": "GRADE_9",
+    "subjectId": "SCIENCE",
+    "subjectName": "Science",
+    "stemPillar": "SCIENCE",
+    "medium": "hi",
+    "canonicalTitle": "Science - Grade 9",
+    "titleInLanguage": "विज्ञान - कक्षा 9 के लिए पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=0-12",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "हमारे आस-पास के पदार्थ",
+      "officialCode": "NCERT-G9-SCIE-C01-HI",
+      "pageStart": 1,
+      "pageEnd": 14,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=1-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "क्या हमारे आस-पास के पदार्थ शुद्ध हैं?",
+      "officialCode": "NCERT-G9-SCIE-C02-HI",
+      "pageStart": 15,
+      "pageEnd": 30,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=2-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "परमाणु एवं अणु",
+      "officialCode": "NCERT-G9-SCIE-C03-HI",
+      "pageStart": 31,
+      "pageEnd": 46,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=3-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "परमाणु की संरचना",
+      "officialCode": "NCERT-G9-SCIE-C04-HI",
+      "pageStart": 47,
+      "pageEnd": 58,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=4-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "जीवन की मौलिक इकाई",
+      "officialCode": "NCERT-G9-SCIE-C05-HI",
+      "pageStart": 59,
+      "pageEnd": 72,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=5-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "ऊतक",
+      "officialCode": "NCERT-G9-SCIE-C06-HI",
+      "pageStart": 73,
+      "pageEnd": 88,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=6-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "गति",
+      "officialCode": "NCERT-G9-SCIE-C07-HI",
+      "pageStart": 89,
+      "pageEnd": 110,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=7-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "बल तथा गति के नियम",
+      "officialCode": "NCERT-G9-SCIE-C08-HI",
+      "pageStart": 111,
+      "pageEnd": 130,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=8-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "गुरुत्वाकर्षण",
+      "officialCode": "NCERT-G9-SCIE-C09-HI",
+      "pageStart": 131,
+      "pageEnd": 146,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=9-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "कार्य तथा ऊर्जा",
+      "officialCode": "NCERT-G9-SCIE-C10-HI",
+      "pageStart": 147,
+      "pageEnd": 160,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=10-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "ध्वनि",
+      "officialCode": "NCERT-G9-SCIE-C11-HI",
+      "pageStart": 161,
+      "pageEnd": 180,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=11-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "खाद्य संसाधनों में सुधार",
+      "officialCode": "NCERT-G9-SCIE-C12-HI",
+      "pageStart": 181,
+      "pageEnd": 198,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihsc1=12-12",
+      "status": "VERIFIED"
+    }
+  ]
+}

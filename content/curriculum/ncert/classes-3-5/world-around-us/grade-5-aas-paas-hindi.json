@@ -1,0 +1,226 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 5,
+    "levelId": "GRADE_5",
+    "subjectId": "THE_WORLD_AROUND_US",
+    "subjectName": "The World Around Us",
+    "stemPillar": "SCIENCE",
+    "medium": "hi",
+    "canonicalTitle": "Looking Around - Grade 5",
+    "titleInLanguage": "आस पास - कक्षा 5 के लिए पर्यावरण अध्ययन पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=0-22",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "कैसे पहचाना चींटी ने दोस्त को?",
+      "officialCode": "NCERT-G5-THE_-C01-HI",
+      "pageStart": 1,
+      "pageEnd": 14,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=1-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "कहानी सपेरों की",
+      "officialCode": "NCERT-G5-THE_-C02-HI",
+      "pageStart": 15,
+      "pageEnd": 24,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=2-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "चखने से पचने तक",
+      "officialCode": "NCERT-G5-THE_-C03-HI",
+      "pageStart": 25,
+      "pageEnd": 38,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=3-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "खाये आम बारहों महीने",
+      "officialCode": "NCERT-G5-THE_-C04-HI",
+      "pageStart": 39,
+      "pageEnd": 48,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=4-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "बीज, बीज, बीज",
+      "officialCode": "NCERT-G5-THE_-C05-HI",
+      "pageStart": 49,
+      "pageEnd": 58,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=5-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "बूँद-बूँद, दरिया-दरिया",
+      "officialCode": "NCERT-G5-THE_-C06-HI",
+      "pageStart": 59,
+      "pageEnd": 68,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=6-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "पानी के प्रयोग",
+      "officialCode": "NCERT-G5-THE_-C07-HI",
+      "pageStart": 69,
+      "pageEnd": 78,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=7-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "मच्छरों की दावत?",
+      "officialCode": "NCERT-G5-THE_-C08-HI",
+      "pageStart": 79,
+      "pageEnd": 88,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=8-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "डायरी: कमर सीधी, ऊपर चढ़ो!",
+      "officialCode": "NCERT-G5-THE_-C09-HI",
+      "pageStart": 89,
+      "pageEnd": 98,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=9-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "बोलती इमारतें",
+      "officialCode": "NCERT-G5-THE_-C10-HI",
+      "pageStart": 99,
+      "pageEnd": 110,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=10-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "सुनीता अंतरिक्ष में",
+      "officialCode": "NCERT-G5-THE_-C11-HI",
+      "pageStart": 111,
+      "pageEnd": 120,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=11-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "खत्म हो जाए तो...?",
+      "officialCode": "NCERT-G5-THE_-C12-HI",
+      "pageStart": 121,
+      "pageEnd": 130,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=12-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "बसेरा ऊँचाई पर",
+      "officialCode": "NCERT-G5-THE_-C13-HI",
+      "pageStart": 131,
+      "pageEnd": 142,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=13-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "जब धरती काँपी",
+      "officialCode": "NCERT-G5-THE_-C14-HI",
+      "pageStart": 143,
+      "pageEnd": 152,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=14-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 15,
+      "title": "उसी से ठंडा उसी से गर्म",
+      "officialCode": "NCERT-G5-THE_-C15-HI",
+      "pageStart": 153,
+      "pageEnd": 162,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=15-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 16,
+      "title": "कौन करेगा यह काम?",
+      "officialCode": "NCERT-G5-THE_-C16-HI",
+      "pageStart": 163,
+      "pageEnd": 172,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=16-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 17,
+      "title": "फांद ली दीवार",
+      "officialCode": "NCERT-G5-THE_-C17-HI",
+      "pageStart": 173,
+      "pageEnd": 184,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=17-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 18,
+      "title": "जाएँ तो जाएँ कहाँ",
+      "officialCode": "NCERT-G5-THE_-C18-HI",
+      "pageStart": 185,
+      "pageEnd": 194,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=18-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 19,
+      "title": "किसानों की कहानी-बीज की जुबानी",
+      "officialCode": "NCERT-G5-THE_-C19-HI",
+      "pageStart": 195,
+      "pageEnd": 206,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=19-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 20,
+      "title": "किसके जंगल?",
+      "officialCode": "NCERT-G5-THE_-C20-HI",
+      "pageStart": 207,
+      "pageEnd": 218,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=20-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 21,
+      "title": "किसकी झलक? किसकी छाप?",
+      "officialCode": "NCERT-G5-THE_-C21-HI",
+      "pageStart": 219,
+      "pageEnd": 228,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=21-22",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 22,
+      "title": "फिर चला काफ़िला",
+      "officialCode": "NCERT-G5-THE_-C22-HI",
+      "pageStart": 229,
+      "pageEnd": 238,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ehap1=22-22",
+      "status": "VERIFIED"
+    }
+  ]
+}

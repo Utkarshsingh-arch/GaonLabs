@@ -327,6 +327,70 @@ export class CurriculumService implements ICurriculumService {
     return versions;
   }
 
+  async getPublishers() {
+    return prisma.textbookPublisher.findMany({
+      orderBy: { name: 'asc' },
+    });
+  }
+
+  async getTextbooks(filter?: {
+    publisherId?: string;
+    grade?: number;
+    levelId?: string;
+    subjectId?: string;
+    medium?: string;
+    status?: any;
+  }) {
+    const where: any = {};
+    if (filter?.publisherId) where.publisherId = filter.publisherId;
+    if (filter?.subjectId) where.subjectId = filter.subjectId;
+    if (filter?.levelId) where.levelId = filter.levelId;
+    if (filter?.grade) where.level = { numericGrade: filter.grade };
+
+    const editionWhere: any = {};
+    if (filter?.medium) editionWhere.medium = filter.medium;
+    if (filter?.status) editionWhere.status = filter.status;
+
+    return prisma.textbook.findMany({
+      where,
+      include: {
+        publisher: true,
+        subject: true,
+        level: true,
+        editions: {
+          where: Object.keys(editionWhere).length > 0 ? editionWhere : undefined,
+          include: {
+            chapters: {
+              orderBy: { chapterNumber: 'asc' },
+            },
+          },
+          orderBy: [
+            { publicationYear: 'desc' },
+            { editionNumber: 'desc' },
+          ],
+        },
+      },
+      orderBy: [
+        { level: { numericGrade: 'asc' } },
+        { subjectId: 'asc' },
+        { canonicalTitle: 'asc' },
+      ],
+    });
+  }
+
+  async getNationalCatalogue(filter?: {
+    grade?: number;
+    levelId?: string;
+    subjectId?: string;
+    medium?: string;
+    status?: any;
+  }) {
+    return this.getTextbooks({
+      ...filter,
+      publisherId: 'NCERT_PUB',
+    });
+  }
+
   async getTextbookById(textbookId: string) {
     const textbook = await prisma.textbook.findUnique({
       where: { id: textbookId },

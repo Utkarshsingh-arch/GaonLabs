@@ -1,0 +1,145 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 12,
+    "levelId": "GRADE_12",
+    "subjectId": "COMPUTER_SCIENCE",
+    "subjectName": "Computer Science",
+    "stemPillar": "TECHNOLOGY",
+    "medium": "en",
+    "canonicalTitle": "Computer Science - Class 12",
+    "titleInLanguage": "Computer Science - Textbook for Class XII",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=0-13",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Exception Handling in Python",
+      "officialCode": "NCERT-G12-COMP-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 16,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=1-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "File Handling in Python",
+      "officialCode": "NCERT-G12-COMP-C02-EN",
+      "pageStart": 17,
+      "pageEnd": 44,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=2-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Stack",
+      "officialCode": "NCERT-G12-COMP-C03-EN",
+      "pageStart": 45,
+      "pageEnd": 62,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=3-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Queue",
+      "officialCode": "NCERT-G12-COMP-C04-EN",
+      "pageStart": 63,
+      "pageEnd": 80,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=4-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Sorting",
+      "officialCode": "NCERT-G12-COMP-C05-EN",
+      "pageStart": 81,
+      "pageEnd": 102,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=5-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Searching",
+      "officialCode": "NCERT-G12-COMP-C06-EN",
+      "pageStart": 103,
+      "pageEnd": 122,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=6-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Understanding Data",
+      "officialCode": "NCERT-G12-COMP-C07-EN",
+      "pageStart": 123,
+      "pageEnd": 140,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=7-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Database Concepts",
+      "officialCode": "NCERT-G12-COMP-C08-EN",
+      "pageStart": 141,
+      "pageEnd": 164,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=8-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Structured Query Language (SQL)",
+      "officialCode": "NCERT-G12-COMP-C09-EN",
+      "pageStart": 165,
+      "pageEnd": 198,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=9-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Computer Networks",
+      "officialCode": "NCERT-G12-COMP-C10-EN",
+      "pageStart": 199,
+      "pageEnd": 228,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=10-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Data Communication",
+      "officialCode": "NCERT-G12-COMP-C11-EN",
+      "pageStart": 229,
+      "pageEnd": 254,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=11-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Security Aspects",
+      "officialCode": "NCERT-G12-COMP-C12-EN",
+      "pageStart": 255,
+      "pageEnd": 276,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=12-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "Project Based Learning",
+      "officialCode": "NCERT-G12-COMP-C13-EN",
+      "pageStart": 277,
+      "pageEnd": 296,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lecs1=13-13",
+      "status": "VERIFIED"
+    }
+  ]
+}
