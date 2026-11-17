@@ -805,3 +805,193 @@ function getFallbackTopics(filters: TopicFilterParams = {}): TopicSummary[] {
   });
 }
 
+// -------------------------------------------------------------
+// STEM Lens Service & Chat History API
+// -------------------------------------------------------------
+
+export interface StemLensChatMessage {
+  id: string;
+  sessionId?: string;
+  role: 'user' | 'assistant';
+  content: string;
+  imageUrl?: string | null;
+  generatedImageUrl?: string | null;
+  timestamp: string;
+  model?: string | null;
+}
+
+export interface StemLensSessionData {
+  id: string;
+  userId: string | null;
+  title: string;
+  isArchived: boolean;
+  createdAt: string;
+  updatedAt: string;
+  messages: StemLensChatMessage[];
+}
+
+export interface StemLensSendParams {
+  sessionId?: string;
+  userId?: string;
+  message: string;
+  imageBase64?: string;
+  imageMimeType?: string;
+  mode?: 'chat' | 'image';
+  conversationHistory?: Array<{ role: 'user' | 'assistant'; content: string }>;
+}
+
+export interface StemLensChatResponseData {
+  sessionId: string;
+  sessionTitle?: string;
+  userMessageId?: string;
+  assistantMessageId?: string;
+  reply: string;
+  generatedImageUrl?: string;
+  model: string;
+  timestamp: string;
+  tokensUsed?: number;
+}
+
+export async function fetchStemLensSessions(
+  userId = 'student-robin'
+): Promise<ApiResult<StemLensSessionData[]>> {
+  try {
+    const res = await fetch(`/api/v1/stem-lens/sessions?userId=${encodeURIComponent(userId)}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    return { data: json.data || [], isFallback: false };
+  } catch (err: any) {
+    console.warn('fetchStemLensSessions error:', err.message);
+    return { data: [], isFallback: true, error: err.message };
+  }
+}
+
+export async function fetchStemLensSessionById(
+  sessionId: string
+): Promise<ApiResult<StemLensSessionData | null>> {
+  try {
+    const res = await fetch(`/api/v1/stem-lens/sessions/${encodeURIComponent(sessionId)}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn('fetchStemLensSessionById error:', err.message);
+    return { data: null, isFallback: true, error: err.message };
+  }
+}
+
+export async function createStemLensSession(
+  title = 'New STEM Investigation',
+  userId = 'student-robin'
+): Promise<ApiResult<StemLensSessionData>> {
+  try {
+    const res = await fetch('/api/v1/stem-lens/sessions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, userId }),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn('createStemLensSession error:', err.message);
+    return {
+      data: {
+        id: `local-${Date.now()}`,
+        userId,
+        title,
+        isArchived: false,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        messages: [],
+      },
+      isFallback: true,
+      error: err.message,
+    };
+  }
+}
+
+export async function updateStemLensSessionTitle(
+  sessionId: string,
+  title: string
+): Promise<ApiResult<StemLensSessionData | null>> {
+  try {
+    const res = await fetch(`/api/v1/stem-lens/sessions/${encodeURIComponent(sessionId)}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title }),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn('updateStemLensSessionTitle error:', err.message);
+    return { data: null, isFallback: true, error: err.message };
+  }
+}
+
+export async function deleteStemLensSession(
+  sessionId: string
+): Promise<ApiResult<{ success: boolean; id: string }>> {
+  try {
+    const res = await fetch(`/api/v1/stem-lens/sessions/${encodeURIComponent(sessionId)}`, {
+      method: 'DELETE',
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn('deleteStemLensSession error:', err.message);
+    return { data: { success: false, id: sessionId }, isFallback: true, error: err.message };
+  }
+}
+
+export async function sendStemLensChat(
+  params: StemLensSendParams
+): Promise<ApiResult<StemLensChatResponseData>> {
+  try {
+    const res = await fetch('/api/v1/stem-lens/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params),
+    });
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error(`Chat API error (${res.status}): ${errText}`);
+    }
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.error('StemLensChat Error:', err);
+    return {
+      data: {
+        sessionId: params.sessionId || `session-${Date.now()}`,
+        reply: `Error contacting STEM Lens xAI service: ${err.message}`,
+        model: 'error',
+        timestamp: new Date().toISOString(),
+      },
+      isFallback: true,
+      error: err.message,
+    };
+  }
+}
+
+export async function fetchStemLensPrompt(): Promise<
+  ApiResult<{ systemPrompt: string; filePath: string }>
+> {
+  try {
+    const res = await fetch('/api/v1/stem-lens/prompt');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    return {
+      data: {
+        systemPrompt: 'Default system prompt',
+        filePath: 'apps/api/src/modules/stem-lens/stemLensPrompt.ts',
+      },
+      isFallback: true,
+      error: err.message,
+    };
+  }
+}

@@ -46,10 +46,10 @@ export const ChapterDrawerModal: React.FC<ChapterDrawerModalProps> = ({
               </span>
             </div>
             <h2 className="text-xl font-extrabold text-[#352F2A] tracking-tight">
-              {edition.titleInLanguage || edition.textbook.canonicalTitle}
+              {edition.titleInLanguage || edition.textbook?.canonicalTitle || 'Prescribed Textbook'}
             </h2>
             <p className="text-xs text-[#636160] mt-1">
-              Published by {edition.textbook.publisher.name} • {edition.totalChapters} Prescribed Chapters
+              Published by {edition.textbook?.publisher?.name || 'Curriculum Authority'} • {edition.totalChapters || edition.chapters?.length || 0} Prescribed Chapters
             </p>
           </div>
 

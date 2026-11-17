@@ -218,6 +218,20 @@ function findCaptionFile(targetName: string): string | null {
   return null;
 }
 
+function findTranscriptFile(targetName: string): string | null {
+  const candidates = [
+    path.resolve(process.cwd(), 'public/videos/transcripts', targetName),
+    path.resolve(process.cwd(), '../../public/videos/transcripts', targetName),
+    path.resolve(process.cwd(), '../web/public/videos/transcripts', targetName),
+    path.resolve(process.cwd(), 'apps/web/public/videos/transcripts', targetName),
+    path.resolve(__dirname, '../../../../../public/videos/transcripts', targetName),
+  ];
+  for (const c of candidates) {
+    if (fs.existsSync(c)) return c;
+  }
+  return null;
+}
+
 const TOPIC_TO_VIDEO_MAP: Record<string, string> = {
   'topic-shapes-class3': 'video-shapes-class3-en',
   'topic-forces-friction-cl8': 'video-forces-friction-cl8-en',

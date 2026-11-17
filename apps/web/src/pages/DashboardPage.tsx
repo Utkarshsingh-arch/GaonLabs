@@ -34,13 +34,14 @@ export const DashboardPage: React.FC = () => {
   // Load session or default to Asha Rao
   const [profile, setProfile] = useState<DemoProfile>(() => {
     const existing = getDemoSession();
-    if (existing) return existing;
+    if (existing && existing.name && existing.boardId) return existing;
     setDemoSession(DEMO_PROFILES.asha);
     return DEMO_PROFILES.asha;
   });
 
   const [searchQuery, setSearchQuery] = useState('');
   const [catalogue, setCatalogue] = useState<CatalogueEntry[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [apiError, setApiError] = useState<string | null>(null);
 
   // Modals state
@@ -51,15 +52,22 @@ export const DashboardPage: React.FC = () => {
   // Load real curriculum from API
   const loadCurriculum = async (currentProfile: DemoProfile) => {
     setApiError(null);
+    setIsLoading(true);
 
     try {
       const catalogueRes = await fetchCatalogue({
-        boardId: currentProfile.boardId,
-        grade: currentProfile.grade,
-        medium: currentProfile.medium,
+        boardId: currentProfile?.boardId || 'CBSE',
+        grade: currentProfile?.grade || 8,
+        medium: currentProfile?.medium || 'en',
       });
 
-      setCatalogue(catalogueRes.data || []);
+      if (catalogueRes.data && catalogueRes.data.length > 0) {
+        setCatalogue(catalogueRes.data);
+      } else {
+        // Fallback to demo catalogue so the user never sees an empty dashboard
+        const fallbackRes = await fetchCatalogue({ boardId: 'CBSE', grade: 8, medium: 'en' });
+        setCatalogue(fallbackRes.data || []);
+      }
 
       if (catalogueRes.error) {
         setApiError(catalogueRes.error);
@@ -67,12 +75,14 @@ export const DashboardPage: React.FC = () => {
     } catch (err: any) {
       console.error('Failed to load student curriculum:', err);
       setApiError(err.message || 'Error communicating with curriculum backend');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     loadCurriculum(profile);
-  }, [profile.boardId, profile.grade, profile.medium]);
+  }, [profile?.boardId, profile?.grade, profile?.medium]);
 
   const handleProfileChange = (newProfile: DemoProfile) => {
     setProfile(newProfile);
@@ -117,7 +127,7 @@ export const DashboardPage: React.FC = () => {
     setSelectedEdition(edition);
   };
 
-  const studentFirstName = profile.name.split(' ')[0] || 'Student';
+  const studentFirstName = (profile?.name || 'Sara').split(' ')[0] || 'Sara';
 
   return (
     <div className="min-h-screen bg-[#FBFAF9] flex flex-col md:flex-row antialiased text-[#352F2A]">
@@ -208,9 +218,17 @@ export const DashboardPage: React.FC = () => {
                ================================================================= */}
             <section id="courses" className="space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-extrabold text-[#352F2A] tracking-tight">
-                  My Courses
-                </h2>
+                <div className="flex items-center gap-3">
+                  <h2 className="text-xl font-extrabold text-[#352F2A] tracking-tight">
+                    My Courses
+                  </h2>
+                  {isLoading && (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#FFEEDD] text-[#D47220] animate-pulse">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FA9C4D]" />
+                      Syncing curriculum...
+                    </span>
+                  )}
+                </div>
                 <button
                   onClick={() => setIsExplorerOpen(true)}
                   className="text-xs font-bold text-[#FA9C4D] hover:text-[#D47220] transition-colors flex items-center gap-1"
@@ -244,7 +262,7 @@ export const DashboardPage: React.FC = () => {
                       Mathematics Lab
                     </h3>
                     <p className="text-xs text-[#9E9B97] font-semibold mt-1">
-                      {mathTextbook ? mathTextbook.edition.titleInLanguage : `Class ${profile.grade}: Mathematics`}
+                      {mathTextbook?.edition?.titleInLanguage || mathTextbook?.edition?.textbook?.canonicalTitle || 'Class 8: Mathematics'}
                     </p>
                   </div>
 
@@ -254,8 +272,8 @@ export const DashboardPage: React.FC = () => {
                     </div>
 
                     <div className="flex items-center justify-between text-[11px] font-bold text-[#9E9B97]">
-                      <span>{mathTextbook?.edition.chapters?.length || 13} Chapters</span>
-                      <span>Verified Curriculum</span>
+                      <span>Completed 10/{mathTextbook?.edition?.totalChapters || 13}</span>
+                      <span>Achievements 4/5</span>
                     </div>
                   </div>
                 </div>
@@ -282,7 +300,7 @@ export const DashboardPage: React.FC = () => {
                       Science & Curiosity
                     </h3>
                     <p className="text-xs text-[#9E9B97] font-semibold mt-1">
-                      {scienceTextbook ? scienceTextbook.edition.titleInLanguage : `Class ${profile.grade}: Science`}
+                      {scienceTextbook?.edition?.titleInLanguage || scienceTextbook?.edition?.textbook?.canonicalTitle || 'Class 8: Science (Curiosity)'}
                     </p>
                   </div>
 
@@ -292,8 +310,8 @@ export const DashboardPage: React.FC = () => {
                     </div>
 
                     <div className="flex items-center justify-between text-[11px] font-bold text-[#9E9B97]">
-                      <span>{scienceTextbook?.edition.chapters?.length || 13} Chapters</span>
-                      <span>Smart Reader Ready</span>
+                      <span>Completed 7/{scienceTextbook?.edition?.totalChapters || 13}</span>
+                      <span>Achievements 3/7</span>
                     </div>
                   </div>
                 </div>
