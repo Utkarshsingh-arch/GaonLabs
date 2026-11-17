@@ -1,0 +1,465 @@
+{
+  "experimentId": "exp-phys-friction-01",
+  "version": "1.0.0",
+  "code": "EXP_PHYS_01",
+  "title": "Why Do Things Stop Moving?",
+  "titleInLanguage": {
+    "kn": "ವಸ್ತುಗಳು ಏಕೆ ಚಲಿಸುವುದನ್ನು ನಿಲ್ಲಿಸುತ್ತವೆ? (ಘರ್ಷಣೆ ಮತ್ತು ಚಲನೆ)"
+  },
+  "shortDescription": "Investigate friction across surfaces, measure stopping distances, and discover how normal force and surface texture dictate resistance.",
+  "description": "Send a weighted block gliding across ice, smooth wood, rough concrete, and grass. Measure forces, adjust mass and push impulses, observe live velocity vectors and stopping distances governed by F_friction = mu_k * N.",
+  "descriptionInLanguage": {
+    "kn": "ಮಂಜುಗಡ್ಡೆ, ಮರ, ಕಾಂಕ್ರೀಟ್ ಮತ್ತು ಹುಲ್ಲಿನ ಮೇಲ್ಮೈಗಳ ಮೇಲೆ ಬ್ಲಾಕ್ ಚಲನೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ ಘರ್ಷಣಾ ಬಲ ಮತ್ತು ನಿಲ್ಲುವ ದೂರವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿ."
+  },
+  "subject": "Science",
+  "stemPillar": "PHYSICS",
+  "gradeRange": {
+    "min": 8,
+    "max": 9
+  },
+  "supportedLanguages": ["en", "kn"],
+  "curriculumMappings": [
+    {
+      "boardId": "CBSE",
+      "grade": 8,
+      "subjectId": "science",
+      "subjectName": "Science",
+      "chapterId": "cbse-8-sci-ch12",
+      "chapterNumber": 12,
+      "chapterTitle": "Friction",
+      "conceptId": "concept-friction-factors"
+    },
+    {
+      "boardId": "KARNATAKA_STATE_BOARD",
+      "grade": 8,
+      "subjectId": "science",
+      "subjectName": "ವಿಜ್ಞಾನ",
+      "chapterId": "ktbs-8-sci-ch12",
+      "chapterNumber": 12,
+      "chapterTitle": "ಘರ್ಷಣೆ",
+      "conceptId": "concept-friction-factors"
+    }
+  ],
+  "learningObjectives": [
+    "Identify friction as a contact force opposing the relative motion between two touching surfaces.",
+    "Verify experimentally how different surface textures alter the coefficient of kinetic friction (mu_k).",
+    "Calculate normal force (N = m * g) and kinetic friction force (F_friction = mu_k * N).",
+    "Analyze why stopping distance d = v0^2 / (2 * mu_k * g) depends on speed and surface friction but is independent of mass for a given initial velocity."
+  ],
+  "safetyProfile": {
+    "minimumGrade": 8,
+    "maximumGrade": 9,
+    "mode": "VIRTUAL_ONLY",
+    "reviewStatus": "VERIFIED_SAFE",
+    "supervisionRequired": false,
+    "hazardWarnings": [
+      "Virtual mechanics simulation: Safe interactive environment."
+    ],
+    "approvedProcedureNotice": "Numerical integration uses Newton's Second Law F_net = m * a with Coulomb friction."
+  },
+  "simulation": {
+    "type": "PHYSICS_MECHANICS_FRICTION",
+    "rulesetIdentifier": "RULESET_NEWTON_COULOMB_FRICTION_V1",
+    "initialState": {
+      "surfaceId": "WOOD_SMOOTH",
+      "blockMassKg": 2.0,
+      "pushForceNewtons": 25.0,
+      "pushDurationSeconds": 0.4,
+      "gravityMps2": 9.8,
+      "currentPositionM": 0.0,
+      "currentVelocityMps": 0.0,
+      "isMoving": false,
+      "elapsedTimeSeconds": 0.0,
+      "trajectoryData": []
+    },
+    "availableApparatus": [
+      {
+        "id": "linear-track",
+        "name": "Horizontal Test Track with Modular Liners",
+        "nameInLanguage": {
+          "kn": "ರೇಖೀಯ ಪರೀಕ್ಷಾ ಟ್ರ್ಯಾಕ್"
+        },
+        "type": "TEST_TRACK",
+        "category": "TEST_SURFACE",
+        "unit": "meters",
+        "icon": "track"
+      },
+      {
+        "id": "sliding-block",
+        "name": "Calibrated Sliding Test Block (0.5 - 5 kg)",
+        "nameInLanguage": {
+          "kn": "ತೂಕದ ಬ್ಲಾಕ್"
+        },
+        "type": "SLIDER_BLOCK",
+        "category": "CONTAINER",
+        "capacity": 5,
+        "unit": "kg",
+        "icon": "cube"
+      },
+      {
+        "id": "spring-solenoid",
+        "name": "Adjustable Push Solenoid Impulser",
+        "nameInLanguage": {
+          "kn": "ಬಲ ಪ್ರಯೋಗ ಸಾಧನ"
+        },
+        "type": "FORCE_PLUNGER",
+        "category": "FORCE_APPLIER",
+        "unit": "N",
+        "icon": "zap"
+      },
+      {
+        "id": "photogate-sensors",
+        "name": "Laser Photogate Distance & Speed Sensors",
+        "nameInLanguage": {
+          "kn": "ಲೇಸರ್ ವೇಗ ಸಂವೇದಕ"
+        },
+        "type": "SPEEDOMETER",
+        "category": "SENSOR",
+        "unit": "m/s",
+        "icon": "timer"
+      }
+    ],
+    "approvedMaterials": [
+      {
+        "id": "ICE",
+        "name": "Polished Ice Surface",
+        "nameInLanguage": {
+          "kn": "ನಯವಾದ ಮಂಜುಗಡ್ಡೆ ಮೇಲ್ಮೈ"
+        },
+        "type": "SURFACE",
+        "properties": {
+          "mu_k": 0.05,
+          "mu_s": 0.08,
+          "texture": "Ultra Smooth",
+          "colorHex": "#E0F2FE"
+        },
+        "colorHex": "#E0F2FE",
+        "safetyNote": "Minimal resistance, very long stopping distance."
+      },
+      {
+        "id": "GLASS",
+        "name": "Tempered Glass Sheet",
+        "nameInLanguage": {
+          "kn": "ಗಾಜಿನ ಮೇಲ್ಮೈ"
+        },
+        "type": "SURFACE",
+        "properties": {
+          "mu_k": 0.15,
+          "mu_s": 0.20,
+          "texture": "Smooth",
+          "colorHex": "#BAE6FD"
+        },
+        "colorHex": "#BAE6FD"
+      },
+      {
+        "id": "WOOD_SMOOTH",
+        "name": "Polished Teak Wood Plank",
+        "nameInLanguage": {
+          "kn": "ನಯಗೊಳಿಸಿದ ಮರದ ಹಲಗೆ"
+        },
+        "type": "SURFACE",
+        "properties": {
+          "mu_k": 0.30,
+          "mu_s": 0.40,
+          "texture": "Medium",
+          "colorHex": "#FDE68A"
+        },
+        "colorHex": "#FDE68A"
+      },
+      {
+        "id": "SANDPAPER",
+        "name": "Coarse Sandpaper (Rough)",
+        "nameInLanguage": {
+          "kn": "ಒರಟು ಉಪ್ಪು ಕಾಗದ (ಸ್ಯಾಂಡ್ ಪೇಪರ್)"
+        },
+        "type": "SURFACE",
+        "properties": {
+          "mu_k": 0.70,
+          "mu_s": 0.85,
+          "texture": "Very Rough",
+          "colorHex": "#D97706"
+        },
+        "colorHex": "#D97706"
+      },
+      {
+        "id": "GRASS_FIELD",
+        "name": "Dense Field Grass Turf",
+        "nameInLanguage": {
+          "kn": "ಹೊಲದ ಹಸಿರು ಹುಲ್ಲು"
+        },
+        "type": "SURFACE",
+        "properties": {
+          "mu_k": 0.55,
+          "mu_s": 0.65,
+          "texture": "Uneven Fibrous",
+          "colorHex": "#86EFAC"
+        },
+        "colorHex": "#86EFAC"
+      }
+    ],
+    "permittedActions": [
+      "SET_SURFACE",
+      "SET_MASS",
+      "SET_PUSH_FORCE",
+      "LAUNCH_BLOCK",
+      "PAUSE_SIMULATION",
+      "RESET_TRACK"
+    ],
+    "canvasConfig": {
+      "aspectRatio": "16:9",
+      "coordinateSpace": {
+        "width": 800,
+        "height": 450
+      },
+      "theme": "PHYSICS_CANVAS_LIGHT"
+    }
+  },
+  "learningLifecycle": {
+    "mission": {
+      "title": "Why Don't Things Keep Rolling Forever?",
+      "context": "When a village boy kicks a football on the village playground grass, it rolls for a few metres and comes to a complete halt. But when the same ball is rolled on smooth polished marble, it travels much further! Aristotle believed that a continuous force was required to keep things moving. Galileo and Newton proved otherwise: objects in motion stay in motion unless acted upon by an external opposing force — Friction!",
+      "scientificQuestion": "How does surface texture alter the opposing friction force, and how can we mathematically predict exactly where a moving object will stop?",
+      "keyTerms": [
+        {
+          "term": "Friction (ಘರ್ಷಣೆ)",
+          "definition": "The contact force that resists relative motion between surfaces in contact."
+        },
+        {
+          "term": "Normal Force (ಲಂಬ ಬಲ, N)",
+          "definition": "The perpendicular support force exerted by a surface on an object resting upon it (N = m * g on a horizontal plane)."
+        },
+        {
+          "term": "Coefficient of Friction (mu)",
+          "definition": "A dimensionless number representing the roughness and microscopic interlocking of two touching materials."
+        },
+        {
+          "term": "Deceleration (ಋಣ ವೇಗೋತ್ಕರ್ಷ)",
+          "definition": "The rate at which an object slows down due to net opposing forces (a = -F_friction / m)."
+        }
+      ]
+    },
+    "prediction": {
+      "id": "pred-mass-friction",
+      "question": "Suppose a wooden block moves horizontally on a smooth track where kinetic friction is constant. Any launch push is removed so it enters unpowered coasting with an initial velocity of 4.0 m/s. If you repeat this test with mass doubled from 1 kg to 2 kg while keeping the initial velocity at exactly 4.0 m/s, what happens to the stopping distance?",
+      "questionInLanguage": {
+        "kn": "ಒಂದೇ ಸಮತಲ ಮರದ ಮೇಲ್ಮೈಯಲ್ಲಿ ತಳ್ಳುವ ಬಲವನ್ನು ತೆಗೆದುಹಾಕಿದ ನಂತರ ಬ್ಲಾಕ್ 4.0 m/s ಆರಂಭಿಕ ವೇಗದಲ್ಲಿ ಚಲಿಸುತ್ತದೆ. ಆರಂಭಿಕ ವೇಗವನ್ನು ನಿಖರವಾಗಿ 4.0 m/s ನಲ್ಲೇ ಇರಿಸಿ, ತೂಕವನ್ನು 1 kg ನಿಂದ 2 kg ಗೆ ದ್ವಿಗುಣಗೊಳಿಸಿದರೆ, ನಿಲ್ಲುವ ದೂರ ಏನಾಗುತ್ತದೆ?"
+      },
+      "context": "Controlled variables: (1) Surface and kinetic friction coefficient μk remain constant; (2) The track is strictly horizontal; (3) Pushing force is zero during coasting; (4) Initial velocity is held identical (v₀ = 4.0 m/s). Consider how normal force scales friction force (Fk = μk·m·g) and inertia scales deceleration (a = Fk/m).",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "The stopping distance remains unchanged: doubling mass doubles friction force, but also doubles inertia, so deceleration a = -μk·g is identical (d = v₀² / (2μk·g)).",
+          "textInLanguage": {
+            "kn": "ನಿಲ್ಲುವ ದೂರ ಬದಲಾಗುವುದಿಲ್ಲ: ತೂಕ ದ್ವಿಗುಣಗೊಂಡಾಗ ಘರ್ಷಣಾ ಬಲವೂ ದ್ವಿಗುಣಗೊಳ್ಳುತ್ತದೆ ಆದರೆ ಜಡತ್ವವೂ ದ್ವಿಗುಣಗೊಳ್ಳುವುದರಿಂದ ಮಂದತ್ವ a = -μk·g ಒಂದೇ ಆಗಿರುತ್ತದೆ (d = v₀² / (2μk·g))."
+          },
+          "isHypothesis": true
+        },
+        {
+          "id": "opt-2",
+          "text": "The heavier block stops in half the distance because it pushes harder into the track.",
+          "textInLanguage": {
+            "kn": "ಭಾರವಾದ ಬ್ಲಾಕ್ ಅರ್ಧ ದೂರದಲ್ಲೇ ನಿಲ್ಲುತ್ತದೆ."
+          },
+          "isHypothesis": false
+        },
+        {
+          "id": "opt-3",
+          "text": "The heavier block travels four times farther due to momentum.",
+          "textInLanguage": {
+            "kn": "ಹೆಚ್ಚು ಸಂವೇಗ ಇರುವುದರಿಂದ ನಾಲ್ಕು ಪಟ್ಟು ದೂರ ಚಲಿಸುತ್ತದೆ."
+          },
+          "isHypothesis": false
+        },
+        {
+          "id": "opt-4",
+          "text": "The block will never stop moving.",
+          "textInLanguage": {
+            "kn": "ಬ್ಲಾಕ್ ಎಂದಿಗೂ ನಿಲ್ಲುವುದಿಲ್ಲ."
+          },
+          "isHypothesis": false
+        }
+      ]
+    },
+    "observations": [
+      {
+        "id": "obs-1",
+        "prompt": "Select Ice Surface (mu_k = 0.05), Mass = 2kg, Force = 25N. Launch and record stopping distance.",
+        "promptInLanguage": {
+          "kn": "ಮಂಜುಗಡ್ಡೆ ಮೇಲ್ಮೈ (mu_k = 0.05), 2kg ತೂಕ, 25N ಬಲ ಆರಿಸಿ ಬ್ಲಾಕ್ ಉಡಾಯಿಸಿ ದೂರವನ್ನು ಅಳೆಯಿರಿ."
+        },
+        "expectedOutcome": "Block glides very far (> 15 m) due to minimal friction.",
+        "inputVariableKey": "ICE",
+        "dependentVariableKey": "STOPPING_DISTANCE"
+      },
+      {
+        "id": "obs-2",
+        "prompt": "Select Wood Surface (mu_k = 0.30), Mass = 2kg, Force = 25N. Launch and record stopping distance.",
+        "promptInLanguage": {
+          "kn": "ಮರದ ಮೇಲ್ಮೈ (mu_k = 0.30) ಆರಿಸಿ, ಅದೇ ಬಲದಲ್ಲಿ ಉಡಾಯಿಸಿ."
+        },
+        "expectedOutcome": "Block stops in moderate distance (~ 2.5 - 3 m).",
+        "inputVariableKey": "WOOD_SMOOTH",
+        "dependentVariableKey": "STOPPING_DISTANCE"
+      },
+      {
+        "id": "obs-3",
+        "prompt": "Select Sandpaper Surface (mu_k = 0.70), Mass = 2kg, Force = 25N. Launch and observe vector arrows.",
+        "promptInLanguage": {
+          "kn": "ಒರಟು ಸ್ಯಾಂಡ್ ಪೇಪರ್ (mu_k = 0.70) ಆರಿಸಿ, ವೆಕ್ಟರ್ ಬಾಣಗಳನ್ನು ಗಮನಿಸಿ."
+        },
+        "expectedOutcome": "Large backward red vector (F_friction = 13.7N). Block stops rapidly within 1.2 m.",
+        "inputVariableKey": "SANDPAPER",
+        "dependentVariableKey": "STOPPING_DISTANCE"
+      }
+    ],
+    "questions": [
+      {
+        "id": "q-1",
+        "prompt": "If a 2 kg block rests on a horizontal wooden surface with mu_k = 0.30 and g = 9.8 m/s^2, what is the kinetic friction force opposing motion?",
+        "promptInLanguage": {
+          "kn": "೨ ಕೆಜಿ ಬ್ಲಾಕ್ ಮರದ ಮೇಲ್ಮೈ ಮೇಲೆ (mu_k = 0.30, g = 9.8 m/s^2) ಚಲಿಸುವಾಗ ಎದುರಾಗುವ ಚಲನ ಘರ್ಷಣಾ ಬಲ ಎಷ್ಟು?"
+        },
+        "options": [
+          "5.88 N (F_friction = mu_k * m * g = 0.30 * 2.0 * 9.8 = 5.88 N)",
+          "19.6 N",
+          "0.60 N",
+          "58.8 N"
+        ],
+        "optionsInLanguage": {
+          "kn": [
+            "5.88 N (F_friction = mu_k * m * g = 0.30 * 2.0 * 9.8 = 5.88 N)",
+            "19.6 N",
+            "0.60 N",
+            "58.8 N"
+          ]
+        },
+        "correctOptionIndex": 0,
+        "explanation": "Normal force N = m * g = 2 * 9.8 = 19.6 N. Opposing kinetic friction is F_friction = mu_k * N = 0.30 * 19.6 N = 5.88 N.",
+        "explanationInLanguage": {
+          "kn": "ಲಂಬ ಬಲ N = m * g = 19.6 N. ಘರ್ಷಣಾ ಬಲ F = mu_k * N = 0.30 * 19.6 = 5.88 N."
+        }
+      },
+      {
+        "id": "q-2",
+        "prompt": "Why is rolling friction much smaller than sliding friction?",
+        "promptInLanguage": {
+          "kn": "ಉರುಳು ಘರ್ಷಣೆಯು ಜಾರು ಘರ್ಷಣೆಗಿಂತ ಏಕೆ ಬಹಳ ಕಡಿಮೆಯಾಗಿರುತ್ತದೆ?"
+        },
+        "options": [
+          "In rolling, the contact area between the wheel and surface at any instant is microscopic and there is no relative scraping of microscopic surface irregularities.",
+          "Rolling objects have no mass.",
+          "Gravity does not act on wheels.",
+          "Air blows the wheel forward."
+        ],
+        "optionsInLanguage": {
+          "kn": [
+            "ಉರುಳುವಾಗ ಸ್ಪರ್ಶ ಮೇಲ್ಮೈಯು ಜಾರದೆ ಕೇವಲ ಒಂದು ಬಿಂದುವಿನಲ್ಲಿ ಮಾತ್ರ ಸಂಪರ್ಕ ಹೊಂದುತ್ತದೆ; ಸೂಕ್ಷ್ಮ ಸಂದುಗಳ ಉಜ್ಜುವಿಕೆ ಇರುವುದಿಲ್ಲ.",
+            "ಉರುಳುವ ವಸ್ತುಗಳಿಗೆ ತೂಕ ಇರುವುದಿಲ್ಲ.",
+            "ಗುರುತ್ವಾಕರ್ಷಣೆ ಚಕ್ರಗಳ ಮೇಲೆ ಕೆಲಸ ಮಾಡುವುದಿಲ್ಲ.",
+            "ಗಾಳಿಯು ಚಕ್ರವನ್ನು ತಳ್ಳುತ್ತದೆ."
+          ]
+        },
+        "correctOptionIndex": 0,
+        "explanation": "Wheels convert sliding friction into rolling friction by continuously picking up contact points rather than dragging them across surface asperities.",
+        "explanationInLanguage": {
+          "kn": "ಚಕ್ರಗಳು ಮೇಲ್ಮೈಯನ್ನು ಉಜ್ಜಿಕೊಂಡು ಹೋಗುವ ಬದಲು ನಿರಂತರವಾಗಿ ಸಂಪರ್ಕ ಬಿಂದುವನ್ನು ಬದಲಾಯಿಸುತ್ತವೆ."
+        }
+      }
+    ],
+    "hints": [
+      {
+        "tier": 1,
+        "title": "Subtle Clue",
+        "text": "Notice the red arrow pointing backwards against motion. That arrow represents the contact friction force resisting movement.",
+        "textInLanguage": {
+          "kn": "ಚಲನೆಯ ವಿರುದ್ಧ ದಿಕ್ಕಿನಲ್ಲಿರುವ ಕೆಂಪು ಬಾಣವನ್ನು ಗಮನಿಸಿ. ಅದುವೇ ಘರ್ಷಣಾ ಬಲ."
+        }
+      },
+      {
+        "tier": 2,
+        "title": "Guiding Principle",
+        "text": "Friction depends on two things: the coefficient mu_k (how rough the surface is) and the normal force N = m * g (how hard the surfaces press against each other).",
+        "textInLanguage": {
+          "kn": "ಘರ್ಷಣೆಯು ಎರಡು ವಿಷಯಗಳ ಮೇಲೆ ಅವಲಂಬಿತವಾಗಿದೆ: ಮೇಲ್ಮೈಯ ಒರಟುತನ (mu_k) ಮತ್ತು ಲಂಬ ಬಲ (N = m * g)."
+        }
+      },
+      {
+        "tier": 3,
+        "title": "Mathematical Derivation",
+        "text": "From Newton's second law, net braking force is F = -mu_k * m * g. Dividing by m gives acceleration a = -mu_k * g. Since v^2 = v0^2 + 2*a*d, setting v = 0 gives stopping distance d = v0^2 / (2 * mu_k * g). Notice mass m cancelled out!",
+        "textInLanguage": {
+          "kn": "a = -mu_k * g ಆಗಿರುವುದರಿಂದ, ನಿಲ್ಲುವ ದೂರ d = v0^2 / (2 * mu_k * g). ಇಲ್ಲಿ ದ್ರವ್ಯರಾಶಿ m ರದ್ದಾಗುತ್ತದೆ!"
+        }
+      }
+    ],
+    "explanation": {
+      "title": "Newtonian Mechanics and Coulomb's Friction Model",
+      "summary": "Friction arises from microscopic surface irregularities (asperities) interlocking when two surfaces contact. Applying a normal force presses these asperities together, increasing the force needed to shear them apart.",
+      "summaryInLanguage": {
+        "kn": "ಎರಡು ಮೇಲ್ಮೈಗಳು ಪರಸ್ಪರ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಾಗ ಅವುಗಳ ಸೂಕ್ಷ್ಮ ಏರಿಳಿತಗಳು ಒಂದಕ್ಕೊಂದು ಸಿಲುಕಿಕೊಳ್ಳುವುದರಿಂದ ಘರ್ಷಣೆ ಉಂಟಾಗುತ್ತದೆ."
+      },
+      "corePrinciples": [
+        {
+          "title": "Amontons-Coulomb Friction Laws",
+          "statement": "F_friction = mu_k * N",
+          "detail": "Kinetic friction is directly proportional to normal load and independent of apparent contact area over wide ranges of practical velocity."
+        },
+        {
+          "title": "Deceleration Dynamics",
+          "statement": "a_decel = -mu_k * g",
+          "detail": "During unforced coasting on a horizontal plane, the object experiences a constant deceleration governed solely by surface roughness and gravity."
+        },
+        {
+          "title": "Stopping Distance Derivation & Mass Independence",
+          "statement": "d_stop = v0^2 / (2 * mu_k * g)",
+          "detail": "During horizontal coasting, net force is purely kinetic friction F_k = -mu_k * m * g. Newton's Second Law gives a = F_net / m = (-mu_k * m * g) / m = -mu_k * g (mass cancels out). Kinematic integration v^2 = v0^2 + 2*a*d with final speed v=0 yields d = v0^2 / (2 * mu_k * g). At constant launch velocity, stopping distance is completely independent of mass."
+        }
+      ],
+      "mathematicalModel": {
+        "formula": "F_net = F_push - F_friction, where F_friction = mu_k * m * g and d = v0^2 / (2 * mu_k * g)",
+        "variableDescriptions": {
+          "mu_k": "Coefficient of kinetic friction (dimensionless, 0 < mu_k <= 1.0).",
+          "N": "Normal force perpendicular to track surface (Newtons, N = m * g).",
+          "m": "Mass of the test body (kilograms).",
+          "g": "Gravitational field acceleration (9.8 m/s^2 on Earth).",
+          "d": "Total stopping distance from coast start to velocity zero (meters)."
+        },
+        "assumptionsAndLimitations": [
+          "Assumes constant normal force on rigid, flat horizontal ground.",
+          "Neglects aerodynamic drag at low velocities (< 10 m/s).",
+          "Assumes Coulomb friction model with constant mu_k independent of sliding speed."
+        ]
+      },
+      "everydayRelevance": "Vehicle tyres have deep treads to channel water away and maintain high rubber-to-asphalt friction. Worn, smooth tyres have a dangerously low friction coefficient on wet roads, causing vehicles to skid out of control.",
+      "ruralRelevance": "Village bullock carts have operated for centuries using ball bearings or grease (lubrication) on wooden axles to reduce axle friction, while their heavy wooden wheels are rimmed with iron bands to withstand abrasive ground friction without cracking."
+    },
+    "application": {
+      "scenarioTitle": "The Village Grain Cart on Muddy Monsoon Tracks",
+      "scenarioDescription": "During the Karnataka monsoons, an earthen road between the paddy fields and the grain storage depot turns into slick wet clay (mu_k drops to 0.12). A bullock cart carrying 400 kg of harvested paddy begins sliding downhill toward a drainage ditch.",
+      "scenarioDescriptionInLanguage": {
+        "kn": "ಮಳೆಗಾಲದಲ್ಲಿ ಮಣ್ಣಿನ ರಸ್ತೆ ಜಾರುವ ಕೆಸರಾದಾಗ (mu_k = 0.12) ಭತ್ತ ತುಂಬಿದ ಎತ್ತಿನ ಗಾಡಿ ಜಾರಲಾರಂಭಿಸುತ್ತದೆ. ಗಾಡಿಯನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ನಿಲ್ಲಿಸಲು ರೈತರು ಏನು ಮಾಡಬೇಕು?"
+      },
+      "problemStatement": "To stop the cart from skidding into the ditch, which immediate physical action will increase friction and bring the cart to a safe halt?",
+      "options": [
+        "Spread dry coarse sand or crushed gravel onto the slippery clay path (raising mu_k from 0.12 to 0.65+)",
+        "Pour more water onto the mud to make it wetter",
+        "Oil the cart wheel rims",
+        "Add more weight to the cart without changing the surface"
+      ],
+      "optionsInLanguage": {
+        "kn": [
+          "ಜಾರುವ ಕೆಸರಿನ ಮೇಲೆ ಒಣ ಮರಳು ಅಥವಾ ಜಲ್ಲಿಪುಡಿಯನ್ನು ಹರಡುವುದು (mu_k ಮೌಲ್ಯವನ್ನು 0.12 ರಿಂದ 0.65+ ಕ್ಕೆ ಹೆಚ್ಚಿಸುತ್ತದೆ)",
+          "ರಸ್ತೆಗೆ ಮತ್ತಷ್ಟು ನೀರು ಸುರಿಯುವುದು",
+          "ಚಕ್ರಗಳಿಗೆ ಎಣ್ಣೆ ಸವರುವುದು",
+          "ರಸ್ತೆಯನ್ನು ಬದಲಾಯಿಸದೆ ಮತ್ತಷ್ಟು ತೂಕ ಹೇರುವುದು"
+        ]
+      },
+      "correctOptionIndex": 0,
+      "practicalTakeaway": "Spreading granular sand/gravel introduces high-friction particulate asperities between wheel and soil, dramatically increasing the coefficient of friction mu_k and multiplying stopping force."
+    }
+  },
+  "offlineEligibility": true,
+  "contentVerificationStatus": "VERIFIED",
+  "createdAt": "2026-11-17T00:00:00.000Z",
+  "updatedAt": "2026-11-17T00:00:00.000Z"
+}

@@ -296,19 +296,29 @@ videoStreamRouter.get('/captions/:filename', (req: Request, res: Response) => {
   fs.createReadStream(captionFile).pipe(res);
 });
 
+function findTranscriptFile(targetName: string): string | null {
+  const candidates = [
+    path.resolve(process.cwd(), 'public/videos/transcripts', targetName),
+    path.resolve(process.cwd(), '../../public/videos/transcripts', targetName),
+    path.resolve(process.cwd(), '../web/public/videos/transcripts', targetName),
+    path.resolve(process.cwd(), 'apps/web/public/videos/transcripts', targetName),
+    path.resolve(__dirname, '../../../../../public/videos/transcripts', targetName),
+  ];
+  for (const c of candidates) {
+    if (fs.existsSync(c)) return c;
+  }
+  return null;
+}
+
 /**
  * GET /api/v1/videos/transcripts/:filename
  * Serves plain text transcript files.
  */
 videoStreamRouter.get('/transcripts/:filename', (req: Request, res: Response) => {
   const { filename } = req.params;
-  let transcriptFile = path.join(TRANSCRIPTS_STORAGE_DIR, filename);
+  const transcriptFile = findTranscriptFile(filename);
 
-  if (!fs.existsSync(transcriptFile)) {
-    transcriptFile = path.resolve('apps/web/public/videos/transcripts', filename);
-  }
-
-  if (!fs.existsSync(transcriptFile)) {
+  if (!transcriptFile) {
     res.status(404).send('Transcript file not found');
     return;
   }

@@ -36,6 +36,19 @@ describe('Feature Modules & Integration Registry (Stage 3 Expansion)', () => {
         allowedOrganisations: [],
       },
     });
+
+    await prisma.featureFlag.upsert({
+      where: { key: 'EXPERIMENT_STUDIO_ENABLED' },
+      update: { isEnabledGlobally: true },
+      create: {
+        key: 'EXPERIMENT_STUDIO_ENABLED',
+        description: 'Experiment Studio feature flag',
+        isEnabledGlobally: true,
+        enabledEnvironments: ['development', 'staging', 'production'],
+        allowedCategories: ['MIDDLE', 'SECONDARY'],
+        allowedOrganisations: [],
+      },
+    });
   });
 
   afterAll(async () => {
@@ -47,11 +60,12 @@ describe('Feature Modules & Integration Registry (Stage 3 Expansion)', () => {
 
     expect(res.status).toBe(200);
     expect(res.body.success).toBe(true);
-    expect(res.body.data.features).toHaveLength(2);
+    expect(res.body.data.features).toHaveLength(3);
 
     const featureIds = res.body.data.features.map((f: any) => f.featureId);
     expect(featureIds).toContain('STEM_LENS');
     expect(featureIds).toContain('VILLAGE_BUILDER');
+    expect(featureIds).toContain('EXPERIMENT_STUDIO');
 
     const lens = res.body.data.features.find((f: any) => f.featureId === 'STEM_LENS');
     expect(lens.name).toBe('STEM Lens');
