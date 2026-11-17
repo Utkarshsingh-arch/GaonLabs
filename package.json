@@ -12,6 +12,8 @@
     "test": "npm run --workspaces --if-present test",
     "lint": "npm run --workspaces --if-present lint",
     "dev": "npm run --workspace=@gaonlab/api dev",
+    "dev:web": "npm run --workspace=@gaonlab/web dev",
+    "dev:api": "npm run --workspace=@gaonlab/api dev",
     "start": "npm run --workspace=@gaonlab/api start",
     "db:up": "docker compose -f infrastructure/docker-compose.yml up -d",
     "db:down": "docker compose -f infrastructure/docker-compose.yml down",
