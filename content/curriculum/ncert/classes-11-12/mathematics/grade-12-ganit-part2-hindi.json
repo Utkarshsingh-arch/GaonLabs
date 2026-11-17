@@ -1,0 +1,91 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 12,
+    "levelId": "GRADE_12",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "hi",
+    "canonicalTitle": "Mathematics Part II - Class 12",
+    "titleInLanguage": "गणित भाग II - कक्षा 12 के लिए पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh2=0-7",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 7,
+      "title": "समाकलन",
+      "officialCode": "NCERT-G12-MATH-C07-HI",
+      "pageStart": 243,
+      "pageEnd": 318,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh2=7-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "समाकलनों के अनुप्रयोग",
+      "officialCode": "NCERT-G12-MATH-C08-HI",
+      "pageStart": 319,
+      "pageEnd": 342,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh2=8-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "अवकल समीकरण",
+      "officialCode": "NCERT-G12-MATH-C09-HI",
+      "pageStart": 343,
+      "pageEnd": 386,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh2=9-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "सदिश बीजगणित",
+      "officialCode": "NCERT-G12-MATH-C10-HI",
+      "pageStart": 387,
+      "pageEnd": 428,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh2=10-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "त्रिविमीय ज्यामिति",
+      "officialCode": "NCERT-G12-MATH-C11-HI",
+      "pageStart": 429,
+      "pageEnd": 468,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh2=11-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "रैखिक प्रोग्रामन",
+      "officialCode": "NCERT-G12-MATH-C12-HI",
+      "pageStart": 469,
+      "pageEnd": 498,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh2=12-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "प्रायिकता",
+      "officialCode": "NCERT-G12-MATH-C13-HI",
+      "pageStart": 499,
+      "pageEnd": 550,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh2=13-7",
+      "status": "VERIFIED"
+    }
+  ]
+}

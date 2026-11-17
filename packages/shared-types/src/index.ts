@@ -7,3 +7,7 @@ export * from './academic';
 export * from './integration';
 export * from './policy';
 export * from './events';
+export * from './feature-module';
+export * from './reader';
+export * from './topic';
+export * from './experiment';

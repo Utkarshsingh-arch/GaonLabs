@@ -1,0 +1,91 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 11,
+    "levelId": "GRADE_11",
+    "subjectId": "PHYSICS",
+    "subjectName": "Physics",
+    "stemPillar": "SCIENCE",
+    "medium": "hi",
+    "canonicalTitle": "Physics Part II - Class 11",
+    "titleInLanguage": "भौतिकी भाग II - कक्षा 11 के लिए पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?khph2=0-7",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 8,
+      "title": "ठोसों के यांत्रिक गुण",
+      "officialCode": "NCERT-G11-PHYS-C08-HI",
+      "pageStart": 183,
+      "pageEnd": 202,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khph2=8-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "तरलों के यांत्रिकी गुण",
+      "officialCode": "NCERT-G11-PHYS-C09-HI",
+      "pageStart": 203,
+      "pageEnd": 230,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khph2=9-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "द्रव्य के तापीय गुण",
+      "officialCode": "NCERT-G11-PHYS-C10-HI",
+      "pageStart": 231,
+      "pageEnd": 254,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khph2=10-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "ऊष्मागतिकी",
+      "officialCode": "NCERT-G11-PHYS-C11-HI",
+      "pageStart": 255,
+      "pageEnd": 274,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khph2=11-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "अणुगति सिद्धांत",
+      "officialCode": "NCERT-G11-PHYS-C12-HI",
+      "pageStart": 275,
+      "pageEnd": 292,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khph2=12-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "दोलन",
+      "officialCode": "NCERT-G11-PHYS-C13-HI",
+      "pageStart": 293,
+      "pageEnd": 318,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khph2=13-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "तरंगें",
+      "officialCode": "NCERT-G11-PHYS-C14-HI",
+      "pageStart": 319,
+      "pageEnd": 350,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khph2=14-7",
+      "status": "VERIFIED"
+    }
+  ]
+}

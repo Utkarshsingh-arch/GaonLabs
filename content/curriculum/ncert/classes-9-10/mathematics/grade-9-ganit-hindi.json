@@ -1,0 +1,136 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 9,
+    "levelId": "GRADE_9",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "hi",
+    "canonicalTitle": "Mathematics - Grade 9",
+    "titleInLanguage": "गणित - कक्षा 9 के लिए पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=0-12",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "संख्या पद्धति",
+      "officialCode": "NCERT-G9-MATH-C01-HI",
+      "pageStart": 1,
+      "pageEnd": 26,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=1-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "बहुपद",
+      "officialCode": "NCERT-G9-MATH-C02-HI",
+      "pageStart": 27,
+      "pageEnd": 50,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=2-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "निर्देशांक ज्यामिति",
+      "officialCode": "NCERT-G9-MATH-C03-HI",
+      "pageStart": 51,
+      "pageEnd": 66,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=3-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "दो चरों वाले रैखिक समीकरण",
+      "officialCode": "NCERT-G9-MATH-C04-HI",
+      "pageStart": 67,
+      "pageEnd": 78,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=4-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "यूक्लिड की ज्यामिति का परिचय",
+      "officialCode": "NCERT-G9-MATH-C05-HI",
+      "pageStart": 79,
+      "pageEnd": 90,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=5-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "रेखाएँ और कोण",
+      "officialCode": "NCERT-G9-MATH-C06-HI",
+      "pageStart": 91,
+      "pageEnd": 110,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=6-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "त्रिभुज",
+      "officialCode": "NCERT-G9-MATH-C07-HI",
+      "pageStart": 111,
+      "pageEnd": 138,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=7-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "चतुर्भुज",
+      "officialCode": "NCERT-G9-MATH-C08-HI",
+      "pageStart": 139,
+      "pageEnd": 156,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=8-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "वृत्त",
+      "officialCode": "NCERT-G9-MATH-C09-HI",
+      "pageStart": 157,
+      "pageEnd": 184,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=9-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "हीरोन का सूत्र",
+      "officialCode": "NCERT-G9-MATH-C10-HI",
+      "pageStart": 185,
+      "pageEnd": 196,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=10-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "पृष्ठीय क्षेत्रफल और आयतन",
+      "officialCode": "NCERT-G9-MATH-C11-HI",
+      "pageStart": 197,
+      "pageEnd": 222,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=11-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "सांख्यिकी",
+      "officialCode": "NCERT-G9-MATH-C12-HI",
+      "pageStart": 223,
+      "pageEnd": 248,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?ihmh1=12-12",
+      "status": "VERIFIED"
+    }
+  ]
+}

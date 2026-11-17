@@ -1,0 +1,82 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 12,
+    "levelId": "GRADE_12",
+    "subjectId": "PHYSICS",
+    "subjectName": "Physics",
+    "stemPillar": "SCIENCE",
+    "medium": "hi",
+    "canonicalTitle": "Physics Part II - Class 12",
+    "titleInLanguage": "भौतिकी भाग II - कक्षा 12 के लिए पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?lhph2=0-6",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 9,
+      "title": "किरण प्रकाशिकी एवं प्रकाशिक यंत्र",
+      "officialCode": "NCERT-G12-PHYS-C09-HI",
+      "pageStart": 277,
+      "pageEnd": 330,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph2=9-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "तरंग-प्रकाशिकी",
+      "officialCode": "NCERT-G12-PHYS-C10-HI",
+      "pageStart": 331,
+      "pageEnd": 368,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph2=10-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "विकिरण तथा द्रव्य की द्वैत प्रकृति",
+      "officialCode": "NCERT-G12-PHYS-C11-HI",
+      "pageStart": 369,
+      "pageEnd": 396,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph2=11-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "परमाणु",
+      "officialCode": "NCERT-G12-PHYS-C12-HI",
+      "pageStart": 397,
+      "pageEnd": 420,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph2=12-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "नाभिक",
+      "officialCode": "NCERT-G12-PHYS-C13-HI",
+      "pageStart": 421,
+      "pageEnd": 444,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph2=13-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "अर्धचालक इलेक्ट्रॉनिकी: पदार्थ, युक्तियाँ तथा सरल परिपथ",
+      "officialCode": "NCERT-G12-PHYS-C14-HI",
+      "pageStart": 445,
+      "pageEnd": 492,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhph2=14-6",
+      "status": "VERIFIED"
+    }
+  ]
+}

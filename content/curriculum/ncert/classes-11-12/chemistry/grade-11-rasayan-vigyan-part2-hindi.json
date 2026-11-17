@@ -1,0 +1,55 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 11,
+    "levelId": "GRADE_11",
+    "subjectId": "CHEMISTRY",
+    "subjectName": "Chemistry",
+    "stemPillar": "SCIENCE",
+    "medium": "hi",
+    "canonicalTitle": "Chemistry Part II - Class 11",
+    "titleInLanguage": "रसायन विज्ञान भाग II - कक्षा 11 के लिए पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?khch2=0-3",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 7,
+      "title": "अपचयोपचय अभिक्रियाएँ",
+      "officialCode": "NCERT-G11-CHEM-C07-HI",
+      "pageStart": 227,
+      "pageEnd": 252,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khch2=7-3",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "कार्बनिक रसायन: कुछ आधारभूत सिद्धांत तथा तकनीकें",
+      "officialCode": "NCERT-G11-CHEM-C08-HI",
+      "pageStart": 253,
+      "pageEnd": 304,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khch2=8-3",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "हाइड्रोकार्बन",
+      "officialCode": "NCERT-G11-CHEM-C09-HI",
+      "pageStart": 305,
+      "pageEnd": 350,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khch2=9-3",
+      "status": "VERIFIED"
+    }
+  ]
+}

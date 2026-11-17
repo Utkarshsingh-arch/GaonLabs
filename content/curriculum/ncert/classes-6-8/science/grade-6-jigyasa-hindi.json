@@ -1,0 +1,136 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 6,
+    "levelId": "GRADE_6",
+    "subjectId": "SCIENCE",
+    "subjectName": "Science",
+    "stemPillar": "SCIENCE",
+    "medium": "hi",
+    "canonicalTitle": "Curiosity - Science Grade 6",
+    "titleInLanguage": "जिज्ञासा - कक्षा 6 के लिए विज्ञान की पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=0-12",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "विज्ञान का अनूठा संसार",
+      "officialCode": "NCERT-G6-SCIE-C01-HI",
+      "pageStart": 1,
+      "pageEnd": 14,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=1-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "सजीव जगत में विविधता",
+      "officialCode": "NCERT-G6-SCIE-C02-HI",
+      "pageStart": 15,
+      "pageEnd": 30,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=2-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "उचित आहार: स्वस्थ शरीर का आधार",
+      "officialCode": "NCERT-G6-SCIE-C03-HI",
+      "pageStart": 31,
+      "pageEnd": 46,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=3-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "चुंबकों को जानें",
+      "officialCode": "NCERT-G6-SCIE-C04-HI",
+      "pageStart": 47,
+      "pageEnd": 60,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=4-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "लंबाई एवं गति का मापन",
+      "officialCode": "NCERT-G6-SCIE-C05-HI",
+      "pageStart": 61,
+      "pageEnd": 76,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=5-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "हमारे आस-पास की सामग्री",
+      "officialCode": "NCERT-G6-SCIE-C06-HI",
+      "pageStart": 77,
+      "pageEnd": 92,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=6-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "ताप एवं इसका मापन",
+      "officialCode": "NCERT-G6-SCIE-C07-HI",
+      "pageStart": 93,
+      "pageEnd": 108,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=7-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "जल की विभिन्न अवस्थाओं की यात्रा",
+      "officialCode": "NCERT-G6-SCIE-C08-HI",
+      "pageStart": 109,
+      "pageEnd": 124,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=8-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "दैनिक जीवन में पृथक्करण की विधियाँ",
+      "officialCode": "NCERT-G6-SCIE-C09-HI",
+      "pageStart": 125,
+      "pageEnd": 140,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=9-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "सजीव: विशेषताओं का अन्वेषण",
+      "officialCode": "NCERT-G6-SCIE-C10-HI",
+      "pageStart": 141,
+      "pageEnd": 156,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=10-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "प्रकृति के खजाने",
+      "officialCode": "NCERT-G6-SCIE-C11-HI",
+      "pageStart": 157,
+      "pageEnd": 172,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=11-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "पृथ्वी से परे",
+      "officialCode": "NCERT-G6-SCIE-C12-HI",
+      "pageStart": 173,
+      "pageEnd": 188,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?fhcu1=12-12",
+      "status": "VERIFIED"
+    }
+  ]
+}

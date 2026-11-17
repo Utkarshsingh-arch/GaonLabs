@@ -1,0 +1,145 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 7,
+    "levelId": "GRADE_7",
+    "subjectId": "SCIENCE",
+    "subjectName": "Science",
+    "stemPillar": "SCIENCE",
+    "medium": "en",
+    "canonicalTitle": "Science - Grade 7",
+    "titleInLanguage": "Science - Textbook for Class VII",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=0-13",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Nutrition in Plants",
+      "officialCode": "NCERT-G7-SCIE-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 14,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=1-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Nutrition in Animals",
+      "officialCode": "NCERT-G7-SCIE-C02-EN",
+      "pageStart": 15,
+      "pageEnd": 28,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=2-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Heat",
+      "officialCode": "NCERT-G7-SCIE-C03-EN",
+      "pageStart": 29,
+      "pageEnd": 44,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=3-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Acids, Bases and Salts",
+      "officialCode": "NCERT-G7-SCIE-C04-EN",
+      "pageStart": 45,
+      "pageEnd": 58,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=4-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Physical and Chemical Changes",
+      "officialCode": "NCERT-G7-SCIE-C05-EN",
+      "pageStart": 59,
+      "pageEnd": 72,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=5-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Respiration in Organisms",
+      "officialCode": "NCERT-G7-SCIE-C06-EN",
+      "pageStart": 73,
+      "pageEnd": 86,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=6-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Transportation in Animals and Plants",
+      "officialCode": "NCERT-G7-SCIE-C07-EN",
+      "pageStart": 87,
+      "pageEnd": 100,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=7-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Reproduction in Plants",
+      "officialCode": "NCERT-G7-SCIE-C08-EN",
+      "pageStart": 101,
+      "pageEnd": 116,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=8-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Motion and Time",
+      "officialCode": "NCERT-G7-SCIE-C09-EN",
+      "pageStart": 117,
+      "pageEnd": 130,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=9-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Electric Current and its Effects",
+      "officialCode": "NCERT-G7-SCIE-C10-EN",
+      "pageStart": 131,
+      "pageEnd": 146,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=10-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Light",
+      "officialCode": "NCERT-G7-SCIE-C11-EN",
+      "pageStart": 147,
+      "pageEnd": 164,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=11-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Forests: Our Lifeline",
+      "officialCode": "NCERT-G7-SCIE-C12-EN",
+      "pageStart": 165,
+      "pageEnd": 176,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=12-13",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "Wastewater Story",
+      "officialCode": "NCERT-G7-SCIE-C13-EN",
+      "pageStart": 177,
+      "pageEnd": 188,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?gesc1=13-13",
+      "status": "VERIFIED"
+    }
+  ]
+}

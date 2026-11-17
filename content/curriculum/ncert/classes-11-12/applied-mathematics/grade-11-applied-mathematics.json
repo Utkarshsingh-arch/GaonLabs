@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 11,
+    "levelId": "GRADE_11",
+    "subjectId": "APPLIED_MATHEMATICS",
+    "subjectName": "Applied Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "en",
+    "canonicalTitle": "Applied Mathematics - Class 11",
+    "titleInLanguage": "Applied Mathematics - CBSE Curriculum Guide (Code 241)",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://cbseacademic.nic.in",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "PENDING_VERIFICATION",
+    "isComplete": false,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Numbers, Quantification and Numerical Applications",
+      "officialCode": "NCERT-G11-APPL-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 30,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Algebra",
+      "officialCode": "NCERT-G11-APPL-C02-EN",
+      "pageStart": 31,
+      "pageEnd": 65,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Mathematical Reasoning",
+      "officialCode": "NCERT-G11-APPL-C03-EN",
+      "pageStart": 66,
+      "pageEnd": 90,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Calculus",
+      "officialCode": "NCERT-G11-APPL-C04-EN",
+      "pageStart": 91,
+      "pageEnd": 125,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Probability",
+      "officialCode": "NCERT-G11-APPL-C05-EN",
+      "pageStart": 126,
+      "pageEnd": 150,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Descriptive Statistics",
+      "officialCode": "NCERT-G11-APPL-C06-EN",
+      "pageStart": 151,
+      "pageEnd": 185,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Financial Mathematics",
+      "officialCode": "NCERT-G11-APPL-C07-EN",
+      "pageStart": 186,
+      "pageEnd": 220,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Coordinate Geometry",
+      "officialCode": "NCERT-G11-APPL-C08-EN",
+      "pageStart": 221,
+      "pageEnd": 250,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    }
+  ]
+}

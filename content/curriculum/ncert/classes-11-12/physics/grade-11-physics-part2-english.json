@@ -1,0 +1,91 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 11,
+    "levelId": "GRADE_11",
+    "subjectId": "PHYSICS",
+    "subjectName": "Physics",
+    "stemPillar": "SCIENCE",
+    "medium": "en",
+    "canonicalTitle": "Physics Part II - Class 11",
+    "titleInLanguage": "Physics Part II - Textbook for Class XI",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?keph2=0-7",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 8,
+      "title": "Mechanical Properties of Solids",
+      "officialCode": "NCERT-G11-PHYS-C08-EN",
+      "pageStart": 183,
+      "pageEnd": 202,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keph2=8-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Mechanical Properties of Fluids",
+      "officialCode": "NCERT-G11-PHYS-C09-EN",
+      "pageStart": 203,
+      "pageEnd": 230,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keph2=9-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Thermal Properties of Matter",
+      "officialCode": "NCERT-G11-PHYS-C10-EN",
+      "pageStart": 231,
+      "pageEnd": 254,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keph2=10-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Thermodynamics",
+      "officialCode": "NCERT-G11-PHYS-C11-EN",
+      "pageStart": 255,
+      "pageEnd": 274,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keph2=11-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Kinetic Theory",
+      "officialCode": "NCERT-G11-PHYS-C12-EN",
+      "pageStart": 275,
+      "pageEnd": 292,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keph2=12-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "Oscillations",
+      "officialCode": "NCERT-G11-PHYS-C13-EN",
+      "pageStart": 293,
+      "pageEnd": 318,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keph2=13-7",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "Waves",
+      "officialCode": "NCERT-G11-PHYS-C14-EN",
+      "pageStart": 319,
+      "pageEnd": 350,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?keph2=14-7",
+      "status": "VERIFIED"
+    }
+  ]
+}

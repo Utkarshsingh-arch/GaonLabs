@@ -1,0 +1,100 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 12,
+    "levelId": "GRADE_12",
+    "subjectId": "APPLIED_MATHEMATICS",
+    "subjectName": "Applied Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "en",
+    "canonicalTitle": "Applied Mathematics - Class 12",
+    "titleInLanguage": "Applied Mathematics - CBSE Curriculum Guide (Code 241)",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://cbseacademic.nic.in",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "PENDING_VERIFICATION",
+    "isComplete": false,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Numbers, Quantification and Numerical Applications",
+      "officialCode": "NCERT-G12-APPL-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 35,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Algebra",
+      "officialCode": "NCERT-G12-APPL-C02-EN",
+      "pageStart": 36,
+      "pageEnd": 70,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Calculus",
+      "officialCode": "NCERT-G12-APPL-C03-EN",
+      "pageStart": 71,
+      "pageEnd": 115,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Probability Distributions",
+      "officialCode": "NCERT-G12-APPL-C04-EN",
+      "pageStart": 116,
+      "pageEnd": 145,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Inferential Statistics",
+      "officialCode": "NCERT-G12-APPL-C05-EN",
+      "pageStart": 146,
+      "pageEnd": 175,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Index Numbers and Time Series",
+      "officialCode": "NCERT-G12-APPL-C06-EN",
+      "pageStart": 176,
+      "pageEnd": 210,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Financial Mathematics",
+      "officialCode": "NCERT-G12-APPL-C07-EN",
+      "pageStart": 211,
+      "pageEnd": 250,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Linear Programming",
+      "officialCode": "NCERT-G12-APPL-C08-EN",
+      "pageStart": 251,
+      "pageEnd": 280,
+      "sourceUrl": "https://cbseacademic.nic.in",
+      "status": "PENDING_VERIFICATION"
+    }
+  ]
+}

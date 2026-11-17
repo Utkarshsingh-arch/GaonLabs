@@ -1,0 +1,118 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 4,
+    "levelId": "GRADE_4",
+    "subjectId": "THE_WORLD_AROUND_US",
+    "subjectName": "The World Around Us",
+    "stemPillar": "SCIENCE",
+    "medium": "en",
+    "canonicalTitle": "Our Wondrous World - Grade 4",
+    "titleInLanguage": "Our Wondrous World - Textbook for Class 4",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?deww1=0-10",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Living Together",
+      "officialCode": "NCERT-G4-THE_-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 14,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?deww1=1-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Exploring Our Neighbourhood",
+      "officialCode": "NCERT-G4-THE_-C02-EN",
+      "pageStart": 15,
+      "pageEnd": 28,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?deww1=2-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Nature Trail",
+      "officialCode": "NCERT-G4-THE_-C03-EN",
+      "pageStart": 29,
+      "pageEnd": 42,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?deww1=3-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Growing up with Nature",
+      "officialCode": "NCERT-G4-THE_-C04-EN",
+      "pageStart": 43,
+      "pageEnd": 56,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?deww1=4-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Food for Health",
+      "officialCode": "NCERT-G4-THE_-C05-EN",
+      "pageStart": 57,
+      "pageEnd": 70,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?deww1=5-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Happy and Healthy Living",
+      "officialCode": "NCERT-G4-THE_-C06-EN",
+      "pageStart": 71,
+      "pageEnd": 84,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?deww1=6-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "How Things Work",
+      "officialCode": "NCERT-G4-THE_-C07-EN",
+      "pageStart": 85,
+      "pageEnd": 98,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?deww1=7-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "How Things Are Made",
+      "officialCode": "NCERT-G4-THE_-C08-EN",
+      "pageStart": 99,
+      "pageEnd": 112,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?deww1=8-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Different Lands, Different Lives",
+      "officialCode": "NCERT-G4-THE_-C09-EN",
+      "pageStart": 113,
+      "pageEnd": 126,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?deww1=9-10",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Our Sky",
+      "officialCode": "NCERT-G4-THE_-C10-EN",
+      "pageStart": 127,
+      "pageEnd": 140,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?deww1=10-10",
+      "status": "VERIFIED"
+    }
+  ]
+}

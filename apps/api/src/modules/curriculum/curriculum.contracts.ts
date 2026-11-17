@@ -144,6 +144,14 @@ export interface StudentCurriculumResolution {
   subjects: ResolvedSubjectCurriculum[];
 }
 
+export interface NationalCatalogueFilter {
+  grade?: number;
+  levelId?: string;
+  subjectId?: string;
+  medium?: string;
+  status?: CurriculumStatus;
+}
+
 export interface ICurriculumService {
   createBoard(input: CreateEducationBoardInput): Promise<any>;
   createFramework(input: CreateFrameworkInput): Promise<any>;
@@ -158,6 +166,9 @@ export interface ICurriculumService {
   getGradesForBoard(boardId: string): Promise<any[]>;
   getSubjectsForGrade(gradeId: string, boardId?: string): Promise<any[]>;
   getCatalogue(filter?: CurriculumCatalogueFilter): Promise<any[]>;
+  getPublishers(): Promise<any[]>;
+  getTextbooks(filter?: { publisherId?: string; grade?: number; levelId?: string; subjectId?: string; medium?: string; status?: CurriculumStatus }): Promise<any[]>;
+  getNationalCatalogue(filter?: NationalCatalogueFilter): Promise<any[]>;
   getTextbookById(textbookId: string): Promise<any>;
   getChaptersByEditionId(editionId: string): Promise<any[]>;
   getCurriculumTree(boardId: string, levelId: string, academicYear: string, medium: string): Promise<any>;

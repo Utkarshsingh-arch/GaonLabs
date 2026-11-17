@@ -1,0 +1,199 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 11,
+    "levelId": "GRADE_11",
+    "subjectId": "BIOLOGY",
+    "subjectName": "Biology",
+    "stemPillar": "SCIENCE",
+    "medium": "hi",
+    "canonicalTitle": "Biology - Class 11",
+    "titleInLanguage": "जीव विज्ञान - कक्षा 11 के लिए पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=0-19",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "जीव जगत",
+      "officialCode": "NCERT-G11-BIOL-C01-HI",
+      "pageStart": 1,
+      "pageEnd": 14,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=1-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "जीव जगत का वर्गीकरण",
+      "officialCode": "NCERT-G11-BIOL-C02-HI",
+      "pageStart": 15,
+      "pageEnd": 28,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=2-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "वनस्पति जगत",
+      "officialCode": "NCERT-G11-BIOL-C03-HI",
+      "pageStart": 29,
+      "pageEnd": 44,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=3-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "प्राणि जगत",
+      "officialCode": "NCERT-G11-BIOL-C04-HI",
+      "pageStart": 45,
+      "pageEnd": 64,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=4-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "पुष्पी पादपों की आकारिकी",
+      "officialCode": "NCERT-G11-BIOL-C05-HI",
+      "pageStart": 65,
+      "pageEnd": 84,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=5-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "पुष्पी पादपों का शारीर",
+      "officialCode": "NCERT-G11-BIOL-C06-HI",
+      "pageStart": 85,
+      "pageEnd": 100,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=6-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "प्राणियों में संरचनात्मक संगठन",
+      "officialCode": "NCERT-G11-BIOL-C07-HI",
+      "pageStart": 101,
+      "pageEnd": 116,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=7-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "कोशिका: जीवन की इकाई",
+      "officialCode": "NCERT-G11-BIOL-C08-HI",
+      "pageStart": 117,
+      "pageEnd": 142,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=8-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "जैव अणु",
+      "officialCode": "NCERT-G11-BIOL-C09-HI",
+      "pageStart": 143,
+      "pageEnd": 162,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=9-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "कोशिका चक्र और कोशिका विभाजन",
+      "officialCode": "NCERT-G11-BIOL-C10-HI",
+      "pageStart": 163,
+      "pageEnd": 174,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=10-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "उच्च पादपों में प्रकाश-संश्लेषण",
+      "officialCode": "NCERT-G11-BIOL-C11-HI",
+      "pageStart": 175,
+      "pageEnd": 196,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=11-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "पादप में श्वसन",
+      "officialCode": "NCERT-G11-BIOL-C12-HI",
+      "pageStart": 197,
+      "pageEnd": 212,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=12-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "पादप वृद्धि एवं परिवर्धन",
+      "officialCode": "NCERT-G11-BIOL-C13-HI",
+      "pageStart": 213,
+      "pageEnd": 228,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=13-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "श्वसन और गैसों का विनिमय",
+      "officialCode": "NCERT-G11-BIOL-C14-HI",
+      "pageStart": 229,
+      "pageEnd": 242,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=14-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 15,
+      "title": "शरीर द्रव तथा परिसंचरण",
+      "officialCode": "NCERT-G11-BIOL-C15-HI",
+      "pageStart": 243,
+      "pageEnd": 260,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=15-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 16,
+      "title": "उत्सर्जी उत्पाद एवं उनका निष्कासन",
+      "officialCode": "NCERT-G11-BIOL-C16-HI",
+      "pageStart": 261,
+      "pageEnd": 276,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=16-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 17,
+      "title": "गमन एवं संचलन",
+      "officialCode": "NCERT-G11-BIOL-C17-HI",
+      "pageStart": 277,
+      "pageEnd": 292,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=17-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 18,
+      "title": "तंत्रिकीय नियंत्रण एवं समन्वय",
+      "officialCode": "NCERT-G11-BIOL-C18-HI",
+      "pageStart": 293,
+      "pageEnd": 310,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=18-19",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 19,
+      "title": "रासायनिक समन्वय तथा एकीकरण",
+      "officialCode": "NCERT-G11-BIOL-C19-HI",
+      "pageStart": 311,
+      "pageEnd": 328,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?khbo1=19-19",
+      "status": "VERIFIED"
+    }
+  ]
+}

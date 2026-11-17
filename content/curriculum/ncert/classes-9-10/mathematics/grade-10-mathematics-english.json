@@ -1,0 +1,154 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 10,
+    "levelId": "GRADE_10",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "en",
+    "canonicalTitle": "Mathematics - Grade 10",
+    "titleInLanguage": "Mathematics - Textbook for Class X",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=0-14",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Real Numbers",
+      "officialCode": "NCERT-G10-MATH-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 18,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=1-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Polynomials",
+      "officialCode": "NCERT-G10-MATH-C02-EN",
+      "pageStart": 19,
+      "pageEnd": 36,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=2-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Pair of Linear Equations in Two Variables",
+      "officialCode": "NCERT-G10-MATH-C03-EN",
+      "pageStart": 37,
+      "pageEnd": 68,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=3-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Quadratic Equations",
+      "officialCode": "NCERT-G10-MATH-C04-EN",
+      "pageStart": 69,
+      "pageEnd": 90,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=4-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Arithmetic Progressions",
+      "officialCode": "NCERT-G10-MATH-C05-EN",
+      "pageStart": 91,
+      "pageEnd": 116,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=5-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Triangles",
+      "officialCode": "NCERT-G10-MATH-C06-EN",
+      "pageStart": 117,
+      "pageEnd": 152,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=6-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Coordinate Geometry",
+      "officialCode": "NCERT-G10-MATH-C07-EN",
+      "pageStart": 153,
+      "pageEnd": 172,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=7-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Introduction to Trigonometry",
+      "officialCode": "NCERT-G10-MATH-C08-EN",
+      "pageStart": 173,
+      "pageEnd": 194,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=8-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Some Applications of Trigonometry",
+      "officialCode": "NCERT-G10-MATH-C09-EN",
+      "pageStart": 195,
+      "pageEnd": 208,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=9-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Circles",
+      "officialCode": "NCERT-G10-MATH-C10-EN",
+      "pageStart": 209,
+      "pageEnd": 222,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=10-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Areas Related to Circles",
+      "officialCode": "NCERT-G10-MATH-C11-EN",
+      "pageStart": 223,
+      "pageEnd": 238,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=11-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Surface Areas and Volumes",
+      "officialCode": "NCERT-G10-MATH-C12-EN",
+      "pageStart": 239,
+      "pageEnd": 258,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=12-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "Statistics",
+      "officialCode": "NCERT-G10-MATH-C13-EN",
+      "pageStart": 259,
+      "pageEnd": 288,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=13-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "Probability",
+      "officialCode": "NCERT-G10-MATH-C14-EN",
+      "pageStart": 289,
+      "pageEnd": 312,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?jemh1=14-14",
+      "status": "VERIFIED"
+    }
+  ]
+}

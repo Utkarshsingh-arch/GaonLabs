@@ -1,0 +1,82 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 12,
+    "levelId": "GRADE_12",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "hi",
+    "canonicalTitle": "Mathematics Part I - Class 12",
+    "titleInLanguage": "गणित भाग I - कक्षा 12 के लिए पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh1=0-6",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "संबंध एवं फलन",
+      "officialCode": "NCERT-G12-MATH-C01-HI",
+      "pageStart": 1,
+      "pageEnd": 32,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh1=1-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "प्रतिलोम त्रिकोणमितीय फलन",
+      "officialCode": "NCERT-G12-MATH-C02-HI",
+      "pageStart": 33,
+      "pageEnd": 56,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh1=2-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "आव्यूह",
+      "officialCode": "NCERT-G12-MATH-C03-HI",
+      "pageStart": 57,
+      "pageEnd": 100,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh1=3-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "सारणिक",
+      "officialCode": "NCERT-G12-MATH-C04-HI",
+      "pageStart": 101,
+      "pageEnd": 148,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh1=4-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "सांतत्य तथा अवकलनीयता",
+      "officialCode": "NCERT-G12-MATH-C05-HI",
+      "pageStart": 149,
+      "pageEnd": 194,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh1=5-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "अवकलज के अनुप्रयोग",
+      "officialCode": "NCERT-G12-MATH-C06-HI",
+      "pageStart": 195,
+      "pageEnd": 242,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhmh1=6-6",
+      "status": "VERIFIED"
+    }
+  ]
+}

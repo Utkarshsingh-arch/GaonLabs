@@ -1,0 +1,82 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 12,
+    "levelId": "GRADE_12",
+    "subjectId": "PHYSICS",
+    "subjectName": "Physics",
+    "stemPillar": "SCIENCE",
+    "medium": "en",
+    "canonicalTitle": "Physics Part II - Class 12",
+    "titleInLanguage": "Physics Part II - Textbook for Class XII",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?leph2=0-6",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 9,
+      "title": "Ray Optics and Optical Instruments",
+      "officialCode": "NCERT-G12-PHYS-C09-EN",
+      "pageStart": 277,
+      "pageEnd": 330,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph2=9-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Wave Optics",
+      "officialCode": "NCERT-G12-PHYS-C10-EN",
+      "pageStart": 331,
+      "pageEnd": 368,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph2=10-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Dual Nature of Radiation and Matter",
+      "officialCode": "NCERT-G12-PHYS-C11-EN",
+      "pageStart": 369,
+      "pageEnd": 396,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph2=11-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Atoms",
+      "officialCode": "NCERT-G12-PHYS-C12-EN",
+      "pageStart": 397,
+      "pageEnd": 420,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph2=12-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "Nuclei",
+      "officialCode": "NCERT-G12-PHYS-C13-EN",
+      "pageStart": 421,
+      "pageEnd": 444,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph2=13-6",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "Semiconductor Electronics: Materials, Devices and Simple Circuits",
+      "officialCode": "NCERT-G12-PHYS-C14-EN",
+      "pageStart": 445,
+      "pageEnd": 492,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?leph2=14-6",
+      "status": "VERIFIED"
+    }
+  ]
+}

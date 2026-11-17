@@ -1,0 +1,154 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 4,
+    "levelId": "GRADE_4",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "en",
+    "canonicalTitle": "Maths Mela - Mathematics Grade 4",
+    "titleInLanguage": "Maths Mela - Textbook of Mathematics for Class 4",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=0-14",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Shapes Around Us",
+      "officialCode": "NCERT-G4-MATH-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 12,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=1-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Hide and Seek",
+      "officialCode": "NCERT-G4-MATH-C02-EN",
+      "pageStart": 13,
+      "pageEnd": 24,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=2-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Patterns Around Us",
+      "officialCode": "NCERT-G4-MATH-C03-EN",
+      "pageStart": 25,
+      "pageEnd": 38,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=3-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Thousands Around Us",
+      "officialCode": "NCERT-G4-MATH-C04-EN",
+      "pageStart": 39,
+      "pageEnd": 52,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=4-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Sharing and Measuring",
+      "officialCode": "NCERT-G4-MATH-C05-EN",
+      "pageStart": 53,
+      "pageEnd": 66,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=5-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Measuring Length",
+      "officialCode": "NCERT-G4-MATH-C06-EN",
+      "pageStart": 67,
+      "pageEnd": 78,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=6-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "The Cleanest Village",
+      "officialCode": "NCERT-G4-MATH-C07-EN",
+      "pageStart": 79,
+      "pageEnd": 90,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=7-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Weigh It, Pour It",
+      "officialCode": "NCERT-G4-MATH-C08-EN",
+      "pageStart": 91,
+      "pageEnd": 104,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=8-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Equal Groups",
+      "officialCode": "NCERT-G4-MATH-C09-EN",
+      "pageStart": 105,
+      "pageEnd": 116,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=9-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Elephants, Tigers, and Leopards",
+      "officialCode": "NCERT-G4-MATH-C10-EN",
+      "pageStart": 117,
+      "pageEnd": 128,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=10-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Fun with Symmetry",
+      "officialCode": "NCERT-G4-MATH-C11-EN",
+      "pageStart": 129,
+      "pageEnd": 140,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=11-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Ticking Clocks and Turning Calendar",
+      "officialCode": "NCERT-G4-MATH-C12-EN",
+      "pageStart": 141,
+      "pageEnd": 154,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=12-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 13,
+      "title": "The Transport Museum",
+      "officialCode": "NCERT-G4-MATH-C13-EN",
+      "pageStart": 155,
+      "pageEnd": 166,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=13-14",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 14,
+      "title": "Data Handling",
+      "officialCode": "NCERT-G4-MATH-C14-EN",
+      "pageStart": 167,
+      "pageEnd": 180,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?demm1=14-14",
+      "status": "VERIFIED"
+    }
+  ]
+}

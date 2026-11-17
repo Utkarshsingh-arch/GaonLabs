@@ -8,19 +8,31 @@ import { notFoundHandler } from './middleware/notFound';
 import { errorHandler } from './middleware/errorHandler';
 import { logger } from './shared/utils/logger';
 import { curriculumRouter } from './modules/curriculum';
+import { featureCatalogueRouter } from './modules/feature-catalogue';
+import { stemLensRouter } from './modules/stem-lens';
+import { villageBuilderRouter } from './modules/village-builder';
+import { readerRouter } from './modules/reader';
+import { topicRouter, videoStreamRouter } from './modules/topics/topic.router';
+import { experimentStudioRouter } from './modules/experiment-studio';
 
 export function createApp(): Express {
   const app = express();
 
   // Security & Ingress
-  app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: false,
+      crossOriginResourcePolicy: { policy: 'cross-origin' },
+    })
+  );
   app.use(
     cors({
       origin: env.CORS_ORIGIN.split(',').map((o) => o.trim()),
       credentials: true,
     })
   );
-  app.use(express.json({ limit: '2mb' }));
+  app.use(express.json({ limit: '50mb' }));
+  app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
   // Request tracing
   app.use((req: Request, _res: Response, next) => {
@@ -72,6 +84,8 @@ export function createApp(): Express {
       version: SYSTEM_CONSTANTS.VERSION,
       database: {
         isHealthy: true,
+        activeSource: dbStatus.activeSource,
+        primaryHealthy: dbStatus.primaryHealthy,
         latencyMs: dbStatus.latencyMs,
       },
       timestamp: new Date().toISOString(),
@@ -93,6 +107,13 @@ export function createApp(): Express {
 
   // Domain API Routes
   app.use('/api/v1/curriculum', curriculumRouter);
+  app.use('/api/v1/features', featureCatalogueRouter);
+  app.use('/api/v1/stem-lens', stemLensRouter);
+  app.use('/api/v1/village-builder', villageBuilderRouter);
+  app.use('/api/v1/reader', readerRouter);
+  app.use('/api/v1/topics', topicRouter);
+  app.use('/api/v1/videos', videoStreamRouter);
+  app.use('/api/v1/experiments', experimentStudioRouter);
 
   // 404 & Global Error Handling
   app.use(notFoundHandler);

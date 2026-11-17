@@ -1,0 +1,136 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 9,
+    "levelId": "GRADE_9",
+    "subjectId": "MATHEMATICS",
+    "subjectName": "Mathematics",
+    "stemPillar": "MATHEMATICS",
+    "medium": "en",
+    "canonicalTitle": "Mathematics - Grade 9",
+    "titleInLanguage": "Mathematics - Textbook for Class IX",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=0-12",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Number Systems",
+      "officialCode": "NCERT-G9-MATH-C01-EN",
+      "pageStart": 1,
+      "pageEnd": 26,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=1-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Polynomials",
+      "officialCode": "NCERT-G9-MATH-C02-EN",
+      "pageStart": 27,
+      "pageEnd": 50,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=2-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Coordinate Geometry",
+      "officialCode": "NCERT-G9-MATH-C03-EN",
+      "pageStart": 51,
+      "pageEnd": 66,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=3-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Linear Equations in Two Variables",
+      "officialCode": "NCERT-G9-MATH-C04-EN",
+      "pageStart": 67,
+      "pageEnd": 78,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=4-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Introduction to Euclid’s Geometry",
+      "officialCode": "NCERT-G9-MATH-C05-EN",
+      "pageStart": 79,
+      "pageEnd": 90,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=5-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Lines and Angles",
+      "officialCode": "NCERT-G9-MATH-C06-EN",
+      "pageStart": 91,
+      "pageEnd": 110,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=6-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Triangles",
+      "officialCode": "NCERT-G9-MATH-C07-EN",
+      "pageStart": 111,
+      "pageEnd": 138,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=7-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Quadrilaterals",
+      "officialCode": "NCERT-G9-MATH-C08-EN",
+      "pageStart": 139,
+      "pageEnd": 156,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=8-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "Circles",
+      "officialCode": "NCERT-G9-MATH-C09-EN",
+      "pageStart": 157,
+      "pageEnd": 184,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=9-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "Heron’s Formula",
+      "officialCode": "NCERT-G9-MATH-C10-EN",
+      "pageStart": 185,
+      "pageEnd": 196,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=10-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 11,
+      "title": "Surface Areas and Volumes",
+      "officialCode": "NCERT-G9-MATH-C11-EN",
+      "pageStart": 197,
+      "pageEnd": 222,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=11-12",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 12,
+      "title": "Statistics",
+      "officialCode": "NCERT-G9-MATH-C12-EN",
+      "pageStart": 223,
+      "pageEnd": 248,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?iemh1=12-12",
+      "status": "VERIFIED"
+    }
+  ]
+}

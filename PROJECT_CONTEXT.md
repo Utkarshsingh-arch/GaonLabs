@@ -303,6 +303,7 @@ stateDiagram-v2
 | **Architecture & Specifications** | **Stage 0** | **COMPLETED** | System architecture, product specs, base roadmap, and repo context created. |
 | **Monolith Scaffolding & DB Models** | **Stage 1 & 1.1** | **COMPLETED** | Monorepo setup, Express backend, Prisma schema (33 models, 18 enums), 3 migrations applied, 22 unit/integration tests passing, guardian verification decoupled & gated, `/health` & `/ready` operational. |
 | **Curriculum Database Ingestion** | **Stage 2** | **COMPLETED** | NCERT & KTBS 2026–27 verified ingestion (18 manifests, 12 textbooks, 18 editions, 261 chapters in English & Kannada for Grades 6–8 Math & Science), idempotent CLI seeder with `--dry-run`, 6 read-only REST API endpoints, full student resolution pipeline, 32 tests passing. |
+| **Complete NCERT STEM Catalogue (Classes 1–12)** | **Stage 2.1** | **COMPLETED** | Expanded national reference STEM catalogue covering Classes 1 to 12 (101 manifests total: 83 NCERT, 12 KTBS, 6 CBSE; 57 canonical textbooks, 98 editions, 1,161 chapters [1,042 verified, 45 pending, 74 archived]; English, Hindi, Urdu, Kannada; multi-volume Physics, Chemistry, Math for Classes 11–12; Computer Science, IP, Biotechnology; national catalogue REST APIs; 47 tests passing). |
 | **Identity & Guardian Consent Engine** | Stage 3 | Planned Next | Minor registration, guardian consent tokens, auth sessions, `LearnerContext` generator. |
 | **Government Integration Gateway** | Stage 4 | Pending Stage 3 | Adapters for Bhashini, DIKSHA, and UDISE+ with full mock/cached resilience. |
 | **Offline Sync Outbox & Client PWA** | Stage 5 | Pending Stage 4 | Workbox service worker, Dexie outbox, client-server sync protocol. |
@@ -354,9 +355,62 @@ npm start
 - `GET http://localhost:4000/api/v1/curriculum/boards/:boardId/grades`: Grades per education board.
 - `GET http://localhost:4000/api/v1/curriculum/grades/:gradeId/subjects`: Subjects per grade.
 - `GET http://localhost:4000/api/v1/curriculum/catalogue`: Filterable catalogue.
+- `GET http://localhost:4000/api/v1/curriculum/publishers`: Registered textbook publishers.
+- `GET http://localhost:4000/api/v1/curriculum/national-catalogue`: NCERT National Reference Catalogue query.
 - `GET http://localhost:4000/api/v1/curriculum/textbooks/:textbookId`: Canonical textbook details and editions.
 - `GET http://localhost:4000/api/v1/curriculum/editions/:editionId/chapters`: Chapters ordered for edition.
 - `GET http://localhost:4000/api/v1/curriculum/resolve/:learnerId`: Resolved curriculum for active student enrollment.
+- `GET http://localhost:4000/api/v1/features/catalogue`: Dynamic feature module catalogue with flag evaluation.
+- `GET http://localhost:4000/api/v1/stem-lens/status`: STEM Lens module status (Owned by Robin).
+- `GET http://localhost:4000/api/v1/village-builder/status`: STEM Village Builder module status (Owned by Prashanth).
+- `GET http://localhost:4000/api/v1/reader/books/:editionId`: Smart Reader book details and chapter access modes.
+- `GET http://localhost:4000/api/v1/reader/chapters/:chapterId`: Chapter reading resource and permission verification.
+- `GET http://localhost:4000/api/v1/reader/documents/:documentId`: In-app authorized companion document metadata.
+- `GET http://localhost:4000/api/v1/reader/chapters/:chapterId/explanations`: Pre-compiled STEM contextual visual explanations.
+- `POST http://localhost:4000/api/v1/reader/explain`: Natural language keyword matcher for selected text visual explanations.
+- `GET http://localhost:4000/api/v1/topics`: Filterable Explore STEM topics catalogue across Classes 1–12.
+- `GET http://localhost:4000/api/v1/topics/:topicId`: Full topic metadata, lesson overview, and official references.
+- `GET http://localhost:4000/api/v1/topics/:topicId/lesson`: Structured original in-app STEM lesson content.
+- `GET http://localhost:4000/api/v1/topics/:topicId/video`: Narrated video metadata, duration, resolution, and caption tracks.
+- `GET http://localhost:4000/api/v1/topics/:topicId/resources`: Official curriculum links (NCERT/KTBS) and fair-use disclaimers.
+- `POST http://localhost:4000/api/v1/topics/match`: Smart Reader selection matcher connecting textbook text to topics and videos.
+- `GET http://localhost:4000/api/v1/videos/stream/:videoId`: HTTP 206 partial content MP4 video streaming.
+- `GET http://localhost:4000/api/v1/videos/captions/:filename`: WebVTT closed caption serving.
+- `GET http://localhost:4000/api/v1/experiments`: Filterable Experiment Studio catalogue (simulation type, board, grade).
+- `GET http://localhost:4000/api/v1/experiments/:id/manifest`: Full validated declarative JSON experiment manifest.
+- `POST http://localhost:4000/api/v1/experiments/:id/sessions`: Start or resume interactive experiment session.
+- `GET http://localhost:4000/api/v1/experiments/sessions/:id`: Retrieve session state, observations, and manifest.
+- `POST http://localhost:4000/api/v1/experiments/sessions/:id/events`: Ingest lifecycle events with idempotent clientEventId deduplication.
+- `POST http://localhost:4000/api/v1/experiments/sessions/:id/complete`: Finalize experiment session with score and reflection notes.
+
+### 10.3 Student Frontend Applications (`apps/web`)
+- **Framework**: React 18, Vite 5, TypeScript 5, Tailwind CSS 3, Lucide React icons.
+- **Port**: `http://localhost:5173` (with `/api` proxied to port 4000).
+- **Core Pages Implemented**:
+  1. Welcome Landing Page (`/`): Product intro, quick 1-click demo launchers, feature pillars.
+  2. Student Registration (`/signup`): Board, grade, medium, subjects, live curriculum availability check.
+  3. Student Sign In (`/signin`): Demo credential selector, autofill, isolated session management.
+  4. Personalised Dashboard (`/app/dashboard`): Student academic pill card, language switcher, My Learning overview, prescribed textbooks, verified chapter outline, and prominent Explore STEM featured banners.
+  5. Textbook Library (`/app/library`): Filterable curriculum catalogue by board, class, subject, and medium with live search.
+  6. Book Details & Chapter Index (`/app/books/:editionId`): Complete verified chapter outline, official portal references, and in-app authorized guide launchers.
+  7. In-App Smart PDF Reader (`/app/reader/:documentId`): Offline-ready Mozilla PDF.js v3.11.174 reader, responsive single/multi-column canvas, text selection, persistent IndexedDB highlights/underlines/notes, and floating toolbar.
+  8. Contextual STEM Explainer: Interactive visual physics simulations (`MICROSCOPIC_INTERLOCKING`, `BLOCK_PULL`, `FRICTION_SURFACES`, `BALL_BEARING`) and seamless linkage to Explore STEM concept videos.
+  9. Explore STEM Hub (`/app/explore`): Multi-subject, multi-standard (Classes 1–12) topic catalogue with instant search, format toggles, and availability badges.
+  10. Topic Detail Page (`/app/explore/topics/:topicId`): Three-tier exploration (Read In-App Lesson, Watch Narrated Animated Video, and Official Curriculum Resources).
+  11. STEM Lens Placeholder (`/app/stem-lens`): Integration contract placeholder owned by Robin.
+  12. STEM Village Builder Placeholder (`/app/village-builder`): Integration contract placeholder owned by Prashanth.
+  13. Experiment Studio Catalogue (`/app/experiments`): Filterable experiential STEM lab directory supporting CBSE, KTBS, Chemistry, and Physics.
+  14. Experiment Specification (`/app/experiments/:id`): Overview, safety validation, learning objectives, apparatus breakdown.
+  15. Interactive Virtual Lab Bench (`/app/experiments/:id/lab`): Live laboratory simulation hosting Chemistry (pH equilibria, indicators, color transitions) and Physics (Coulomb friction, force vectors, live velocity-time graph) across a 7-phase inquiry lifecycle.
+- **Automated Video Generation Engine (`tools/video-generator/`)**:
+  - Python 3.12, Pillow, gTTS, offline synthetic fallback, imageio-ffmpeg.
+  - Multi-script font support: Noto Sans (Latin) and Noto Sans Kannada for high-fidelity regional language typography.
+  - Generates HD 1280x720 24fps H.264/AAC MP4 animations and WebVTT captions via memory-efficient raw stdin piping.
+  - Pre-generated demonstration topics: Class 3 Mathematics (*Fun with Shapes* - English), Class 8 Science (*Exploring Forces & Friction* - English), Class 11 Physics (*Rotational Motion* - English), and Class 7 Science (*ಉಷ್ಣ ಮತ್ತು ತಾಪಮಾನ ವರ್ಗಾವಣೆ / Heat Transfer* - Kannada).
+- **Demo Fixtures**:
+  - Asha Rao: CBSE Class 8, English Medium (*Ganita Prakash 8*, *Curiosity 8*, authorized *Forces and Friction* learning guide, Class 8 friction explainer video).
+  - Kavya Hegde: Karnataka State Board Class 7, Kannada Medium (*KTBS Ganitha 7*, *KTBS Vijnana 7*, verified KTBS chapter sequences, authentic Kannada lessons for Heat, Integers, Motion & Time, Lines & Angles, and 104-second animated Kannada Heat video with subtitles).
+- **Integration Reference**: See [`docs/FEATURE_MODULE_INTEGRATION.md`](file:///home/utkarsh-singh-parihar/Projects/GaonLabs/docs/FEATURE_MODULE_INTEGRATION.md), [`docs/SMART_READER.md`](file:///home/utkarsh-singh-parihar/Projects/GaonLabs/docs/SMART_READER.md), and [`docs/EXPLORE_STEM_AND_VIDEO_ENGINE.md`](file:///home/utkarsh-singh-parihar/Projects/GaonLabs/docs/EXPLORE_STEM_AND_VIDEO_ENGINE.md).
 
 ---
 

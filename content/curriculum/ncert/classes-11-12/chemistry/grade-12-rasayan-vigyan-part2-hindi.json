@@ -1,0 +1,73 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 12,
+    "levelId": "GRADE_12",
+    "subjectId": "CHEMISTRY",
+    "subjectName": "Chemistry",
+    "stemPillar": "SCIENCE",
+    "medium": "hi",
+    "canonicalTitle": "Chemistry Part II - Class 12",
+    "titleInLanguage": "रसायन विज्ञान भाग II - कक्षा 12 के लिए पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?lhch2=0-5",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 6,
+      "title": "हैलोऐल्केन तथा हैलोऐरीन",
+      "officialCode": "NCERT-G12-CHEM-C06-HI",
+      "pageStart": 163,
+      "pageEnd": 196,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhch2=6-5",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "ऐल्कोहॉल, फ़ीनॉल एवं ईथर",
+      "officialCode": "NCERT-G12-CHEM-C07-HI",
+      "pageStart": 197,
+      "pageEnd": 230,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhch2=7-5",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "ऐल्डिहाइड, कीटोन एवं कार्बोक्सिलिक अम्ल",
+      "officialCode": "NCERT-G12-CHEM-C08-HI",
+      "pageStart": 231,
+      "pageEnd": 268,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhch2=8-5",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 9,
+      "title": "ऐमीन",
+      "officialCode": "NCERT-G12-CHEM-C09-HI",
+      "pageStart": 269,
+      "pageEnd": 296,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhch2=9-5",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 10,
+      "title": "जैव-अणु",
+      "officialCode": "NCERT-G12-CHEM-C10-HI",
+      "pageStart": 297,
+      "pageEnd": 326,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhch2=10-5",
+      "status": "VERIFIED"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "manifest": {
+    "frameworkId": "NCF_SE_2023",
+    "frameworkName": "National Curriculum Framework for School Education 2023",
+    "authorityId": "NCERT",
+    "authorityName": "National Council of Educational Research and Training",
+    "publisherId": "NCERT_PUB",
+    "publisherName": "NCERT Publication Division",
+    "academicYear": "2026-2027",
+    "grade": 12,
+    "levelId": "GRADE_12",
+    "subjectId": "CHEMISTRY",
+    "subjectName": "Chemistry",
+    "stemPillar": "SCIENCE",
+    "medium": "hi",
+    "canonicalTitle": "Chemistry Part I - Class 12",
+    "titleInLanguage": "रसायन विज्ञान भाग I - कक्षा 12 के लिए पाठ्यपुस्तक",
+    "editionNumber": 1,
+    "publicationYear": 2024,
+    "sourceUrl": "https://ncert.nic.in/textbook.php?lhch1=0-5",
+    "retrievalDate": "2026-11-17",
+    "verificationStatus": "VERIFIED",
+    "isComplete": true,
+    "licenceNotes": "NCERT Copyright © National Council of Educational Research and Training. GaonLab indexes chapter metadata and official reading links. Full digital content is accessible via the NCERT official portal."
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "विलयन",
+      "officialCode": "NCERT-G12-CHEM-C01-HI",
+      "pageStart": 1,
+      "pageEnd": 32,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhch1=1-5",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "विद्युतरसायन",
+      "officialCode": "NCERT-G12-CHEM-C02-HI",
+      "pageStart": 33,
+      "pageEnd": 64,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhch1=2-5",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "रासायनिक बलगतिकी",
+      "officialCode": "NCERT-G12-CHEM-C03-HI",
+      "pageStart": 65,
+      "pageEnd": 96,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhch1=3-5",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "d- एवं f-ब्लॉक के तत्त्व",
+      "officialCode": "NCERT-G12-CHEM-C04-HI",
+      "pageStart": 97,
+      "pageEnd": 130,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhch1=4-5",
+      "status": "VERIFIED"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "उपसहसंयोजन यौगिक",
+      "officialCode": "NCERT-G12-CHEM-C05-HI",
+      "pageStart": 131,
+      "pageEnd": 162,
+      "sourceUrl": "https://ncert.nic.in/textbook.php?lhch1=5-5",
+      "status": "VERIFIED"
+    }
+  ]
+}
