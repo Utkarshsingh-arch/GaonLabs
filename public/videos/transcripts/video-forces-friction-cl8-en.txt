@@ -1,0 +1,17 @@
+[00:00:00.000] A Moving Object on a Surface
+Imagine kicking a football or pushing a heavy wooden crate across a surface. An applied force sets the object into forward motion with velocity v.
+
+[00:00:11.880] The Surfaces in Contact
+Even surfaces that feel smooth to our touch are covered with countless microscopic hills, valleys, and irregularities when viewed closely.
+
+[00:00:23.110] Friction Force Appears
+As the surfaces slide against each other, these microscopic irregularities interlock. This creates a resistive contact force called friction, which acts in the exact opposite direction to motion.
+
+[00:00:38.150] Deceleration and Stopping
+Because the friction force opposes motion, it continuously reduces the object's speed. The crate gradually slows down until its velocity reaches zero, bringing it to a complete halt.
+
+[00:00:52.670] Lubrication & Rolling
+Applying oil or grease introduces a fluid layer that keeps solid ridges from touching, while wheels replace sliding with much smaller rolling friction. This is why farmers grease bullock cart axles!
+
+[00:01:07.330] Conclusion
+Friction is a necessary contact force. It lets us walk and brake safely, while smart engineering helps us minimize unwanted wear and energy loss.

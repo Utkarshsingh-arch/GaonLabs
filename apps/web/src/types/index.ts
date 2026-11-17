@@ -109,3 +109,5 @@ export interface FeatureModuleItem {
     businessLogicImplemented: boolean;
   };
 }
+
+export * from '@gaonlab/shared-types';

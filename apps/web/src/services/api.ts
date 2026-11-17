@@ -4,7 +4,17 @@ import {
   SubjectItem,
   CatalogueEntry,
   ChapterItem,
-  FeatureModuleItem
+  FeatureModuleItem,
+  ReaderBookDetail,
+  ReaderChapterDetail,
+  ReaderDocument,
+  ContextualExplanation,
+  TopicSummary,
+  TopicDetail,
+  TopicLesson,
+  TopicVideoMeta,
+  TopicOfficialResource,
+  TopicMatchResult,
 } from '../types';
 
 const API_BASE = '/api/v1/curriculum';
@@ -190,6 +200,185 @@ export async function fetchVillageBuilderStatus(): Promise<ApiResult<any>> {
   }
 }
 
+export async function fetchBookDetails(editionId: string): Promise<ApiResult<ReaderBookDetail | null>> {
+  try {
+    const res = await fetch(`/api/v1/reader/books/${editionId}`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn('API Error, using fallback book details:', err.message);
+    return {
+      isFallback: true,
+      error: err.message,
+      data: {
+        editionId,
+        textbookId: 'sample-book',
+        title: editionId.includes('ktbs') ? 'ವಿಜ್ಞಾನ — Class 7 Science' : 'Curiosity — Science (Class 8)',
+        grade: editionId.includes('ktbs') ? 7 : 8,
+        subject: 'Science',
+        publisher: editionId.includes('ktbs') ? 'Karnataka Textbook Society' : 'NCERT',
+        language: editionId.includes('ktbs') ? 'kn' : 'en',
+        academicYear: '2026-2027',
+        officialSourceUrl: editionId.includes('ktbs') ? 'https://ktbs.kar.nic.in/' : 'https://ncert.nic.in/textbook.php',
+        copyrightNotice: 'Official education board notice prohibits unapproved third-party reproduction. GaonLab provides authorized companion guides and links to official portals.',
+        defaultAccessMode: 'OFFICIAL_EXTERNAL_ONLY',
+        chapters: [
+          {
+            chapterId: 'ch-friction',
+            chapterNumber: 9,
+            title: 'Forces, Friction and Motion',
+            accessMode: 'IN_APP_AUTHORIZED',
+            documentId: 'doc-forces-and-friction-cl8',
+            officialSourceUrl: 'https://ncert.nic.in/textbook.php',
+            hasExplanations: true,
+            pageCount: 3,
+          },
+          {
+            chapterId: 'ch-sound',
+            chapterNumber: 10,
+            title: 'Sound & Vibration',
+            accessMode: 'OFFICIAL_EXTERNAL_ONLY',
+            officialSourceUrl: 'https://ncert.nic.in/textbook.php',
+            hasExplanations: false,
+          },
+        ],
+        totalChapters: 2,
+      },
+    };
+  }
+}
+
+export async function fetchChapterDetails(chapterId: string): Promise<ApiResult<ReaderChapterDetail | null>> {
+  try {
+    const res = await fetch(`/api/v1/reader/chapters/${chapterId}`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    return {
+      isFallback: true,
+      error: err.message,
+      data: {
+        chapterId,
+        chapterNumber: 9,
+        title: 'Forces and Friction',
+        accessMode: 'IN_APP_AUTHORIZED',
+        documentId: 'doc-forces-and-friction-cl8',
+        hasExplanations: true,
+        pageCount: 3,
+      },
+    };
+  }
+}
+
+export async function fetchReaderDocument(documentId: string): Promise<ApiResult<ReaderDocument | null>> {
+  try {
+    const res = await fetch(`/api/v1/reader/documents/${documentId}`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    return {
+      isFallback: true,
+      error: err.message,
+      data: {
+        documentId,
+        title: 'Forces and Friction — A Visual Learning Guide',
+        topic: 'Forces, Motion and Surface Interactions',
+        grade: 8,
+        subject: 'Science',
+        language: 'en',
+        accessMode: 'IN_APP_AUTHORIZED',
+        url: '/documents/forces-and-friction-guide.pdf',
+        totalEstimatedPages: 3,
+        license: 'Creative Commons Attribution-NonCommercial 4.0 International',
+        author: 'GaonLab Curriculum & Pedagogy Laboratory',
+        copyrightNotice: 'Original educational material authored by GaonLab.',
+        isCompanionGuide: true,
+      },
+    };
+  }
+}
+
+export async function fetchChapterExplanations(chapterId: string): Promise<ApiResult<ContextualExplanation[]>> {
+  try {
+    const res = await fetch(`/api/v1/reader/chapters/${chapterId}/explanations`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data || [], isFallback: false };
+  } catch (err: any) {
+    return { isFallback: true, error: err.message, data: [] };
+  }
+}
+
+export async function explainSelectedText(payload: {
+  selectedText: string;
+  chapterId?: string;
+  documentId?: string;
+  grade?: number;
+}): Promise<ApiResult<ContextualExplanation | null>> {
+  try {
+    const res = await fetch('/api/v1/reader/explain', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    // Client-side fallback keyword matching
+    const txt = payload.selectedText.toLowerCase();
+    let animType: any = 'MICROSCOPIC_INTERLOCKING';
+    let title = 'Friction: The Opposing Contact Force';
+    let explanation =
+      'Friction is a contact force that always opposes relative motion between two touching surfaces. Whenever an object slides or rolls, friction acts in the exact opposite direction to the movement.';
+    let example =
+      'Rubbing your palms together warms them up because mechanical work against friction is transformed into heat energy.';
+
+    if (txt.includes('stop') || txt.includes('slow') || txt.includes('ball')) {
+      animType = 'BLOCK_PULL';
+      title = "Newton's First Law & Deceleration by Friction";
+      explanation =
+        'According to Newton\'s First Law of Motion, a moving object continues moving at constant speed unless acted upon by an external net force. The rough grass exerts an opposing contact force that decelerates the ball until it stops.';
+      example =
+        'A bicycle coasting on a dirt path stops when you stop pedaling due to road friction and air resistance.';
+    } else if (txt.includes('smooth') || txt.includes('lubric') || txt.includes('oil') || txt.includes('grease')) {
+      animType = 'FRICTION_SURFACES';
+      title = 'Surface Smoothness & Fluid Lubrication';
+      explanation =
+        'Smooth surfaces have significantly smaller microscopic irregularities. When lubricants like oil or grease are applied, they form a thin fluid cushion that separates the surfaces.';
+      example =
+        'Adding fine talcum powder to a carrom board fills the microscopic grooves so striker coins glide with effortless speed.';
+    } else if (txt.includes('rolling') || txt.includes('wheel') || txt.includes('bearing') || txt.includes('cart')) {
+      animType = 'BALL_BEARING';
+      title = 'Rolling Friction & Wheel Mechanics';
+      explanation =
+        'Rolling friction is vastly smaller than sliding friction because the contact area is microscopic and constantly shifting without scraping.';
+      example =
+        'Bullock carts and village water well pulleys use round wheels and lubricated ball bearings so heavy loads can be moved with minimal force.';
+    }
+
+    return {
+      isFallback: true,
+      data: {
+        explanationId: 'client-fallback-exp',
+        topic: 'Forces & Friction',
+        grade: 8,
+        medium: 'en',
+        matchKeywords: ['friction', 'force', 'surface'],
+        title,
+        shortExplanation: explanation,
+        visualType: 'ANIMATED_CANVAS',
+        visualData: { animationType: animType, caption: 'Interactive physics visualization model' },
+        realWorldExample: example,
+        companionTip: 'Observe objects in your village to see friction at work!',
+      },
+    };
+  }
+}
+
 // Fallback fixture only used when backend is offline
 function getDemoCatalogueFallback(boardId?: string, grade?: number, medium?: string): CatalogueEntry[] {
   if (boardId === 'CBSE' && grade === 8) {
@@ -364,3 +553,255 @@ function getDemoCatalogueFallback(boardId?: string, grade?: number, medium?: str
 
   return [];
 }
+
+// -------------------------------------------------------------
+// Explore STEM & Topics API
+// -------------------------------------------------------------
+
+export interface TopicFilterParams {
+  boardId?: string;
+  grade?: number;
+  subjectId?: string;
+  medium?: string;
+  academicYear?: string;
+}
+
+export async function fetchExploreTopics(filters: TopicFilterParams = {}): Promise<ApiResult<TopicSummary[]>> {
+  const query = new URLSearchParams();
+  if (filters.boardId) query.set('boardId', filters.boardId);
+  if (filters.grade) query.set('grade', filters.grade.toString());
+  if (filters.subjectId) query.set('subjectId', filters.subjectId);
+  if (filters.medium) query.set('medium', filters.medium);
+  if (filters.academicYear) query.set('academicYear', filters.academicYear);
+
+  try {
+    const res = await fetch(`/api/v1/topics?${query.toString()}`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data || [], isFallback: false };
+  } catch (err: any) {
+    console.warn('API Error fetching topics, using fallback:', err.message);
+    return {
+      isFallback: true,
+      error: err.message,
+      data: getFallbackTopics(filters),
+    };
+  }
+}
+
+export async function fetchTopicDetail(topicId: string): Promise<ApiResult<TopicDetail | null>> {
+  try {
+    const res = await fetch(`/api/v1/topics/${topicId}`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn(`API Error fetching topic ${topicId}:`, err.message);
+    const fallback = getFallbackTopics().find((t) => t.topicId === topicId);
+    return {
+      isFallback: true,
+      error: err.message,
+      data: fallback ? (fallback as any) : null,
+    };
+  }
+}
+
+export async function fetchTopicLesson(topicId: string, lang?: string): Promise<ApiResult<TopicLesson | null>> {
+  try {
+    const q = lang ? `?lang=${encodeURIComponent(lang)}` : '';
+    const res = await fetch(`/api/v1/topics/${topicId}/lesson${q}`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn(`API Error fetching topic lesson ${topicId}:`, err.message);
+    return { isFallback: true, error: err.message, data: null };
+  }
+}
+
+export async function fetchTopicVideo(topicId: string, lang?: string): Promise<ApiResult<TopicVideoMeta | null>> {
+  try {
+    const q = lang ? `?lang=${encodeURIComponent(lang)}` : '';
+    const res = await fetch(`/api/v1/topics/${topicId}/video${q}`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn(`API Error fetching topic video ${topicId}:`, err.message);
+    return { isFallback: true, error: err.message, data: null };
+  }
+}
+
+export async function fetchTopicResources(topicId: string): Promise<ApiResult<TopicOfficialResource[]>> {
+  try {
+    const res = await fetch(`/api/v1/topics/${topicId}/resources`);
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data || [], isFallback: false };
+  } catch (err: any) {
+    console.warn(`API Error fetching topic resources ${topicId}:`, err.message);
+    return { isFallback: true, error: err.message, data: [] };
+  }
+}
+
+export async function matchTopicExplanation(payload: {
+  selectedText: string;
+  chapterId?: string;
+  documentId?: string;
+  grade?: number;
+  medium?: string;
+}): Promise<ApiResult<TopicMatchResult | null>> {
+  try {
+    const res = await fetch('/api/v1/topics/match', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return { data: json.data, isFallback: false };
+  } catch (err: any) {
+    console.warn('API Error matching topic explanation:', err.message);
+    return { isFallback: true, error: err.message, data: null };
+  }
+}
+
+function getFallbackTopics(filters: TopicFilterParams = {}): TopicSummary[] {
+  const all: TopicSummary[] = [
+    {
+      topicId: 'topic-shapes-class3',
+      title: 'Fun with Shapes',
+      shortDescription: 'Explore 2D and 3D shapes, circles, triangles, and real-world village structures.',
+      boardId: 'CBSE',
+      frameworkId: 'NCF_SE_2023',
+      grade: 3,
+      subjectId: 'MATHEMATICS',
+      subjectName: 'Mathematics',
+      stemPillar: 'MATHEMATICS',
+      medium: 'en',
+      academicYear: '2026-2027',
+      accessMode: 'GAONLAB_FULL',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: true,
+      hasOfficialResources: true,
+    },
+    {
+      topicId: 'topic-forces-friction-cl8',
+      title: 'Exploring Forces and Friction',
+      shortDescription: 'Understand friction as an opposing contact force caused by microscopic surface irregularities.',
+      boardId: 'CBSE',
+      frameworkId: 'NCF_SE_2023',
+      grade: 8,
+      subjectId: 'SCI',
+      subjectName: 'Science',
+      stemPillar: 'SCIENCE',
+      medium: 'en',
+      academicYear: '2026-2027',
+      accessMode: 'GAONLAB_FULL',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: true,
+      hasOfficialResources: true,
+    },
+    {
+      topicId: 'topic-rotational-motion-cl11',
+      title: 'Rotational Motion and Moment of Inertia',
+      shortDescription: 'Rigid body dynamics, torque as cross product, moment of inertia, and angular momentum.',
+      boardId: 'CBSE',
+      frameworkId: 'NCF_SE_2023',
+      grade: 11,
+      subjectId: 'PHYSICS',
+      subjectName: 'Physics',
+      stemPillar: 'PHYSICS',
+      medium: 'en',
+      academicYear: '2026-2027',
+      accessMode: 'GAONLAB_FULL',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: true,
+      hasOfficialResources: true,
+    },
+    {
+      topicId: 'topic-ktbs-heat-cl7-kn',
+      title: 'ಉಷ್ಣ ಮತ್ತು ತಾಪಮಾನ ವರ್ಗಾವಣೆ (Heat Transfer)',
+      shortDescription: 'ಘನ, ದ್ರವ ಮತ್ತು ಅನಿಲಗಳಲ್ಲಿ ಉಷ್ಣ ವರ್ಗಾವಣೆಯ 3 ವಿಧಾನಗಳು: ವಹನ, ಸಂವಹನ ಮತ್ತು ವಿಕಿರಣ.',
+      boardId: 'KARNATAKA_STATE_BOARD',
+      frameworkId: 'KTBS_KSEAB_2024',
+      grade: 7,
+      subjectId: 'SCI',
+      subjectName: 'ವಿಜ್ಞಾನ (Science)',
+      stemPillar: 'SCIENCE',
+      medium: 'kn',
+      academicYear: '2026-2027',
+      accessMode: 'GAONLAB_FULL',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: true,
+      hasOfficialResources: true,
+    },
+    {
+      topicId: 'topic-ktbs-integers-cl7-kn',
+      title: 'ಪೂರ್ಣಾಂಕಗಳು ಮತ್ತು ಅವುಗಳ ಸಂಕಲನ (Integers and Operations)',
+      shortDescription: 'ಸಂಖ್ಯಾ ರೇಖೆ, ಧನ ಮತ್ತು ಋಣ ಪೂರ್ಣಾಂಕಗಳ ಸಂಕಲನ, ವ್ಯವಕಲನ ಮತ್ತು ದೈನಂದಿನ ಲೆಕ್ಕಾಚಾರ.',
+      boardId: 'KARNATAKA_STATE_BOARD',
+      frameworkId: 'KTBS_KSEAB_2024',
+      grade: 7,
+      subjectId: 'MATH',
+      subjectName: 'ಗಣಿತ (Mathematics)',
+      stemPillar: 'MATHEMATICS',
+      medium: 'kn',
+      academicYear: '2026-2027',
+      accessMode: 'HYBRID',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: false,
+      hasOfficialResources: true,
+    },
+    {
+      topicId: 'topic-ktbs-motion-time-cl7-kn',
+      title: 'ಚಲನೆ ಮತ್ತು ಕಾಲ (Motion and Time)',
+      shortDescription: 'ಸರಳ ರೇಖಾಗತ ಚಲನೆ, ಆವರ್ತಕ ಚಲನೆ, ಸರಳ ಲೋಲಕ ಮತ್ತು ವೇಗದ ಮಾಪನ.',
+      boardId: 'KARNATAKA_STATE_BOARD',
+      frameworkId: 'KTBS_KSEAB_2024',
+      grade: 7,
+      subjectId: 'SCI',
+      subjectName: 'ವಿಜ್ಞಾನ (Science)',
+      stemPillar: 'SCIENCE',
+      medium: 'kn',
+      academicYear: '2026-2027',
+      accessMode: 'HYBRID',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: false,
+      hasOfficialResources: true,
+    },
+    {
+      topicId: 'topic-ktbs-lines-angles-cl7-kn',
+      title: 'ರೇಖೆಗಳು ಮತ್ತು ಕೋನಗಳು (Lines and Angles)',
+      shortDescription: 'ಪೂರಕ ಕೋನಗಳು, ಪರಿಪೂರಕ ಕೋನಗಳು, ಶೃಂಗಾಭಿಮುಖ ಕೋನಗಳು ಮತ್ತು ತ್ರಿಭುಜಗಳ ಗುಣಲಕ್ಷಣಗಳು.',
+      boardId: 'KARNATAKA_STATE_BOARD',
+      frameworkId: 'KTBS_KSEAB_2024',
+      grade: 7,
+      subjectId: 'MATH',
+      subjectName: 'ಗಣಿತ (Mathematics)',
+      stemPillar: 'MATHEMATICS',
+      medium: 'kn',
+      academicYear: '2026-2027',
+      accessMode: 'HYBRID',
+      contentStatus: 'PUBLISHED',
+      hasLesson: true,
+      hasVideo: false,
+      hasOfficialResources: true,
+    },
+  ];
+
+  return all.filter((t) => {
+    if (filters.grade && t.grade !== filters.grade) return false;
+    if (filters.subjectId && t.subjectId !== filters.subjectId) return false;
+    if (filters.boardId && t.boardId !== filters.boardId) return false;
+    if (filters.medium && t.medium !== filters.medium) return false;
+    return true;
+  });
+}
+
