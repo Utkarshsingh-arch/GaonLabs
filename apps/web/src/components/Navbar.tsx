@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Sparkles, LogOut, ArrowRight, Compass, FlaskConical, BookOpen } from 'lucide-react';
-import { getDemoSession, clearDemoSession } from '../services/demoAuth';
+import { getDemoSession } from '../services/demoAuth';
+import { signOutStudent } from '../services/supabase';
 
 export const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -16,8 +17,8 @@ export const Navbar: React.FC = () => {
     return null;
   }
 
-  const handleLogout = () => {
-    clearDemoSession();
+  const handleLogout = async () => {
+    await signOutStudent();
     navigate('/');
   };
 

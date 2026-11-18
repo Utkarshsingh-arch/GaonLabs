@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import {
   UserPlus,
-  Info,
   AlertTriangle,
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  Eye,
+  EyeOff
 } from 'lucide-react';
 import { fetchBoards, fetchCatalogue } from '../services/api';
-import { setDemoSession } from '../services/demoAuth';
-import { EducationBoard, DemoProfile } from '../types';
+import { signUpStudent } from '../services/supabase';
+import { EducationBoard } from '../types';
 
 export const SignupPage: React.FC = () => {
   const navigate = useNavigate();
@@ -17,9 +18,17 @@ export const SignupPage: React.FC = () => {
   // Form states
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [boardId, setBoardId] = useState<string>('CBSE');
   const [grade, setGrade] = useState<number>(8);
   const [medium, setMedium] = useState<string>('en');
+
+  // Loading & error states
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   // Curriculum availability checking
   const [boards, setBoards] = useState<EducationBoard[]>([]);
@@ -66,25 +75,49 @@ export const SignupPage: React.FC = () => {
       });
   }, [boardId, grade, medium]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setAuthError(null);
+    setSuccessMessage(null);
+
+    if (password.length < 6) {
+      setAuthError('Password must be at least 6 characters long.');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setAuthError('Passwords do not match. Please verify your password.');
+      return;
+    }
 
     const selectedBoardObj = boards.find((b) => b.id === boardId);
     const mediumObj = availableMediums.find((m) => m.code === medium);
 
-    const newProfile: DemoProfile = {
-      name: name.trim() || 'Demo Student',
-      email: email.trim() || 'student@gaonlab.demo',
-      boardId,
-      boardName: selectedBoardObj?.name || boardId,
-      grade,
-      medium,
-      mediumName: mediumObj?.name || medium,
-      subjects: ['Mathematics', 'Science'],
-    };
+    setIsLoading(true);
 
-    setDemoSession(newProfile);
-    navigate('/app/dashboard');
+    try {
+      await signUpStudent({
+        name: name.trim() || 'Student',
+        email: email.trim(),
+        password,
+        boardId,
+        boardName: selectedBoardObj?.name || boardId,
+        grade,
+        medium,
+        mediumName: mediumObj?.name || medium,
+        schoolName: 'Govt. Model School',
+      });
+
+      setSuccessMessage('Student account successfully created! Redirecting to your dashboard...');
+      setTimeout(() => {
+        navigate('/app/dashboard');
+      }, 1000);
+    } catch (err: any) {
+      console.error('Sign up error:', err);
+      setAuthError(err.message || 'Failed to create student account. Please check your details.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -97,18 +130,27 @@ export const SignupPage: React.FC = () => {
           </div>
           <h1 className="text-2xl font-extrabold text-[#352F2A] tracking-tight">Student Registration</h1>
           <p className="text-xs text-[#636160] mt-1 font-medium">
-            Select your education board and grade to personalize your STEM laboratory
+            Create your individual GaonLabs account to access verified textbooks & STEM labs
           </p>
         </div>
 
-        {/* Demo Notice */}
-        <div className="mb-6 p-3.5 rounded-2xl bg-[#FAF5EF] border border-[#EFECE6] text-xs text-[#352F2A] flex items-start gap-2.5">
-          <Info className="w-4 h-4 text-[#FA9C4D] shrink-0 mt-0.5" />
-          <div className="leading-tight font-medium">
-            <strong>Demonstration Registration:</strong> This form creates a local profile in browser session storage. No actual Minor Account or SMS verification is required for testing.
+        {/* Success Alert Banner */}
+        {successMessage && (
+          <div className="mb-5 p-3.5 rounded-2xl bg-[#CEECDA] border border-[#A1DCB9] text-xs text-[#389461] flex items-center gap-2.5 font-bold">
+            <CheckCircle2 className="w-4 h-4 shrink-0" />
+            <span>{successMessage}</span>
           </div>
-        </div>
+        )}
 
+        {/* Error Alert Banner */}
+        {authError && (
+          <div className="mb-5 p-3.5 rounded-2xl bg-[#FFE2E2] border border-[#FFD0D0] text-xs text-[#E5484D] flex items-center gap-2.5 font-semibold">
+            <AlertTriangle className="w-4 h-4 shrink-0" />
+            <span>{authError}</span>
+          </div>
+        )}
+
+        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Basic Student Info */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -128,16 +170,58 @@ export const SignupPage: React.FC = () => {
 
             <div>
               <label className="block text-xs font-bold text-[#352F2A] mb-1.5">
-                Email Address (Demo) *
+                Email Address *
               </label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="student@gaonlab.demo"
+                placeholder="student@example.com"
                 className="w-full px-3.5 py-2.5 text-xs bg-[#FBFAF9] border border-[#EFECE6] rounded-2xl text-[#352F2A] focus:outline-none focus:border-[#FA9C4D] focus:bg-[#FFFFFF] transition-all font-mono"
               />
+            </div>
+          </div>
+
+          {/* Password & Confirm Password */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-bold text-[#352F2A] mb-1.5">
+                Account Password *
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="At least 6 characters"
+                  className="w-full pl-3.5 pr-10 py-2.5 text-xs bg-[#FBFAF9] border border-[#EFECE6] rounded-2xl text-[#352F2A] focus:outline-none focus:border-[#FA9C4D] focus:bg-[#FFFFFF] transition-all font-mono"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9E9B97] hover:text-[#352F2A]"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-[#352F2A] mb-1.5">
+                Confirm Password *
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Repeat your password"
+                  className="w-full pl-3.5 pr-10 py-2.5 text-xs bg-[#FBFAF9] border border-[#EFECE6] rounded-2xl text-[#352F2A] focus:outline-none focus:border-[#FA9C4D] focus:bg-[#FFFFFF] transition-all font-mono"
+                />
+              </div>
             </div>
           </div>
 
@@ -198,7 +282,7 @@ export const SignupPage: React.FC = () => {
               >
                 {[6, 7, 8, 9, 10, 11, 12].map((g) => (
                   <option key={g} value={g}>
-                    Class {g} {g === 8 ? '(Recommended for Demo)' : ''}
+                    Class {g} {g === 8 ? '(Recommended)' : ''}
                   </option>
                 ))}
               </select>
@@ -224,7 +308,7 @@ export const SignupPage: React.FC = () => {
 
           {/* Curriculum Availability Status Indicator */}
           <div className="p-3 rounded-2xl bg-[#FBFAF9] border border-[#EFECE6] flex items-center justify-between text-xs">
-            <span className="text-[#636160] font-medium">Curriculum Database Ingestion Status:</span>
+            <span className="text-[#636160] font-medium">Curriculum Database Ingestion:</span>
             {isCheckingCurriculum ? (
               <span className="text-[#9E9B97] font-semibold">Checking repository...</span>
             ) : isCurriculumAvailable ? (
@@ -240,17 +324,24 @@ export const SignupPage: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full py-3.5 px-4 rounded-2xl bg-[#FA9C4D] hover:bg-[#EB8833] text-white text-xs font-extrabold shadow-orange-glow transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2"
+            disabled={isLoading}
+            className="w-full py-3.5 px-4 rounded-2xl bg-[#FA9C4D] hover:bg-[#EB8833] disabled:opacity-50 text-white text-xs font-extrabold shadow-orange-glow transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer"
           >
-            <span>Complete Registration & Open Dashboard</span>
-            <ArrowRight className="w-4 h-4" />
+            {isLoading ? (
+              <span>Creating Student Account...</span>
+            ) : (
+              <>
+                <span>Complete Registration & Open Dashboard</span>
+                <ArrowRight className="w-4 h-4" />
+              </>
+            )}
           </button>
         </form>
 
         <div className="mt-6 text-center text-xs text-[#636160]">
-          Already have a demo account?{' '}
+          Already have an account?{' '}
           <Link to="/signin" className="font-bold text-[#FA9C4D] hover:underline">
-            Sign In Directly
+            Sign In with Email & Password
           </Link>
         </div>
       </div>

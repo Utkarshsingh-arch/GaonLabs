@@ -14,6 +14,7 @@ import {
   setDemoSession,
   DEMO_PROFILES
 } from '../services/demoAuth';
+import { getActiveStudentSession } from '../services/supabase';
 import { fetchCatalogue, fetchEditionChapters } from '../services/api';
 import { SkillUpSidebar } from '../components/SkillUpSidebar';
 import { SkillUpHeader } from '../components/SkillUpHeader';
@@ -58,6 +59,15 @@ export const DashboardPage: React.FC = () => {
       setIsScheduleOpen(true);
     }
   }, [location.pathname]);
+
+  // Sync session with Supabase Auth on mount
+  useEffect(() => {
+    getActiveStudentSession().then((active) => {
+      if (active && active.name && active.email !== profile.email) {
+        setProfile(active);
+      }
+    });
+  }, []);
 
   // Load real curriculum from API
   const loadCurriculum = async (currentProfile: DemoProfile) => {
