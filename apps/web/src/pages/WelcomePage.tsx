@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
-  Sparkles,
   ArrowRight,
   ShieldCheck,
   FlaskConical,
@@ -27,11 +26,6 @@ export const WelcomePage: React.FC = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-[#FFEEDD]/60 via-[#FAF5EF]/30 to-transparent pointer-events-none -z-10" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFEEDD] text-[#D47220] text-xs font-bold mb-6 border border-[#FFD9B8] shadow-soft-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#FA9C4D]" />
-            <span>SkillUp • GaonLab (गाँव लैब) Prototype • Stage 3</span>
-          </div>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#352F2A] tracking-tight leading-tight sm:leading-tight">
             Connecting Formal School STEM with{' '}

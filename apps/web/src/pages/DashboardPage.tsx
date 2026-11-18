@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Plus,
   Sparkles,
@@ -26,9 +26,12 @@ import {
 } from '../components/SkillUpIllustrations';
 import { ChapterDrawerModal } from '../components/ChapterDrawerModal';
 import { CurriculumExplorerModal } from '../components/CurriculumExplorerModal';
+import { ScheduleCalendarModal } from '../components/ScheduleCalendarModal';
 import { CatalogueEntry, DemoProfile, TextbookEditionItem } from '../types';
 
 export const DashboardPage: React.FC = () => {
+  const location = useLocation();
+
   // Load session or default to Asha Rao
   const [profile, setProfile] = useState<DemoProfile>(() => {
     const existing = getDemoSession();
@@ -46,6 +49,13 @@ export const DashboardPage: React.FC = () => {
   const [selectedEdition, setSelectedEdition] = useState<TextbookEditionItem | null>(null);
   const [selectedSubjectName, setSelectedSubjectName] = useState<string>('');
   const [isExplorerOpen, setIsExplorerOpen] = useState<boolean>(false);
+  const [isScheduleOpen, setIsScheduleOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (location.pathname === '/app/schedule' || window.location.hash === '#schedule') {
+      setIsScheduleOpen(true);
+    }
+  }, [location.pathname]);
 
   // Load real curriculum from API
   const loadCurriculum = async (currentProfile: DemoProfile) => {
@@ -136,6 +146,7 @@ export const DashboardPage: React.FC = () => {
         currentProfile={profile}
         onProfileChange={handleProfileChange}
         onOpenExplorer={() => setIsExplorerOpen(true)}
+        onOpenSchedule={() => setIsScheduleOpen(true)}
       />
 
       {/* =======================================================================
@@ -180,18 +191,6 @@ export const DashboardPage: React.FC = () => {
                   <p className="mt-2 text-sm sm:text-base font-medium text-white/95 leading-relaxed">
                     Welcome back! Let's have some fun today. New knowledge awaits
                   </p>
-                  <div className="mt-4 flex flex-wrap items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/20 backdrop-blur-xs text-white border border-white/20">
-                      <Sparkles className="w-3.5 h-3.5 text-[#FFCF4F]" />
-                      Class {profile.grade} • {profile.boardId === 'CBSE' ? 'CBSE National' : 'Karnataka KTBS'}
-                    </span>
-                    <button
-                      onClick={() => setIsExplorerOpen(true)}
-                      className="px-3 py-1 rounded-full text-xs font-bold bg-white text-[#FA9C4D] hover:bg-[#FFEEDD] transition-colors shadow-soft-sm"
-                    >
-                      Browse Catalogue
-                    </button>
-                  </div>
                 </div>
 
                 {/* Rocket Illustration */}
@@ -411,7 +410,7 @@ export const DashboardPage: React.FC = () => {
           {/* ===================================================================
               RIGHT COLUMN: Weekly Progress, Recent Tasks, Activity
              =================================================================== */}
-          <SkillUpRightSidebar />
+          <SkillUpRightSidebar onOpenSchedule={() => setIsScheduleOpen(true)} />
         </main>
       </div>
 
@@ -430,6 +429,11 @@ export const DashboardPage: React.FC = () => {
         isOpen={isExplorerOpen}
         onClose={() => setIsExplorerOpen(false)}
         profile={profile}
+      />
+
+      <ScheduleCalendarModal
+        isOpen={isScheduleOpen}
+        onClose={() => setIsScheduleOpen(false)}
       />
     </div>
   );

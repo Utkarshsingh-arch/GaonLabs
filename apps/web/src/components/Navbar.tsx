@@ -21,16 +21,16 @@ export const Navbar: React.FC = () => {
   return (
     <header className="sticky top-0 z-40 bg-[#FFFFFF]/90 backdrop-blur-md border-b border-[#EFECE6]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        {/* Brand Logo matching SkillUp Screenshot */}
+        {/* Brand Logo */}
         <Link to="/" className="flex items-center gap-2 group">
           <div className="flex items-center gap-1.5">
             <span className="font-extrabold text-2xl tracking-tight text-[#352F2A]">
-              Skill<span className="text-[#FA9C4D]">Up</span>
+              Gaon<span className="text-[#FA9C4D]">Labs</span>
             </span>
             <div className="w-2 h-2 rounded-full bg-[#FA9C4D]" />
           </div>
           <span className="text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-[#FFEEDD] text-[#D47220] border border-[#FFD9B8]">
-            GaonLab
+            गाँव लैब
           </span>
         </Link>
 

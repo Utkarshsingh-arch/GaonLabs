@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
     <footer className="mt-auto border-t border-[#EFECE6] bg-[#FFFFFF] py-7 text-xs text-[#636160]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2.5">
-          <span className="font-extrabold text-[#352F2A]">SkillUp • GaonLab (गाँव लैब)</span>
+          <span className="font-extrabold text-[#352F2A]">GaonLabs (गाँव लैब)</span>
           <span className="inline-block w-1 h-1 rounded-full bg-[#D9D6D0]"></span>
           <span className="flex items-center gap-1.5 text-[#389461] font-semibold bg-[#CEECDA] px-2.5 py-0.5 rounded-full text-[11px]">
             <ShieldCheck className="w-3.5 h-3.5" /> DPDP Compliant Architecture
