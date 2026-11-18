@@ -15,38 +15,38 @@ interface HoverCardProps {
 
 const CATEGORY_STYLES: Record<HoverEntityPayload['category'], { badge: string; border: string; label: string }> = {
   core_lab: {
-    badge: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
-    border: 'border-amber-500/50',
+    badge: 'bg-[#FFEEDD] text-[#D47220] border-[#FFD9B8]',
+    border: 'border-[#FFD9B8]',
     label: 'Living Lab',
   },
   learning_house: {
-    badge: 'bg-sky-500/20 text-sky-300 border-sky-500/40',
-    border: 'border-sky-500/50',
+    badge: 'bg-[#FAF5EF] text-[#D47220] border-[#EFECE6]',
+    border: 'border-[#EFECE6]',
     label: 'Learning House',
   },
   civic_center: {
-    badge: 'bg-teal-500/20 text-teal-300 border-teal-500/40',
-    border: 'border-teal-400/60',
+    badge: 'bg-[#E8F7EE] text-[#389461] border-[#CEECDA]',
+    border: 'border-[#CEECDA]',
     label: 'Village Centre',
   },
   npc: {
-    badge: 'bg-amber-500/20 text-amber-200 border-amber-400/40',
-    border: 'border-amber-400/50',
+    badge: 'bg-[#FFEEDD] text-[#D47220] border-[#FFD9B8]',
+    border: 'border-[#FFD9B8]',
     label: 'Villager NPC',
   },
   residential: {
-    badge: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
-    border: 'border-orange-500/40',
+    badge: 'bg-[#FAF5EF] text-[#636160] border-[#EFECE6]',
+    border: 'border-[#EFECE6]',
     label: 'Village Home',
   },
   tree: {
-    badge: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
-    border: 'border-emerald-500/50',
+    badge: 'bg-[#E8F7EE] text-[#389461] border-[#CEECDA]',
+    border: 'border-[#CEECDA]',
     label: 'Nature & Ecology',
   },
   vehicle: {
-    badge: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40',
-    border: 'border-indigo-500/50',
+    badge: 'bg-[#FFF9F4] text-[#D47220] border-[#FFD9B8]',
+    border: 'border-[#FFD9B8]',
     label: 'Mechanics & Energy',
   },
 };
@@ -124,46 +124,46 @@ export const HoverCard: React.FC<HoverCardProps> = ({ studentGrade, onExploreNce
       className="fixed bottom-5 right-4 z-20 max-w-xs w-[315px] pointer-events-auto transition-all duration-150"
     >
       <div
-        className={`bg-slate-900/92 backdrop-blur-md border ${style.border} rounded-2xl p-3.5 shadow-2xl text-left`}
+        className={`bg-[#FFFFFF]/95 backdrop-blur-md border ${style.border} rounded-2xl p-3.5 shadow-soft-lg text-left text-[#352F2A]`}
       >
         <div className="flex items-start gap-2.5">
-          <span className="text-2xl leading-none p-1.5 rounded-xl bg-slate-800/90 border border-slate-700/80 shrink-0">
+          <span className="text-2xl leading-none p-1.5 rounded-xl bg-[#FAF5EF] border border-[#EFECE6] shrink-0">
             {entity.icon}
           </span>
           <div className="min-w-0 flex-1">
             <div className="flex items-center justify-between gap-2">
-              <h3 className="text-xs font-bold text-white truncate">{entity.name}</h3>
+              <h3 className="text-xs font-extrabold text-[#352F2A] truncate">{entity.name}</h3>
               <span
-                className={`text-[9px] font-semibold px-1.5 py-0.5 rounded-full border shrink-0 ${style.badge}`}
+                className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full border shrink-0 ${style.badge}`}
               >
                 {style.label}
               </span>
             </div>
-            <p className="text-[10px] text-slate-400 font-medium mt-0.5 truncate">
+            <p className="text-[10px] text-[#9E9B97] font-semibold mt-0.5 truncate">
               {entity.subject}
             </p>
           </div>
         </div>
 
-        <p className="text-xs text-slate-200 leading-relaxed mt-2">
+        <p className="text-xs text-[#636160] leading-relaxed mt-2">
           {entity.description}
         </p>
 
         {/* Compact Verified NCERT Curriculum Connection */}
         {ncertEntry && (
-          <div className="mt-2.5 pt-2 border-t border-slate-800 space-y-1">
+          <div className="mt-2.5 pt-2 border-t border-[#EFECE6] space-y-1">
             <div className="flex items-center justify-between gap-1">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-emerald-400">
+              <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#389461]">
                 NCERT Connection
               </span>
-              <span className="text-[9px] font-semibold text-slate-300">
+              <span className="text-[9px] font-bold text-[#636160]">
                 Class {ncertEntry.grade} – {ncertEntry.subject === 'Social Science (Geography)' ? 'Geography' : ncertEntry.subject}
               </span>
             </div>
-            <p className="text-[11px] text-slate-200 font-medium leading-snug">
+            <p className="text-[11px] text-[#352F2A] font-bold leading-snug">
               Ch. {ncertEntry.chapterNumber}: {ncertEntry.chapterTitle}
             </p>
-            <p className="text-[10px] text-slate-400 leading-snug truncate" title={ncertEntry.textbook}>
+            <p className="text-[10px] text-[#9E9B97] leading-snug truncate" title={ncertEntry.textbook}>
               {ncertEntry.textbook}
             </p>
             {onExploreNcert && (
@@ -176,7 +176,7 @@ export const HoverCard: React.FC<HoverCardProps> = ({ studentGrade, onExploreNce
                     objectIcon: entity.icon,
                   })
                 }
-                className="mt-1 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold transition-colors cursor-pointer"
+                className="mt-1 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8F7EE] hover:bg-[#CEECDA] border border-[#CEECDA] text-[#389461] text-[10px] font-bold transition-colors cursor-pointer"
               >
                 <span>📖</span>
                 <span>Explore NCERT Concept</span>
@@ -186,7 +186,7 @@ export const HoverCard: React.FC<HoverCardProps> = ({ studentGrade, onExploreNce
         )}
 
         {entity.hint && (
-          <div className="mt-2 pt-1.5 border-t border-slate-800/80 flex items-center gap-1.5 text-[10px] font-semibold text-amber-300">
+          <div className="mt-2 pt-1.5 border-t border-[#EFECE6] flex items-center gap-1.5 text-[10px] font-bold text-[#D47220]">
             <span>{entity.category === 'tree' ? '🌱' : '✨'}</span>
             <span className="leading-snug">{entity.hint}</span>
           </div>

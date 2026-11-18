@@ -14,11 +14,11 @@ interface FactBubbleProps {
 }
 
 const CATEGORY_COLORS: Record<ExplorationFact['category'], string> = {
-  Physics: 'bg-sky-500/20 text-sky-300 border-sky-500/40',
-  Biology: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
-  Chemistry: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
-  Mathematics: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
-  Environment: 'bg-teal-500/20 text-teal-300 border-teal-500/40',
+  Physics: 'bg-[#FFEEDD] text-[#D47220] border-[#FFD9B8]',
+  Biology: 'bg-[#E8F7EE] text-[#389461] border-[#CEECDA]',
+  Chemistry: 'bg-[#FAF5EF] text-[#D47220] border-[#EFECE6]',
+  Mathematics: 'bg-[#FFEEDD] text-[#D47220] border-[#FFD9B8]',
+  Environment: 'bg-[#E8F7EE] text-[#389461] border-[#CEECDA]',
 };
 
 export const FactBubble: React.FC<FactBubbleProps> = ({ studentGrade, onExploreNcert }) => {
@@ -60,23 +60,23 @@ export const FactBubble: React.FC<FactBubbleProps> = ({ studentGrade, onExploreN
       aria-live="polite"
       className="fixed top-20 left-4 z-20 max-w-xs sm:max-w-sm pointer-events-auto"
     >
-      <div className="bg-slate-900/90 backdrop-blur-md border border-emerald-500/40 rounded-2xl px-3.5 py-2.5 shadow-xl flex items-start gap-2.5">
+      <div className="bg-[#FFFFFF]/95 backdrop-blur-md border border-[#EFECE6] rounded-2xl px-3.5 py-2.5 shadow-soft-lg flex items-start gap-2.5 text-[#352F2A]">
         <span className="text-lg leading-none mt-0.5 shrink-0">{fact.icon}</span>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-amber-300">
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#D47220]">
               💡 Village Discovery
             </span>
             <span
-              className={`text-[9px] font-semibold px-1.5 py-0.5 rounded-full border ${CATEGORY_COLORS[fact.category]}`}
+              className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full border ${CATEGORY_COLORS[fact.category]}`}
             >
               {fact.category}
             </span>
           </div>
-          <p className="text-xs text-slate-200 leading-snug">{fact.text}</p>
+          <p className="text-xs text-[#636160] font-medium leading-snug">{fact.text}</p>
           {ncertEntry && (
             <div className="mt-1.5 flex items-center justify-between gap-2">
-              <span className="text-[10px] text-emerald-300/90 truncate">
+              <span className="text-[10px] font-semibold text-[#389461] truncate">
                 📖 NCERT {formatCompactNcertCitation(ncertEntry)}
               </span>
               {onExploreNcert && (
@@ -90,7 +90,7 @@ export const FactBubble: React.FC<FactBubbleProps> = ({ studentGrade, onExploreN
                     });
                     setFact(null);
                   }}
-                  className="text-[10px] font-bold text-amber-300 hover:text-amber-200 underline shrink-0 cursor-pointer"
+                  className="text-[10px] font-extrabold text-[#D47220] hover:text-[#FA9C4D] underline shrink-0 cursor-pointer"
                 >
                   Explore
                 </button>
@@ -102,7 +102,7 @@ export const FactBubble: React.FC<FactBubbleProps> = ({ studentGrade, onExploreN
           type="button"
           onClick={() => setFact(null)}
           aria-label="Dismiss fact"
-          className="text-slate-400 hover:text-white text-xs px-1 py-0.5 rounded-md cursor-pointer"
+          className="text-[#9E9B97] hover:text-[#352F2A] text-xs px-1 py-0.5 rounded-md cursor-pointer"
         >
           ✕
         </button>

@@ -107,12 +107,12 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
         <Link to="/" className="flex items-center gap-2 mb-9 px-2 group">
           <div className="flex items-center gap-1.5">
             <span className="font-extrabold text-2xl tracking-tight text-[#352F2A]">
-              Skill<span className="text-[#FA9C4D]">Up</span>
+              Gaon<span className="text-[#FA9C4D]">Labs</span>
             </span>
             <div className="w-2 h-2 rounded-full bg-[#FA9C4D]" />
           </div>
           <span className="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#FFEEDD] text-[#D47220] border border-[#FFD9B8]">
-            GaonLab
+            STEM
           </span>
         </Link>
 

@@ -88,16 +88,16 @@ export const ZonePrompt: React.FC<ZonePromptProps> = ({ lang = 'en' }) => {
             eventBus.emit('zone:enter', { id: target.id, name: target.name });
           }
         }}
-        className={`flex items-center gap-3 font-bold px-5 py-3 rounded-2xl shadow-2xl border-2 transition-transform active:scale-95 cursor-pointer focus-visible:ring-4 focus-visible:outline-none ${
+        className={`flex items-center gap-3 font-extrabold px-5 py-3 rounded-2xl shadow-soft-lg border-2 transition-transform active:scale-95 cursor-pointer focus-visible:ring-4 focus-visible:outline-none ${
           isHouse
-            ? 'bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 border-sky-200 focus-visible:ring-sky-300'
-            : 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 border-amber-300 focus-visible:ring-amber-300'
+            ? 'bg-[#48AF76] hover:bg-[#389461] text-white border-[#CEECDA] focus-visible:ring-[#48AF76]/40'
+            : 'bg-[#FA9C4D] hover:bg-[#EB8833] text-white border-[#FFD9B8] shadow-orange-glow focus-visible:ring-[#FA9C4D]/40'
         }`}
       >
-        <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-slate-900 text-amber-400 font-mono text-xs shadow-inner">
+        <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-[#FFFFFF] text-[#352F2A] font-mono font-extrabold text-xs shadow-soft-sm">
           E
         </span>
-        <span className="text-sm font-semibold tracking-wide">{promptText}</span>
+        <span className="text-sm font-extrabold tracking-wide">{promptText}</span>
         <span className="text-base">{target.icon || '🔬'}</span>
       </button>
     </div>

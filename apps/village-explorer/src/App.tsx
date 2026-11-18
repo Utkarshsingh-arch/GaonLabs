@@ -81,6 +81,21 @@ export default function App(): React.JSX.Element {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeNcertTarget, activeNpc, activeCivicCenter, activeLabZoneId, activeLearningHouse, showMitraHelper, showProgressScreen]);
 
+  // Optional handoff parameters from GaonLab main dashboard (?name=Asha&grade=8&embed=1)
+  const [urlDefaults] = useState<{ name?: string; grade?: number }>(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const rawName = params.get('name')?.trim();
+      const rawGrade = Number(params.get('grade'));
+      return {
+        name: rawName ? rawName.slice(0, 20) : undefined,
+        grade: Number.isFinite(rawGrade) && rawGrade >= 6 && rawGrade <= 12 ? rawGrade : undefined,
+      };
+    } catch {
+      return {};
+    }
+  });
+
   // Initialize and Hydrate from Dexie IndexedDB
   useEffect(() => {
     async function hydrate() {
@@ -263,18 +278,18 @@ export default function App(): React.JSX.Element {
   const currentGrade = normalizeSupportedGrade(profile?.grade);
 
   return (
-    <div className="relative w-screen h-screen bg-slate-950 flex flex-col items-center justify-center overflow-hidden">
+    <div className="gaonlab-theme relative w-screen h-screen bg-[#FBFAF9] text-[#352F2A] flex flex-col items-center justify-center overflow-hidden">
       {/* Phaser Canvas Container */}
       <div ref={gameContainerRef} className="w-full h-full absolute inset-0 z-0" />
 
-      {/* Top HUD Overview & Action Bar */}
-      <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
+      {/* Top HUD Overview & Action Bar — Official GaonLab Ivory & Saffron Palette */}
+      <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
         {/* Left: Branding, Nickname & Grade */}
-        <div className="flex items-center gap-3 bg-slate-900/90 backdrop-blur-md border border-slate-700/80 px-4 py-2.5 rounded-2xl shadow-xl pointer-events-auto">
+        <div className="flex items-center gap-3 bg-[#FFFFFF]/95 backdrop-blur-md border border-[#EFECE6] px-3.5 py-2 rounded-2xl shadow-soft-md pointer-events-auto">
           <button
             type="button"
             onClick={() => setShowStartScreen(true)}
-            className="p-0.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors cursor-pointer flex items-center justify-center"
+            className="p-0.5 rounded-xl bg-[#FAF5EF] hover:bg-[#FFEEDD] border border-[#EFECE6] hover:border-[#FFD9B8] transition-colors cursor-pointer flex items-center justify-center"
             title="Profile & Character Settings"
           >
             <AvatarPreviewCanvas
@@ -284,16 +299,16 @@ export default function App(): React.JSX.Element {
             />
           </button>
           <div>
-            <h1 className="font-bold text-amber-400 text-sm leading-tight flex items-center gap-2">
+            <h1 className="font-extrabold text-[#352F2A] text-sm leading-tight flex items-center gap-2">
               <span>{profile?.nickname || 'Learner'}</span>
-              <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-mono border border-emerald-500/30">
+              <span className="px-2 py-0.5 rounded-full bg-[#E8F7EE] text-[#389461] text-[10px] font-bold border border-[#CEECDA]">
                 Grade {profile?.grade || 7}
               </span>
             </h1>
-            <p className="text-[11px] text-slate-400 flex items-center gap-2">
+            <p className="text-[11px] text-[#636160] font-medium flex items-center gap-2 mt-0.5">
               <span>WASD / Touch to Walk</span>
-              <span>•</span>
-              <span className="text-emerald-400 font-semibold">
+              <span className="text-[#D9D6D0]">•</span>
+              <span className="text-[#389461] font-bold">
                 ★ {completedLabs.size}/6 Labs
               </span>
             </p>
@@ -301,12 +316,12 @@ export default function App(): React.JSX.Element {
         </div>
 
         {/* Right: XP Bar, Progress Badges Button & Language Switcher */}
-        <div className="flex items-center gap-2 bg-slate-900/90 backdrop-blur-md border border-slate-700/80 p-1.5 rounded-2xl shadow-xl pointer-events-auto">
+        <div className="flex items-center gap-1.5 bg-[#FFFFFF]/95 backdrop-blur-md border border-[#EFECE6] p-1.5 rounded-2xl shadow-soft-md pointer-events-auto">
           {/* Mitra Guide Button */}
           <button
             type="button"
             onClick={() => setShowMitraHelper(true)}
-            className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-gradient-to-r from-emerald-500/20 to-emerald-600/30 hover:from-emerald-500/30 hover:to-emerald-600/40 text-emerald-300 font-bold text-xs border border-emerald-500/40 transition-transform active:scale-95 cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#E8F7EE] hover:bg-[#CEECDA] text-[#389461] font-bold text-xs border border-[#CEECDA] transition-all active:scale-95 cursor-pointer"
           >
             <span>🤖 Mitra</span>
           </button>
@@ -315,10 +330,10 @@ export default function App(): React.JSX.Element {
           <button
             type="button"
             onClick={() => setShowProgressScreen(true)}
-            className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-gradient-to-r from-amber-500/20 to-amber-600/30 hover:from-amber-500/30 hover:to-amber-600/40 text-amber-300 font-bold text-xs border border-amber-500/40 transition-transform active:scale-95 cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#FFEEDD] hover:bg-[#FFD9B8]/70 text-[#D47220] font-bold text-xs border border-[#FFD9B8] transition-all active:scale-95 cursor-pointer"
           >
             <span>⚡ {totalXp} XP</span>
-            <span className="text-slate-400 text-[10px]">|</span>
+            <span className="text-[#D47220]/40 text-[10px]">|</span>
             <span>🏅 Badges</span>
           </button>
 
@@ -328,22 +343,22 @@ export default function App(): React.JSX.Element {
             onClick={toggleSound}
             aria-label={isMuted ? 'Unmute Sound' : 'Mute Sound'}
             title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
-            className="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center text-xs transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none"
+            className="w-8 h-8 rounded-xl bg-[#FAF5EF] hover:bg-[#FFEEDD] border border-[#EFECE6] hover:border-[#FFD9B8] flex items-center justify-center text-xs text-[#352F2A] transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#FA9C4D] focus-visible:outline-none"
           >
             {isMuted ? '🔇' : '🔊'}
           </button>
 
           {/* Language Switcher */}
-          <div className="flex bg-slate-800 rounded-xl p-0.5 border border-slate-700 text-xs">
+          <div className="flex bg-[#FAF5EF] rounded-xl p-0.5 border border-[#EFECE6] text-xs">
             {(['en', 'hi', 'kn'] as const).map((code) => (
               <button
                 key={code}
                 type="button"
                 onClick={() => handleLanguageChange(code)}
-                className={`px-2.5 py-1 rounded-lg font-medium transition-all cursor-pointer ${
+                className={`px-2.5 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
                   currentLang === code
-                    ? 'bg-amber-500 text-slate-950 font-bold'
-                    : 'text-slate-300 hover:text-white'
+                    ? 'bg-[#FA9C4D] text-white font-bold shadow-soft-sm'
+                    : 'text-[#636160] hover:text-[#352F2A]'
                 }`}
               >
                 {code === 'hi' ? 'हिन्दी' : code === 'kn' ? 'ಕನ್ನಡ' : 'EN'}
@@ -452,6 +467,8 @@ export default function App(): React.JSX.Element {
       {showStartScreen && (
         <StartScreen
           initialProfile={profile}
+          defaultName={urlDefaults.name}
+          defaultGrade={urlDefaults.grade ? normalizeSupportedGrade(urlDefaults.grade) : undefined}
           onStart={handleStartProfile}
         />
       )}

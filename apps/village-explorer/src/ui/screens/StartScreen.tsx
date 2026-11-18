@@ -23,6 +23,8 @@ import { AvatarPreviewCanvas } from './AvatarPreviewCanvas';
 interface StartScreenProps {
   onStart: (profile: UserProfileRecord) => void;
   initialProfile?: UserProfileRecord | null;
+  defaultName?: string;
+  defaultGrade?: SupportedGrade;
 }
 
 const ONBOARDING_COPY: Record<
@@ -189,10 +191,15 @@ const ONBOARDING_COPY: Record<
 
 const ALL_CLASSES: SupportedGrade[] = [6, 7, 8, 9, 10, 11, 12];
 
-export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfile }) => {
-  const [nickname, setNickname] = useState<string>(initialProfile?.nickname || 'Ravi');
+export const StartScreen: React.FC<StartScreenProps> = ({
+  onStart,
+  initialProfile,
+  defaultName,
+  defaultGrade,
+}) => {
+  const [nickname, setNickname] = useState<string>(initialProfile?.nickname || defaultName || 'Ravi');
   const [lang, setLang] = useState<Lang>(initialProfile?.lang || 'en');
-  const [grade, setGrade] = useState<SupportedGrade>(initialProfile?.grade || 7);
+  const [grade, setGrade] = useState<SupportedGrade>(initialProfile?.grade || defaultGrade || 7);
   const [appearance, setAppearance] = useState<AvatarCustomization>(() =>
     decodeAvatarId(initialProfile?.avatarId)
   );
@@ -265,6 +272,7 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
     <div
       role="dialog"
       aria-modal="true"
+      data-onboarding="true"
       aria-label="GaonLab Adventure Character Creation"
       className="fixed inset-0 z-50 overflow-y-auto overflow-x-hidden"
     >
@@ -275,14 +283,14 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
       <div className="relative z-10 min-h-full w-full flex flex-col items-center justify-center px-3 py-5 sm:px-6 sm:py-7">
         <div className="w-full max-w-5xl space-y-5 animate-panel-enter">
           {/* =============================================================== */}
-          {/* TOP BAR: GAME-STYLE LANGUAGE SELECTOR + WELCOME BANNER          */}
+          {/* TOP BAR: GAONLAB LANGUAGE SELECTOR + WELCOME BANNER             */}
           {/* =============================================================== */}
           <div className="flex flex-col items-center text-center space-y-3">
-            {/* Language Selector Game Pills */}
+            {/* Language Selector Pills */}
             <div
               role="group"
               aria-label={copy.languageLabel}
-              className="inline-flex items-center gap-1.5 bg-slate-950/75 backdrop-blur-md border border-amber-300/35 p-1.5 rounded-2xl shadow-xl"
+              className="inline-flex items-center gap-1.5 bg-[#FFFFFF]/95 backdrop-blur-md border border-[#EFECE6] p-1.5 rounded-2xl shadow-soft-md"
             >
               {(
                 [
@@ -299,8 +307,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                     onClick={() => setLang(item.code)}
                     className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                       active
-                        ? 'bg-gradient-to-b from-amber-400 to-amber-500 text-slate-950 shadow-md scale-[1.03]'
-                        : 'text-slate-200 hover:bg-white/10'
+                        ? 'bg-[#FA9C4D] text-white shadow-orange-glow scale-[1.03]'
+                        : 'text-[#636160] hover:bg-[#FAF5EF] hover:text-[#352F2A]'
                     }`}
                   >
                     <span>{item.flag}</span>
@@ -312,18 +320,18 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
 
             {/* Welcome Adventure Header */}
             <div className="space-y-1.5 max-w-2xl px-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-400/50 text-emerald-200 text-[11px] font-bold tracking-wider uppercase shadow-lg">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFFFFF]/95 border border-[#CEECDA] text-[#389461] text-[11px] font-extrabold tracking-wider uppercase shadow-soft-sm">
                 <span>✨</span>
                 <span>{copy.tagline}</span>
                 <span>✨</span>
               </div>
               <h1
-                className="text-3xl sm:text-5xl font-black tracking-tight text-amber-300 drop-shadow-[0_4px_0_rgba(15,23,42,0.85)]"
-                style={{ letterSpacing: '0.02em' }}
+                className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white drop-shadow-[0_3px_0_rgba(53,47,42,0.55)]"
+                style={{ letterSpacing: '-0.01em' }}
               >
                 {copy.welcomeTitle}
               </h1>
-              <p className="text-xs sm:text-base font-semibold text-white drop-shadow-[0_2px_4px_rgba(15,23,42,0.85)]">
+              <p className="text-xs sm:text-base font-semibold text-white drop-shadow-[0_2px_4px_rgba(53,47,42,0.55)]">
                 {copy.welcomeSubtitle}
               </p>
             </div>
@@ -339,25 +347,25 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
             {/* LEFT COLUMN (5 cols): LIVE CHARACTER PREVIEW + ADVENTURE AWAITS */}
             <div className="lg:col-span-5 space-y-4">
               {/* Dedicated Hero Character Preview Stage */}
-              <div className="relative rounded-3xl bg-slate-950/80 backdrop-blur-md border-2 border-amber-400/45 shadow-2xl p-5 overflow-hidden">
-                {/* Warm Sunlight Ambient Glow */}
+              <div className="relative rounded-3xl bg-[#FFFFFF]/95 backdrop-blur-md border border-[#EFECE6] shadow-soft-lg p-5 overflow-hidden text-[#352F2A]">
+                {/* Warm Saffron Sunlight Ambient Glow */}
                 <div
                   aria-hidden="true"
                   className="animate-pedestal-glow absolute -top-12 left-1/2 -translate-x-1/2 w-60 h-60 rounded-full pointer-events-none"
                   style={{
                     background:
-                      'radial-gradient(circle, rgba(251,191,36,0.34) 0%, rgba(16,185,129,0.12) 48%, rgba(15,23,42,0) 72%)',
+                      'radial-gradient(circle, rgba(250,156,77,0.22) 0%, rgba(255,207,79,0.12) 48%, rgba(255,255,255,0) 72%)',
                   }}
                 />
 
                 <div className="relative flex items-center justify-between mb-3">
-                  <span className="px-2.5 py-1 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-[10px] font-extrabold uppercase tracking-wider">
+                  <span className="px-2.5 py-1 rounded-full bg-[#FFEEDD] border border-[#FFD9B8] text-[#D47220] text-[10px] font-extrabold uppercase tracking-wider">
                     ⭐ {copy.heroBadge}
                   </span>
                   <button
                     type="button"
                     onClick={() => setPreviewDirection((d) => (d + 2) % 8)}
-                    className="px-2.5 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 border border-slate-600/80 text-slate-200 text-[10px] font-bold transition-colors cursor-pointer"
+                    className="px-2.5 py-1 rounded-lg bg-[#FAF5EF] hover:bg-[#FFEEDD] border border-[#EFECE6] text-[#636160] hover:text-[#D47220] text-[10px] font-bold transition-colors cursor-pointer"
                     title="Rotate character view"
                   >
                     ↻ {copy.rotateHint}
@@ -366,11 +374,11 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
 
                 {/* Live Floating Nickname & Class Banner */}
                 <div className="relative flex flex-col items-center">
-                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-2xl bg-slate-900/95 border border-amber-400/60 shadow-lg mb-2">
-                    <span className="text-sm sm:text-base font-black text-amber-300 max-w-[160px] truncate">
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-2xl bg-[#FAF5EF] border border-[#EFECE6] shadow-soft-sm mb-2">
+                    <span className="text-sm sm:text-base font-extrabold text-[#352F2A] max-w-[160px] truncate">
                       {displayName}
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[10px] font-bold">
+                    <span className="px-2 py-0.5 rounded-full bg-[#E8F7EE] border border-[#CEECDA] text-[#389461] text-[10px] font-bold">
                       {copy.classPrefix} {grade}
                     </span>
                   </div>
@@ -382,25 +390,27 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                       size={148}
                       animate={true}
                       direction={previewDirection}
-                      className="relative z-10 drop-shadow-[0_10px_14px_rgba(0,0,0,0.45)] transition-transform duration-200"
+                      className="relative z-10 drop-shadow-[0_10px_14px_rgba(53,47,42,0.22)] transition-transform duration-200"
                     />
                     {/* Lush Pixel Meadow Pedestal Base */}
                     <div
                       aria-hidden="true"
-                      className="-mt-6 w-44 h-10 rounded-[100%] bg-gradient-to-b from-emerald-500/80 to-emerald-800/90 border-2 border-emerald-300/60 shadow-inner"
+                      className="-mt-6 w-44 h-10 rounded-[100%] bg-gradient-to-b from-[#48AF76] to-[#389461] border-2 border-[#CEECDA] shadow-soft-sm"
                     />
                   </div>
 
-                  <p className="mt-2 text-[11px] font-semibold text-emerald-200/90">
+                  <p className="mt-2 text-[11px] font-bold text-[#636160]">
                     {appearance.presentation === 'girl' ? copy.girlLabel : copy.boyLabel} •{' '}
-                    {OUTFIT_STYLES.find((o) => o.id === appearance.outfitStyle)?.label}
+                    <span className="text-[#D47220]">
+                      {OUTFIT_STYLES.find((o) => o.id === appearance.outfitStyle)?.label}
+                    </span>
                   </p>
                 </div>
               </div>
 
               {/* YOUR ADVENTURE AWAITS Preview Strip */}
-              <div className="rounded-3xl bg-slate-950/78 backdrop-blur-md border border-emerald-400/35 shadow-xl p-4 space-y-2.5">
-                <h2 className="text-xs font-black tracking-wider uppercase text-amber-300 flex items-center gap-2">
+              <div className="rounded-3xl bg-[#FFFFFF]/95 backdrop-blur-md border border-[#EFECE6] shadow-soft-md p-4 space-y-2.5 text-[#352F2A]">
+                <h2 className="text-xs font-extrabold tracking-wider uppercase text-[#D47220] flex items-center gap-2">
                   <span>🧭</span>
                   <span>{copy.adventureTitle}</span>
                 </h2>
@@ -408,12 +418,12 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                   {copy.adventures.map((adv, idx) => (
                     <div
                       key={idx}
-                      className={`flex items-center gap-2 px-2.5 py-2 rounded-xl bg-slate-900/80 border border-slate-700/70 text-left ${
+                      className={`flex items-center gap-2 px-2.5 py-2 rounded-xl bg-[#FAF5EF] border border-[#EFECE6] text-left ${
                         idx === copy.adventures.length - 1 ? 'col-span-2 sm:col-span-1 lg:col-span-2' : ''
                       }`}
                     >
                       <span className="text-lg leading-none shrink-0">{adv.icon}</span>
-                      <span className="text-[11px] font-semibold text-slate-100 leading-tight">
+                      <span className="text-[11px] font-bold text-[#352F2A] leading-tight">
                         {adv.title}
                       </span>
                     </div>
@@ -423,14 +433,14 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
             </div>
 
             {/* RIGHT COLUMN (7 cols): CHARACTER CREATION, NAME, CLASS, PRIVACY & CTA */}
-            <div className="lg:col-span-7 rounded-3xl bg-slate-950/84 backdrop-blur-md border-2 border-amber-300/35 shadow-2xl p-4 sm:p-6 space-y-5">
+            <div className="lg:col-span-7 rounded-3xl bg-[#FFFFFF]/95 backdrop-blur-md border border-[#EFECE6] shadow-soft-lg p-4 sm:p-6 space-y-5 text-[#352F2A]">
               {/* 1. CHOOSE YOUR CHARACTER (BOY / GIRL + SIMPLE CUSTOMISATION) */}
               <div className="space-y-3">
                 <div>
-                  <h2 className="text-sm sm:text-base font-black tracking-wide text-amber-300">
+                  <h2 className="text-sm sm:text-base font-extrabold tracking-tight text-[#352F2A]">
                     {copy.chooseCharTitle}
                   </h2>
-                  <p className="text-xs text-slate-300">{copy.chooseCharSubtitle}</p>
+                  <p className="text-xs text-[#636160] font-medium">{copy.chooseCharSubtitle}</p>
                 </div>
 
                 {/* Option A: Boy Character | Option B: Girl Character */}
@@ -442,14 +452,12 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                         title: copy.boyLabel,
                         tag: copy.boyTag,
                         preview: boyCardPreview,
-                        accent: 'from-sky-500/25 to-emerald-500/20',
                       },
                       {
                         id: 'girl' as CharacterPresentation,
                         title: copy.girlLabel,
                         tag: copy.girlTag,
                         preview: girlCardPreview,
-                        accent: 'from-rose-500/25 to-amber-500/20',
                       },
                     ] as const
                   ).map((option) => {
@@ -462,12 +470,12 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                         onClick={() => handleSelectPresentation(option.id)}
                         className={`relative rounded-2xl p-3 border-2 flex flex-col items-center text-center transition-all duration-200 cursor-pointer ${
                           isSelected
-                            ? `bg-gradient-to-b ${option.accent} border-amber-400 shadow-[0_0_24px_rgba(251,191,36,0.32)] scale-[1.03]`
-                            : 'bg-slate-900/75 border-slate-700/80 hover:border-slate-500 opacity-85 hover:opacity-100'
+                            ? 'bg-[#FFEEDD] border-[#FA9C4D] shadow-orange-glow scale-[1.02]'
+                            : 'bg-[#FBFAF9] border-[#EFECE6] hover:border-[#FFD9B8] hover:bg-[#FAF5EF]'
                         }`}
                       >
                         {isSelected && (
-                          <span className="absolute top-2 right-2 w-5 h-5 rounded-full bg-amber-400 text-slate-950 text-[11px] font-black flex items-center justify-center shadow">
+                          <span className="absolute top-2 right-2 w-5 h-5 rounded-full bg-[#FA9C4D] text-white text-[11px] font-black flex items-center justify-center shadow-soft-sm">
                             ✓
                           </span>
                         )}
@@ -476,10 +484,10 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                           size={isSelected ? 88 : 76}
                           animate={isSelected}
                         />
-                        <span className="mt-1 text-xs sm:text-sm font-black text-white tracking-wide">
+                        <span className="mt-1 text-xs sm:text-sm font-extrabold text-[#352F2A] tracking-wide">
                           {option.title}
                         </span>
-                        <span className="text-[10px] font-semibold text-amber-200/80">
+                        <span className="text-[10px] font-bold text-[#D47220]">
                           {option.tag}
                         </span>
                       </button>
@@ -488,11 +496,11 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                 </div>
 
                 {/* Simple, Fun Character Customisation Bar */}
-                <div className="rounded-2xl bg-slate-900/75 border border-slate-700/70 p-3 space-y-2.5">
+                <div className="rounded-2xl bg-[#FAF5EF] border border-[#EFECE6] p-3 space-y-2.5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {/* Skin Tone */}
                     <div className="space-y-1">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#9E9B97] block">
                         {copy.skinLabel}
                       </span>
                       <div className="flex items-center gap-2">
@@ -507,8 +515,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                               onClick={() => setAppearance((p) => ({ ...p, skinTone: toneId }))}
                               className={`w-7 h-7 rounded-full border-2 transition-transform cursor-pointer ${
                                 active
-                                  ? 'border-amber-300 scale-110 ring-2 ring-amber-400/50'
-                                  : 'border-slate-600 hover:scale-105'
+                                  ? 'border-[#FA9C4D] scale-110 ring-2 ring-[#FA9C4D]/40'
+                                  : 'border-[#D9D6D0] hover:scale-105'
                               }`}
                               style={{ backgroundColor: tone.base }}
                               title={tone.label}
@@ -520,7 +528,7 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
 
                     {/* Outfit Colour */}
                     <div className="space-y-1">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#9E9B97] block">
                         {copy.colorLabel}
                       </span>
                       <div className="flex items-center gap-2">
@@ -535,8 +543,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                               onClick={() => setAppearance((p) => ({ ...p, outfitColor: colId }))}
                               className={`w-7 h-7 rounded-full border-2 transition-transform cursor-pointer ${
                                 active
-                                  ? 'border-amber-300 scale-110 ring-2 ring-amber-400/50'
-                                  : 'border-slate-600 hover:scale-105'
+                                  ? 'border-[#FA9C4D] scale-110 ring-2 ring-[#FA9C4D]/40'
+                                  : 'border-[#D9D6D0] hover:scale-105'
                               }`}
                               style={{ backgroundColor: col.primary }}
                               title={col.label}
@@ -548,9 +556,9 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                   </div>
 
                   {/* Hairstyle & Outfit Style */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-slate-800/80">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-[#EFECE6]">
                     <div className="space-y-1">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#9E9B97] block">
                         {copy.hairLabel}
                       </span>
                       <div className="flex flex-wrap gap-1">
@@ -563,8 +571,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                               onClick={() => setAppearance((p) => ({ ...p, hairStyle: hs.id }))}
                               className={`px-2 py-1 rounded-lg text-[10px] font-bold border transition-colors cursor-pointer ${
                                 active
-                                  ? 'bg-amber-400 text-slate-950 border-amber-300'
-                                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:border-slate-500'
+                                  ? 'bg-[#FA9C4D] text-white border-[#FA9C4D]'
+                                  : 'bg-[#FFFFFF] border-[#EFECE6] text-[#636160] hover:border-[#FFD9B8] hover:text-[#352F2A]'
                               }`}
                             >
                               {hs.label}
@@ -575,7 +583,7 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                     </div>
 
                     <div className="space-y-1">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#9E9B97] block">
                         {copy.outfitLabel}
                       </span>
                       <div className="flex flex-wrap gap-1">
@@ -588,8 +596,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                               onClick={() => setAppearance((p) => ({ ...p, outfitStyle: os.id }))}
                               className={`px-2 py-1 rounded-lg text-[10px] font-bold border transition-colors cursor-pointer ${
                                 active
-                                  ? 'bg-emerald-400 text-slate-950 border-emerald-300'
-                                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:border-slate-500'
+                                  ? 'bg-[#48AF76] text-white border-[#48AF76]'
+                                  : 'bg-[#FFFFFF] border-[#EFECE6] text-[#636160] hover:border-[#CEECDA] hover:text-[#352F2A]'
                               }`}
                             >
                               {os.label}
@@ -605,8 +613,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
               {/* 2. STUDENT NAME (CHARACTER IDENTITY) */}
               <div className="space-y-1.5">
                 <label htmlFor="adventurer-name" className="block">
-                  <span className="text-sm font-black text-white block">{copy.nameTitle}</span>
-                  <span className="text-[11px] text-slate-300 block">{copy.nameSubtitle}</span>
+                  <span className="text-sm font-extrabold text-[#352F2A] block">{copy.nameTitle}</span>
+                  <span className="text-[11px] text-[#636160] font-medium block">{copy.nameSubtitle}</span>
                 </label>
                 <div className="relative">
                   <span
@@ -625,11 +633,11 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                       if (validationError) setValidationError(null);
                     }}
                     placeholder={copy.namePlaceholder}
-                    className="w-full bg-slate-900/90 border-2 border-slate-700 focus:border-amber-400 rounded-2xl pl-11 pr-4 py-2.5 text-sm font-bold text-white placeholder:text-slate-500 outline-none transition-colors shadow-inner"
+                    className="w-full bg-[#FBFAF9] border-2 border-[#EFECE6] focus:border-[#FA9C4D] focus:bg-[#FFFFFF] rounded-2xl pl-11 pr-4 py-2.5 text-sm font-bold text-[#352F2A] placeholder:text-[#9E9B97] outline-none transition-colors"
                   />
                 </div>
                 {validationError && (
-                  <p role="alert" className="text-xs font-semibold text-rose-400">
+                  <p role="alert" className="text-xs font-bold text-rose-600">
                     {validationError}
                   </p>
                 )}
@@ -638,8 +646,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
               {/* 3. CLASS SELECTION (CLASSES 6–12 CONSISTENT GAME CARDS) */}
               <div className="space-y-2">
                 <div>
-                  <span className="text-sm font-black text-white block">{copy.classTitle}</span>
-                  <span className="text-[11px] text-slate-300 block">{copy.classSubtitle}</span>
+                  <span className="text-sm font-extrabold text-[#352F2A] block">{copy.classTitle}</span>
+                  <span className="text-[11px] text-[#636160] font-medium block">{copy.classSubtitle}</span>
                 </div>
                 <div
                   role="group"
@@ -656,14 +664,14 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                         onClick={() => setGrade(g)}
                         className={`py-2.5 px-1.5 rounded-2xl border-2 flex flex-col items-center justify-center transition-all cursor-pointer ${
                           isSelected
-                            ? 'bg-gradient-to-b from-emerald-400 to-emerald-500 text-slate-950 border-emerald-200 shadow-[0_0_16px_rgba(16,185,129,0.45)] scale-[1.05]'
-                            : 'bg-slate-900/85 border-slate-700 text-slate-200 hover:border-emerald-400/60 hover:bg-slate-800'
+                            ? 'bg-[#48AF76] text-white border-[#389461] shadow-soft-md scale-[1.04]'
+                            : 'bg-[#FBFAF9] border-[#EFECE6] text-[#352F2A] hover:border-[#48AF76]/60 hover:bg-[#E8F7EE]/50'
                         }`}
                       >
-                        <span className="text-[9px] font-bold uppercase opacity-80">
+                        <span className={`text-[9px] font-bold uppercase ${isSelected ? 'text-white/90' : 'text-[#9E9B97]'}`}>
                           {copy.classPrefix}
                         </span>
-                        <span className="text-base font-black leading-none mt-0.5">{g}</span>
+                        <span className="text-base font-extrabold leading-none mt-0.5">{g}</span>
                       </button>
                     );
                   })}
@@ -671,13 +679,13 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
               </div>
 
               {/* 4. YOUR PRIVACY MATTERS & AI TUTOR TOGGLE */}
-              <div className="rounded-2xl bg-slate-900/85 border border-emerald-500/35 p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="rounded-2xl bg-[#E8F7EE]/70 border border-[#CEECDA] p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="space-y-1 flex-1">
-                  <div className="flex items-center gap-1.5 text-xs font-black text-emerald-300 tracking-wide">
+                  <div className="flex items-center gap-1.5 text-xs font-extrabold text-[#389461] tracking-wide">
                     <span>🛡️</span>
                     <span>{copy.privacyTitle}</span>
                   </div>
-                  <p className="text-[11px] text-slate-300 leading-relaxed">{copy.privacyBody}</p>
+                  <p className="text-[11px] text-[#636160] font-medium leading-relaxed">{copy.privacyBody}</p>
                 </div>
 
                 <button
@@ -687,8 +695,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                   onClick={() => setAiFeaturesEnabled((v) => !v)}
                   className={`shrink-0 flex items-center gap-2.5 px-3 py-2 rounded-xl border transition-all cursor-pointer ${
                     aiFeaturesEnabled
-                      ? 'bg-emerald-500/15 border-emerald-400/50 text-emerald-200'
-                      : 'bg-slate-800/90 border-slate-700 text-slate-400'
+                      ? 'bg-[#FFFFFF] border-[#48AF76] text-[#389461] shadow-soft-sm'
+                      : 'bg-[#FAF5EF] border-[#EFECE6] text-[#9E9B97]'
                   }`}
                 >
                   <span className="text-[11px] font-bold whitespace-nowrap">
@@ -696,7 +704,7 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                   </span>
                   <span
                     className={`relative inline-flex items-center w-10 h-5 rounded-full transition-colors ${
-                      aiFeaturesEnabled ? 'bg-emerald-500' : 'bg-slate-600'
+                      aiFeaturesEnabled ? 'bg-[#48AF76]' : 'bg-[#D9D6D0]'
                     }`}
                   >
                     <span
@@ -705,16 +713,16 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, initialProfil
                       }`}
                     />
                   </span>
-                  <span className="text-[10px] font-black w-7 text-center">
+                  <span className="text-[10px] font-extrabold w-7 text-center">
                     {aiFeaturesEnabled ? copy.aiEnabled : copy.aiDisabled}
                   </span>
                 </button>
               </div>
 
-              {/* 5. PROMINENT ENTER MY VILLAGE BUTTON */}
+              {/* 5. PROMINENT ENTER MY VILLAGE BUTTON — Official GaonLab Saffron CTA */}
               <button
                 type="submit"
-                className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 hover:from-amber-300 hover:via-orange-300 hover:to-amber-400 text-slate-950 font-black text-base sm:text-lg tracking-wide shadow-[0_6px_0_#b45309,0_12px_30px_rgba(245,158,11,0.45)] hover:shadow-[0_6px_0_#b45309,0_16px_36px_rgba(251,191,36,0.6)] hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0_2px_0_#b45309] transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+                className="w-full py-4 px-6 rounded-2xl bg-[#FA9C4D] hover:bg-[#EB8833] text-white font-extrabold text-base sm:text-lg tracking-wide shadow-[0_5px_0_#D47220,0_12px_28px_rgba(250,156,77,0.38)] hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0_2px_0_#D47220] transition-all flex items-center justify-center gap-2.5 cursor-pointer"
               >
                 <span>🧭</span>
                 <span>{copy.enterCta}</span>

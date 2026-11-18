@@ -2,12 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+@layer base {
+  html, body, #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #FBFAF9;
+    color: #352F2A;
+  }
 }
 
 /* Ensure Phaser canvas sits cleanly inside container */
@@ -20,97 +25,233 @@ canvas {
   image-rendering: crisp-edges;
 }
 
+/* ==========================================================================
+   GAONLAB MAIN PLATFORM PROFESSIONAL THEME HARMONISATION
+   Maps legacy dark-slate modal/HUD utility surfaces cleanly onto the official
+   GaonLab warm ivory (#FBFAF9), pure white (#FFFFFF), warm cream (#FAF5EF),
+   saffron orange (#FA9C4D), emerald mastery (#48AF76) & espresso (#352F2A) palette.
+   ========================================================================== */
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) > div,
+.gaonlab-theme .gl-surface {
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  color: #352F2A !important;
+  border-color: #EFECE6 !important;
+  box-shadow: 0 20px 44px -10px rgba(53, 47, 42, 0.18) !important;
+}
+
+/* Warm frosted backdrop for modals */
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]).bg-slate-950\/85,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]).bg-slate-950\/80,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]).bg-slate-950\/65 {
+  background-color: rgba(53, 47, 42, 0.42) !important;
+}
+
+/* Harmonise ALL inner dark modal cards/headers/insets (any opacity) to warm cream & ivory */
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-slate-900"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-slate-850"] {
+  background-color: #FAF5EF !important;
+  color: #352F2A !important;
+}
+
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-slate-800"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-slate-700"] {
+  background-color: #F8F4EE !important;
+  color: #352F2A !important;
+}
+
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-slate-950"] {
+  background-color: #FFFFFF !important;
+  color: #352F2A !important;
+}
+
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-emerald-950"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-emerald-900"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-teal-950"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-teal-900"] {
+  background-color: #E8F7EE !important;
+  border-color: #CEECDA !important;
+  color: #235E3D !important;
+}
+
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-amber-950"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-amber-900"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-orange-950"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-orange-900"] {
+  background-color: #FFF9F4 !important;
+  border-color: #FFD9B8 !important;
+  color: #5C2D08 !important;
+}
+
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-sky-950"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-sky-900"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-indigo-950"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-purple-950"] {
+  background-color: #FAF5EF !important;
+  border-color: #EFECE6 !important;
+  color: #352F2A !important;
+}
+
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-rose-950"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-rose-900"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="bg-red-950"] {
+  background-color: #FEF2F2 !important;
+  border-color: #FECACA !important;
+  color: #991B1B !important;
+}
+
+/* Keep the modal outer card crisp pure white while inner sections are warm cream */
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) > div {
+  background-color: #FFFFFF !important;
+}
+
+/* Warm borders inside dialogs */
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="border-slate-800"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="border-slate-700"],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) [class*="border-slate-600"] {
+  border-color: #EFECE6 !important;
+}
+
+/* High-contrast warm espresso & saffron typography inside light dialogs */
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-white,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-slate-100,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-slate-200 {
+  color: #352F2A !important;
+}
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-slate-300,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-slate-400 {
+  color: #636160 !important;
+}
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-amber-400,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-amber-300,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-amber-200,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-orange-300 {
+  color: #D47220 !important;
+}
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-emerald-300,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-emerald-200,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-emerald-100,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-teal-300 {
+  color: #389461 !important;
+}
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-sky-300,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-sky-200 {
+  color: #D47220 !important;
+}
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-rose-300,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .text-rose-200 {
+  color: #B91C1C !important;
+}
+
+/* Preserve crisp white text on solid primary orange/emerald/teal buttons */
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-amber-500,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-orange-500,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-emerald-500,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-emerald-600,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-teal-500,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-teal-600,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-sky-500,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-rose-500,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-\[\#FA9C4D\],
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-\[\#48AF76\] {
+  color: #FFFFFF !important;
+}
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-amber-500 {
+  background-color: #FA9C4D !important;
+}
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-amber-500:hover {
+  background-color: #EB8833 !important;
+}
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-emerald-500,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-emerald-600 {
+  background-color: #48AF76 !important;
+}
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-teal-600,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) button.bg-teal-500 {
+  background-color: #48AF76 !important;
+}
+
+/* Crisp warm inputs & selects inside modals */
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) input,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) select,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) textarea {
+  background-color: #FBFAF9 !important;
+  color: #352F2A !important;
+  border-color: #D9D6D0 !important;
+}
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) input:focus,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) select:focus,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) textarea:focus {
+  background-color: #FFFFFF !important;
+  border-color: #FA9C4D !important;
+}
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .bg-amber-500\/20,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .bg-amber-500\/15 {
+  background-color: #FFEEDD !important;
+  border-color: #FFD9B8 !important;
+}
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .bg-emerald-500\/20,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .bg-emerald-500\/15,
+.gaonlab-theme [role="dialog"]:not([data-onboarding="true"]) .bg-teal-500\/20 {
+  background-color: #E8F7EE !important;
+  border-color: #CEECDA !important;
+}
+
+/* Custom warm GaonLab scrollbars matching apps/web */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FBFAF9;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9D6D0;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9E9B97;
+}
+
 /* Lightweight Adventure Onboarding Animations */
 @keyframes cloudDrift {
-  0% {
-    transform: translateX(-8%);
-  }
-  50% {
-    transform: translateX(8%);
-  }
-  100% {
-    transform: translateX(-8%);
-  }
+  0% { transform: translateX(-8%); }
+  50% { transform: translateX(8%); }
+  100% { transform: translateX(-8%); }
 }
 
 @keyframes cloudDriftSlow {
-  0% {
-    transform: translateX(6%);
-  }
-  50% {
-    transform: translateX(-6%);
-  }
-  100% {
-    transform: translateX(6%);
-  }
+  0% { transform: translateX(6%); }
+  50% { transform: translateX(-6%); }
+  100% { transform: translateX(6%); }
 }
 
 @keyframes treeSwayGentle {
-  0%, 100% {
-    transform: rotate(-1.4deg);
-  }
-  50% {
-    transform: rotate(1.4deg);
-  }
+  0%, 100% { transform: rotate(-1.4deg); }
+  50% { transform: rotate(1.4deg); }
 }
 
 @keyframes fireflyFloat {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px);
-    opacity: 0.35;
-  }
-  50% {
-    transform: translateY(-14px) translateX(6px);
-    opacity: 0.9;
-  }
+  0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.35; }
+  50% { transform: translateY(-14px) translateX(6px); opacity: 0.9; }
 }
 
 @keyframes heroPedestalGlow {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.55;
-  }
-  50% {
-    transform: scale(1.08);
-    opacity: 0.85;
-  }
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.08); opacity: 0.85; }
 }
 
 @keyframes panelEntrance {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0px); }
 }
 
-.animate-cloud-drift {
-  animation: cloudDrift 28s ease-in-out infinite;
-}
-
-.animate-cloud-drift-slow {
-  animation: cloudDriftSlow 38s ease-in-out infinite;
-}
-
-.animate-tree-sway {
-  transform-origin: bottom center;
-  animation: treeSwayGentle 5.5s ease-in-out infinite;
-}
-
-.animate-firefly {
-  animation: fireflyFloat 4.8s ease-in-out infinite;
-}
-
-.animate-pedestal-glow {
-  animation: heroPedestalGlow 3.2s ease-in-out infinite;
-}
-
-.animate-panel-enter {
-  animation: panelEntrance 0.4s ease-out both;
-}
+.animate-cloud-drift { animation: cloudDrift 28s ease-in-out infinite; }
+.animate-cloud-drift-slow { animation: cloudDriftSlow 38s ease-in-out infinite; }
+.animate-tree-sway { transform-origin: bottom center; animation: treeSwayGentle 5.5s ease-in-out infinite; }
+.animate-firefly { animation: fireflyFloat 4.8s ease-in-out infinite; }
+.animate-pedestal-glow { animation: heroPedestalGlow 3.2s ease-in-out infinite; }
+.animate-panel-enter { animation: panelEntrance 0.4s ease-out both; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-cloud-drift,

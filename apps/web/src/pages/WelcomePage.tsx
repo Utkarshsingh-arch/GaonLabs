@@ -30,7 +30,7 @@ export const WelcomePage: React.FC = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFEEDD] text-[#D47220] text-xs font-bold mb-6 border border-[#FFD9B8] shadow-soft-sm">
             <Sparkles className="w-3.5 h-3.5 text-[#FA9C4D]" />
-            <span>SkillUp • GaonLab (गाँव लैब) Prototype • Stage 3</span>
+            <span>GaonLabs (गाँव लैब) • Interactive STEM Platform</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#352F2A] tracking-tight leading-tight sm:leading-tight">

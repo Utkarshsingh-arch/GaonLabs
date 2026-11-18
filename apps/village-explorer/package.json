@@ -8,6 +8,8 @@
     "dev:client": "vite",
     "dev:server": "tsx watch server/index.ts",
     "build": "tsc -b && vite build",
+    "sync:web": "node -e \"const fs=require('fs'); fs.rmSync('../web/public/village-explorer',{recursive:true,force:true}); fs.cpSync('dist','../web/public/village-explorer',{recursive:true});\"",
+    "build:web": "npm run build && npm run sync:web",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "tsc --noEmit",
