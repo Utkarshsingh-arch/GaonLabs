@@ -68,13 +68,11 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
       label: 'Explore STEM',
       path: '/app/explore',
       icon: Compass,
-      tag: 'Topics',
     },
     {
       label: 'Experiment Studio',
       path: '/app/experiments',
       icon: FlaskConical,
-      tag: 'Lab',
     },
     {
       label: 'All Courses',
@@ -86,13 +84,11 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
       label: 'STEM Lens',
       path: '/app/stem-lens',
       icon: Camera,
-      tag: 'Lens',
     },
     {
       label: 'Village Builder',
       path: '/app/village-builder',
       icon: Building2,
-      tag: 'Sim',
     },
     {
       label: 'Calendar',
@@ -187,8 +183,8 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
                 type="button"
                 onClick={() => handleQuickSwitch('asha')}
                 className={`py-1 text-[10px] font-semibold rounded-lg transition-all ${session.email === DEMO_PROFILES.asha.email
-                    ? 'bg-[#FFEEDD] text-[#D47220] font-bold'
-                    : 'text-[#636160] hover:bg-[#F8F4EE]'
+                  ? 'bg-[#FFEEDD] text-[#D47220] font-bold'
+                  : 'text-[#636160] hover:bg-[#F8F4EE]'
                   }`}
               >
                 Asha (CBSE 8)
@@ -197,8 +193,8 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
                 type="button"
                 onClick={() => handleQuickSwitch('kavya')}
                 className={`py-1 text-[10px] font-semibold rounded-lg transition-all ${session.email === DEMO_PROFILES.kavya.email
-                    ? 'bg-[#FFEEDD] text-[#D47220] font-bold'
-                    : 'text-[#636160] hover:bg-[#F8F4EE]'
+                  ? 'bg-[#FFEEDD] text-[#D47220] font-bold'
+                  : 'text-[#636160] hover:bg-[#F8F4EE]'
                   }`}
               >
                 Kavya (KTBS 7)
