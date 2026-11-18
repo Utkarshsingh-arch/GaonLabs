@@ -51,3 +51,7 @@ venv/
 ENV/
 tools/bin/
 
+# Cloudflare Wrangler
+.wrangler/
+.dev.vars*
+

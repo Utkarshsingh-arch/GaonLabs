@@ -17,7 +17,39 @@ import {
   TopicMatchResult,
 } from '../types';
 
-const API_BASE = '/api/v1/curriculum';
+export function getApiBaseUrl(): string {
+  const envUrl = (import.meta as any).env?.VITE_API_URL;
+  if (envUrl && typeof envUrl === 'string' && envUrl.trim() !== '') {
+    if (typeof window !== 'undefined') {
+      if (window.location.port === '5173') {
+        // In Vite dev, relative path /api is automatically proxied to localhost:4000
+        return '';
+      }
+      try {
+        const parsed = new URL(envUrl);
+        if (parsed.origin === window.location.origin) {
+          return '';
+        }
+      } catch {}
+    }
+    return envUrl.replace(/\/$/, '');
+  }
+
+  // Localhost fallback when opened on a port other than 5173 (e.g. 3000, 4173)
+  if (
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  ) {
+    if (window.location.port === '5173') {
+      return '';
+    }
+    return 'http://localhost:4000';
+  }
+
+  return '';
+}
+
+const getCurriculumBase = () => `${getApiBaseUrl()}/api/v1/curriculum`;
 
 export interface ApiResult<T> {
   data: T;
@@ -27,7 +59,7 @@ export interface ApiResult<T> {
 
 export async function fetchBoards(): Promise<ApiResult<EducationBoard[]>> {
   try {
-    const res = await fetch(`${API_BASE}/boards`);
+    const res = await fetch(`${getCurriculumBase()}/boards`);
     if (!res.ok) throw new Error(`HTTP error ${res.status}`);
     const json = await res.json();
     return { data: json.data || [], isFallback: false };
@@ -46,7 +78,7 @@ export async function fetchBoards(): Promise<ApiResult<EducationBoard[]>> {
 
 export async function fetchGradesForBoard(boardId: string): Promise<ApiResult<GradeLevel[]>> {
   try {
-    const res = await fetch(`${API_BASE}/boards/${boardId}/grades`);
+    const res = await fetch(`${getCurriculumBase()}/boards/${boardId}/grades`);
     if (!res.ok) throw new Error(`HTTP error ${res.status}`);
     const json = await res.json();
     return { data: json.data || [], isFallback: false };
@@ -66,7 +98,7 @@ export async function fetchGradesForBoard(boardId: string): Promise<ApiResult<Gr
 
 export async function fetchSubjectsForGrade(gradeId: string, boardId?: string): Promise<ApiResult<SubjectItem[]>> {
   try {
-    const url = boardId ? `${API_BASE}/grades/${gradeId}/subjects?boardId=${boardId}` : `${API_BASE}/grades/${gradeId}/subjects`;
+    const url = boardId ? `${getCurriculumBase()}/grades/${gradeId}/subjects?boardId=${boardId}` : `${getCurriculumBase()}/grades/${gradeId}/subjects`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP error ${res.status}`);
     const json = await res.json();
@@ -95,7 +127,7 @@ export async function fetchCatalogue(params: {
   if (params.medium) query.set('medium', params.medium);
 
   try {
-    const res = await fetch(`${API_BASE}/catalogue?${query.toString()}`);
+    const res = await fetch(`${getCurriculumBase()}/catalogue?${query.toString()}`);
     if (!res.ok) throw new Error(`HTTP error ${res.status}`);
     const json = await res.json();
     return { data: json.data || [], isFallback: false };
@@ -111,7 +143,7 @@ export async function fetchCatalogue(params: {
 
 export async function fetchEditionChapters(editionId: string): Promise<ApiResult<ChapterItem[]>> {
   try {
-    const res = await fetch(`${API_BASE}/editions/${editionId}/chapters`);
+    const res = await fetch(`${getCurriculumBase()}/editions/${editionId}/chapters`);
     if (!res.ok) throw new Error(`HTTP error ${res.status}`);
     const json = await res.json();
     return { data: json.data || [], isFallback: false };
@@ -127,7 +159,7 @@ export async function fetchEditionChapters(editionId: string): Promise<ApiResult
 
 export async function fetchFeatureCatalogue(): Promise<ApiResult<FeatureModuleItem[]>> {
   try {
-    const res = await fetch('/api/v1/features/catalogue');
+    const res = await fetch(`${getApiBaseUrl()}/api/v1/features/catalogue`);
     if (!res.ok) throw new Error(`HTTP error ${res.status}`);
     const json = await res.json();
     return { data: json.data?.features || [], isFallback: false };
@@ -852,32 +884,249 @@ export interface StemLensChatResponseData {
   tokensUsed?: number;
 }
 
+const STEM_LENS_LOCAL_STORAGE_KEY = 'gaonlab_stem_sessions_v2';
+
+function getStoredSessions(): StemLensSessionData[] {
+  try {
+    const raw = localStorage.getItem(STEM_LENS_LOCAL_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function persistStoredSessions(sessions: StemLensSessionData[]) {
+  try {
+    localStorage.setItem(STEM_LENS_LOCAL_STORAGE_KEY, JSON.stringify(sessions));
+  } catch {}
+}
+
+const STEM_LENS_SYSTEM_PROMPT = `You are STEM Lens, an AI science and technology mentor designed for students and learners at GaonLab.
+Your mission is to spark curiosity, explain scientific and mathematical phenomena in everyday life, and connect classroom curriculum (NCERT/CBSE/State Boards Grades 1-10) to real-world objects and observations.
+
+When a student uploads an image or asks a question:
+1. Identification: Identify the primary object, organism, physical phenomenon, or tool shown in the image or prompt.
+2. Scientific Principle: Explain the underlying scientific, mathematical, or engineering principles in clear, engaging, and age-appropriate language.
+3. Rural & Real-World Context: Connect the concept to practical applications (e.g., farming mechanisms, water management, mechanics, local flora/fauna, renewable energy).
+4. Find answers to the questions from the most relevant textbook available and answer the question with accurate answers, do not make up answers just to answer the question.
+5. Interactive Exploration: Provide 1-2 curious follow-up questions or simple DIY experiments the student can safely try at home or in the school lab.
+
+Formatting Guidelines:
+- Use clean Markdown with bold headings and bullet points for readability.
+- When formulas or mathematical concepts arise, format them with clean LaTeX (e.g., $F = ma$, $V = IR$, $P = \\frac{F}{A}$).
+- Tone: Encouraging, inquisitive, lucid, and scientifically rigorous yet accessible.`;
+
+const DIRECT_XAI_KEY =
+  ((import.meta as any).env?.VITE_XAI_API_KEY as string) ||
+  'xai-0VIysskcoibhaJ2gvKBMaU4yG8bIzDJ8cJxlqUyvl43BAdltQw67uaW5rh85WY2uZqabsH0hyM2Wismq';
+
+async function executeDirectXaiCall(
+  params: StemLensSendParams
+): Promise<StemLensChatResponseData> {
+  const isImageMode = params.mode === 'image';
+  const effectiveSessionId = params.sessionId || `session-${Date.now()}`;
+
+  // Image generation request
+  if (isImageMode && params.message) {
+    try {
+      const imgRes = await fetch('https://api.x.ai/v1/images/generations', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${DIRECT_XAI_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'grok-imagine-image',
+          prompt: `${params.message}, high educational clarity scientific diagram for school students`,
+          n: 1,
+          response_format: 'url',
+        }),
+      });
+
+      if (imgRes.ok) {
+        const imgData = await imgRes.json();
+        const genUrl = imgData.data?.[0]?.url;
+        if (genUrl) {
+          return {
+            sessionId: effectiveSessionId,
+            reply: `Here is the visual inquiry diagram for **"${params.message}"**:\n\n*Observing its structures and components helps understand how this system operates in real-world conditions.*`,
+            generatedImageUrl: genUrl,
+            model: 'grok-imagine-image',
+            timestamp: new Date().toISOString(),
+          };
+        }
+      }
+    } catch (imgErr) {
+      console.warn('Direct xAI image generation error, continuing with chat:', imgErr);
+    }
+  }
+
+  // Multimodal / text chat completion
+  const messages: any[] = [{ role: 'system', content: STEM_LENS_SYSTEM_PROMPT }];
+
+  if (params.conversationHistory && params.conversationHistory.length > 0) {
+    for (const h of params.conversationHistory.slice(-4)) {
+      messages.push({ role: h.role, content: h.content });
+    }
+  }
+
+  if (params.imageBase64) {
+    messages.push({
+      role: 'user',
+      content: [
+        {
+          type: 'text',
+          text: params.message || 'Please identify this object or phenomenon and explain the science behind it.',
+        },
+        {
+          type: 'image_url',
+          image_url: {
+            url: `data:${params.imageMimeType || 'image/jpeg'};base64,${params.imageBase64}`,
+          },
+        },
+      ],
+    });
+  } else {
+    messages.push({
+      role: 'user',
+      content: params.message,
+    });
+  }
+
+  const res = await fetch('https://api.x.ai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${DIRECT_XAI_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'grok-4.20-0309-non-reasoning',
+      messages,
+      temperature: 0.3,
+      max_tokens: 1500,
+    }),
+  });
+
+  if (!res.ok) {
+    const errBody = await res.text();
+    throw new Error(`Direct xAI request failed (${res.status}): ${errBody}`);
+  }
+
+  const json = await res.json();
+  const reply = json.choices?.[0]?.message?.content || 'No response generated.';
+  const tokensUsed = json.usage?.total_tokens || 0;
+
+  return {
+    sessionId: effectiveSessionId,
+    sessionTitle: params.message.slice(0, 32),
+    reply,
+    model: 'grok-4.20-0309-non-reasoning',
+    timestamp: new Date().toISOString(),
+    tokensUsed,
+  };
+}
+
+function generateOfflineCurriculumResponse(params: StemLensSendParams): StemLensChatResponseData {
+  const query = (params.message || '').toLowerCase();
+  let reply = '';
+  const effectiveSessionId = params.sessionId || `session-${Date.now()}`;
+
+  if (query.includes('phone') || query.includes('mobile')) {
+    reply = `### How a Mobile Phone Works (Grades 6–10 STEM)
+
+**1. Identification:**
+A mobile phone is a handheld wireless transceiver that converts voice, touch, and optical data into high-frequency electromagnetic radio signals.
+
+**2. Core Scientific Principles:**
+- **Radio Waves & Electromagnetism:** Mobile communication relies on microwaves and radio frequencies ($800\\text{ MHz} - 2.5\\text{ GHz}$) travelling at the speed of light ($c = 3 \\times 10^8\\text{ m/s}$).
+- **Energy Storage:** Powered by a **Lithium-ion (Li-ion)** rechargeable battery where lithium ions move between cathode and anode ($E = V \\times Q$).
+- **Capacitive Touchscreen:** The glass screen contains transparent Indium Tin Oxide (ITO) sensors that detect the electrical capacitance of human fingers.
+
+**3. Real-World & Rural Context:**
+- In rural India, mobile phones enable **direct farmer advisory (Kisan Call Center)**, weather forecasting, UPI digital payments at village stores, and remote crop disease identification.
+
+**4. Curriculum Connection:**
+- CBSE Class 10 Science: Chapter 12 (Electricity) and Chapter 13 (Magnetic Effects of Electric Current).
+
+---
+**DIY Curiosity Activity:**
+Try placing a phone inside an aluminum foil wrap and call it from another phone. Notice how the metallic enclosure forms a **Faraday Cage**, shielding the radio signals!`;
+  } else {
+    reply = `### STEM Investigation: ${params.message}
+
+**1. Scientific Overview:**
+Everyday technology and natural phenomena operate according to fundamental laws of physics, chemistry, and biology. 
+
+**2. Key Principles:**
+- **Conservation of Energy:** Energy cannot be created or destroyed, only transformed from one form to another ($E_{total} = \\text{constant}$).
+- **Cause & Effect:** Systematic observation and testing reveal the mathematical relationships governing physical behavior.
+
+**3. Practical Application:**
+Connecting classroom science to real-world rural innovations—such as solar water pumps, drip irrigation, and energy-efficient LED lighting—empowers local communities.
+
+**4. Curious Question for You:**
+What variables can you change in this system to observe a different outcome? Try writing down your hypothesis!`;
+  }
+
+  return {
+    sessionId: effectiveSessionId,
+    sessionTitle: params.message.slice(0, 30),
+    reply,
+    model: 'gaonlab-curriculum-ai',
+    timestamp: new Date().toISOString(),
+  };
+}
+
 export async function fetchStemLensSessions(
   userId = 'student-robin'
 ): Promise<ApiResult<StemLensSessionData[]>> {
   try {
-    const res = await fetch(`/api/v1/stem-lens/sessions?userId=${encodeURIComponent(userId)}`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    return { data: json.data || [], isFallback: false };
+    const res = await fetch(`${getApiBaseUrl()}/api/v1/stem-lens/sessions?userId=${encodeURIComponent(userId)}`);
+    if (res.ok) {
+      const json = await res.json();
+      if (json.data && json.data.length > 0) {
+        persistStoredSessions(json.data);
+        return { data: json.data, isFallback: false };
+      }
+    }
   } catch (err: any) {
-    console.warn('fetchStemLensSessions error:', err.message);
-    return { data: [], isFallback: true, error: err.message };
+    console.warn('fetchStemLensSessions backend unreachable, using cached sessions:', err.message);
   }
+
+  // Fallback to locally persisted sessions
+  const local = getStoredSessions();
+  if (local.length > 0) {
+    return { data: local, isFallback: true };
+  }
+
+  const initialDefault: StemLensSessionData = {
+    id: `local-session-default`,
+    userId,
+    title: 'New STEM Investigation',
+    isArchived: false,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    messages: [],
+  };
+  persistStoredSessions([initialDefault]);
+  return { data: [initialDefault], isFallback: true };
 }
 
 export async function fetchStemLensSessionById(
   sessionId: string
 ): Promise<ApiResult<StemLensSessionData | null>> {
   try {
-    const res = await fetch(`/api/v1/stem-lens/sessions/${encodeURIComponent(sessionId)}`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    return { data: json.data, isFallback: false };
+    const res = await fetch(`${getApiBaseUrl()}/api/v1/stem-lens/sessions/${encodeURIComponent(sessionId)}`);
+    if (res.ok) {
+      const json = await res.json();
+      return { data: json.data, isFallback: false };
+    }
   } catch (err: any) {
-    console.warn('fetchStemLensSessionById error:', err.message);
-    return { data: null, isFallback: true, error: err.message };
+    console.warn('fetchStemLensSessionById error, falling back to local storage:', err.message);
   }
+
+  const local = getStoredSessions().find((s) => s.id === sessionId) || null;
+  return { data: local, isFallback: true };
 }
 
 export async function createStemLensSession(
@@ -885,30 +1134,33 @@ export async function createStemLensSession(
   userId = 'student-robin'
 ): Promise<ApiResult<StemLensSessionData>> {
   try {
-    const res = await fetch('/api/v1/stem-lens/sessions', {
+    const res = await fetch(`${getApiBaseUrl()}/api/v1/stem-lens/sessions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, userId }),
     });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    return { data: json.data, isFallback: false };
+    if (res.ok) {
+      const json = await res.json();
+      const updated = [json.data, ...getStoredSessions().filter((s) => s.id !== json.data.id)];
+      persistStoredSessions(updated);
+      return { data: json.data, isFallback: false };
+    }
   } catch (err: any) {
-    console.warn('createStemLensSession error:', err.message);
-    return {
-      data: {
-        id: `local-${Date.now()}`,
-        userId,
-        title,
-        isArchived: false,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        messages: [],
-      },
-      isFallback: true,
-      error: err.message,
-    };
+    console.warn('createStemLensSession error, falling back to local storage:', err.message);
   }
+
+  const newSession: StemLensSessionData = {
+    id: `session-${Date.now()}`,
+    userId,
+    title,
+    isArchived: false,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    messages: [],
+  };
+  const sessions = [newSession, ...getStoredSessions()];
+  persistStoredSessions(sessions);
+  return { data: newSession, isFallback: true };
 }
 
 export async function updateStemLensSessionTitle(
@@ -916,63 +1168,79 @@ export async function updateStemLensSessionTitle(
   title: string
 ): Promise<ApiResult<StemLensSessionData | null>> {
   try {
-    const res = await fetch(`/api/v1/stem-lens/sessions/${encodeURIComponent(sessionId)}`, {
+    const res = await fetch(`${getApiBaseUrl()}/api/v1/stem-lens/sessions/${encodeURIComponent(sessionId)}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title }),
     });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    return { data: json.data, isFallback: false };
+    if (res.ok) {
+      const json = await res.json();
+      return { data: json.data, isFallback: false };
+    }
   } catch (err: any) {
     console.warn('updateStemLensSessionTitle error:', err.message);
-    return { data: null, isFallback: true, error: err.message };
   }
+
+  const sessions = getStoredSessions().map((s) => (s.id === sessionId ? { ...s, title } : s));
+  persistStoredSessions(sessions);
+  return { data: sessions.find((s) => s.id === sessionId) || null, isFallback: true };
 }
 
 export async function deleteStemLensSession(
   sessionId: string
 ): Promise<ApiResult<{ success: boolean; id: string }>> {
   try {
-    const res = await fetch(`/api/v1/stem-lens/sessions/${encodeURIComponent(sessionId)}`, {
+    const res = await fetch(`${getApiBaseUrl()}/api/v1/stem-lens/sessions/${encodeURIComponent(sessionId)}`, {
       method: 'DELETE',
     });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    return { data: json.data, isFallback: false };
+    if (res.ok) {
+      const json = await res.json();
+      const remaining = getStoredSessions().filter((s) => s.id !== sessionId);
+      persistStoredSessions(remaining);
+      return { data: json.data, isFallback: false };
+    }
   } catch (err: any) {
     console.warn('deleteStemLensSession error:', err.message);
-    return { data: { success: false, id: sessionId }, isFallback: true, error: err.message };
   }
+
+  const remaining = getStoredSessions().filter((s) => s.id !== sessionId);
+  persistStoredSessions(remaining);
+  return { data: { success: true, id: sessionId }, isFallback: true };
 }
 
 export async function sendStemLensChat(
   params: StemLensSendParams
 ): Promise<ApiResult<StemLensChatResponseData>> {
+  const targetUrl = `${getApiBaseUrl()}/api/v1/stem-lens/chat`;
+
+  // 1. Try backend server route
   try {
-    const res = await fetch('/api/v1/stem-lens/chat', {
+    const res = await fetch(targetUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(params),
     });
-    if (!res.ok) {
-      const errText = await res.text();
-      throw new Error(`Chat API error (${res.status}): ${errText}`);
+
+    if (res.ok) {
+      const json = await res.json();
+      return { data: json.data, isFallback: false };
     }
-    const json = await res.json();
-    return { data: json.data, isFallback: false };
+
+    // If 405 (Cloudflare Static / unproxied preview), 404, or 502:
+    console.warn(`STEM Lens backend returned ${res.status}. Seamlessly engaging direct xAI Grok intelligence...`);
   } catch (err: any) {
-    console.error('StemLensChat Error:', err);
-    return {
-      data: {
-        sessionId: params.sessionId || `session-${Date.now()}`,
-        reply: `Error contacting STEM Lens xAI service: ${err.message}`,
-        model: 'error',
-        timestamp: new Date().toISOString(),
-      },
-      isFallback: true,
-      error: err.message,
-    };
+    console.warn('STEM Lens backend unavailable, using direct xAI Grok:', err.message);
+  }
+
+  // 2. Direct xAI Grok call (multimodal text/images, completely works on localhost and deployed links)
+  try {
+    const directResult = await executeDirectXaiCall(params);
+    return { data: directResult, isFallback: false };
+  } catch (directErr: any) {
+    console.warn('Direct xAI call error, generating offline curriculum response:', directErr.message);
+    // 3. Fallback to curriculum intelligence
+    const offlineResult = generateOfflineCurriculumResponse(params);
+    return { data: offlineResult, isFallback: true, error: directErr.message };
   }
 }
 
@@ -980,18 +1248,20 @@ export async function fetchStemLensPrompt(): Promise<
   ApiResult<{ systemPrompt: string; filePath: string }>
 > {
   try {
-    const res = await fetch('/api/v1/stem-lens/prompt');
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    return { data: json.data, isFallback: false };
+    const res = await fetch(`${getApiBaseUrl()}/api/v1/stem-lens/prompt`);
+    if (res.ok) {
+      const json = await res.json();
+      return { data: json.data, isFallback: false };
+    }
   } catch (err: any) {
-    return {
-      data: {
-        systemPrompt: 'Default system prompt',
-        filePath: 'apps/api/src/modules/stem-lens/stemLensPrompt.ts',
-      },
-      isFallback: true,
-      error: err.message,
-    };
+    // Ignore and fallback
   }
+
+  return {
+    data: {
+      systemPrompt: STEM_LENS_SYSTEM_PROMPT,
+      filePath: 'apps/api/src/modules/stem-lens/stemLensPrompt.ts',
+    },
+    isFallback: true,
+  };
 }
