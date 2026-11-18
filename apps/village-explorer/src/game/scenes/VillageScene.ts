@@ -420,8 +420,4 @@ export class VillageScene extends Phaser.Scene {
   public getMap(): Phaser.Tilemaps.Tilemap {
     return this.map;
   }
-
-  public getNpcSystem(): NpcSystem {
-    return this.npcSystem;
-  }
 }
