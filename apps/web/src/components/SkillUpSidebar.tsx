@@ -16,7 +16,7 @@ import {
 import { getDemoSession, clearDemoSession, setDemoSession, DEMO_PROFILES } from '../services/demoAuth';
 import { DemoProfile } from '../types';
 
-interface SidebarProps {
+export interface SidebarProps {
   currentProfile?: DemoProfile;
   onProfileChange?: (profile: DemoProfile) => void;
   onOpenExplorer?: () => void;
