@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Plus,
   Sparkles,
@@ -28,9 +28,12 @@ import {
 } from '../components/SkillUpIllustrations';
 import { ChapterDrawerModal } from '../components/ChapterDrawerModal';
 import { CurriculumExplorerModal } from '../components/CurriculumExplorerModal';
+import { ScheduleCalendarModal } from '../components/ScheduleCalendarModal';
 import { CatalogueEntry, DemoProfile, TextbookEditionItem } from '../types';
 
 export const DashboardPage: React.FC = () => {
+  const location = useLocation();
+
   // Load session or default to Asha Rao
   const [profile, setProfile] = useState<DemoProfile>(() => {
     const existing = getDemoSession();
@@ -48,6 +51,13 @@ export const DashboardPage: React.FC = () => {
   const [selectedEdition, setSelectedEdition] = useState<TextbookEditionItem | null>(null);
   const [selectedSubjectName, setSelectedSubjectName] = useState<string>('');
   const [isExplorerOpen, setIsExplorerOpen] = useState<boolean>(false);
+  const [isScheduleOpen, setIsScheduleOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (location.pathname === '/app/schedule' || window.location.hash === '#schedule') {
+      setIsScheduleOpen(true);
+    }
+  }, [location.pathname]);
 
   // Load real curriculum from API
   const loadCurriculum = async (currentProfile: DemoProfile) => {
@@ -138,6 +148,7 @@ export const DashboardPage: React.FC = () => {
         currentProfile={profile}
         onProfileChange={handleProfileChange}
         onOpenExplorer={() => setIsExplorerOpen(true)}
+        onOpenSchedule={() => setIsScheduleOpen(true)}
       />
 
       {/* =======================================================================
@@ -523,7 +534,7 @@ export const DashboardPage: React.FC = () => {
           {/* ===================================================================
               RIGHT COLUMN: Weekly Progress, Recent Tasks, Activity
              =================================================================== */}
-          <SkillUpRightSidebar />
+          <SkillUpRightSidebar onOpenSchedule={() => setIsScheduleOpen(true)} />
         </main>
       </div>
 
@@ -542,6 +553,11 @@ export const DashboardPage: React.FC = () => {
         isOpen={isExplorerOpen}
         onClose={() => setIsExplorerOpen(false)}
         profile={profile}
+      />
+
+      <ScheduleCalendarModal
+        isOpen={isScheduleOpen}
+        onClose={() => setIsScheduleOpen(false)}
       />
     </div>
   );

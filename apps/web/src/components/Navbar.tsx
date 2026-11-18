@@ -33,7 +33,7 @@ export const Navbar: React.FC = () => {
             <div className="w-2 h-2 rounded-full bg-[#FA9C4D]" />
           </div>
           <span className="text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-[#FFEEDD] text-[#D47220] border border-[#FFD9B8]">
-            STEM
+            गाँव लैब
           </span>
         </Link>
 

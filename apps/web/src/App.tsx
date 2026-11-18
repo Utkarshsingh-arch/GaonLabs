@@ -34,6 +34,7 @@ const AppContent: React.FC = () => {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/signin" element={<SigninPage />} />
           <Route path="/app/dashboard" element={<DashboardPage />} />
+          <Route path="/app/schedule" element={<DashboardPage />} />
           <Route path="/dashboard" element={<Navigate to="/app/dashboard" replace />} />
           <Route path="/app/explore" element={<ExplorePage />} />
           <Route path="/app/explore/topics/:topicId" element={<TopicDetailPage />} />

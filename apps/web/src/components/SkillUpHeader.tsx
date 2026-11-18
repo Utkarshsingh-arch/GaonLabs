@@ -77,3 +77,5 @@ export const SkillUpHeader: React.FC<HeaderProps> = ({
     </header>
   );
 };
+
+export const GaonLabsHeader = SkillUpHeader;

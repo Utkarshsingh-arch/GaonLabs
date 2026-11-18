@@ -20,12 +20,23 @@ interface SidebarProps {
   currentProfile?: DemoProfile;
   onProfileChange?: (profile: DemoProfile) => void;
   onOpenExplorer?: () => void;
+  onOpenSchedule?: () => void;
+}
+
+interface NavItem {
+  label: string;
+  path: string;
+  icon: React.ComponentType<{ className?: string }>;
+  exact?: boolean;
+  onClick?: () => void;
+  tag?: string;
 }
 
 export const SkillUpSidebar: React.FC<SidebarProps> = ({
   currentProfile,
   onProfileChange,
-  onOpenExplorer
+  onOpenExplorer,
+  onOpenSchedule
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -46,7 +57,7 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
     }
   };
 
-  const navItems = [
+  const navItems: NavItem[] = [
     {
       label: 'Dashboard',
       path: '/app/dashboard',
@@ -57,13 +68,11 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
       label: 'Explore STEM',
       path: '/app/explore',
       icon: Compass,
-      tag: 'Topics',
     },
     {
       label: 'Experiment Studio',
       path: '/app/experiments',
       icon: FlaskConical,
-      tag: 'Lab',
     },
     {
       label: 'All Courses',
@@ -75,18 +84,17 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
       label: 'STEM Lens',
       path: '/app/stem-lens',
       icon: Camera,
-      tag: 'Lens',
     },
     {
       label: 'Village Builder',
       path: '/app/village-builder',
       icon: Building2,
-      tag: 'Sim',
     },
     {
-      label: 'Schedule',
+      label: 'Calendar',
       path: '/app/dashboard#schedule',
       icon: Calendar,
+      onClick: onOpenSchedule,
     },
     {
       label: 'Achievements',
@@ -112,7 +120,7 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
             <div className="w-2 h-2 rounded-full bg-[#FA9C4D]" />
           </div>
           <span className="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#FFEEDD] text-[#D47220] border border-[#FFD9B8]">
-            STEM
+            गाँव लैब
           </span>
         </Link>
 
@@ -129,17 +137,15 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
                 key={item.label}
                 to={item.path}
                 onClick={item.onClick}
-                className={`flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-sm font-semibold transition-all ${
-                  isActive
-                    ? 'bg-[#FAF5EF] text-[#352F2A] shadow-soft-sm border border-[#EFECE6]'
-                    : 'text-[#636160] hover:text-[#352F2A] hover:bg-[#F8F4EE]/60'
-                }`}
+                className={`flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-sm font-semibold transition-all ${isActive
+                  ? 'bg-[#FAF5EF] text-[#352F2A] shadow-soft-sm border border-[#EFECE6]'
+                  : 'text-[#636160] hover:text-[#352F2A] hover:bg-[#F8F4EE]/60'
+                  }`}
               >
                 <div className="flex items-center gap-3">
                   <Icon
-                    className={`w-5 h-5 transition-colors ${
-                      isActive ? 'text-[#FA9C4D]' : 'text-[#9E9B97]'
-                    }`}
+                    className={`w-5 h-5 transition-colors ${isActive ? 'text-[#FA9C4D]' : 'text-[#9E9B97]'
+                      }`}
                   />
                   <span>{item.label}</span>
                 </div>
@@ -159,16 +165,6 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
         {/* Profile Card & Switcher */}
         {session && (
           <div className="bg-[#FFFFFF] p-3 rounded-2xl border border-[#EFECE6] shadow-soft-sm">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#9E9B97]">
-                Active Student
-              </span>
-              <div className="flex items-center gap-1 text-[10px] text-[#48AF76] font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#48AF76] animate-pulse" />
-                <span>Online</span>
-              </div>
-            </div>
-
             <div className="flex items-center gap-2.5 mb-2.5">
               <div className="w-8 h-8 rounded-full bg-[#FFEEDD] border border-[#FFD9B8] flex items-center justify-center text-[#FA9C4D] font-bold text-xs shrink-0">
                 {session.name.charAt(0)}
@@ -181,27 +177,25 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
               </div>
             </div>
 
-            {/* Switch Profile Toggle */}
+            {/* Quick Profile Switcher */}
             <div className="grid grid-cols-2 gap-1.5 pt-2 border-t border-[#EFECE6]">
               <button
                 type="button"
                 onClick={() => handleQuickSwitch('asha')}
-                className={`py-1 text-[10px] font-semibold rounded-lg transition-all ${
-                  session.email === DEMO_PROFILES.asha.email
-                    ? 'bg-[#FFEEDD] text-[#D47220] font-bold'
-                    : 'text-[#636160] hover:bg-[#F8F4EE]'
-                }`}
+                className={`py-1 text-[10px] font-semibold rounded-lg transition-all ${session.email === DEMO_PROFILES.asha.email
+                  ? 'bg-[#FFEEDD] text-[#D47220] font-bold'
+                  : 'text-[#636160] hover:bg-[#F8F4EE]'
+                  }`}
               >
                 Asha (CBSE 8)
               </button>
               <button
                 type="button"
                 onClick={() => handleQuickSwitch('kavya')}
-                className={`py-1 text-[10px] font-semibold rounded-lg transition-all ${
-                  session.email === DEMO_PROFILES.kavya.email
-                    ? 'bg-[#FFEEDD] text-[#D47220] font-bold'
-                    : 'text-[#636160] hover:bg-[#F8F4EE]'
-                }`}
+                className={`py-1 text-[10px] font-semibold rounded-lg transition-all ${session.email === DEMO_PROFILES.kavya.email
+                  ? 'bg-[#FFEEDD] text-[#D47220] font-bold'
+                  : 'text-[#636160] hover:bg-[#F8F4EE]'
+                  }`}
               >
                 Kavya (KTBS 7)
               </button>
@@ -233,3 +227,5 @@ export const SkillUpSidebar: React.FC<SidebarProps> = ({
     </aside>
   );
 };
+
+export const GaonLabsSidebar = SkillUpSidebar;

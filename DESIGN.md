@@ -1,6 +1,6 @@
-# GaonLab Design System & UI/UX Specification
+# GaonLabs Design System & UI/UX Specification
 
-> **Version**: 1.0.0 (SkillUp Aesthetic Edition)  
+> **Version**: 1.1.0 (GaonLabs Aesthetic Edition)  
 > **Status**: Production Reference Standard  
 > **Target Platforms**: Web (Desktop, Tablet, Mobile)  
 > **Primary Audience**: Monorepo Developers, UI Engineers, PR Authors  
@@ -9,7 +9,7 @@
 
 ## 1. Design System Philosophy & Identity
 
-GaonLab adopts the **SkillUp design aesthetic**: an approachable, warm, human-centered, and joyful visual system tailored for educational excellence. It balances playful, encouraging learning interactions with clean, rigorous, professional information architecture.
+GaonLabs adopts an approachable, warm, human-centered, and joyful visual system tailored for educational excellence. It balances playful, encouraging learning interactions with clean, rigorous, professional information architecture.
 
 ### Core Visual Tenets
 1. **Warm Parchment Canvas**: Eliminates sterile, cold grays (`slate`, `zinc`). The background is an ultra-soft, warm ivory parchment (`#FBFAF9`) that reduces eye strain during extended study.
@@ -88,7 +88,7 @@ All PRs **MUST** strictly adhere to these color tokens. Do **NOT** invent arbitr
 
 ## 3. Typography Standards
 
-The typography hierarchy uses **Plus Jakarta Sans** (Google Fonts). It provides clean geometric forms with soft humanist curves that match the SkillUp reference.
+The typography hierarchy uses **Plus Jakarta Sans** (Google Fonts). It provides clean geometric forms with soft humanist curves that match the GaonLabs reference.
 
 ```html
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
