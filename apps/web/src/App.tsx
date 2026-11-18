@@ -21,11 +21,13 @@ import {
 
 const AppContent: React.FC = () => {
   const location = useLocation();
-  const isReaderRoute = location.pathname.startsWith('/app/reader');
+  const isFullViewportRoute =
+    location.pathname.startsWith('/app/reader') ||
+    location.pathname.startsWith('/app/village-builder');
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
-      {!isReaderRoute && <Navbar />}
+    <div className="min-h-screen flex flex-col bg-[#FBFAF9] text-[#352F2A]">
+      {!isFullViewportRoute && <Navbar />}
       <div className="flex-1 flex flex-col">
         <Routes>
           <Route path="/" element={<WelcomePage />} />
@@ -46,7 +48,7 @@ const AppContent: React.FC = () => {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
-      {!isReaderRoute && <Footer />}
+      {!isFullViewportRoute && <Footer />}
     </div>
   );
 };
