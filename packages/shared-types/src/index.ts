@@ -10,3 +10,4 @@ export * from './events';
 export * from './feature-module';
 export * from './reader';
 export * from './topic';
+export * from './experiment';

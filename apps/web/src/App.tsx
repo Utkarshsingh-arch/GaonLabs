@@ -13,6 +13,11 @@ import { BookDetailsPage } from './pages/BookDetailsPage';
 import { ReaderPage } from './pages/ReaderPage';
 import { ExplorePage } from './pages/ExplorePage';
 import { TopicDetailPage } from './pages/TopicDetailPage';
+import {
+  ExperimentCataloguePage,
+  ExperimentDetailsPage,
+  ExperimentLabPage,
+} from './features/experiment-studio';
 
 const AppContent: React.FC = () => {
   const location = useLocation();
@@ -36,6 +41,9 @@ const AppContent: React.FC = () => {
           <Route path="/app/reader/:documentId" element={<ReaderPage />} />
           <Route path="/app/stem-lens" element={<StemLensPage />} />
           <Route path="/app/village-builder" element={<VillageBuilderPage />} />
+          <Route path="/app/experiments" element={<ExperimentCataloguePage />} />
+          <Route path="/app/experiments/:id" element={<ExperimentDetailsPage />} />
+          <Route path="/app/experiments/:id/lab" element={<ExperimentLabPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

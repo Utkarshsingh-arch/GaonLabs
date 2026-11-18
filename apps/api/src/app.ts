@@ -13,6 +13,7 @@ import { stemLensRouter } from './modules/stem-lens';
 import { villageBuilderRouter } from './modules/village-builder';
 import { readerRouter } from './modules/reader';
 import { topicRouter, videoStreamRouter } from './modules/topics/topic.router';
+import { experimentStudioRouter } from './modules/experiment-studio';
 
 export function createApp(): Express {
   const app = express();
@@ -112,6 +113,7 @@ export function createApp(): Express {
   app.use('/api/v1/reader', readerRouter);
   app.use('/api/v1/topics', topicRouter);
   app.use('/api/v1/videos', videoStreamRouter);
+  app.use('/api/v1/experiments', experimentStudioRouter);
 
   // 404 & Global Error Handling
   app.use(notFoundHandler);

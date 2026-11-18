@@ -5,7 +5,9 @@ import {
   Sparkles,
   ChevronRight,
   ArrowRight,
-  AlertCircle
+  AlertCircle,
+  Compass,
+  FlaskConical
 } from 'lucide-react';
 import {
   getDemoSession,
@@ -158,7 +160,9 @@ export const DashboardPage: React.FC = () => {
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
           profile={profile}
-          onOpenNotifications={() => alert(`Notifications: 1,161 official curriculum chapters active in ${profile.boardName}.`)}
+          onOpenNotifications={() =>
+            alert(`Notifications: Official curriculum active in ${profile.boardName} (Class ${profile.grade}).`)
+          }
         />
 
         {apiError && (
@@ -168,7 +172,7 @@ export const DashboardPage: React.FC = () => {
               <span>Offline Fallback Active: Serving local verified curriculum snapshot.</span>
             </span>
             <span className="font-mono text-[10px] bg-white px-2 py-0.5 rounded border border-[#FFD9B8]">
-              Local SQLite/Postgres Synced
+              Local Postgres Synced
             </span>
           </div>
         )}
@@ -178,7 +182,7 @@ export const DashboardPage: React.FC = () => {
           {/* Main Central Column */}
           <div className="flex-1 space-y-8 min-w-0">
             {/* =================================================================
-                HERO BANNER (Matching Screenshot Warm Orange Card & Rocket)
+                HERO BANNER (SkillUp Warm Orange Card & Rocket)
                ================================================================= */}
             <section className="relative overflow-hidden rounded-3xl bg-[#FA9C4D] p-7 md:p-9 text-white shadow-soft-md">
               <div className="absolute top-0 right-0 w-80 h-full bg-gradient-to-l from-white/10 to-transparent pointer-events-none -z-0" />
@@ -189,8 +193,28 @@ export const DashboardPage: React.FC = () => {
                     Hi, {studentFirstName}!
                   </h1>
                   <p className="mt-2 text-sm sm:text-base font-medium text-white/95 leading-relaxed">
-                    Welcome back! Let's have some fun today. New knowledge awaits
+                    Welcome back! Let's have some fun today. New STEM discoveries await
                   </p>
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/20 backdrop-blur-xs text-white border border-white/20">
+                      <Sparkles className="w-3.5 h-3.5 text-[#FFCF4F]" />
+                      Class {profile.grade} • {profile.boardId === 'CBSE' ? 'CBSE National' : 'Karnataka KTBS'} ({profile.medium === 'kn' ? 'ಕನ್ನಡ' : 'English'})
+                    </span>
+                    <Link
+                      to="/app/experiments"
+                      className="px-3.5 py-1 rounded-full text-xs font-bold bg-white text-[#FA9C4D] hover:bg-[#FFEEDD] transition-colors shadow-soft-sm inline-flex items-center gap-1.5"
+                    >
+                      <FlaskConical className="w-3.5 h-3.5" />
+                      <span>Virtual Lab</span>
+                    </Link>
+                    <Link
+                      to="/app/explore"
+                      className="px-3.5 py-1 rounded-full text-xs font-bold bg-white/15 hover:bg-white/25 text-white transition-colors border border-white/20 inline-flex items-center gap-1.5"
+                    >
+                      <Compass className="w-3.5 h-3.5" />
+                      <span>Explore STEM</span>
+                    </Link>
+                  </div>
                 </div>
 
                 {/* Rocket Illustration */}
@@ -201,7 +225,7 @@ export const DashboardPage: React.FC = () => {
             </section>
 
             {/* =================================================================
-                MY COURSES (Matching Screenshot "My Cources" Cards)
+                MY COURSES (SkillUp Course Cards)
                ================================================================= */}
             <section id="courses" className="space-y-4">
               <div className="flex items-center justify-between">
@@ -246,7 +270,7 @@ export const DashboardPage: React.FC = () => {
                     </div>
 
                     <h3 className="font-extrabold text-base text-[#352F2A] group-hover:text-[#FA9C4D] transition-colors leading-tight">
-                      Coding Quest
+                      Mathematics Lab
                     </h3>
                     <p className="text-xs text-[#9E9B97] font-semibold mt-1">
                       {mathTextbook?.edition?.titleInLanguage || mathTextbook?.edition?.textbook?.canonicalTitle || 'Class 8: Mathematics'}
@@ -284,7 +308,7 @@ export const DashboardPage: React.FC = () => {
                     </div>
 
                     <h3 className="font-extrabold text-base text-[#352F2A] group-hover:text-[#FA9C4D] transition-colors leading-tight">
-                      Code Adventure
+                      Science & Curiosity
                     </h3>
                     <p className="text-xs text-[#9E9B97] font-semibold mt-1">
                       {scienceTextbook?.edition?.titleInLanguage || scienceTextbook?.edition?.textbook?.canonicalTitle || 'Class 8: Science (Curiosity)'}
@@ -324,7 +348,107 @@ export const DashboardPage: React.FC = () => {
             </section>
 
             {/* =================================================================
-                RELEVANT RESOURCES (Matching Screenshot Bottom Row)
+                EXPERIENTIAL STEM LABS & EXPLORATION
+               ================================================================= */}
+            <section className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl font-extrabold text-[#352F2A] tracking-tight flex items-center gap-2">
+                    <span>Virtual STEM Laboratories</span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#FFEEDD] text-[#D47220] border border-[#FFD9B8]">
+                      Interactive
+                    </span>
+                  </h2>
+                  <p className="text-xs text-[#9E9B97] mt-0.5">
+                    Manipulate authentic physical and chemical systems with offline-first persistence
+                  </p>
+                </div>
+                <Link
+                  to="/app/experiments"
+                  className="text-xs font-bold text-[#FA9C4D] hover:text-[#D47220] transition-colors flex items-center gap-1"
+                >
+                  <span>All Experiments</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {/* 1. Experiment Studio Card */}
+                <Link
+                  to="/app/experiments"
+                  className="bg-[#FFFFFF] rounded-3xl border border-[#EFECE6] p-5 hover:shadow-soft-md transition-all flex flex-col justify-between group hover:border-[#FFD9B8]"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="w-12 h-12 rounded-2xl bg-[#FFEEDD] border border-[#FFD9B8] flex items-center justify-center text-[#FA9C4D] group-hover:scale-105 transition-transform">
+                        <FlaskConical className="w-6 h-6 stroke-[2.2]" />
+                      </div>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#CEECDA] text-[#246A42]">
+                        Verified Simulation
+                      </span>
+                    </div>
+
+                    <h3 className="font-extrabold text-base text-[#352F2A] group-hover:text-[#FA9C4D] transition-colors">
+                      GaonLab Experiment Studio
+                    </h3>
+                    <p className="text-xs text-[#636160] mt-1.5 leading-relaxed">
+                      Hands-on STEM investigations in Chemistry (Acids, Bases & Indicators) and Physics (Kinematics & Friction) with 7-phase inquiry and offline sync.
+                    </p>
+                  </div>
+
+                  <div className="mt-5 pt-3 border-t border-[#EFECE6] flex items-center justify-between text-xs font-bold text-[#FA9C4D]">
+                    <div className="flex items-center gap-2 text-[11px] text-[#9E9B97] font-semibold">
+                      <span>Offline Capable</span>
+                      <span>•</span>
+                      <span>Safe Household Materials</span>
+                    </div>
+                    <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                      <span>Open Lab</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                </Link>
+
+                {/* 2. Explore STEM Card */}
+                <Link
+                  to="/app/explore"
+                  className="bg-[#FFFFFF] rounded-3xl border border-[#EFECE6] p-5 hover:shadow-soft-md transition-all flex flex-col justify-between group hover:border-[#FFD9B8]"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="w-12 h-12 rounded-2xl bg-[#FFEEDD] border border-[#FFD9B8] flex items-center justify-center text-[#FA9C4D] group-hover:scale-105 transition-transform">
+                        <Compass className="w-6 h-6 stroke-[2.2]" />
+                      </div>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#FAF5EF] text-[#D47220] border border-[#FFD9B8]">
+                        Bilingual Video & Lessons
+                      </span>
+                    </div>
+
+                    <h3 className="font-extrabold text-base text-[#352F2A] group-hover:text-[#FA9C4D] transition-colors">
+                      Explore STEM Hub
+                    </h3>
+                    <p className="text-xs text-[#636160] mt-1.5 leading-relaxed">
+                      Discover core curriculum topics across Physics, Chemistry, Biology and Math with original GaonLab lessons, narrated animated videos, and KTBS Kannada support.
+                    </p>
+                  </div>
+
+                  <div className="mt-5 pt-3 border-t border-[#EFECE6] flex items-center justify-between text-xs font-bold text-[#FA9C4D]">
+                    <div className="flex items-center gap-2 text-[11px] text-[#9E9B97] font-semibold">
+                      <span>Kannada & English</span>
+                      <span>•</span>
+                      <span>Textbook Synced</span>
+                    </div>
+                    <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                      <span>Explore Topics</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                </Link>
+              </div>
+            </section>
+
+            {/* =================================================================
+                RELEVANT RESOURCES & EXTENSIONS
                ================================================================= */}
             <section className="space-y-4">
               <div className="flex items-center justify-between">
@@ -332,7 +456,7 @@ export const DashboardPage: React.FC = () => {
                   Relevant Resources
                 </h2>
                 <span className="text-xs text-[#9E9B97] font-semibold">
-                  3 Interactive Tools
+                  Connected Learning Tools
                 </span>
               </div>
 
@@ -348,10 +472,10 @@ export const DashboardPage: React.FC = () => {
                       <TutorIllustration className="w-full h-20" />
                     </div>
                     <h3 className="font-extrabold text-sm text-[#352F2A] group-hover:text-[#FA9C4D] transition-colors">
-                      Python Syntax Features
+                      STEM Lens
                     </h3>
                     <p className="text-[11px] text-[#9E9B97] mt-1 line-clamp-2">
-                      Recording of Dr. Garrett's lecture • STEM Lens Visual Lab
+                      Real-world camera recognition connecting rural agricultural phenomena to curriculum concepts
                     </p>
                   </div>
                   <div className="mt-4 pt-2.5 border-t border-[#EFECE6] flex items-center justify-between text-[11px] font-bold text-[#FA9C4D]">
@@ -370,10 +494,10 @@ export const DashboardPage: React.FC = () => {
                       <CodeBracketsIllustration className="w-full h-20" />
                     </div>
                     <h3 className="font-extrabold text-sm text-[#352F2A] group-hover:text-[#FA9C4D] transition-colors">
-                      Hierarchy of python's built-in exceptions
+                      Village Builder
                     </h3>
-                    <p className="text-[11px] text-[#9E9B97] mt-1">
-                      John Gold • Village Builder Systems Simulation
+                    <p className="text-[11px] text-[#9E9B97] mt-1 line-clamp-2">
+                      Rural engineering & systems dynamics simulator for community problem-solving
                     </p>
                   </div>
                   <div className="mt-4 pt-2.5 border-t border-[#EFECE6] flex items-center justify-between text-[11px] font-bold text-[#FA9C4D]">
@@ -392,14 +516,14 @@ export const DashboardPage: React.FC = () => {
                       <DocumentIllustration className="w-full h-20" />
                     </div>
                     <h3 className="font-extrabold text-sm text-[#352F2A] group-hover:text-[#FA9C4D] transition-colors">
-                      Resume of junior developer
+                      Prescribed Textbooks
                     </h3>
-                    <p className="text-[11px] text-[#9E9B97] mt-1">
-                      Emma Graceman • National NCERT Curriculum Guides
+                    <p className="text-[11px] text-[#9E9B97] mt-1 line-clamp-2">
+                      Official verified NCERT (CBSE) and KTBS (Karnataka) syllabus editions with Smart Reader
                     </p>
                   </div>
                   <div className="mt-4 pt-2.5 border-t border-[#EFECE6] flex items-center justify-between text-[11px] font-bold text-[#FA9C4D]">
-                    <span>Browse All 57 Textbooks</span>
+                    <span>Browse All Textbooks</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>

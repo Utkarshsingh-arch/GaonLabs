@@ -1,0 +1,567 @@
+{
+  "experimentId": "exp-chem-indicators-01",
+  "version": "1.0.0",
+  "code": "EXP_CHEM_01",
+  "title": "The Mystery of Changing Colours",
+  "titleInLanguage": {
+    "kn": "ಬಣ್ಣ ಬದಲಾಗುವ ವಿಸ್ಮಯ (ಆಮ್ಲಗಳು, ಪ್ರತ್ಯಾಮ್ಲಗಳು ಮತ್ತು ಸೂಚಕಗಳು)"
+  },
+  "shortDescription": "Investigate how natural and laboratory indicators detect acids and bases through vivid color transitions.",
+  "description": "Explore the chemical nature of everyday substances from lemon juice to soap water using litmus paper, turmeric paper, and phenolphthalein. Uncover the pH scale and understand neutralization reactions in soil treatment and digestion.",
+  "descriptionInLanguage": {
+    "kn": "ಲಿಟ್ಮಸ್ ಕಾಗದ, ಅರಿಶಿನ ಕಾಗದ ಮತ್ತು ಫಿನಾಲ್ಫ್ತಲೀನ್ ಬಳಸಿ ನಿಂಬೆ ರಸದಿಂದ ಸಾಬೂನು ನೀರಿನವರೆಗಿನ ವಸ್ತುಗಳ ಆಮ್ಲ-ಪ್ರತ್ಯಾಮ್ಲ ಗುಣವನ್ನು ಪರೀಕ್ಷಿಸಿ."
+  },
+  "subject": "Science",
+  "stemPillar": "CHEMISTRY",
+  "gradeRange": {
+    "min": 7,
+    "max": 8
+  },
+  "supportedLanguages": ["en", "kn"],
+  "curriculumMappings": [
+    {
+      "boardId": "CBSE",
+      "grade": 7,
+      "subjectId": "science",
+      "subjectName": "Science",
+      "chapterId": "cbse-7-sci-ch05",
+      "chapterNumber": 5,
+      "chapterTitle": "Acids, Bases and Salts",
+      "conceptId": "concept-ph-indicators"
+    },
+    {
+      "boardId": "KARNATAKA_STATE_BOARD",
+      "grade": 7,
+      "subjectId": "science",
+      "subjectName": "ವಿಜ್ಞಾನ",
+      "chapterId": "ktbs-7-sci-ch05",
+      "chapterNumber": 5,
+      "chapterTitle": "ಆಮ್ಲಗಳು, ಪ್ರತ್ಯಾಮ್ಲಗಳು ಮತ್ತು ಲವಣಗಳು",
+      "conceptId": "concept-ph-indicators"
+    }
+  ],
+  "learningObjectives": [
+    "Differentiate between acidic, basic, and neutral substances based on color responses.",
+    "Observe color shifts using Red Litmus, Blue Litmus, Turmeric solution, and Phenolphthalein.",
+    "Correlate indicator color changes with the authoritative pH scale (0 to 14).",
+    "Apply neutralization principles to solve real-world problems like soil acidity and insect stings."
+  ],
+  "safetyProfile": {
+    "minimumGrade": 7,
+    "maximumGrade": 8,
+    "mode": "VIRTUAL_ONLY",
+    "reviewStatus": "VERIFIED_SAFE",
+    "supervisionRequired": false,
+    "hazardWarnings": [
+      "Virtual lab environment: No hazardous chemical contact.",
+      "In real laboratories, always wear safety goggles when handling acids and bases."
+    ],
+    "approvedProcedureNotice": "All chemical equilibrium models and color shifts are validated against authoritative standard chemical tables."
+  },
+  "simulation": {
+    "type": "CHEMISTRY_ACID_BASE",
+    "rulesetIdentifier": "RULESET_ACID_BASE_PH_V1",
+    "initialState": {
+      "selectedIndicator": "RED_LITMUS",
+      "selectedSolution": "LEMON_JUICE",
+      "beakerVolumeMl": 50,
+      "indicatorDrops": 0,
+      "currentPh": 2.2,
+      "observedColorHex": "#FFF3B0",
+      "reactionCompleted": false
+    },
+    "availableApparatus": [
+      {
+        "id": "beaker-50ml",
+        "name": "50ml Borosilicate Beaker",
+        "nameInLanguage": {
+          "kn": "50 ಮಿ.ಲೀ ಬೀಕರ್"
+        },
+        "type": "BEAKER",
+        "category": "CONTAINER",
+        "capacity": 50,
+        "unit": "ml",
+        "icon": "beaker"
+      },
+      {
+        "id": "dropper-precision",
+        "name": "Precision Dropper Pipette",
+        "nameInLanguage": {
+          "kn": "ಹನಿಪಾತ್ರೆ (ಡ್ರಾಪರ್)"
+        },
+        "type": "DROPPER",
+        "category": "DISPENSER",
+        "capacity": 2,
+        "unit": "ml",
+        "icon": "pipette"
+      },
+      {
+        "id": "ph-strip-holder",
+        "name": "Indicator Paper Stand",
+        "nameInLanguage": {
+          "kn": "ಸೂಚಕ ಪಟ್ಟಿ ಸ್ಟ್ಯಾಂಡ್"
+        },
+        "type": "PAPER_STAND",
+        "category": "MEASURING",
+        "icon": "strip"
+      },
+      {
+        "id": "digital-ph-meter",
+        "name": "Digital pH Sensor Probe",
+        "nameInLanguage": {
+          "kn": "ಡಿಜಿಟಲ್ pH ಮಾಪಕ"
+        },
+        "type": "PH_METER",
+        "category": "SENSOR",
+        "unit": "pH",
+        "icon": "meter"
+      }
+    ],
+    "approvedMaterials": [
+      {
+        "id": "LEMON_JUICE",
+        "name": "Lemon Juice (Citric Acid)",
+        "nameInLanguage": {
+          "kn": "ನಿಂಬೆ ರಸ (ಸಿಟ್ರಿಕ್ ಆಮ್ಲ)"
+        },
+        "type": "SOLUTION",
+        "properties": {
+          "ph": 2.2,
+          "classification": "ACID",
+          "strength": "WEAK_ACID",
+          "naturalColorHex": "#FFF9C4"
+        },
+        "colorHex": "#FFF9C4",
+        "safetyNote": "Mild natural acid."
+      },
+      {
+        "id": "VINEGAR",
+        "name": "Vinegar (Dilute Acetic Acid)",
+        "nameInLanguage": {
+          "kn": "ವಿನೆಗರ್ (ಅಸಿಟಿಕ್ ಆಮ್ಲ)"
+        },
+        "type": "SOLUTION",
+        "properties": {
+          "ph": 2.8,
+          "classification": "ACID",
+          "strength": "WEAK_ACID",
+          "naturalColorHex": "#F8FAFC"
+        },
+        "colorHex": "#F8FAFC",
+        "safetyNote": "Weak organic acid."
+      },
+      {
+        "id": "DISTILLED_WATER",
+        "name": "Distilled Water (Pure H2O)",
+        "nameInLanguage": {
+          "kn": "ಬಟ್ಟಿ ಇಳಿಸಿದ ನೀರು (ತಟಸ್ಥ)"
+        },
+        "type": "SOLUTION",
+        "properties": {
+          "ph": 7.0,
+          "classification": "NEUTRAL",
+          "strength": "NEUTRAL",
+          "naturalColorHex": "#E0F2FE"
+        },
+        "colorHex": "#E0F2FE",
+        "safetyNote": "Completely neutral and safe."
+      },
+      {
+        "id": "BAKING_SODA",
+        "name": "Baking Soda Solution (NaHCO3)",
+        "nameInLanguage": {
+          "kn": "ಅಡುಗೆ ಸೋಡಾ ದ್ರಾವಣ"
+        },
+        "type": "SOLUTION",
+        "properties": {
+          "ph": 8.5,
+          "classification": "BASE",
+          "strength": "WEAK_BASE",
+          "naturalColorHex": "#F1F5F9"
+        },
+        "colorHex": "#F1F5F9",
+        "safetyNote": "Mild domestic base."
+      },
+      {
+        "id": "SOAP_WATER",
+        "name": "Soap Water Solution",
+        "nameInLanguage": {
+          "kn": "ಸಾಬೂನು ನೀರು"
+        },
+        "type": "SOLUTION",
+        "properties": {
+          "ph": 9.5,
+          "classification": "BASE",
+          "strength": "MILD_BASE",
+          "naturalColorHex": "#E2E8F0"
+        },
+        "colorHex": "#E2E8F0",
+        "safetyNote": "Common alkaline solution."
+      },
+      {
+        "id": "LIME_WATER",
+        "name": "Lime Water (Calcium Hydroxide)",
+        "nameInLanguage": {
+          "kn": "ಸುಣ್ಣದ ತಿಳಿನೀರು (ಕ್ಯಾಲ್ಸಿಯಂ ಹೈಡ್ರಾಕ್ಸೈಡ್)"
+        },
+        "type": "SOLUTION",
+        "properties": {
+          "ph": 11.5,
+          "classification": "BASE",
+          "strength": "STRONG_BASE",
+          "naturalColorHex": "#F8FAFC"
+        },
+        "colorHex": "#F8FAFC",
+        "safetyNote": "Strongly alkaline solution (pH ~11.5). Saturated calcium hydroxide is caustic and causes chemical burns; studied virtually only."
+      },
+      {
+        "id": "TURMERIC",
+        "name": "Turmeric Natural Indicator Paste",
+        "nameInLanguage": {
+          "kn": "ನೈಸರ್ಗಿಕ ಅರಿಶಿನ ಸೂಚಕ"
+        },
+        "type": "INDICATOR",
+        "properties": {
+          "acidColorHex": "#FBBF24",
+          "neutralColorHex": "#FBBF24",
+          "baseColorHex": "#DC2626",
+          "transitionPh": 7.5
+        },
+        "colorHex": "#FBBF24",
+        "safetyNote": "Safe natural spice pigment containing curcumin."
+      },
+      {
+        "id": "RED_LITMUS",
+        "name": "Red Litmus Paper Strip",
+        "nameInLanguage": {
+          "kn": "ಕೆಂಪು ಲಿಟ್ಮಸ್ ಕಾಗದ"
+        },
+        "type": "INDICATOR",
+        "properties": {
+          "acidColorHex": "#EF4444",
+          "neutralColorHex": "#EF4444",
+          "baseColorHex": "#2563EB",
+          "transitionPh": 7.0
+        },
+        "colorHex": "#EF4444"
+      },
+      {
+        "id": "BLUE_LITMUS",
+        "name": "Blue Litmus Paper Strip",
+        "nameInLanguage": {
+          "kn": "ನೀಲಿ ಲಿಟ್ಮಸ್ ಕಾಗದ"
+        },
+        "type": "INDICATOR",
+        "properties": {
+          "acidColorHex": "#EF4444",
+          "neutralColorHex": "#3B82F6",
+          "baseColorHex": "#3B82F6",
+          "transitionPh": 7.0
+        },
+        "colorHex": "#3B82F6"
+      },
+      {
+        "id": "PHENOLPHTHALEIN",
+        "name": "Phenolphthalein Indicator Solution",
+        "nameInLanguage": {
+          "kn": "ಫಿನಾಲ್ಫ್ತಲೀನ್ ಸೂಚಕ"
+        },
+        "type": "INDICATOR",
+        "properties": {
+          "acidColorHex": "transparent",
+          "neutralColorHex": "transparent",
+          "baseColorHex": "#EC4899",
+          "transitionPh": 8.2
+        },
+        "colorHex": "#EC4899"
+      },
+      {
+        "id": "CHINA_ROSE",
+        "name": "China Rose (Hibiscus) Petal Extract",
+        "nameInLanguage": {
+          "kn": "ದಾಸವಾಳ ಹೂವಿನ ಸಾರ"
+        },
+        "type": "INDICATOR",
+        "properties": {
+          "acidColorHex": "#BE185D",
+          "neutralColorHex": "#F472B6",
+          "baseColorHex": "#059669",
+          "transitionPhLow": 6.0,
+          "transitionPhHigh": 8.0
+        },
+        "colorHex": "#F472B6"
+      }
+    ],
+    "permittedActions": [
+      "SELECT_SOLUTION",
+      "SELECT_INDICATOR",
+      "DISPENSE_INDICATOR_DROP",
+      "DIP_LITMUS_STRIP",
+      "MEASURE_PH_PROBE",
+      "RESET_BEAKER"
+    ],
+    "canvasConfig": {
+      "aspectRatio": "16:9",
+      "coordinateSpace": {
+        "width": 800,
+        "height": 450
+      },
+      "theme": "LAB_CLEAN_LIGHT"
+    }
+  },
+  "learningLifecycle": {
+    "mission": {
+      "title": "Unmasking Acids and Bases in the Village Kitchen",
+      "context": "At dinner, a drop of turmeric curry fell on Raju's white cotton shirt. When his grandmother applied laundry soap to wash it out, the yellow stain suddenly turned deep brownish-red! Raju wondered: Did turmeric react with the soap? How do substances tell us whether they are acidic or basic?",
+      "scientificQuestion": "How do indicators like turmeric, litmus, and phenolphthalein allow us to scientifically determine whether a substance is acidic, basic, or neutral?",
+      "keyTerms": [
+        {
+          "term": "Acid (ಆಮ್ಲ)",
+          "definition": "A substance with a sour taste that turns blue litmus paper red and has a pH below 7."
+        },
+        {
+          "term": "Base (ಪ್ರತ್ಯಾಮ್ಲ)",
+          "definition": "A substance with a bitter taste and slippery feel that turns red litmus paper blue and has a pH above 7."
+        },
+        {
+          "term": "Indicator (ಸೂಚಕ)",
+          "definition": "A special dye or chemical substance that changes color when brought into contact with an acid or a base."
+        },
+        {
+          "term": "Neutralization (ತಟಸ್ಥೀಕರಣ)",
+          "definition": "The reaction between an acid and a base giving salt and water with the release of heat."
+        }
+      ]
+    },
+    "prediction": {
+      "id": "pred-curry-stain",
+      "question": "When yellow turmeric indicator comes into contact with basic laundry soap water, what will happen to its color?",
+      "questionInLanguage": {
+        "kn": "ಅರಿಶಿನದ ಹಳದಿ ದ್ರಾವಣಕ್ಕೆ ಪ್ರತ್ಯಾಮ್ಲೀಯ ಸಾಬೂನು ನೀರನ್ನು ಸೇರಿಸಿದಾಗ ಬಣ್ಣ ಏನಾಗುತ್ತದೆ?"
+      },
+      "context": "Think about turmeric curry stains and what laundry soap contains.",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "It turns deep reddish-brown because turmeric curcumin changes structure in an alkaline (basic) environment.",
+          "textInLanguage": {
+            "kn": "ಪ್ರತ್ಯಾಮ್ಲ ಮಾಧ್ಯಮದಲ್ಲಿ ಅರಿಶಿನದ ಕರ್ಕ್ಯುಮಿನ್ ರಚನೆ ಬದಲಾಗುವುದರಿಂದ ಗಾಢ ಕೆಂಪು-ಕಂದು ಬಣ್ಣಕ್ಕೆ ತಿರುಗುತ್ತದೆ."
+          },
+          "isHypothesis": true
+        },
+        {
+          "id": "opt-2",
+          "text": "It stays bright yellow because turmeric only reacts with strong laboratory acids.",
+          "textInLanguage": {
+            "kn": "ಅರಿಶಿನ ಕೇವಲ ಆಮ್ಲಗಳೊಂದಿಗೆ ಮಾತ್ರ ವರ್ತಿಸುವುದರಿಂದ ಹಳದಿ ಬಣ್ಣವೇ ಉಳಿಯುತ್ತದೆ."
+          },
+          "isHypothesis": false
+        },
+        {
+          "id": "opt-3",
+          "text": "It turns completely colorless and transparent.",
+          "textInLanguage": {
+            "kn": "ಸಂಪೂರ್ಣವಾಗಿ ಬಣ್ಣಗೆಟ್ಟು ಪಾರದರ್ಶಕವಾಗುತ್ತದೆ."
+          },
+          "isHypothesis": false
+        },
+        {
+          "id": "opt-4",
+          "text": "It immediately turns bright sky blue.",
+          "textInLanguage": {
+            "kn": "ತಕ್ಷಣವೇ ಆಕಾಶ ನೀಲಿ ಬಣ್ಣಕ್ಕೆ ತಿರುಗುತ್ತದೆ."
+          },
+          "isHypothesis": false
+        }
+      ]
+    },
+    "observations": [
+      {
+        "id": "obs-1",
+        "prompt": "Select Lemon Juice and test with Blue Litmus Paper.",
+        "promptInLanguage": {
+          "kn": "ನಿಂಬೆ ರಸವನ್ನು ಆಯ್ದುಕೊಂಡು ನೀಲಿ ಲಿಟ್ಮಸ್ ಕಾಗದದಿಂದ ಪರೀಕ್ಷಿಸಿ."
+        },
+        "expectedOutcome": "Blue Litmus turns Red (indicates Acid, pH 2.2).",
+        "inputVariableKey": "LEMON_JUICE",
+        "dependentVariableKey": "BLUE_LITMUS_COLOR"
+      },
+      {
+        "id": "obs-2",
+        "prompt": "Select Soap Water and add Turmeric indicator drops.",
+        "promptInLanguage": {
+          "kn": "ಸಾಬೂನು ನೀರನ್ನು ಆಯ್ದುಕೊಂಡು ಅರಿಶಿನ ಸೂಚಕವನ್ನು ಸೇರಿಸಿ."
+        },
+        "expectedOutcome": "Yellow Turmeric turns Reddish-Brown (indicates Base, pH 9.5).",
+        "inputVariableKey": "SOAP_WATER",
+        "dependentVariableKey": "TURMERIC_COLOR"
+      },
+      {
+        "id": "obs-3",
+        "prompt": "Select Distilled Water and test with both Red and Blue Litmus.",
+        "promptInLanguage": {
+          "kn": "ಬಟ್ಟಿ ಇಳಿಸಿದ ನೀರನ್ನು ಕೆಂಪು ಮತ್ತು ನೀಲಿ ಎರಡೂ ಲಿಟ್ಮಸ್‌ಗಳಿಂದ ಪರೀಕ್ಷಿಸಿ."
+        },
+        "expectedOutcome": "No change on either strip (indicates Neutral, pH 7.0).",
+        "inputVariableKey": "DISTILLED_WATER",
+        "dependentVariableKey": "LITMUS_COLOR"
+      },
+      {
+        "id": "obs-4",
+        "prompt": "Select Lime Water and add 2 drops of Phenolphthalein.",
+        "promptInLanguage": {
+          "kn": "ಸುಣ್ಣದ ತಿಳಿನೀರಿಗೆ ೨ ಹನಿ ಫಿನಾಲ್ಫ್ತಲೀನ್ ಸೇರಿಸಿ."
+        },
+        "expectedOutcome": "Colorless solution turns intense Pink/Magenta (indicates Base, pH 11.5).",
+        "inputVariableKey": "LIME_WATER",
+        "dependentVariableKey": "PHENOLPHTHALEIN_COLOR"
+      }
+    ],
+    "questions": [
+      {
+        "id": "q-1",
+        "prompt": "Why does Blue Litmus turn Red in Lemon Juice but remain unchanged in Distilled Water?",
+        "promptInLanguage": {
+          "kn": "ನಿಂಬೆ ರಸದಲ್ಲಿ ನೀಲಿ ಲಿಟ್ಮಸ್ ಕೆಂಪಾಗಲು ಮತ್ತು ಬಟ್ಟಿ ಇಳಿಸಿದ ನೀರಿನಲ್ಲಿ ಬದಲಾಗದಿರಲು ಕಾರಣವೇನು?"
+        },
+        "options": [
+          "Lemon juice contains free hydrogen ions (H+) from citric acid that trigger the litmus dye rearrangement, whereas neutral water has equal H+ and OH- balance (pH 7).",
+          "Lemon juice is colder than distilled water.",
+          "Distilled water has salt dissolved in it that bleaches the paper.",
+          "Litmus only works in liquids that have a yellow tint."
+        ],
+        "optionsInLanguage": {
+          "kn": [
+            "ನಿಂಬೆ ರಸದಲ್ಲಿರುವ ಸಿಟ್ರಿಕ್ ಆಮ್ಲದ ಹೈಡ್ರೋಜನ್ ಅಯಾನುಗಳು ಲಿಟ್ಮಸ್ ಬಣ್ಣವನ್ನು ಬದಲಿಸುತ್ತವೆ; ಶುದ್ಧ ನೀರಿನಲ್ಲಿ pH 7 ತಟಸ್ಥವಾಗಿರುತ್ತದೆ.",
+            "ನಿಂಬೆ ರಸವು ಬಟ್ಟಿ ಇಳಿಸಿದ ನೀರಿಗಿಂತ ತಂಪಾಗಿರುತ್ತದೆ.",
+            "ಬಟ್ಟಿ ಇಳಿಸಿದ ನೀರಿನಲ್ಲಿ ಉಪ್ಪು ಕರಗಿರುತ್ತದೆ.",
+            "ಲಿಟ್ಮಸ್ ಕೇವಲ ಹಳದಿ ದ್ರಾವಣಗಳಲ್ಲಿ ಮಾತ್ರ ಕೆಲಸ ಮಾಡುತ್ತದೆ."
+          ]
+        },
+        "correctOptionIndex": 0,
+        "explanation": "Acids generate excess hydrogen ions (H+) in aqueous solutions, shifting the chemical equilibrium of the litmus pigment to its red conjugated acid form.",
+        "explanationInLanguage": {
+          "kn": "ಆಮ್ಲಗಳು ಜಲೀಯ ದ್ರಾವಣಗಳಲ್ಲಿ ಹೈಡ್ರೋಜನ್ ಅಯಾನುಗಳನ್ನು (H+) ಬಿಡುಗಡೆ ಮಾಡುತ್ತವೆ, ಇದು ಲಿಟ್ಮಸ್ ವರ್ಣದ್ರವ್ಯವನ್ನು ಕೆಂಪು ಬಣ್ಣಕ್ಕೆ ತಿರುಗಿಸುತ್ತದೆ."
+        }
+      },
+      {
+        "id": "q-2",
+        "prompt": "Which indicator would be most effective if you want a clear visible pink signal exclusively when a solution is alkaline (base)?",
+        "promptInLanguage": {
+          "kn": "ದ್ರಾವಣವು ಪ್ರತ್ಯಾಮ್ಲೀಯವಾದಾಗ ಮಾತ್ರ ಸ್ಪಷ್ಟ ಗುಲಾಬಿ ಬಣ್ಣದ ಸಂಕೇತವನ್ನು ನೀಡುವ ಅತ್ಯುತ್ತಮ ಸೂಚಕ ಯಾವುದು?"
+        },
+        "options": [
+          "Phenolphthalein (remains colorless in acid and neutral, turns bright pink in base above pH 8.2)",
+          "Blue Litmus (turns red in base)",
+          "China rose (turns yellow in base)",
+          "Turmeric (turns blue in base)"
+        ],
+        "optionsInLanguage": {
+          "kn": [
+            "ಫಿನಾಲ್ಫ್ತಲೀನ್ (ಆಮ್ಲ ಮತ್ತು ತಟಸ್ಥದಲ್ಲಿ ವರ್ಣರಹಿತ, ಪ್ರತ್ಯಾಮ್ಲದಲ್ಲಿ pH 8.2 ದಾಟಿದಾಗ ಗಾಢ ಗುಲಾಬಿ)",
+            "ನೀಲಿ ಲಿಟ್ಮಸ್",
+            "ದಾಸವಾಳ ಹೂವಿನ ಸಾರ",
+            "ಅರಿಶಿನ"
+          ]
+        },
+        "correctOptionIndex": 0,
+        "explanation": "Phenolphthalein has a sharp pKa around 9.3; below pH 8.2 it is completely colorless, but as OH- ions increase it ionizes to form a resonance-stabilized magenta dianion.",
+        "explanationInLanguage": {
+          "kn": "ಫಿನಾಲ್ಫ್ತಲೀನ್ ಆಮ್ಲೀಯ ಮಾಧ್ಯಮದಲ್ಲಿ ವರ್ಣರಹಿತವಾಗಿದ್ದು ಪ್ರತ್ಯಾಮ್ಲೀಯ ಮಾಧ್ಯಮದಲ್ಲಿ (pH > 8.2) ಸುಂದರ ಗುಲಾಬಿ ಬಣ್ಣಕ್ಕೆ ತಿರುಗುತ್ತದೆ."
+        }
+      }
+    ],
+    "hints": [
+      {
+        "tier": 1,
+        "title": "Subtle Clue",
+        "text": "Remember that litmus paper comes in two colors: Red and Blue. Think about the saying: 'Acid turns blue to red; Base turns red to blue (B for Base, B for Blue)'.",
+        "textInLanguage": {
+          "kn": "ನೆನಪಿಡಿ: ಪ್ರತ್ಯಾಮ್ಲವು (Base) ಕೆಂಪು ಲಿಟ್ಮಸ್ ಅನ್ನು ನೀಲಿ (Blue) ಬಣ್ಣಕ್ಕೆ ತಿರುಗಿಸುತ್ತದೆ (B for Base, B for Blue)."
+        }
+      },
+      {
+        "tier": 2,
+        "title": "Guiding Principle",
+        "text": "Turmeric is a natural indicator that stays yellow in acids and neutral solutions. It ONLY turns red in alkaline (basic) solutions like soap or lime water.",
+        "textInLanguage": {
+          "kn": "ಅರಿಶಿನವು ಆಮ್ಲ ಮತ್ತು ತಟಸ್ಥ ದ್ರಾವಣಗಳಲ್ಲಿ ಹಳದಿಯಾಗಿಯೇ ಇರುತ್ತದೆ. ಸಾಬೂನು ಅಥವಾ ಸುಣ್ಣದ ತಿಳಿನೀರಿನಂತಹ ಪ್ರತ್ಯಾಮ್ಲಗಳಲ್ಲಿ ಮಾತ್ರ ಕೆಂಪಾಗುತ್ತದೆ."
+        }
+      },
+      {
+        "tier": 3,
+        "title": "Direct Scientific Explanation",
+        "text": "Solutions with pH < 7 are acidic (Lemon Juice pH 2.2, Vinegar pH 2.8). pH 7 is neutral (Pure Water). Solutions with pH > 7 are basic (Baking Soda pH 8.5, Soap Water pH 9.5, Lime Water pH 11.5).",
+        "textInLanguage": {
+          "kn": "pH 7 ಕ್ಕಿಂತ ಕಡಿಮೆ ಇರುವ ದ್ರಾವಣಗಳು ಆಮ್ಲೀಯ (ನಿಂಬೆ ರಸ 2.2, ವಿನೆಗರ್ 2.8). pH 7 ತಟಸ್ಥ. pH 7 ಕ್ಕಿಂತ ಹೆಚ್ಚು ಇರುವ ದ್ರಾವಣಗಳು ಪ್ರತ್ಯಾಮ್ಲೀಯ (ಅಡುಗೆ ಸೋಡಾ 8.5, ಸಾಬೂನು ನೀರು 9.5, ಸುಣ್ಣದ ನೀರು 11.5)."
+        }
+      }
+    ],
+    "explanation": {
+      "title": "The Science of Indicators and Neutralization",
+      "summary": "Indicators are weak organic acids or bases whose conjugate forms have distinctly different light absorption wavelengths, yielding observable color shifts across the pH spectrum.",
+      "summaryInLanguage": {
+        "kn": "ಸೂಚಕಗಳು ದುರ್ಬಲ ಸಾವಯವ ಆಮ್ಲ ಅಥವಾ ಪ್ರತ್ಯಾಮ್ಲಗಳಾಗಿದ್ದು, ಹೈಡ್ರೋಜನ್ ಅಯಾನುಗಳ ಸಾಂದ್ರತೆಗೆ ಅನುಗುಣವಾಗಿ ವಿಭಿನ್ನ ಬಣ್ಣಗಳನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತವೆ."
+      },
+      "corePrinciples": [
+        {
+          "title": "The pH Scale (0 to 14)",
+          "statement": "pH = -log10[H+]",
+          "detail": "pH measures hydrogen ion concentration. Lower values signify higher acidity (pH 0-6), 7 represents pure neutral water where [H+] = [OH-], and higher values signify basic/alkaline conditions (pH 8-14)."
+        },
+        {
+          "title": "Curcumin in Turmeric",
+          "statement": "Keto-enol tautomerism under alkaline conditions",
+          "detail": "Turmeric owes its yellow color to curcumin. In basic conditions (pH > 7.5), a proton is abstracted, producing an enolate ion that absorbs green light and reflects deep red-brown."
+        },
+        {
+          "title": "Neutralization Reaction",
+          "statement": "Acid + Base -> Salt + Water + Heat",
+          "detail": "When equivalent amounts of H+ from an acid react with OH- from a base, they neutralize to produce water and an ionic salt."
+        }
+      ],
+      "mathematicalModel": {
+        "formula": "pH = -log10([H+]) and [H+] * [OH-] = 1.0 x 10^-14 at 25°C",
+        "variableDescriptions": {
+          "[H+]": "Concentration of hydronium/hydrogen ions in moles per liter (mol/L).",
+          "[OH-]": "Concentration of hydroxide ions in moles per liter (mol/L).",
+          "pH": "Negative base-10 logarithm representing the acidity index."
+        },
+        "assumptionsAndLimitations": [
+          "Calculations assume standard temperature of 25°C (298 K) and atmospheric pressure of 1 atm.",
+          "Valid for dilute aqueous solutions where activity coefficients approximate 1.0."
+        ]
+      },
+      "everydayRelevance": "Ant stings inject formic acid into the skin, causing a stinging burn. Rubbing moist baking soda (mild base) or calamine lotion (zinc carbonate) neutralizes the acid and brings immediate relief.",
+      "ruralRelevance": "When excessive chemical fertilizers make village farm soil overly acidic (pH < 5.5), crop yields collapse because nutrients get locked. Farmers primarily treat soil with agricultural limestone (calcium carbonate, CaCO3), a safe mild buffering base. In specific cases under agricultural supervision, slaked lime (calcium hydroxide) is used for rapid correction, but it is strongly alkaline, caustic, and can damage seedling roots if over-applied."
+    },
+    "application": {
+      "scenarioTitle": "The Mandya Farmer's Acidic Soil Crisis",
+      "scenarioDescription": "Mallesh, a farmer in Mandya district, notices his ragi crop turning yellowish and stunted. The local agricultural extension worker tests his soil runoff with indicator paper and finds a pH of 5.1 (strongly acidic soil).",
+      "scenarioDescriptionInLanguage": {
+        "kn": "ಮಂಡ್ಯದ ರೈತ ಮಲ್ಲೇಶ್ ಅವರ ರಾಗಿ ಬೆಳೆಗೆ ಹಾಕಿದ ಮಣ್ಣಿನ ಮಾದರಿಯನ್ನು ಪರೀಕ್ಷಿಸಿದಾಗ pH 5.1 (ತೀವ್ರ ಆಮ್ಲೀಯ) ಕಂಡುಬಂದಿದೆ. ಮಣ್ಣನ್ನು ತಟಸ್ಥಗೊಳಿಸಲು ಅವರು ಏನನ್ನು ಬಳಸಬೇಕು?"
+      },
+      "problemStatement": "To neutralize the acidic soil without burning the crop roots, what should Mallesh treat his field with before sowing?",
+      "options": [
+        "Agricultural limestone (Calcium Carbonate, CaCO3 — a safe mild buffering base that neutralizes soil acids without scorching roots)",
+        "Concentrated Vinegar (Acetic Acid)",
+        "Lemon juice concentrate",
+        "Pure distilled water flooding"
+      ],
+      "optionsInLanguage": {
+        "kn": [
+          "ಕೃಷಿ ಸುಣ್ಣದ ಕಲ್ಲು ಪುಡಿ (ಕ್ಯಾಲ್ಸಿಯಂ ಕಾರ್ಬೋನೇಟ್, CaCO3 — ಬೆಳೆ ಬೇರುಗಳನ್ನು ಸುಡದೆ ಮಣ್ಣಿನ ಆಮ್ಲವನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ತಟಸ್ಥಗೊಳಿಸುವ ಸೌಮ್ಯ ಪ್ರತ್ಯಾಮ್ಲ)",
+          "ವಿನೆಗರ್ (ಆಸಿಡ್)",
+          "ನಿಂಬೆ ರಸ",
+          "ಕೇವಲ ಬಟ್ಟಿ ಇಳಿಸಿದ ನೀರು"
+        ]
+      },
+      "correctOptionIndex": 0,
+      "practicalTakeaway": "Standard agricultural liming uses calcium carbonate (CaCO3, limestone) because it dissolves slowly, safely buffering soil pH to 6.5–7.0 without scorching roots. While calcium hydroxide (slaked lime) is also alkaline, it is a strongly alkaline and caustic base that can cause chemical burns and damage seedlings if not carefully calculated."
+    }
+  },
+  "offlineEligibility": true,
+  "contentVerificationStatus": "VERIFIED",
+  "createdAt": "2026-11-17T00:00:00.000Z",
+  "updatedAt": "2026-11-17T00:00:00.000Z"
+}
