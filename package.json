@@ -12,6 +12,7 @@
     "build:all": "npm --workspace=@gaonlab/shared-types run build && npm --workspace=@gaonlab/api run build && npm --workspace=@gaonlab/web run build",
     "build:api": "npm --workspace=@gaonlab/api run build",
     "build:web": "npm --workspace=@gaonlab/shared-types run build && npm --workspace=@gaonlab/web run build",
+    "deploy": "wrangler deploy",
     "test": "npm run --workspaces --if-present test",
     "lint": "npm run --workspaces --if-present lint",
     "dev": "npm run --workspace=@gaonlab/api dev",
