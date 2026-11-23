@@ -17,10 +17,20 @@ import {
   TopicMatchResult,
 } from '../types';
 
+function cleanEnvString(val: any): string {
+  if (!val || typeof val !== 'string') return '';
+  return val.replace(/^["']|["']$/g, '').trim();
+}
+
 export function getApiBaseUrl(): string {
-  const envUrl = (import.meta as any).env?.VITE_API_URL;
-  if (envUrl && typeof envUrl === 'string' && envUrl.trim() !== '') {
+  const envUrl = cleanEnvString((import.meta as any).env?.VITE_API_URL);
+  if (envUrl && envUrl !== '') {
     if (typeof window !== 'undefined') {
+      const isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      // If we are deployed on a remote domain, ignore localhost VITE_API_URL
+      if (!isLocalHost && (envUrl.includes('localhost') || envUrl.includes('127.0.0.1'))) {
+        return '';
+      }
       if (window.location.port === '5173') {
         // In Vite dev, relative path /api is automatically proxied to localhost:4000
         return '';
@@ -917,7 +927,7 @@ Formatting Guidelines:
 - Tone: Encouraging, inquisitive, lucid, and scientifically rigorous yet accessible.`;
 
 const DIRECT_XAI_KEY =
-  ((import.meta as any).env?.VITE_XAI_API_KEY as string) ||
+  cleanEnvString((import.meta as any).env?.VITE_XAI_API_KEY) ||
   'xai-0VIysskcoibhaJ2gvKBMaU4yG8bIzDJ8cJxlqUyvl43BAdltQw67uaW5rh85WY2uZqabsH0hyM2Wismq';
 
 async function executeDirectXaiCall(

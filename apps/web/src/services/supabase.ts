@@ -2,20 +2,49 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { DemoProfile } from '../types';
 import { setDemoSession, clearDemoSession, getDemoSession } from './demoAuth';
 
-const SUPABASE_URL =
-  ((import.meta as any).env?.VITE_SUPABASE_URL as string) || 'https://eqiklrnddocsymrnsppk.supabase.co';
-const SUPABASE_ANON_KEY =
-  ((import.meta as any).env?.VITE_SUPABASE_ANON_KEY as string) ||
-  'sb_publishable_Fn-AHpU2VKpfj9HFRaCklg_nJI3JZdj';
+function cleanEnvString(val: any, fallback: string): string {
+  if (!val || typeof val !== 'string') return fallback;
+  const cleaned = val.replace(/^["']|["']$/g, '').trim();
+  try {
+    if (fallback.startsWith('http')) {
+      new URL(cleaned);
+    }
+    return cleaned || fallback;
+  } catch {
+    return fallback;
+  }
+}
 
-export const supabase: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-  auth: {
-    persistSession: true,
-    autoRefreshToken: true,
-    detectSessionInUrl: true,
-    storage: window.localStorage,
-  },
-});
+const rawUrl = (import.meta as any).env?.VITE_SUPABASE_URL;
+const rawKey = (import.meta as any).env?.VITE_SUPABASE_ANON_KEY;
+
+const SUPABASE_URL = cleanEnvString(rawUrl, 'https://eqiklrnddocsymrnsppk.supabase.co');
+const SUPABASE_ANON_KEY = cleanEnvString(rawKey, 'sb_publishable_Fn-AHpU2VKpfj9HFRaCklg_nJI3JZdj');
+
+function createSafeSupabaseClient(): SupabaseClient {
+  try {
+    return createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+      },
+    });
+  } catch (err) {
+    console.warn('Failed to initialize Supabase client:', err);
+    return {
+      auth: {
+        signUp: async () => ({ data: { user: null, session: null }, error: new Error('Supabase not configured') }),
+        signInWithPassword: async () => ({ data: { user: null, session: null }, error: new Error('Supabase not configured') }),
+        signOut: async () => ({ error: null }),
+        getSession: async () => ({ data: { session: null }, error: null }),
+      },
+      from: () => ({ select: () => Promise.resolve({ data: [], error: null }) }),
+    } as any;
+  }
+}
+
+export const supabase: SupabaseClient = createSafeSupabaseClient();
 
 export interface SignUpStudentParams {
   name: string;
