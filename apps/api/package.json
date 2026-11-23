@@ -4,7 +4,7 @@
   "description": "GaonLab Core Modular Monolith Backend API",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc -b",
+    "build": "prisma generate && tsc -b",
     "dev": "tsx watch src/server.ts",
     "start": "node dist/server.js",
     "lint": "tsc --noEmit",
