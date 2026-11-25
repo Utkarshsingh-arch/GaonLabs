@@ -926,13 +926,14 @@ Formatting Guidelines:
 - When formulas or mathematical concepts arise, format them with clean LaTeX (e.g., $F = ma$, $V = IR$, $P = \\frac{F}{A}$).
 - Tone: Encouraging, inquisitive, lucid, and scientifically rigorous yet accessible.`;
 
-const DIRECT_XAI_KEY =
-  cleanEnvString((import.meta as any).env?.VITE_XAI_API_KEY) ||
-  'xai-0VIysskcoibhaJ2gvKBMaU4yG8bIzDJ8cJxlqUyvl43BAdltQw67uaW5rh85WY2uZqabsH0hyM2Wismq';
+const DIRECT_XAI_KEY = cleanEnvString((import.meta as any).env?.VITE_XAI_API_KEY);
 
 async function executeDirectXaiCall(
   params: StemLensSendParams
 ): Promise<StemLensChatResponseData> {
+  if (!DIRECT_XAI_KEY) {
+    throw new Error('Direct xAI API key is not configured on client');
+  }
   const isImageMode = params.mode === 'image';
   const effectiveSessionId = params.sessionId || `session-${Date.now()}`;
 
