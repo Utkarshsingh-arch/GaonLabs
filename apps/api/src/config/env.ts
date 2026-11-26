@@ -32,6 +32,14 @@ const envSchema = z.object({
   GATEWAY_UDISE_MODE: z.enum(['LIVE', 'CACHED', 'MOCK', 'OFF']).default('MOCK'),
   GATEWAY_APAAR_MODE: z.enum(['LIVE', 'CACHED', 'MOCK', 'OFF']).default('OFF'),
   GATEWAY_SATS_MODE: z.enum(['LIVE', 'CACHED', 'MOCK', 'OFF']).default('OFF'),
+  GEMINI_API_KEY: z.string().optional().default(process.env.GEMINI_API_KEY || ''),
+  GEMINI_MODEL: z.string().optional().default(process.env.GEMINI_MODEL || ''),
+  AI_MODEL: z.string().optional().default(process.env.AI_MODEL || process.env.GEMINI_MODEL || ''),
+  AI_IMAGE_MODEL: z.string().optional().default(process.env.AI_IMAGE_MODEL || ''),
+  GEMINI_API_URL: z
+    .string()
+    .optional()
+    .default(process.env.GEMINI_API_URL || 'https://generativelanguage.googleapis.com/v1beta/openai'),
   XAI_API_KEY: z.string().optional().default(process.env.XAI_API_KEY || process.env.GROQ_API_KEY || ''),
   XAI_API_URL: z.string().optional().default(process.env.XAI_API_URL || 'https://api.x.ai/v1'),
 });

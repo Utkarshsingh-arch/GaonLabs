@@ -16,11 +16,32 @@ import { prisma } from '../../shared/database/prisma';
 
 export class StemLensService implements IStemLensService {
   private getApiKey(): string {
-    const key = env.XAI_API_KEY || process.env.XAI_API_KEY || process.env.GROQ_API_KEY || '';
+    const key =
+      env.GEMINI_API_KEY ||
+      process.env.GEMINI_API_KEY ||
+      env.XAI_API_KEY ||
+      process.env.XAI_API_KEY ||
+      process.env.GROQ_API_KEY ||
+      '';
     if (!key) {
-      logger.warn('[StemLensService] XAI_API_KEY is not configured in environment.');
+      logger.warn('[StemLensService] No AI API key (GEMINI_API_KEY / XAI_API_KEY) configured in environment.');
     }
     return key;
+  }
+
+  private getApiBaseUrl(): string {
+    if (env.GEMINI_API_KEY || process.env.GEMINI_API_KEY) {
+      return env.GEMINI_API_URL || 'https://generativelanguage.googleapis.com/v1beta/openai';
+    }
+    return env.XAI_API_URL || 'https://api.x.ai/v1';
+  }
+
+  private getChatModel(): string {
+    return env.GEMINI_MODEL || process.env.GEMINI_MODEL || env.AI_MODEL || process.env.AI_MODEL || '';
+  }
+
+  private getImageModel(): string {
+    return env.AI_IMAGE_MODEL || process.env.AI_IMAGE_MODEL || this.getChatModel();
   }
 
   getManifest(): FeatureModuleManifest {
@@ -213,17 +234,22 @@ export class StemLensService implements IStemLensService {
   }
 
   /**
-   * Generates a scientific visual/diagram using xAI grok-imagine-image
+   * Generates a scientific visual/diagram using the configured AI image model from .env
    */
   async generateImage(prompt: string): Promise<StemLensGenerateImageResponse> {
     const apiKey = this.getApiKey();
     if (!apiKey) {
-      throw new Error('xAI API key is missing. Please configure XAI_API_KEY in your .env file.');
+      throw new Error('AI API key is missing. Please configure GEMINI_API_KEY or XAI_API_KEY in your .env file.');
     }
 
-    const apiUrl = `${env.XAI_API_URL || 'https://api.x.ai/v1'}/images/generations`;
+    const imageModel = this.getImageModel();
+    if (!imageModel) {
+      throw new Error('AI image model name is missing. Please configure AI_IMAGE_MODEL or GEMINI_MODEL in your .env file.');
+    }
 
-    logger.info(`[StemLensService] Generating image via xAI for prompt: "${prompt.slice(0, 80)}..."`);
+    const apiUrl = `${this.getApiBaseUrl()}/images/generations`;
+
+    logger.info(`[StemLensService] Generating image via AI (${imageModel}) for prompt: "${prompt.slice(0, 80)}..."`);
 
     const response = await fetch(apiUrl, {
       method: 'POST',
@@ -232,7 +258,7 @@ export class StemLensService implements IStemLensService {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'grok-imagine-image',
+        model: imageModel,
         prompt,
         n: 1,
         response_format: 'url',
@@ -241,20 +267,20 @@ export class StemLensService implements IStemLensService {
 
     if (!response.ok) {
       const errText = await response.text();
-      logger.error(`[StemLensService] xAI Image API error (${response.status}): ${errText}`);
-      throw new Error(`xAI Image Generation failed (${response.status}): ${errText}`);
+      logger.error(`[StemLensService] AI Image API error (${response.status}): ${errText}`);
+      throw new Error(`AI Image Generation failed (${response.status}): ${errText}`);
     }
 
     const result = (await response.json()) as { data?: Array<{ url: string }> };
 
     if (!result.data || result.data.length === 0 || !result.data[0].url) {
-      throw new Error('No image URL returned from xAI image generation service.');
+      throw new Error('No image URL returned from AI image generation service.');
     }
 
     return {
       imageUrl: result.data[0].url,
       prompt,
-      model: 'grok-imagine-image',
+      model: imageModel,
       timestamp: new Date().toISOString(),
     };
   }
@@ -263,14 +289,19 @@ export class StemLensService implements IStemLensService {
    * Handles multimodal chat:
    * 1. Automatically locates or creates the persistent session in Supabase.
    * 2. Persists the student's message & uploaded image in Supabase.
-   * 3. Calls xAI Grok (Vision or Grok Imagine).
+   * 3. Calls the configured AI model (from .env).
    * 4. Persists the assistant's response & generated image URL in Supabase.
    * 5. Returns the complete response with session metadata.
    */
   async chat(request: StemLensChatRequest): Promise<StemLensChatResponse> {
     const apiKey = this.getApiKey();
     if (!apiKey) {
-      throw new Error('xAI API key is missing. Please configure XAI_API_KEY in your .env file.');
+      throw new Error('AI API key is missing. Please configure GEMINI_API_KEY or XAI_API_KEY in your .env file.');
+    }
+
+    const chatModel = this.getChatModel();
+    if (!chatModel) {
+      throw new Error('AI model name is missing. Please configure GEMINI_MODEL or AI_MODEL in your .env file.');
     }
 
     const trimmedMsg = (request.message || '').trim();
@@ -374,13 +405,12 @@ export class StemLensService implements IStemLensService {
         const imgRes = await this.generateImage(enhancedPrompt);
         generatedImageUrl = imgRes.imageUrl;
       } catch (imgErr: any) {
-        logger.error(`[StemLensService] Image generation error: ${imgErr?.message}`);
-        throw new Error(`Failed to generate image: ${imgErr?.message}`);
+        logger.warn(`[StemLensService] Image generation unavailable, continuing with text explanation: ${imgErr?.message}`);
       }
     }
 
     // 6. Standard Multimodal Chat Completion (also provides detailed breakdown when user asks for both image + description)
-    const apiUrl = `${env.XAI_API_URL || 'https://api.x.ai/v1'}/chat/completions`;
+    const apiUrl = `${this.getApiBaseUrl()}/chat/completions`;
 
     const messages: any[] = [
       {
@@ -440,7 +470,7 @@ export class StemLensService implements IStemLensService {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'grok-4.20-0309-non-reasoning',
+        model: chatModel,
         messages,
         temperature: 0.6,
       }),
@@ -448,8 +478,8 @@ export class StemLensService implements IStemLensService {
 
     if (!response.ok) {
       const errText = await response.text();
-      logger.error(`[StemLensService] xAI Chat API error (${response.status}): ${errText}`);
-      throw new Error(`xAI Chat API error (${response.status}): ${errText}`);
+      logger.error(`[StemLensService] AI Chat API error (${response.status}): ${errText}`);
+      throw new Error(`AI Chat API error (${response.status}): ${errText}`);
     }
 
     const result = (await response.json()) as any;
@@ -463,6 +493,11 @@ export class StemLensService implements IStemLensService {
       answer = `### STEM Visual Diagram & Mechanical Analysis\n\n${answer}`;
     }
 
+    const imageModel = this.getImageModel();
+    const resolvedModel = generatedImageUrl
+      ? `${imageModel || chatModel} + ${chatModel}`
+      : result.model || chatModel;
+
     // 6. Persist Assistant Response in Database
     const assistantMsgRecord = await prisma.stemLensMessage.create({
       data: {
@@ -470,9 +505,7 @@ export class StemLensService implements IStemLensService {
         role: 'assistant',
         content: answer,
         generatedImageUrl: generatedImageUrl || null,
-        model: generatedImageUrl
-          ? 'grok-imagine-image + grok-4.20'
-          : result.model || 'grok-4.20-0309-non-reasoning',
+        model: resolvedModel,
         tokensUsed: totalTokens || null,
       },
     });
@@ -490,9 +523,7 @@ export class StemLensService implements IStemLensService {
       assistantMessageId: assistantMsgRecord.id,
       reply: answer,
       generatedImageUrl,
-      model: generatedImageUrl
-        ? 'grok-imagine-image + grok-4.20'
-        : result.model || 'grok-4.20-0309-non-reasoning',
+      model: resolvedModel,
       timestamp: assistantMsgRecord.createdAt.toISOString(),
       tokensUsed: totalTokens,
     };

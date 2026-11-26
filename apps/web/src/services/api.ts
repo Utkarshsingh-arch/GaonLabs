@@ -926,28 +926,41 @@ Formatting Guidelines:
 - When formulas or mathematical concepts arise, format them with clean LaTeX (e.g., $F = ma$, $V = IR$, $P = \\frac{F}{A}$).
 - Tone: Encouraging, inquisitive, lucid, and scientifically rigorous yet accessible.`;
 
+const DIRECT_GEMINI_KEY = cleanEnvString((import.meta as any).env?.VITE_GEMINI_API_KEY);
 const DIRECT_XAI_KEY = cleanEnvString((import.meta as any).env?.VITE_XAI_API_KEY);
+const DIRECT_AI_KEY = DIRECT_GEMINI_KEY || DIRECT_XAI_KEY;
+const DIRECT_AI_MODEL =
+  cleanEnvString((import.meta as any).env?.VITE_GEMINI_MODEL) ||
+  cleanEnvString((import.meta as any).env?.VITE_AI_MODEL);
+const DIRECT_IMAGE_MODEL =
+  cleanEnvString((import.meta as any).env?.VITE_AI_IMAGE_MODEL) || DIRECT_AI_MODEL;
+const DIRECT_AI_BASE_URL = DIRECT_GEMINI_KEY
+  ? 'https://generativelanguage.googleapis.com/v1beta/openai'
+  : 'https://api.x.ai/v1';
 
 async function executeDirectXaiCall(
   params: StemLensSendParams
 ): Promise<StemLensChatResponseData> {
-  if (!DIRECT_XAI_KEY) {
-    throw new Error('Direct xAI API key is not configured on client');
+  if (!DIRECT_AI_KEY) {
+    throw new Error('Direct AI API key is not configured on client');
+  }
+  if (!DIRECT_AI_MODEL) {
+    throw new Error('AI model name is not configured in .env (VITE_GEMINI_MODEL / VITE_AI_MODEL)');
   }
   const isImageMode = params.mode === 'image';
   const effectiveSessionId = params.sessionId || `session-${Date.now()}`;
 
   // Image generation request
-  if (isImageMode && params.message) {
+  if (isImageMode && params.message && DIRECT_IMAGE_MODEL) {
     try {
-      const imgRes = await fetch('https://api.x.ai/v1/images/generations', {
+      const imgRes = await fetch(`${DIRECT_AI_BASE_URL}/images/generations`, {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${DIRECT_XAI_KEY}`,
+          Authorization: `Bearer ${DIRECT_AI_KEY}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'grok-imagine-image',
+          model: DIRECT_IMAGE_MODEL,
           prompt: `${params.message}, high educational clarity scientific diagram for school students`,
           n: 1,
           response_format: 'url',
@@ -962,13 +975,13 @@ async function executeDirectXaiCall(
             sessionId: effectiveSessionId,
             reply: `Here is the visual inquiry diagram for **"${params.message}"**:\n\n*Observing its structures and components helps understand how this system operates in real-world conditions.*`,
             generatedImageUrl: genUrl,
-            model: 'grok-imagine-image',
+            model: DIRECT_IMAGE_MODEL,
             timestamp: new Date().toISOString(),
           };
         }
       }
     } catch (imgErr) {
-      console.warn('Direct xAI image generation error, continuing with chat:', imgErr);
+      console.warn('Direct AI image generation error, continuing with chat:', imgErr);
     }
   }
 
@@ -1004,14 +1017,14 @@ async function executeDirectXaiCall(
     });
   }
 
-  const res = await fetch('https://api.x.ai/v1/chat/completions', {
+  const res = await fetch(`${DIRECT_AI_BASE_URL}/chat/completions`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${DIRECT_XAI_KEY}`,
+      Authorization: `Bearer ${DIRECT_AI_KEY}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'grok-4.20-0309-non-reasoning',
+      model: DIRECT_AI_MODEL,
       messages,
       temperature: 0.3,
       max_tokens: 1500,
@@ -1020,7 +1033,7 @@ async function executeDirectXaiCall(
 
   if (!res.ok) {
     const errBody = await res.text();
-    throw new Error(`Direct xAI request failed (${res.status}): ${errBody}`);
+    throw new Error(`Direct AI request failed (${res.status}): ${errBody}`);
   }
 
   const json = await res.json();
@@ -1031,7 +1044,7 @@ async function executeDirectXaiCall(
     sessionId: effectiveSessionId,
     sessionTitle: params.message.slice(0, 32),
     reply,
-    model: 'grok-4.20-0309-non-reasoning',
+    model: json.model || DIRECT_AI_MODEL,
     timestamp: new Date().toISOString(),
     tokensUsed,
   };
@@ -1083,7 +1096,7 @@ What variables can you change in this system to observe a different outcome? Try
     sessionId: effectiveSessionId,
     sessionTitle: params.message.slice(0, 30),
     reply,
-    model: 'gaonlab-curriculum-ai',
+    model: DIRECT_AI_MODEL || 'offline-curriculum',
     timestamp: new Date().toISOString(),
   };
 }
